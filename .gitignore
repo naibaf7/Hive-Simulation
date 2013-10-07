@@ -43,4 +43,8 @@ desktop.ini
 
 #Specific files#
 ################
-
+/doc/latex/hive_simulation.pdf
+/doc/latex/hive_simulation.aux
+/doc/latex/hive_simulation.log
+/doc/latex/hive_simulation.synctex.gz
+/doc/latex/hive_simulation.toc
