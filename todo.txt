@@ -1,0 +1,6 @@
+Task													Deadline						Assigned to					Status
+--------------------------------------------------------------------------------------------------------------------------
+Matlab simulation code skeleton							Not set yet						Fabian Tschopp				Todo
+Project Proposal (README.md)							21.10.2013						Everyone					WIP
+Latex code skeleton										Not set yet						Fabian Tschopp				Done
+Aquisition of additional papers and datasets			14.10.2013						Everyone					WIP

@@ -1,9 +1,8 @@
-# MATLAB HS13 – Research Plan (Template)
-(text between brackets to be removed)
+# MATLAB HS13 – Research Plan
 
-> * Group Name: (be creative!)
-> * Group participants names: (alphabetically sorted by last name)
-> * Project Title: (can be changed)
+> * Group Name: Honeybee
+> * Group participants names: Gugler Stefan, Huwyler Elias, Tschopp Fabian
+> * Project Title: Hive Simulation
 
 ## General Introduction
 
