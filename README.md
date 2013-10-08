@@ -15,7 +15,7 @@ Bees are a very complex social system. This means it is not possible to take all
 Some aspects won't be used at all, while others are simplified with probability variables from real world measurements [1].
 Our first approach is based largely on an existing simulation which works with a dynamic system and continuous update inside the hive [2].
 A reasonable update rate for this is one to a few hours. Simulation length is from a few months to a few years (simulated time).
-Parameters and variables taken from the existing simulation[2]:
+Parameters and variables taken from the existing simulation [2]:  
 1. Brood rate  
 2. Adult bee emerging  
 3. Rate of change of foragers  
