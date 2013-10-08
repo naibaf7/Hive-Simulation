@@ -27,10 +27,10 @@
 
 
 ## References 
-[1]		Seeley, T. 1995. The wisdom of the hive - the social physiology of honey bee colonies 
-[2]		Khoury et al. 2013. Modelling Food and Population Dynamics in Honey Bee Colonies
-[3]		Karaboga, D. 2005. An idea based on honey bee swarm for numerical optimization
-[4]		Girling, R. 2013. Diesel exhaust rapidly degrades floral odours used by honeybees
+[1]		Seeley, T. 1995. The wisdom of the hive - the social physiology of honey bee colonies  
+[2]		Khoury et al. 2013. Modelling Food and Population Dynamics in Honey Bee Colonies  
+[3]		Karaboga, D. 2005. An idea based on honey bee swarm for numerical optimization  
+[4]		Girling, R. 2013. Diesel exhaust rapidly degrades floral odours used by honeybees  
 
 (Add the bibliographic references you intend to use)
 (Explain possible extension to the above models)
