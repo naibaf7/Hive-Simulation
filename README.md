@@ -27,6 +27,10 @@
 
 
 ## References 
+[1]		Seeley, T. 1995. The wisdom of the hive - the social physiology of honey bee colonies 
+[2]		Khoury et al. 2013. Modelling Food and Population Dynamics in Honey Bee Colonies
+[3]		Karaboga, D. 2005. An idea based on honey bee swarm for numerical optimization
+[4]		Girling, R. 2013. Diesel exhaust rapidly degrades floral odours used by honeybees
 
 (Add the bibliographic references you intend to use)
 (Explain possible extension to the above models)
@@ -34,9 +38,10 @@
 
 
 ## Research Methods
-
-(Cellular Automata, Agent-Based Model, Continuous Modeling...) (If you are not sure here: 1. Consult your colleagues, 2. ask the teachers, 3. remember that you can change it afterwards)
-
+The bees in the environment outside the hive are simulated with an agent-based model (continuously updated). The environment itself (outside the hive), in which
+the bees will navigate, is based on a 2D-cellular automaton which is updated sequentially with fixed borders (scent and smog diffusion, flower growth).
+Inside the hive, a simplified model is used, assuming all parameters at first and including the parameters of the environment simulation later.
+Dynamical systems (SIR Model, aging and reproduction rate) is used inside the hive.
 
 ## Other
 
