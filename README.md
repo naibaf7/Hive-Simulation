@@ -16,15 +16,15 @@ Some aspects won't be used at all, while others are simplified with probability 
 Our first approach is based largely on an existing simulation which works with a dynamic system and continuous update inside the hive [2].
 A reasonable update rate for this is one to a few hours. Simulation length is from a few months to a few years (simulated time).
 Parameters and variables taken from the existing simulation[2]:
-1. Brood rate
-2. Adult bee emerging
-3. Rate of change of foragers
-4. Recruitment of foragers
-5. Rate of change in food stores
-6. Total hive weight (depending on 5.)
-7. Indicators for hive healthiness (depending on 1. and 5.)
-8. Forager mortality
-9. Sudden events (increased death rate, infections)
+1. Brood rate  
+2. Adult bee emerging  
+3. Rate of change of foragers  
+4. Recruitment of foragers  
+5. Rate of change in food stores  
+6. Total hive weight (depending on 5.)  
+7. Indicators for hive healthiness (depending on 1. and 5.)  
+8. Forager mortality  
+9. Sudden events (increased death rate, infections)  
 
 The second approach adds a (graphically represented) environment simulation to refine the simulation.
 This will mainly affect parameters 8. and 5. of the first approach by substituting the fixed rates with
@@ -62,7 +62,7 @@ total weight of the hive as found in our reference book [1].
 The bees in the environment outside the hive are simulated with an agent-based model (continuously updated). The environment itself (outside the hive), in which
 the bees will navigate, is based on a 2D-cellular automaton which is updated sequentially with fixed borders (scent and smog diffusion, flower growth).
 Inside the hive, a simplified model is used, assuming all parameters at first and including the parameters of the environment simulation later.
-Dynamical systems (SIR Model, ageing and reproduction rate, Lotka-Volterra equations) is used inside the hive.
+Dynamical systems (SIR Model, ageing and reproduction rate, Lotka-Volterra equations) are used inside the hive.
 
 ## Other
 Datasets for comparison and model refinement:  
