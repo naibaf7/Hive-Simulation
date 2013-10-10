@@ -1,3 +1,4 @@
 pone.0059084.pdf			http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3647073/pdf/pone.0059084.pdf
+pone.0018491.pdf			http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0018491
 HONEY_BEE_SWARM.pdf			http://people.stfx.ca/x2010/x2010qfo/SUMMER_PROJECT/BEE_COLONY_ALGORITHM/ABC_ALGORITHM/AN_IDEA_BASED_HONEY_BEE_SWARM_FOR_NUMERICAL_OPTIMIZATION.pdf
 Exhaust_Smog_Bee.pdf		http://www.nature.com/srep/2013/131003/srep02779/pdf/srep02779.pdf

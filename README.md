@@ -57,6 +57,7 @@ total weight of the hive as found in our reference book [1].
 [2]		Khoury et al. 2013. Modelling Food and Population Dynamics in Honey Bee Colonies  
 [3]		Karaboga, D. 2005. An idea based on honey bee swarm for numerical optimization  
 [4]		Girling, R. 2013. Diesel exhaust rapidly degrades floral odours used by honeybees  
+[5]		Khoury et al. 2011. A Quantitative Model of Honey Bee Colony Population Dynamics
 
 ## Research Methods
 The bees in the environment outside the hive are simulated with an agent-based model (continuously updated). The environment itself (outside the hive), in which
