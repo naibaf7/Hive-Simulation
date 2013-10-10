@@ -1,39 +1,39 @@
 # MATLAB HS13 – Research Plan
 
-> * Group Name: Honeybee
+> * Group Name: Honey bee
 > * Group participants names: Gugler Stefan, Huwyler Elias, Tschopp Fabian
 > * Project Title: Hive Simulation
 
 ## General Introduction
-Bees are essential insects for pollination and are therefore directly linked to our food supply.
-The pollination rate is directly linked to the health and size of a hive.
-Therefore it is important to know under what conditions a hive can grow and how much it takes for a colony to extinct.
-Most research done about bees has been experimental so far and there are numerous parameters to take into account.
+Honey bees (Apis sp.) are essential insects for pollination and are therefore associated with our food supply.
+The pollination rate again is connected to the health and size of a hive.
+It is important to know under what conditions a hive can grow and how much it takes for a colony to become extinct.
+Most research done so far has been experimental and there are numerous parameters to take into account.
 
 ## The Model
-Bees are a very complex social system. This means it is not possible to take all aspects into account.
-Some aspects won't be used at all, while others are simplified with probability variables from real world measurements [1].
-Our first approach is based largely on an existing simulation which works with a dynamic system and continuous update inside the hive [2].
-A reasonable update rate for this is one to a few hours. Simulation length is from a few months to a few years (simulated time).
+Bees have an utterly complex social system. In any case, it is not possible to take all aspects into account.
+Some of them won't be used at all, while others are simplified with probability variables from real world measurements [1].
+Our first approach is largely based on an existing simulation which works with a dynamic system and continuous update inside the hive [2].
+A reasonable update rate for this is one up to a few hours. Simulation length is from a few months to a few years (simulated time).
 Parameters and variables taken from the existing simulation [2]:  
 1. Brood rate  
-2. Adult bee emerging  
+2. Adult bees emerging  
 3. Rate of change of foragers  
 4. Recruitment of foragers  
 5. Rate of change in food stores  
 6. Total hive weight (depending on 5.)  
 7. Indicators for hive healthiness (depending on 1. and 5.)  
 8. Forager mortality  
-9. Sudden events (increased death rate, infections)  
+9. Sudden unexpected events (increased death rate, infections)  
 
-The second approach adds a (graphically represented) environment simulation to refine the simulation.
-This will mainly affect parameters 8. and 5. of the first approach by substituting the fixed rates with
-values obtained by fine-grained environment simulation (time resolution of approx. one second per iteration step and one day per trigger).
-Environment simulation depends on parameters 1. to 9. of the first model and significant changes in those parameters trigger
-a re-evaluation of the environment to redefine parameters 8. and 5.
+The second approach adds a (graphically implemented) environment simulation to refine the processes.
+This will mainly affect parameters 5. and 8. (first approach) by substituting the fixed rates with
+values obtained by fine-grained environment simulation (time resolution of approximately one second per iteration step and one day per trigger).
+Environment simulation depends on parameters 1. to 9. of the first model, which can trigger
+a significant re-evaluation of the environment to redefine parameters 8. and 5.
 
 This hybrid approach seems to be a good model because fixed rates [2] are too abstract for such a complex model [1], but evaluating
-all parameters and aspects gets too complicated for meaningful statistical analysis.
+all parameters and aspects becomes too complicated for meaningful statistical analysis.
 
 ## Fundamental Questions
 Basic questions:  
@@ -42,15 +42,15 @@ Basic questions:
 - Hive growth rate and healthiness  
 
 Advanced questions:  
-- The effect of smog on food supply  
+- The effect of smog on food supply/pollination
 - The effect of smog on forager bees (higher death rate)  
-- Hive growth and relation to food availability (seasonal changes, different environment configurations)  
-- Changes observed between hive-only and hive with environment simulation (population dynamics dependent on environment)  
+- Hive growth and relation to food availability (seasonal changes, different environment settings)  
+- Differences between a hive-only simulation and an environmentally interacting model (population dynamics depends on environment)
 
 ## Expected Results
 It is expected that our simulation will at least reach similar results as the dataset from the reference paper used [2].
-This answers our basic questions. It is also expected that using a dynamic environment will give similar results for the
-total weight of the hive as found in our reference book [1].
+This answers our basic questions. Furthermore, we expected using a dynamic environment will give similar results for the
+total weight of the hive as found in the reference book [1].
 
 ## References 
 [1]		Seeley, T. 1995. The wisdom of the hive - the social physiology of honey bee colonies  
