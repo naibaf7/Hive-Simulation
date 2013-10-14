@@ -58,13 +58,13 @@ function hive(max_sim_time, dt)
     
     % Plotting
     
-    plot(B,'r.-');
+    plot(B,'r-','LineWidth', 2);
     hold on
-    plot(F,'g.-');
+    plot(F,'g-','LineWidth', 2);
     hold on
-    plot(H,'b.-');
+    plot(H,'b-','LineWidth', 2);
     hold on
-    plot(f,'k.-');
+    plot(f,'k-','LineWidth', 2);
     hold on
     legend('Uncapped Brood','Forager Bees','Hive Bees','Stored Food')
     xlabel('days')
