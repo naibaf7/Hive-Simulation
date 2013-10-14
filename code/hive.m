@@ -66,5 +66,8 @@ function hive(max_sim_time, dt)
     hold on
     plot(f,'k.-');
     hold on
+    legend('Uncapped Brood','Forager Bees','Hive Bees','Stored Food')
+    xlabel('days')
+    ylabel('count / grams')
     
 end
