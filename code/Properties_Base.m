@@ -1,10 +1,9 @@
 % This is a sample file as reference. For actual simulations, make a copy!
 
-% ID
-Prop.Sys.identifier = 'Properties_Base';
-
 % SYSTEM
-Prop.Sys.Cores = 8;
+Prop.Sys.identifier = 'Properties_Base';
+Prop.Sys.cores = 8;
+Prop.Sys.record_video = 0;
 
 
 % WORLD

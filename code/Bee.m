@@ -1,4 +1,4 @@
-classdef Bee
+classdef Bee < handle
     properties
         
     end

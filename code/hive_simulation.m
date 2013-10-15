@@ -1,7 +1,11 @@
 function hive_simulation()
 
+    fprintf('#################### HIVE-SIMULATION ####################\n');
+
     % Ask user to input a properties file for the simulation
     [file_name, path_name] = uigetfile('*.m','Select simulation property file');
+    
+    fprintf('Loading properties...\n');
     
     % Construct absolute loading path
     load_properties = strcat(path_name,file_name);
@@ -10,24 +14,29 @@ function hive_simulation()
     run(load_properties);
     
     % Initialize thread pool
-    % From: 
+    fprintf('Initializing thread pool...\n');
     threads = matlabpool('size');
     cores = feature('numCores');
-    if((threads ~= min(cores, Prop.Sys.Cores)) && threads > 0)
+    if((threads ~= min(cores, Prop.Sys.cores)) && threads > 0)
         if threads > 0
             matlabpool('close');
         end
-        matlabpool('open', min(cores, Prop.Sys.Cores));
+        matlabpool('open', min(cores, Prop.Sys.cores));
     end
     
+    % Initialize world
+    fprintf('Initializing world...\n');
+    % TODO
+    
     % Initialize hives
+    fprintf('Initializing hives...\n');
     hives = Hive.empty(Prop.Sim.hive_count, 0);
     for i = 1:Prop.Sim.hive_count
         hives(i) = Hive(i, Prop);
     end
     
     % Start simulation
-    
+    fprintf('Starting simulation (%d days)...\n', Prop.Sim.eval_time_days);
     for t_d = 1:Prop.Sim.eval_time_days;
         % Re-evaluate environment
         if(mod(t_d-1,Prop.Sim.eval_step_days) == 0)
@@ -48,8 +57,7 @@ function hive_simulation()
     hives(1).plot();
     
     
-    
     % TODO: Write data to files
-    
-
+    fprintf('Simulation finished.\n');
+    fprintf('#########################################################\n');
 end
