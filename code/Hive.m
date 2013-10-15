@@ -1,6 +1,7 @@
 classdef Hive < handle
    
     properties
+        prop;                    % Properties
         hive_ind;                % Hive index in the world
         max_sim_time;            % Simulation length
         x_pos;                   % X-position in the world
@@ -32,6 +33,8 @@ classdef Hive < handle
             if(nargin == 0)
                 % No arguments passed, load default settings
 
+                obj.prop = Prop;
+                
                 obj.hive_ind = 1;
                 
                 obj.max_sim_time = 365;             % One year
