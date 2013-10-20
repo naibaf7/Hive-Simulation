@@ -1,0 +1,36 @@
+classdef Path < handle
+    
+    properties
+        waypoints               % 2 x n vector
+    end
+    
+    methods
+        % Constructor
+        function obj = Path()
+        end
+        
+        % Copy the path to a new object
+        function obj = copy(old_obj, optimize)
+            obj = Path();
+            [~, old_n] = size(old_obj.waypoints);
+            % skip every second waypoint to shorten the path
+            if(optimize)
+                new_n = floor((old_n-2)/2)+2;
+                obj.waypoints = zeros(2,new_n);
+                % copy every 2nd waypoint, preserve start and end point
+                obj.waypoints(:,1:1:new_n) = old_obj.waypoints(:,1:2:old_n);
+                obj.wa
+            else
+                obj.waypoints = old_obj.waypoints;
+            end
+        end
+        
+        % Append a waypoint to the path
+        function append(obj, x, y)
+            [~, old_n] = size(old_obj.waypoints);
+            obj.waypoints(:,old_n+1) = [x; y];
+        end
+    end
+    
+end
+

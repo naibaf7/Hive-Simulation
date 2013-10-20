@@ -2,7 +2,8 @@ classdef Bee < handle
     properties
         prop                     % Properties
         hive                     % Hive the bee belongs to
-        % Current work mode
+        food_c                   % Max. amount of food carried
+        % Current work state
         % 0: no job
         % 1: scout, searching flower patch
         % 2: scout, evaluating flower patch
@@ -10,13 +11,11 @@ classdef Bee < handle
         % 4: scout, waggle dance
         % 11: forager, going to food source
         % 12: forager, collecting food at source
-        % 13: forager, going to adjacent flowers
-        % 14: forager, way back home
-        % 15: forager, food dispatch
-        % 16: forager, waggle dance
-        work_mode
-        % work time, time spent in current work state
-        work_time
+        % 13: forager, 
+        % 13: forager, way back home
+        % 14: forager, food dispatch
+        % 15: forager, waggle dance
+        work
         x_pos;                   % X-position in the world
         y_pos;                   % Y-position in the world
         path;                    % Flying path (waypoints)
@@ -30,6 +29,7 @@ classdef Bee < handle
             obj.hive = hive;
             obj.x_pos = hive.x_pos;
             obj.y_pos = hive.y_pos;
+            obj.food_c = Prop.Sim.bee.max_food;
         end
         
         function work(obj, dt_s)
