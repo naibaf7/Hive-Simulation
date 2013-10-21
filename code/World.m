@@ -39,6 +39,7 @@ classdef World < handle
         
         function draw_s(obj)
             clf
+            
             %spy(obj.scent_map_c.array);
             colormap('hot')
             imagesc(obj.scent_map.array);
