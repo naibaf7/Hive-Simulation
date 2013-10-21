@@ -7,7 +7,7 @@ Prop.Sys.record_video = 0;
 
 
 % WORLD
-Prop.Sim.world_size = 10000;            % Meters
+Prop.Sim.world_size = 1000;            % Meters
 Prop.Sim.eval_step_days = 14;           % Days
 Prop.Sim.eval_time_days = 365;          % Days
 Prop.Sim.eval_time_seconds = 24*60*60;  % Seconds
@@ -32,7 +32,9 @@ Prop.Sim.Hive(1).social_inhibition = 0.75;
 Prop.Sim.Hive(1).adult_bee_emerging = 1/9;
 Prop.Sim.Hive(1).food_per_forager = 0.1;
 Prop.Sim.Hive(1).food = 0;
+% Food consumption, 0.007g/day
 Prop.Sim.Hive(1).food_consumption_adult = 0.007;
+% Food consumption, 0.018g/day
 Prop.Sim.Hive(1).food_consumption_brood = 0.018;
 %...
 
@@ -44,5 +46,6 @@ Prop.Sim.Bee.max_food = 0.025;
 % Max. flight distance of a bee
 % 8km or 8000m, use 2km padding to world borders
 Prop.Sim.Bee.max_dist = 8000;
+
 
 

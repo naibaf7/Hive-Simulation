@@ -6,8 +6,12 @@ classdef Map
     
     methods
         % Constructor
-        function obj = Map(sparse, size)
-            obj.array = sparse(size);
+        function obj = Map(is_sparse, m, n)
+            if(is_sparse)
+                obj.array = sparse(m, n);
+            else
+                obj.array = zeros(m, n);
+            end
         end
     end
     

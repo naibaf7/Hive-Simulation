@@ -28,6 +28,8 @@ classdef Hive < handle
         x_pos;                   % X-position in the world
         y_pos;                   % Y-position in the world
         
+        bees;                    % Array of bees
+        
     end
     
     methods

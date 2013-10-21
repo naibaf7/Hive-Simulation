@@ -26,7 +26,7 @@ function hive_simulation()
     
     % Initialize world
     fprintf('Initializing world...\n');
-    % TODO
+    world = World(Prop);
     
     % Initialize hives
     fprintf('Initializing hives...\n');
@@ -35,21 +35,31 @@ function hive_simulation()
         hives(i) = Hive(i, Prop);
     end
     
+    figure
+    
     % Start simulation
     fprintf('Starting simulation (%d days)...\n', Prop.Sim.eval_time_days);
     for t_d = 1:Prop.Sim.eval_time_days;
         % Re-evaluate environment
         if(mod(t_d-1,Prop.Sim.eval_step_days) == 0)
             for t_s = 1:Prop.Sim.eval_time_seconds
-                % TODO: Realtime environment evaluation
+                world.simulate_s(t_s);
+                if(mod(t_s,100)==0)
+                    world.draw_s();
+                    pause(0.0001);
+                    t_s
+                end
             end
         end
         
-        % TODO: Daily environment evaluation (flower patches etc.)
+        % Daily environment simulation
+        world.simulate_d(t_d);
+        % Daily hive simulation
         parfor i = 1:Prop.Sim.hive_count
             hives(i).simulate(t_d);
         end
         
+        world.draw_d();
         % TODO: Update graphics
     end
     
