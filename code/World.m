@@ -9,10 +9,7 @@ classdef World < handle
         scent_map
         smog_map
         % map with flowers, dimensions N x N
-        flower_type_map
-        flower_stat_map
-        % Moore neighborhood
-        neigh
+        flower_state_map
     end
     
     methods
