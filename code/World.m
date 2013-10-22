@@ -2,14 +2,16 @@ classdef World < handle
 
     properties
         prop;
-        % base land property map, dimensions 1 x (N/10) x (N/10)
-        % dense and handle
-        land_map
-        % map with scent distribution, dimensions N x N
+        % map with scent distribution, dimensions N/10 x N/10
         scent_map
         smog_map
-        % map with flowers, dimensions N x N
-        flower_state_map
+        % map with flowers, smog source, dimensions N/10 x N/10
+        type_map
+        % map with flower quality, smog emission intensity, N/10 x N/10
+        % current state
+        quality_map
+        % peak state
+        maxquality_map
     end
     
     methods
@@ -17,7 +19,9 @@ classdef World < handle
         function obj = World(Prop)
             obj.prop = Prop;
             n = Prop.Sim.world_size;
-            obj.scent_map = Map(0, n, n);
+            obj.scent_map = Map(0, n/10, n/10);
+            obj.smog_map = Map(0, n/10, n/10);
+            [obj.type_map, obj.quality_map, obj.maxquality_map] = generate_maps(Prop);
         end
         
         function simulate_d(obj, t_d)
