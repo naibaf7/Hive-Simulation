@@ -24,7 +24,7 @@ function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
     
     
 
-    %fill map
+    %round the hue values to multiples of 1/6 
      for x = 1:Prop.Sim.world_size/10
          for y = 1:Prop.Sim.world_size/10
              if type_map.array(x,y) <= 1/12
