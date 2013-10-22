@@ -33,7 +33,18 @@ classdef Bee < handle
         end
         
         function work(obj, dt_s)
-            
+            switch work_mode
+                case 0
+                case 1
+                case 2
+                case 3
+                case 4
+                case 11
+                case 12
+                case 13
+                case 14
+                otherwise
+            end
         end
         
         

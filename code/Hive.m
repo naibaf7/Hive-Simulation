@@ -29,6 +29,7 @@ classdef Hive < handle
         y_pos;                   % Y-position in the world
         
         bees;                    % Array of bees
+        waggels;                 % Available waggles to copy
         
     end
     

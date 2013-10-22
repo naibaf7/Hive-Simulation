@@ -7,10 +7,11 @@ Prop.Sys.record_video = 0;
 
 
 % WORLD
-Prop.Sim.world_size = 1000;            % Meters
+Prop.Sim.world_size = 1000;             % Meters
 Prop.Sim.eval_step_days = 14;           % Days
 Prop.Sim.eval_time_days = 365;          % Days
-Prop.Sim.eval_time_seconds = 24*60*60;  % Seconds
+Prop.Sim.eval_time_seconds = 12*60*60;  % Seconds
+Prop.Sim.eval_step_seconds = 5;         % Seconds
 
 
 % HIVES
@@ -42,10 +43,10 @@ Prop.Sim.Hive(1).food_consumption_brood = 0.018;
 % BEES
 % Max. food carried by bee, average value, P. 42 "Wisdom of the Hive"
 % 25mg or 0.025g
-Prop.Sim.Bee.max_food = 0.025;
+Prop.Sim.Hive(1).Bee.max_food = 0.025;
 % Max. flight distance of a bee
 % 8km or 8000m, use 2km padding to world borders
-Prop.Sim.Bee.max_dist = 8000;
+Prop.Sim.Hive(1).Bee.max_dist = 8000;
 
 
 
