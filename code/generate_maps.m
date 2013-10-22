@@ -29,22 +29,22 @@ function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
 %old iterative version    
 %         %round the hue values to multiples of 1/6
 %         tic
-%          for x = 1:Prop.Sim.world_size/10
-%              for y = 1:Prop.Sim.world_size/10
-%                  if type_map.array(x,y) <= 1/12
-%                      type_map.array(x,y) = 0;
-%                  elseif type_map.array(x,y) <= 3/12
-%                      type_map.array(x,y) = 1/6;
-%                  elseif type_map.array(x,y) <= 5/12
-%                      type_map.array(x,y) = 2/6;
-%                  elseif type_map.array(x,y) <= 7/12
-%                      type_map.array(x,y) = 3/6;
-%                  elseif type_map.array(x,y) <= 9/12
-%                      type_map.array(x,y) = 4/6;
-%                  elseif type_map.array(x,y) <= 11/12
-%                      type_map.array(x,y) = 5/6;
+%          for y = 1:Prop.Sim.world_size/10
+%              for x = 1:Prop.Sim.world_size/10
+%                  if type_map.array(y,x) <= 1/12
+%                      type_map.array(y,x) = 0;
+%                  elseif type_map.array(y,x) <= 3/12
+%                      type_map.array(y,x) = 1/6;
+%                  elseif type_map.array(y,x) <= 5/12
+%                      type_map.array(y,x) = 2/6;
+%                  elseif type_map.array(y,x) <= 7/12
+%                      type_map.array(y,x) = 3/6;
+%                  elseif type_map.array(y,x) <= 9/12
+%                      type_map.array(y,x) = 4/6;
+%                  elseif type_map.array(y,x) <= 11/12
+%                      type_map.array(y,x) = 5/6;
 %                  else
-%                      type_map.array(x,y) = 0;
+%                      type_map.array(y,x) = 0;
 %                  end
 %              end
 %          end
