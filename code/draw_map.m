@@ -1,4 +1,4 @@
-function [ output_args ] = draw_map( Prop, type_map, quality_map )
+function [ handle ] = draw_map( Prop, type_map, quality_map )
 %DRAW_MAP draws an image of the map
 %   type_map is the H matrix, and quality_map is the V matrix
 
@@ -17,6 +17,7 @@ image_map = min(max(image_map,0),1);
 
 %display image
 image(image_map)
+handle = gcf;
 
 
 
