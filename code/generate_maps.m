@@ -54,5 +54,6 @@ function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
 
     figure
     imagesc(type_map.array);
+    colormap(hsv);
 end
 
