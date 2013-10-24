@@ -38,12 +38,12 @@ ehthumbs.db
 Thumbs.db
 desktop.ini
 
-#Specific folders#
+# Specific folders #
+####################
+
+
+# Specific files #
 ##################
-
-
-#Specific files#
-################
 /doc/latex/hive_simulation.pdf
 /doc/latex/hive_simulation.aux
 /doc/latex/hive_simulation.log

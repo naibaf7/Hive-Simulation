@@ -14,6 +14,7 @@ classdef Hive < handle
         amin;                    % Minimum recruitment
         amax;                    % Food dependent recruitment
         L;                       % Laying rate of the queen
+        L_year;                  % Laying rate change over the year
         m;                       % Forager death rate
         sigma;                   % Social inhibition strength
         phi;                     % Adult bee emerging factor
@@ -61,6 +62,7 @@ classdef Hive < handle
                 obj.amin = 0.25;
                 obj.amax = 0.25;
                 obj.L = 2000;
+                obj.L_year = @(x) 1;
                 obj.m = 0.3;
                 obj.sigma = 0.75;
                 obj.phi = 1/9;
@@ -90,6 +92,14 @@ classdef Hive < handle
                 obj.amin = Prop.Sim.Hive(obj.hive_ind).min_recruitment;
                 obj.amax = Prop.Sim.Hive(obj.hive_ind).max_recruitment;
                 obj.L = Prop.Sim.Hive(obj.hive_ind).laying_rate;
+                
+                % Load x values of measure points for laying rate change
+                L_year_x = Prop.Sim.Hive(obj.hive_ind).laying_function(1,:);
+                % Load y values of measure points for laying rate change
+                L_year_y = Prop.Sim.Hive(obj.hive_ind).laying_function(2,:);
+                % Interpolate values of laying rate change for 365 days
+                obj.L_year = interpolate_values(L_year_x,L_year_y,1,1,365,0,1);
+                
                 obj.m = Prop.Sim.Hive(obj.hive_ind).mortality;
                 obj.sigma = Prop.Sim.Hive(obj.hive_ind).social_inhibition;
                 obj.phi = Prop.Sim.Hive(obj.hive_ind).adult_bee_emerging;
@@ -109,7 +119,7 @@ classdef Hive < handle
             % Function handles
             
             % Brood change rate
-            dB = @(t) obj.L * obj.S(obj.H(t), obj.f(t)) - obj.phi * obj.B(t);
+            dB = @(t) obj.L_year(mod(t_d - 1, 365) + 1) * obj.L * obj.S(obj.H(t), obj.f(t)) - obj.phi * obj.B(t);
             
             % Rate of change of hive bees > tau
             dH = @(t) obj.phi * obj.B(t - obj.tau) - obj.H(t) * obj.R(obj.H(t), obj.F(t), obj.f(t));
@@ -124,16 +134,16 @@ classdef Hive < handle
             df = @(t) obj.c * obj.F(t) - obj.coFH * (obj.F(t) + obj.H(t)) - obj.coB * obj.B(t);
 
             % Calculate t+1
-            obj.B(t_d + 1) = obj.B(t_d) + dB(t_d);
-            obj.F(t_d + 1) = obj.F(t_d) + dF(t_d);
+            obj.B(t_d + 1) = max(obj.B(t_d) + dB(t_d), 0);
+            obj.F(t_d + 1) = max(obj.F(t_d) + dF(t_d), 0);
             
             % Hive bees can only emerge if starting brood was more than tau days ago
             if(t_d > obj.tau)
-                obj.H(t_d + 1) = obj.H(t_d) + dH(t_d);
+                obj.H(t_d + 1) = max(obj.H(t_d) + dH(t_d), 0);
             else
-                obj.H(t_d + 1) = obj.H(t_d) + dHs(t_d);
+                obj.H(t_d + 1) = max(obj.H(t_d) + dHs(t_d), 0);
             end
-            obj.f(t_d + 1) = obj.f(t_d) + df(t_d);
+            obj.f(t_d + 1) = max(obj.f(t_d) + df(t_d), 0);
         end
         
         function plot(obj)
