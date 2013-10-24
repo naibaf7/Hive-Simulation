@@ -20,13 +20,13 @@ Prop.Sim.eval_step_seconds = 5;         % Seconds
 % Taken from P. 45, "Wisdom of the Hive"
 % 2xN vectors, days vs. activity factor
 % Dandelion:
-Prop.Sim.Flower(1).year_activity = [0,0;0,0];   % TODO
+Prop.Sim.Flower(1).year_activity = [120:149;0.1,0,0.2,0.3,-0.3,-0.1,0.2,0.2,-0.2,-0.3,-0.3,-0.1,-0.1,0.5,0.5,0.5,1.7,1.0,1.0,1.1,0.1,0.4,1.5,-0.3,-1,-0.1,-0.2,-0.3,-0.3,-0.2];   % TODO
 % Black locust:
-Prop.Sim.Flower(2).year_activity = [0,0;0,0];   % TODO
+Prop.Sim.Flower(2).year_activity = [0,1.6,4,4.1,5.9,2.3,0.5,1.5,1.3,-0.1;15:159];   % TODO
 % Raspberry + sumac
-Prop.Sim.Flower(3).year_activity = [0,0;0,0];   % TODO
+Prop.Sim.Flower(3).year_activity = [-0.2,-0.2,-0.2,-0.1,0,-0.1,1.4,-0.2,1.2,-0.5,3.8,3.5,3.8,4.3,1.9,0,1.8,3.5,3.8,-0.8;160:179];   % TODO
 % Basswood
-Prop.Sim.Flower(4).year_activity = [0,0;0,0];   % TODO
+Prop.Sim.Flower(4).year_activity = [-0.6,-0.5,-0.3,-0.2,-0.2,0.6,0.5,0.6,0.6,0.1,-0.2,-0.5,-0.1,-0.2,0.2,-0.3,0,0.2,0.2,-0.5,0,0.3,0.2,-0.5,-0.1,0,-0.4,-0.3,-0.2,-0.2;180:209];   % TODO
 
 Prop.Sim.Smog.year_activity = [0,0;0,0];        % TODO
 
