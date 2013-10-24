@@ -100,9 +100,6 @@ classdef Hive < handle
                 % Interpolate values of laying rate change for 365 days
                 obj.L_year = interpolate_values(L_year_x,L_year_y,1,1,365,0,1);
                 
-                plot(obj.L_year(1:365));
-                pause(10);
-                
                 obj.m = Prop.Sim.Hive(obj.hive_ind).mortality;
                 obj.sigma = Prop.Sim.Hive(obj.hive_ind).social_inhibition;
                 obj.phi = Prop.Sim.Hive(obj.hive_ind).adult_bee_emerging;
@@ -117,6 +114,7 @@ classdef Hive < handle
                 
                 obj.R = @(H, F, f) obj.amin + obj.amax*(obj.b^2/(obj.b^2+f^2)) - obj.sigma * (F/(F+H));
         end
+        
         % Iterative simulation step
         function simulate(obj, t_d)
             % Function handles
@@ -150,17 +148,22 @@ classdef Hive < handle
         end
         
         function plot(obj)
+            subplot(2,1,1);
             plot(obj.B,'r-','LineWidth', 2);
             hold on
             plot(obj.F,'g-','LineWidth', 2);
             hold on
             plot(obj.H,'b-','LineWidth', 2);
             hold on
-            %plot(obj.f,'k-','LineWidth', 2);
-            hold on
-            legend('Uncapped Brood','Forager Bees','Hive Bees','Stored Food')
+            legend('Uncapped Brood','Forager Bees','Hive Bees')
             xlabel('days')
-            ylabel('count / grams')
+            ylabel('count')
+            subplot(2,1,2);
+            plot(obj.f,'k-','LineWidth', 2);
+            hold on
+            legend('Stored Food')
+            xlabel('days')
+            ylabel('grams')
         end
     end
 end

@@ -8,9 +8,9 @@ Prop.Sys.record_video = 0;
 
 % WORLD
 Prop.Sim.world_size = 10000;            % Meters
-Prop.Sim.world_file = 'test.png';       % Image file the world is based on
+Prop.Sim.world_file = 'data\test.png';       % Image file the world is based on
 Prop.Sim.eval_step_days = 14;           % Days
-Prop.Sim.eval_time_days = 365*3;          % Days
+Prop.Sim.eval_time_days = 365*3;        % Days
 Prop.Sim.eval_time_seconds = 12*60*60;  % Seconds
 Prop.Sim.eval_step_seconds = 5;         % Seconds
 
@@ -81,6 +81,10 @@ Prop.Sim.Hive(1).Bee.optimze_prob = 0.5;
 Prop.Sim.Hive(1).Bee.rotate_scale = 0.1;
 % Average time factor to set a waypoint, multiplied by randn();
 Prop.Sim.Hive(1).Bee.change_waypoint = 10;
+% Flight speed
+% Taken from P. 47 "Wisdom of the Hive"
+% 25km/h or 7m/s
+Prop.Sim.Hive(1).flight_speed = 7;
 
 
 
