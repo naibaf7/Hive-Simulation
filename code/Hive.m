@@ -100,6 +100,9 @@ classdef Hive < handle
                 % Interpolate values of laying rate change for 365 days
                 obj.L_year = interpolate_values(L_year_x,L_year_y,1,1,365,0,1);
                 
+                plot(obj.L_year(1:365));
+                pause(10);
+                
                 obj.m = Prop.Sim.Hive(obj.hive_ind).mortality;
                 obj.sigma = Prop.Sim.Hive(obj.hive_ind).social_inhibition;
                 obj.phi = Prop.Sim.Hive(obj.hive_ind).adult_bee_emerging;
@@ -153,7 +156,7 @@ classdef Hive < handle
             hold on
             plot(obj.H,'b-','LineWidth', 2);
             hold on
-            plot(obj.f,'k-','LineWidth', 2);
+            %plot(obj.f,'k-','LineWidth', 2);
             hold on
             legend('Uncapped Brood','Forager Bees','Hive Bees','Stored Food')
             xlabel('days')

@@ -41,7 +41,7 @@ function hive_simulation()
     fprintf('Starting simulation (%d days)...\n', Prop.Sim.eval_time_days);
     for t_d = 1:Prop.Sim.eval_time_days;
         % Re-evaluate environment
-        if(mod(t_d-1,Prop.Sim.eval_step_days) == 0)
+        if(mod(t_d-1,Prop.Sim.eval_step_days) == 0 && 0)    % Disabled for testing purposes
             for t_s = 1:Prop.Sim.eval_time_seconds
                 world.simulate_s(t_s);
                 if(mod(t_s,100)==0)
