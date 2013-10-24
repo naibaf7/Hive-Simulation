@@ -28,7 +28,7 @@ Prop.Sim.Flower(3).year_activity = [0,0;0,0];   % TODO
 % Basswood
 Prop.Sim.Flower(4).year_activity = [0,0;0,0];   % TODO
 
-Prop.Sim.Smog.year_activity = [0,0;0,0]:        % TODO
+Prop.Sim.Smog.year_activity = [0,0;0,0];        % TODO
 
 % HIVES
 % Hive 1
