@@ -108,6 +108,11 @@ classdef Hive < handle
                 obj.coFH = Prop.Sim.Hive(obj.hive_ind).food_consumption_adult;
                 obj.coB = Prop.Sim.Hive(obj.hive_ind).food_consumption_brood;
                 
+                obj.bees = Bee.empty(Obj.F(1), 0);
+                for i=1:Obj.F(1)
+                    
+                end
+                
             end
             
                 obj.S = @(H, f) f^2/(f^2 + obj.b^2) * H/(H+obj.v);
@@ -115,8 +120,13 @@ classdef Hive < handle
                 obj.R = @(H, F, f) obj.amin + obj.amax*(obj.b^2/(obj.b^2+f^2)) - obj.sigma * (F/(F+H));
         end
         
+        
+        function simulate_s(obj, t_s)
+            
+        end
+        
         % Iterative simulation step
-        function simulate(obj, t_d)
+        function simulate_d(obj, t_d)
             % Function handles
             
             % Brood change rate
