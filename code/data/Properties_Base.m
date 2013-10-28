@@ -8,7 +8,7 @@ Prop.Sys.record_video = 0;
 
 % WORLD
 Prop.Sim.world_size = 10000;            % Meters
-Prop.Sim.world_file = 'data\test.png';       % Image file the world is based on
+Prop.Sim.world_file = 'data\test2.png';  % Image file the world is based on
 Prop.Sim.eval_step_days = 14;           % Days
 Prop.Sim.eval_time_days = 365*3;        % Days
 Prop.Sim.eval_time_seconds = 12*60*60;  % Seconds
@@ -19,15 +19,30 @@ Prop.Sim.eval_step_seconds = 5;         % Seconds
 % From 1 to 365, arbitrary measure points + paddings
 % Taken from P. 45, "Wisdom of the Hive"
 % 2xN vectors, days vs. activity factor
+% Peak values are in hive weight change in kg per day.
+% Assuming bee count = 100'000, we get peak/100'000 = kg/bee/day
+% which * 1000 gives g/bee/day, what we need. Therefore we assume this is
+% the weight of pollen/nectar a bee can get per flight and flower.
+% Therefore we can take hive weight change/day as indicator for
+% flower/pollen quality at a given day in the year.
+
+% Final equation: peak * daily quality * 1/100 = reward per flower visit in
+% grams.
+
 % Dandelion (peak value 1.7):
+Prop.Sim.Flower(1).peak = 1.7;
 Prop.Sim.Flower(1).year_activity = [120:149;0.0588,0,0.1176,0.1765,-0.1765,-0.0588,0.1176,0.1176,-0.1176,-0.1765,-0.1765,-0.0588,-0.0588,0.2941,0.2941,0.2941,1.0000,0.5882,0.5882,0.6471,0.0588,0.2353,0.8824,-0.1765,-0.5882,-0.0588,-0.1176,-0.1765,-0.1765,-0.1176];
 % Black locust (peak value 5.9):
-Prop.Sim.Flower(2).year_activity = [15:159;0,0.271186440677966,0.677966101694915,0.694915254237288,1,0.389830508474576,0.0847457627118644,0.254237288135593,0.220338983050847,-0.0169491525423729];
+Prop.Sim.Flower(2).peak = 5.9;
+Prop.Sim.Flower(2).year_activity = [150:159;0,0.271186440677966,0.677966101694915,0.694915254237288,1,0.389830508474576,0.0847457627118644,0.254237288135593,0.220338983050847,-0.0169491525423729];
 % Raspberry + sumac (peak value 4.3)
+Prop.Sim.Flower(3).peak = 4.3;
 Prop.Sim.Flower(3).year_activity = [160:179;-0.0465116279069768,-0.0465116279069768,-0.0465116279069768,-0.0232558139534884,0,-0.0232558139534884,0.325581395348837,-0.0465116279069768,0.279069767441860,-0.116279069767442,0.883720930232558,0.813953488372093,0.883720930232558,1,0.441860465116279,0,0.418604651162791,0.813953488372093,0.883720930232558,-0.186046511627907];
 % Basswood (peak value 0.6)
+Prop.Sim.Flower(4).peak = 0.6;
 Prop.Sim.Flower(4).year_activity = [180:209;-1,-5/6,-0.5,-1/3,-1/3,1,5/6,1,1,5/3,-1/3,-5/6,-5/3,-1/3,1/3,-0.5,0,1/3,1/3,-5/6,0,0.5,1/3,-5/6,-5/3,0,-2/3,-0.5,-1/3,-1/3];
 
+% Maybe we'll implement smog later on, maybe not...
 Prop.Sim.Smog.year_activity = [0,0;0,0];        % TODO
 
 % HIVES
@@ -85,6 +100,11 @@ Prop.Sim.Hive(1).Bee.change_waypoint = 10;
 % Taken from P. 47 "Wisdom of the Hive"
 % 25km/h or 7m/s
 Prop.Sim.Hive(1).flight_speed = 7;
+% Max. percentage of foragers that are scouts
+% Taken from P. 86 "Wisdom of the Hive", an average value
+% 6% or 0.06 (normalized)
+Prop.Sim.Hive(1).scout_count = 0.06;
+
 
 
 

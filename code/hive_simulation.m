@@ -60,6 +60,7 @@ function hive_simulation()
         end
         
         world.draw_d();
+        t_d
         % TODO: Update graphics
     end
     

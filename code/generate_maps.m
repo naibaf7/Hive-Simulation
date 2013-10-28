@@ -1,7 +1,17 @@
 function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
-%GENERATE_FLOWERMAP Generates a map from a png file.
+%   Generates a map from a png file.
 %   creates a 1000x1000 map with 0:4 values, 4:1 for rbgk and 0 for
 %   anything else.
+
+% When drawing in GIMP, choose for H value:
+% 330-360 and 0-30: Nothing     MEAN: 0
+% 30-90: Flower 1               MEAN: 60
+% 90-150: Flower 2              MEAN: 120
+% 150-210: Flower 3             MEAN: 180
+% 210-270: Flower 4             MEAN: 240
+% 270-330: Smog                 MEAN: 300
+% for S, choose 100, for V choose quality between 0 and 100%
+
 
     image = imread(Prop.Sim.world_file);
     image = rgb2hsv(image);
@@ -21,7 +31,7 @@ function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
     %fill arrays
     type_map.array = image(:,:,1);
     maxquality_map.array = image(:,:,3);
-    %scale the values of h to 0:6
+    %scale the values of h to 0:5
     tic
     type_map.array = round(mod((type_map.array)*6,6));
     toc
