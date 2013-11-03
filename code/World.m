@@ -38,14 +38,14 @@ classdef World < handle
             
             % Looking if this is similar to P. 45 "Wisdom of the Hive", for
             % debug purposes ONLY:
-            bar(obj.flower(1).year_activity*Prop.Sim.Flower(1).peak);
-            hold on
-            bar(obj.flower(2).year_activity*Prop.Sim.Flower(2).peak);
-            hold on
-            bar(obj.flower(3).year_activity*Prop.Sim.Flower(3).peak);
-            hold on
-            bar(obj.flower(4).year_activity*Prop.Sim.Flower(4).peak);
-            pause(100);
+            % bar(obj.flower(1).year_activity*Prop.Sim.Flower(1).peak);
+            % hold on
+            % bar(obj.flower(2).year_activity*Prop.Sim.Flower(2).peak);
+            % hold on
+            % bar(obj.flower(3).year_activity*Prop.Sim.Flower(3).peak);
+            % hold on
+            % bar(obj.flower(4).year_activity*Prop.Sim.Flower(4).peak);
+            % pause(100);
         end
         
         function simulate_d(obj, t_d)

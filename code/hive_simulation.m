@@ -32,7 +32,7 @@ function hive_simulation()
     fprintf('Initializing hives...\n');
     hives = Hive.empty(Prop.Sim.hive_count, 0);
     for i = 1:Prop.Sim.hive_count
-        hives(i) = Hive(i, Prop);
+        hives(i) = Hive(i, world, Prop);
     end
     
     figure
@@ -48,7 +48,7 @@ function hive_simulation()
             hives(i).simulate_d(t_d);
         end
         
-        world.draw_d();
+        %world.draw_d();
         t_d
         % TODO: Update graphics
         
@@ -57,12 +57,12 @@ function hive_simulation()
         if(mod(t_d-1,Prop.Sim.eval_step_days) == 0 && 0)    % Disabled for testing purposes
             for t_s = 1:Prop.Sim.eval_time_seconds
                 parfor i = 1:Prop.Sim.hive_count 
-                    hives(i).simulate_s(t_s);
+                    hives(i).simulate_s(t_s, t_d);
                 end
                 if(mod(t_s,100)==0)
-                    world.draw_s();
-                    pause(0.0001);
-                    t_s
+                    %world.draw_s();
+                    %pause(0.0001);
+                    %t_s
                 end
             end
         end

@@ -32,7 +32,7 @@ classdef Bee < handle
             obj.y_pos = hive.y_pos;
         end
         
-        function work(obj, dt_s)
+        function work(obj)
             switch obj.work_mode
                 case 0
                     

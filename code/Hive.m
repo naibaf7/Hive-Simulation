@@ -3,6 +3,7 @@ classdef Hive < handle
     properties
         prop;                    % Properties
         hive_ind;                % Hive index in the world
+        world;                   % Handle on the world
         max_sim_time;            % Simulation length
         B;                       % Uncapped brood
         H;                       % Hive bees
@@ -36,93 +37,62 @@ classdef Hive < handle
     
     methods
         % Constructor
-        function obj = Hive(hive_index, Prop)
-            if(nargin == 0)
-                % No arguments passed, load default settings
-
-                obj.prop = Prop;
-                
-                obj.hive_ind = 1;
-                
-                obj.max_sim_time = 365;             % One year
-                
-                obj.B = zeros(1,obj.max_sim_time);
-                obj.H = zeros(1,obj.max_sim_time);
-                obj.f = zeros(1,obj.max_sim_time);
-                obj.F = zeros(1,obj.max_sim_time);
-                
-                obj.B(1) = 0;
-                obj.H(1) = 16000;
-                obj.f(1) = 0;
-                obj.F(1) = 8000;
-
-                obj.b = 500;
-                obj.v = 5000;
-                obj.tau = 12;
-                obj.amin = 0.25;
-                obj.amax = 0.25;
-                obj.L = 2000;
-                obj.L_year = @(x) 1;
-                obj.m = 0.3;
-                obj.sigma = 0.75;
-                obj.phi = 1/9;
-                obj.c = 0.1;
-
-                obj.coFH = 0.007;
-                obj.coB = 0.018;  
-            else
-            	% Load settings from properties
-                obj.hive_ind = hive_index;
-                
-                obj.max_sim_time = Prop.Sim.eval_time_days;
-                
-                obj.B = zeros(1,obj.max_sim_time);
-                obj.H = zeros(1,obj.max_sim_time);
-                obj.f = zeros(1,obj.max_sim_time);
-                obj.F = zeros(1,obj.max_sim_time);
-                
-                obj.B(1) = Prop.Sim.Hive(obj.hive_ind).uncapped_brood;
-                obj.H(1) = Prop.Sim.Hive(obj.hive_ind).hive_bees;
-                obj.f(1) = Prop.Sim.Hive(obj.hive_ind).food;
-                obj.F(1) = Prop.Sim.Hive(obj.hive_ind).foragers;
-
-                obj.b = Prop.Sim.Hive(obj.hive_ind).food_brood_eff;
-                obj.v = Prop.Sim.Hive(obj.hive_ind).hive_brood_eff;
-                obj.tau = Prop.Sim.Hive(obj.hive_ind).aging_time;
-                obj.amin = Prop.Sim.Hive(obj.hive_ind).min_recruitment;
-                obj.amax = Prop.Sim.Hive(obj.hive_ind).max_recruitment;
-                obj.L = Prop.Sim.Hive(obj.hive_ind).laying_rate;
-                
-                % Load x values of measure points for laying rate change
-                L_year_x = Prop.Sim.Hive(obj.hive_ind).laying_function(1,:);
-                % Load y values of measure points for laying rate change
-                L_year_y = Prop.Sim.Hive(obj.hive_ind).laying_function(2,:);
-                % Interpolate values of laying rate change for 365 days
-                obj.L_year = interpolate_values(L_year_x,L_year_y,1,1,365,0,1);
-                
-                obj.m = Prop.Sim.Hive(obj.hive_ind).mortality;
-                obj.sigma = Prop.Sim.Hive(obj.hive_ind).social_inhibition;
-                obj.phi = Prop.Sim.Hive(obj.hive_ind).adult_bee_emerging;
-                obj.c = Prop.Sim.Hive(obj.hive_ind).food_per_forager;
-
-                obj.coFH = Prop.Sim.Hive(obj.hive_ind).food_consumption_adult;
-                obj.coB = Prop.Sim.Hive(obj.hive_ind).food_consumption_brood;
-                
-                obj.bees = Bee.empty(Obj.F(1), 0);
-                for i=1:Obj.F(1)
-                    
-                end
-                
-            end
+        function obj = Hive(hive_index, world, Prop)
+            obj.hive_ind = hive_index;
             
-                obj.S = @(H, f) f^2/(f^2 + obj.b^2) * H/(H+obj.v);
-                
-                obj.R = @(H, F, f) obj.amin + obj.amax*(obj.b^2/(obj.b^2+f^2)) - obj.sigma * (F/(F+H));
+            obj.world = world;
+
+            obj.max_sim_time = Prop.Sim.eval_time_days;
+
+            obj.B = zeros(1,obj.max_sim_time);
+            obj.H = zeros(1,obj.max_sim_time);
+            obj.f = zeros(1,obj.max_sim_time);
+            obj.F = zeros(1,obj.max_sim_time);
+
+            obj.B(1) = Prop.Sim.Hive(obj.hive_ind).uncapped_brood;
+            obj.H(1) = Prop.Sim.Hive(obj.hive_ind).hive_bees;
+            obj.f(1) = Prop.Sim.Hive(obj.hive_ind).food;
+            obj.F(1) = Prop.Sim.Hive(obj.hive_ind).foragers;
+
+            obj.b = Prop.Sim.Hive(obj.hive_ind).food_brood_eff;
+            obj.v = Prop.Sim.Hive(obj.hive_ind).hive_brood_eff;
+            obj.tau = Prop.Sim.Hive(obj.hive_ind).aging_time;
+            obj.amin = Prop.Sim.Hive(obj.hive_ind).min_recruitment;
+            obj.amax = Prop.Sim.Hive(obj.hive_ind).max_recruitment;
+            obj.L = Prop.Sim.Hive(obj.hive_ind).laying_rate;
+
+            % Load x values of measure points for laying rate change
+            L_year_x = Prop.Sim.Hive(obj.hive_ind).laying_function(1,:);
+            % Load y values of measure points for laying rate change
+            L_year_y = Prop.Sim.Hive(obj.hive_ind).laying_function(2,:);
+            % Interpolate values of laying rate change for 365 days
+            obj.L_year = interpolate_values(L_year_x,L_year_y,1,1,365,0,1);
+
+            obj.m = Prop.Sim.Hive(obj.hive_ind).mortality;
+            obj.sigma = Prop.Sim.Hive(obj.hive_ind).social_inhibition;
+            obj.phi = Prop.Sim.Hive(obj.hive_ind).adult_bee_emerging;
+            obj.c = Prop.Sim.Hive(obj.hive_ind).food_per_forager;
+
+            obj.coFH = Prop.Sim.Hive(obj.hive_ind).food_consumption_adult;
+            obj.coB = Prop.Sim.Hive(obj.hive_ind).food_consumption_brood;
+
+            obj.bees = Bee.empty(obj.F(1), 0);
+
+            for i=1:obj.F(1)
+                obj.bees(i) = Bee(obj, obj.prop);
+            end
+
+
+            obj.S = @(H, f) f^2/(f^2 + obj.b^2) * H/(H+obj.v);
+
+            obj.R = @(H, F, f) obj.amin + obj.amax*(obj.b^2/(obj.b^2+f^2)) - obj.sigma * (F/(F+H));
         end
         
-        
-        function simulate_s(obj, t_s)
-            
+        % Iterative daily simulation step
+        function simulate_s(obj, t_s, t_d)
+            for i = 1:round(obj.F(t_d));
+                obj.bees(i).work();
+            end
         end
         
         % Iterative simulation step
@@ -155,6 +125,18 @@ classdef Hive < handle
                 obj.H(t_d + 1) = max(obj.H(t_d) + dHs(t_d), 0);
             end
             obj.f(t_d + 1) = max(obj.f(t_d) + df(t_d), 0);
+             
+            % Check if enough bees instantiated, increase if needed
+            if(length(obj.bees) < round(obj.F(t_d)))
+                new_bees = Bee.empty(round(obj.F(t_d)), 0);
+                new_bees(1:length(obj.bees)) = obj.bees(:);
+                for i=length(obj.bees)+1:round(obj.F(t_d))
+                    new_bees(i) = Bee(obj, obj.prop);
+                end
+                obj.bees = new_bees;
+            end
+            obj.F(t_d)
+            length(obj.bees)
         end
         
         function plot(obj)
