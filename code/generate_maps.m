@@ -32,9 +32,9 @@ function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
     type_map.array = image(:,:,1);
     maxquality_map.array = image(:,:,3);
     %scale the values of h to 0:5
-    tic
+    %tic
     type_map.array = round(mod((type_map.array)*6,6));
-    toc
+    %toc
 %--------------------------------------------------------
 %old iterative version    
 %         %round the hue values to multiples of 1/6

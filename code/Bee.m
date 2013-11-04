@@ -17,9 +17,9 @@ classdef Bee < handle
         work_mode
         % work time, time spent in current work state
         work_time
-        x_pos;                   % X-position in the world
-        y_pos;                   % Y-position in the world
-        path;                    % Flying path (waypoints)
+        x_pos                   % X-position in the world
+        y_pos                   % Y-position in the world
+        path                    % Flying path (waypoints)
     end
     
     

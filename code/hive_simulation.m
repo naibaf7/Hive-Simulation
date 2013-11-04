@@ -24,6 +24,10 @@ function hive_simulation()
         matlabpool('open', min(cores, Prop.Sys.cores));
     end
     
+    % Initialize report
+    fprintf('Initializing report...\n');
+    report = Report(Prop);
+    
     % Initialize world
     fprintf('Initializing world...\n');
     world = World(Prop);
@@ -39,6 +43,9 @@ function hive_simulation()
     
     % Start simulation
     fprintf('Starting simulation (%d days)...\n', Prop.Sim.eval_time_days);
+    
+    reversestr_a = '';
+    reversestr_b = '';
     for t_d = 1:Prop.Sim.eval_time_days;
         
         % Daily environment simulation
@@ -48,10 +55,20 @@ function hive_simulation()
             hives(i).simulate_d(t_d);
         end
         
-        %world.draw_d();
-        t_d
-        % TODO: Update graphics
+        world.draw_d();
         
+        % Print progress
+        progstr_a = '';
+        for j=1:round(t_d/Prop.Sim.eval_time_days*50)
+            progstr_a = strcat(progstr_a,'#');
+        end
+        for j=round(t_d/Prop.Sim.eval_time_days*50):50
+            progstr_a = strcat(progstr_a,'.');
+        end
+        msg_a = sprintf(strcat('Progress (hive): [',progstr_a,']'), t_d, Prop.Sim.eval_time_days);
+        fprintf([reversestr_a, msg_a]);
+        reversestr_a = repmat(sprintf('\b'), 1, length(msg_a));
+
         
         % Re-evaluate environment
         if(mod(t_d-1,Prop.Sim.eval_step_days) == 0 && 0)    % Disabled for testing purposes
@@ -64,6 +81,17 @@ function hive_simulation()
                     %pause(0.0001);
                     %t_s
                 end
+                % Print progress
+                progstr_b = '';
+                for j=1:round(t_d/Prop.Sim.eval_time_days*50)
+                    progstr_b = strcat(progstr_b,'#');
+                end
+                for j=round(t_d/Prop.Sim.eval_time_days*50):50
+                    progstr_b = strcat(progstr_b,'.');
+                end
+                msg_b = sprintf(strcat('Progress (environment): [',progstr_b,']'), t_d, Prop.Sim.eval_time_days);
+                fprintf([reversestr_b, msg_b]);
+                reversestr_b = repmat(sprintf('\b'), 1, length(msg_b));
             end
         end
     end
@@ -71,8 +99,8 @@ function hive_simulation()
     % TEMP:
     hives(1).plot();
     
-    
-    % TODO: Write data to files
+    fprintf('Saving report...\n');
+    report.save();
     fprintf('Simulation finished.\n');
     fprintf('#########################################################\n');
 end

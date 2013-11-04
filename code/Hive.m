@@ -74,7 +74,7 @@ classdef Hive < handle
             
             % Interpolate values of laying rate change for 365 days
             obj.L_year = interpolate_values(L_year_x,L_year_y,1,1,365,0,1);
-
+            
             obj.m = Prop.Sim.Hive(obj.hive_ind).mortality;
             obj.sigma = Prop.Sim.Hive(obj.hive_ind).social_inhibition;
             obj.phi = Prop.Sim.Hive(obj.hive_ind).adult_bee_emerging;
@@ -90,7 +90,6 @@ classdef Hive < handle
             end
 
             % Initialize empty beemap
-            obj.prop.Sim.world_size
             obj.beemap = Map(0,obj.prop.Sim.world_size/10,obj.prop.Sim.world_size/10);
 
             % Brood survival rate
@@ -158,8 +157,6 @@ classdef Hive < handle
                 end
                 obj.bees = new_bees;
             end
-            obj.F(t_d)
-            length(obj.bees)
         end
         
         function plot(obj)

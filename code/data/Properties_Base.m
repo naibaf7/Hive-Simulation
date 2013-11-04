@@ -5,10 +5,9 @@ Prop.Sys.identifier = 'Properties_Base';
 Prop.Sys.cores = 8;
 Prop.Sys.record_video = 0;
 
-
 % WORLD
 Prop.Sim.world_size = 10000;            % Meters
-Prop.Sim.world_file = 'data\test2.png';  % Image file the world is based on
+Prop.Sim.world_file = 'data\test2.png'; % Image file the world is based on
 Prop.Sim.eval_step_days = 14;           % Days
 Prop.Sim.eval_time_days = 365*3;        % Days
 Prop.Sim.eval_time_seconds = 12*60*60;  % Seconds
