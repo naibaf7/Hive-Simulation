@@ -5,6 +5,7 @@ classdef Hive < handle
         hive_ind;                % Hive index in the world
         world;                   % Handle on the world
         max_sim_time;            % Simulation length
+        
         B;                       % Uncapped brood
         H;                       % Hive bees
         f;                       % Food storage
@@ -33,11 +34,15 @@ classdef Hive < handle
         bees;                    % Array of bees
         waggels;                 % Available waggles to copy
         
+        beemap;                  % Rasterized map of bees (N/10xN/10, where N is the world size)
+        
     end
     
     methods
         % Constructor
         function obj = Hive(hive_index, world, Prop)
+            obj.prop = Prop;
+            
             obj.hive_ind = hive_index;
             
             obj.world = world;
@@ -63,8 +68,10 @@ classdef Hive < handle
 
             % Load x values of measure points for laying rate change
             L_year_x = Prop.Sim.Hive(obj.hive_ind).laying_function(1,:);
+            
             % Load y values of measure points for laying rate change
             L_year_y = Prop.Sim.Hive(obj.hive_ind).laying_function(2,:);
+            
             % Interpolate values of laying rate change for 365 days
             obj.L_year = interpolate_values(L_year_x,L_year_y,1,1,365,0,1);
 
@@ -82,16 +89,32 @@ classdef Hive < handle
                 obj.bees(i) = Bee(obj, obj.prop);
             end
 
+            % Initialize empty beemap
+            obj.prop.Sim.world_size
+            obj.beemap = Map(0,obj.prop.Sim.world_size/10,obj.prop.Sim.world_size/10);
 
+            % Brood survival rate
             obj.S = @(H, f) f^2/(f^2 + obj.b^2) * H/(H+obj.v);
 
+            % Recruitment function
             obj.R = @(H, F, f) obj.amin + obj.amax*(obj.b^2/(obj.b^2+f^2)) - obj.sigma * (F/(F+H));
         end
         
         % Iterative daily simulation step
-        function simulate_s(obj, t_s, t_d)
+        function simulate_s(obj, t_s, t_d, dt_supdate)
+            % After defined update step size, reset bee map
+            if(mod(t_s - 1, dt_supdate) == 0)
+                obj.beemap.array = zeros(obj.prop.Sim.world_size/10, obj.prop.Sim.world_size/10);
+            end
             for i = 1:round(obj.F(t_d));
+                % Let the bees work
                 obj.bees(i).work();
+                % Update rasterized bee map
+                if(mod(t_s - 1, dt_supdate) == 0)
+                    x = ceil(obj.bees(i).x_pos/10);
+                    y = ceil(obj.bees(i).y_pos/10);
+                    obj.beemap.array(y,x) = obj.beemap.array(y,x) + 1;
+                end
             end
         end
         

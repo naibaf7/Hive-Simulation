@@ -1,4 +1,4 @@
-classdef Map
+classdef Map < handle
    
     properties
         array
