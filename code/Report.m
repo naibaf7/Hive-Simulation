@@ -14,7 +14,7 @@ classdef Report < handle
         
         % Save to file
         function save(obj)
-            save(obj.data, strcat('results\',obj.prop.identifier,'_report.m'));
+            save(obj.data, strcat('results\',obj.prop.Sys.identifier,'_report.m'));
         end
         
     end
