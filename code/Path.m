@@ -2,6 +2,8 @@ classdef Path < handle
     
     properties
         waypoints               % 2 x n matrix
+        patch_size              % Patch size (m^2)
+        patch_quality           % Average patch quality (normalized percents)
     end
     
     methods
@@ -32,6 +34,7 @@ classdef Path < handle
             [~, old_n] = size(obj.waypoints);
             obj.waypoints(:,old_n+1) = [x; y];
         end
+        
     end
     
 end

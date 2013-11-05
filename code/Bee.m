@@ -35,8 +35,9 @@ classdef Bee < handle
         function work(obj)
             switch obj.work_mode
                 case 0
-                    
+                    % Do nothing until job gets assigned
                 case 1
+                    
                 case 2
                 case 3
                 case 4

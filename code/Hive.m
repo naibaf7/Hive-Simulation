@@ -28,11 +28,17 @@ classdef Hive < handle
         R;                       % Recruitment function
         
         % For realtime environment simulation
+        daily_activity           % Activity during the day
+        
         x_pos;                   % X-position in the world
         y_pos;                   % Y-position in the world
         
         bees;                    % Array of bees
-        waggels;                 % Available waggles to copy
+        waggles;                 % Available waggles to copy
+        scouts_count;            % Current scout count
+        max_scount_percent;      % Max. percent of active bees that are scouts
+        bees_count;              % Current active bees
+        
         
         beemap;                  % Rasterized map of bees (N/10xN/10, where N is the world size)
         
@@ -85,10 +91,16 @@ classdef Hive < handle
 
             obj.bees = Bee.empty(obj.F(1), 0);
 
+            % Instantiate bees
             for i=1:obj.F(1)
                 obj.bees(i) = Bee(obj, obj.prop);
             end
 
+            % Interpolate daily activity
+            daily_activity_x = Prop.Sim.Hive(obj.hive_ind).daily_activity(1,:);
+            daily_activity_y = Prop.Sim.Hive(obj.hive_ind).daily_activity(2,:);
+            obj.daily_activity = interpolate_values(daily_activity_x, daily_activity_y,1,1,12,0,1);
+            
             % Initialize empty beemap
             obj.beemap = Map(0,obj.prop.Sim.world_size/10,obj.prop.Sim.world_size/10);
 
@@ -102,16 +114,30 @@ classdef Hive < handle
         % Iterative daily simulation step
         function simulate_s(obj, t_s, t_d, dt_supdate)
             % After defined update step size, reset bee map
-            if(mod(t_s - 1, dt_supdate) == 0)
-                obj.beemap.array = zeros(obj.prop.Sim.world_size/10, obj.prop.Sim.world_size/10);
-            end
-            for i = 1:round(obj.F(t_d));
+            obj.beemap.array = zeros(obj.prop.Sim.world_size/10, obj.prop.Sim.world_size/10);
+            for i = 1:round(obj.F(t_d))
+                % Assign jobs to bees
+                if(obj.bees(i).work_mode == 0)
+                     % More active bees possible?
+                     if(obj.bees_count < obj.F(t_d)*obj.daily_activity(t_s/3600))
+                        % More scouts possible?
+                        if(obj.scouts_count < obj.F(t_d)*obj.daily_activity(t_s/3600)*max_scout_precent)
+                            obj.scouts_count = obj.scouts_count + 1;
+                            obj.bees_count = obj.bees_count + 1;
+                            % Assign scout job
+                            obj.bees(i).work_mode = 1;
+                        else
+                            obj.bees_count = obj.bees_count + 1;
+                        end
+                     end
+                end
                 % Let the bees work
                 obj.bees(i).work();
                 % Update rasterized bee map
-                if(mod(t_s - 1, dt_supdate) == 0)
-                    x = ceil(obj.bees(i).x_pos/10);
-                    y = ceil(obj.bees(i).y_pos/10);
+                x = ceil(obj.bees(i).x_pos/10);
+                y = ceil(obj.bees(i).y_pos/10);
+                % Don't plot in hive proximity range (50m)
+                if(abs(obj.bees(i).x_pos-obj.x_pos) + abs(obj.bees(i).y_pos-obj.y_pos) > 50)
                     obj.beemap.array(y,x) = obj.beemap.array(y,x) + 1;
                 end
             end
