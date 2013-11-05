@@ -111,6 +111,9 @@ Prop.Sim.Hive(1).food_consumption_brood = 0.018;
 % Taken from P. 86 "Wisdom of the Hive"
 % 2xN vector, hours vs. activity
 Prop.Sim.Hive(1).daily_activity =  [-1,1,2,3,4,5,6,7,8,9,10,11,12,13;-1,0.1,0.5,1,0.95,0.9,0.9,0.9,0.9,0.95,1,0.5,0.1,-1];
+% Barrier for extinction. If total bee count is lower than this, a hive is
+% considered extinct (no more computation, all values constant and/or zero)
+Prop.Sim.Hive(1).extinct_barrier = 20;
 
 
 % BEES
@@ -122,11 +125,11 @@ Prop.Sim.Hive(1).Bee.max_food = 0.025;
 Prop.Sim.Hive(1).Bee.max_dist = 8000;
 % Probability to optimize a path during one way
 % 50% chance
-Prop.Sim.Hive(1).Bee.optimze_prob = 0.5;
+Prop.Sim.Hive(1).Bee.optimize_prob = 0.5;
 % Factor to change movement angle, multiplied by randn();
-Prop.Sim.Hive(1).Bee.rotate_scale = 0.1;
-% Average time factor to set a waypoint, multiplied by randn();
-Prop.Sim.Hive(1).Bee.change_waypoint = 10;
+Prop.Sim.Hive(1).Bee.rotate_scale = 0.5;
+% Time after which to set a new waypoint (s)
+Prop.Sim.Hive(1).Bee.change_waypoint = 40;
 % Flight speed
 % Taken from P. 47 "Wisdom of the Hive"
 % 25km/h or 7m/s
