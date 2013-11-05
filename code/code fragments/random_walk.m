@@ -2,8 +2,8 @@ function random_walk()
     alpha = rand()*2*pi;
     v = 7;
     scale = 0.5;
-    w = zeros(2,10000);
-    for i=1:10000
+    w = zeros(2,2000);
+    for i=1:2000
         if(mod((i-1),10) == 0)
             alpha = alpha+scale*randn();
         end
