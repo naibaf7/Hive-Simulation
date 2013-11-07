@@ -56,7 +56,7 @@ classdef World < handle
         
         function simulate_d(obj, t_d)
             update_quality_map(obj, t_d);
-            update_scent_map(obj);
+            %update_scent_map(obj);
         end
         
         function update_quality_map(obj, t_d)
@@ -114,13 +114,13 @@ classdef World < handle
             image_map = min(max(image_map,0),1);
 
             %display image
-            subplot(1,2,1);
+            %subplot(1,2,1);
             image(image_map)
             axis square
-            subplot(1,2,2);
-            colormap('hot');
-            imagesc(obj.scent_map.array);
-            axis square
+            %subplot(1,2,2);
+            %colormap('hot');
+            %imagesc(obj.scent_map.array);
+            %axis square
             %subplot(1,3,3);
             %quiver(obj.grad_x.array,obj.grad_y.array);
             %axis square

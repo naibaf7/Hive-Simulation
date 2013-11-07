@@ -44,6 +44,7 @@ classdef Hive < handle
         
         
         beemap;                  % Rasterized map of bees (N/10xN/10, where N is the world size)
+        patches;                 % Map of already discovered flower patches
         
     end
     
@@ -98,7 +99,7 @@ classdef Hive < handle
 
             % Instantiate bees
             for i=1:obj.F(1)
-                obj.bees(i) = Bee(obj, obj.prop);
+                obj.bees(i) = Bee(obj, obj.world, obj.prop);
             end
 
             % Interpolate daily activity
@@ -118,8 +119,6 @@ classdef Hive < handle
         
         % Iterative daily simulation step
         function simulate_s(obj, t_s, t_d, dt_s)
-            % After defined update step size, reset bee map
-            obj.beemap.array = zeros(obj.prop.Sim.world_size/10, obj.prop.Sim.world_size/10);
             for i = 1:round(obj.F(t_d))
                 % Assign jobs to bees
                 if(obj.bees(i).work_mode == 0)
@@ -132,20 +131,38 @@ classdef Hive < handle
                             % Assign scout job
                             obj.bees(i).work_mode = 1;
                             obj.bees(i).path = Path();
+                            obj.bees(i).path.append(obj.x_pos,obj.y_pos);
                         else
                             obj.bees_count = obj.bees_count + 1;
                         end
                      end
+                end
+                % Don't record in hive proximity range (50m)
+                if(abs(obj.bees(i).x_pos-obj.x_pos) + abs(obj.bees(i).y_pos-obj.y_pos) > 50)
+                    % Remove bee record from last position
+                    obj.beemap.array(y,x) = obj.beemap.array(y,x) - 1;
                 end
                 % Let the bees work
                 obj.bees(i).work(t_s, t_d, dt_s);
                 % Update rasterized bee map
                 x = ceil(obj.bees(i).x_pos/10);
                 y = ceil(obj.bees(i).y_pos/10);
-                % Don't plot in hive proximity range (50m)
+                % Don't record in hive proximity range (50m)
                 if(abs(obj.bees(i).x_pos-obj.x_pos) + abs(obj.bees(i).y_pos-obj.y_pos) > 50)
+                    % Add bee record at current position
                     obj.beemap.array(y,x) = obj.beemap.array(y,x) + 1;
                 end
+            end
+        end
+        
+        % Reset daily simulation parameters
+        function reset_s(obj, t_d)
+            % Reset bees
+            for i=1:obj.F(t_d)
+                obj.bees(i).work_mode = 0;
+                obj.bees(i).work_time = 0;
+                obj.bees(i).food = 0;
+                obj.bees(i).time_counter = 0;
             end
         end
         
@@ -186,7 +203,7 @@ classdef Hive < handle
                     new_bees = Bee.empty(round(obj.F(t_d)), 0);
                     new_bees(1:length(obj.bees)) = obj.bees(:);
                     for i=length(obj.bees)+1:round(obj.F(t_d))
-                        new_bees(i) = Bee(obj, obj.prop);
+                        new_bees(i) = Bee(obj, obj.world, obj.prop);
                     end
                     obj.bees = new_bees;
                 end

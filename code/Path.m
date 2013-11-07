@@ -4,6 +4,7 @@ classdef Path < handle
         waypoints               % 2 x n matrix
         patch_size              % Patch size (m^2)
         patch_quality           % Average patch quality (normalized percents)
+        length                  % Save length of path explicitly
     end
     
     methods
@@ -24,6 +25,7 @@ classdef Path < handle
                 [~,ins_size] = size(inserts);
                 new_obj.waypoints(:,1:1:ins_size) = inserts;
                 new_obj.waypoints(:,new_n) = obj.waypoints(:,old_n);
+                obj.length = new_n;
             else
                 new_obj.waypoints = obj.waypoints;
             end
@@ -33,7 +35,9 @@ classdef Path < handle
         function append(obj, x, y)
             [~, old_n] = size(obj.waypoints);
             obj.waypoints(:,old_n+1) = [x; y];
+            obj.length = obj.length + 1;
         end
+        
         
     end
     

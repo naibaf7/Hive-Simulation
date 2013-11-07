@@ -114,7 +114,10 @@ Prop.Sim.Hive(1).daily_activity =  [-1,1,2,3,4,5,6,7,8,9,10,11,12,13;-1,0.1,0.5,
 % Barrier for extinction. If total bee count is lower than this, a hive is
 % considered extinct (no more computation, all values constant and/or zero)
 Prop.Sim.Hive(1).extinct_barrier = 20;
-
+% Max. percentage of foragers that are scouts
+% Taken from P. 86 "Wisdom of the Hive", an average value
+% 6% or 0.06 (normalized)
+Prop.Sim.Hive(1).scout_count = 0.06;
 
 % BEES
 % Max. food carried by bee, average value, P. 42 "Wisdom of the Hive"
@@ -133,11 +136,8 @@ Prop.Sim.Hive(1).Bee.change_waypoint = 40;
 % Flight speed
 % Taken from P. 47 "Wisdom of the Hive"
 % 25km/h or 7m/s
-Prop.Sim.Hive(1).flight_speed = 7;
-% Max. percentage of foragers that are scouts
-% Taken from P. 86 "Wisdom of the Hive", an average value
-% 6% or 0.06 (normalized)
-Prop.Sim.Hive(1).scout_count = 0.06;
+Prop.Sim.Hive(1).Bee.flight_speed = 7;
+
 
 
 
