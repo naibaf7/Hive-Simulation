@@ -1,0 +1,98 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+\usepackage{color}
+\usepackage{soul}
+\usepackage{soulutf8}
+
+% Stichwortverzeichnis
+\usepackage{makeidx}
+\usepackage{idxlayout}
+
+\usepackage{alltt}
+\renewcommand{\ttdefault}{txtt}
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[e]{esvect}
+
+\usepackage{algorithmicx}
+
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\usepackage{cancel}
+
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+
+\usepackage{geometry}
+
+% hyperref
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}
+
+% multirow and multicol
+\usepackage{multirow}
+\usepackage{multicol}
+
+
+% enumerate
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand\labelenumi{\theenumi.}
+\renewcommand{\theenumii}{\roman{enumii}}
+\renewcommand{\labelenumii}{\theenumii)}
+
+\usepackage{listings}
+\newcommand{\code}[1]{\lstinline{#1}}
+
+% depth of section numbering
+\setcounter{secnumdepth}{4}
+
+
+% redefine greek letters
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+% shortcuts in math mode
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\mc}{\mathcal}
+\newcommand{\norm}[1]{| \!\:\! | #1 | \!\:\! |}
+\newcommand{\with}{\;|\;} % with in set notation
+\newcommand{\ds}{\displaystyle}
+\newcommand{\nop}[1]{}
+\newcommand{\argmax}{\operatorname*{arg\;max}}
+\newcommand{\argmin}{\operatorname*{arg\;min}}
+\newcommand{\rmd}{\mathrm{d}} % for integrals
+\newcommand{\ggT}{\operatorname*{ggT}}
+\newcommand{\kgV}{\operatorname*{kgV}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\arcsinh}{\operatorname{arcsinh}}
+\newcommand{\arcosh}{\operatorname{arcosh}}
+\newcommand{\arctanh}{\operatorname{arctanh}}
+
+% number sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\powerset}{\mathcal P}
+
+% probabilities
+\newcommand{\Prob}[1]{\operatorname{Pr}\left[#1\right]}
+\newcommand{\Ex}[1]{\mathbb{E}\left[#1\right]}
+
+% todo
+\newcommand{\todo}[1]{\sethlcolor{red}\hl{$\ggg$ \textbf{TODO} [#1]}\sethlcolor{yellow}}
+
+% big-o notation
+\newcommand{\bigO}[1]{\mc O\left(#1\right)}
+
+

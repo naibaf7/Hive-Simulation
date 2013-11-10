@@ -92,7 +92,7 @@ Prop.Sim.Hive(1).min_recruitment = 0.25;
 Prop.Sim.Hive(1).max_recruitment = 0.25;
 % Describes how the laying rate of the queen varies during the year
 % From 1 to 365, arbitrary measure points + paddings
-% Taken from P. 34pp, "Wisdom of the Hive"
+% Taken from P. 34ff, "Wisdom of the Hive"
 % Approx. laying from March to October
 % 2xN vectors, days vs. laying factor
 Prop.Sim.Hive(1).laying_function = [-30,1,32,60,91,121,153,182,213,244,274,305,335,366,395;-4,-3,-2,-1,0.5,1,2,2,1,0.5,0,-1,-2,-3,-4];
