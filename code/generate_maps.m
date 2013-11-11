@@ -32,35 +32,9 @@ function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
     type_map.array = image(:,:,1);
     maxquality_map.array = image(:,:,3);
     %scale the values of h to 0:5
-    %tic
     type_map.array = round(mod((type_map.array)*6,6));
-    %toc
-%--------------------------------------------------------
-%old iterative version    
-%         %round the hue values to multiples of 1/6
-%         tic
-%          for y = 1:Prop.Sim.world_size/10
-%              for x = 1:Prop.Sim.world_size/10
-%                  if type_map.array(y,x) <= 1/12
-%                      type_map.array(y,x) = 0;
-%                  elseif type_map.array(y,x) <= 3/12
-%                      type_map.array(y,x) = 1/6;
-%                  elseif type_map.array(y,x) <= 5/12
-%                      type_map.array(y,x) = 2/6;
-%                  elseif type_map.array(y,x) <= 7/12
-%                      type_map.array(y,x) = 3/6;
-%                  elseif type_map.array(y,x) <= 9/12
-%                      type_map.array(y,x) = 4/6;
-%                  elseif type_map.array(y,x) <= 11/12
-%                      type_map.array(y,x) = 5/6;
-%                  else
-%                      type_map.array(y,x) = 0;
-%                  end
-%              end
-%          end
-%          toc
-%         type_map.array = round(type_map.array.*6);
-%--------------------------------------------------------
+
+
 
     figure
     imagesc(type_map.array);
