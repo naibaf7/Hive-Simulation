@@ -7,6 +7,7 @@ classdef Report < handle
     end
     
     methods
+        
         % Constructor
         function obj = Report(Prop)
             obj.prop = Prop;
@@ -14,7 +15,7 @@ classdef Report < handle
         
         % Save to file
         function save(obj)
-            save(strcat('\results\',obj.prop.Sys.identifier,'_report','-mat'), obj.data);
+            save(strcat(pwd,'\results\',obj.prop.Sys.identifier,'_report.mat'), 'obj','-mat');
         end
         
     end

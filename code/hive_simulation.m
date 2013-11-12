@@ -48,12 +48,55 @@ function hive_simulation()
     reversestr_b = '';
     percent_A_old = -1;
     percent_B_old = -1;
-    for t_d = 1:Prop.Sim.eval_time_days;
+    for t_d = 1:Prop.Sim.eval_time_days
+        % Re-evaluate environment if there is any need for it
+        % The need is defined by checking if some flower is active at the
+        % moment.
+        activity_sum = sum(sum(world.quality_map.array));
+              
+        if(activity_sum > 0)
+            dt_s = Prop.Sim.eval_step_seconds;
+            for i = 1:Prop.Sim.hive_count
+                % Reset environment simulation for new day
+                hives(i).reset_s(t_d);
+            end
+            for t_s = 1:Prop.Sim.eval_time_seconds
+                if(mod(t_s-1,dt_s)==0)
+                    for i = 1:Prop.Sim.hive_count
+                        if(~hives(i).is_extinct)
+                            hives(i).simulate_s(t_s, t_d, dt_s);
+                        end
+                    end
+                end
+                if(mod(t_s,240)==0)
+                    % TODO: COMMENT OUT AGAIN
+                    hives(1).draw_s();
+                    %world.draw_s();
+                    pause(0.0001);
+                    t_s
+                end
+                % Print progress
+                percent_B = ceil(t_s/Prop.Sim.eval_time_seconds*50);
+                if(percent_B ~= percent_B_old)
+                    progstr_b = '';
+                    for j=1:percent_B
+                        progstr_b = strcat(progstr_b,'#');
+                    end
+                    for j=percent_B:49
+                        progstr_b = strcat(progstr_b,'.');
+                    end
+                    msg_b = sprintf(strcat('Progress (environment): [',progstr_b,']\n'), t_s, Prop.Sim.eval_time_seconds);
+                    fprintf([reversestr_b, msg_b]);
+                    reversestr_b = repmat(sprintf('\b'), 1, length(msg_b));
+                    percent_B_old = percent_B;
+                end
+            end
+        end
         
         % Daily environment simulation
         world.simulate_d(t_d);
         % Daily hive simulation
-        parfor i = 1:Prop.Sim.hive_count
+        for i = 1:Prop.Sim.hive_count
             hives(i).simulate_d(t_d);
         end
         
@@ -74,44 +117,7 @@ function hive_simulation()
             reversestr_a = repmat(sprintf('\b'), 1, length(msg_a));
             percent_A_old = percent_A;
         end
-
         
-        % Re-evaluate environment if there is any need for it
-        % The need is defined by checking if some flower is active at the
-        % moment.
-        activity_sum = world.flower(1).year_activity(mod(t_d - 1, 365) + 1) + ...
-            world.flower(2).year_activity(mod(t_d - 1, 365) + 1) + ...
-            world.flower(3).year_activity(mod(t_d - 1, 365) + 1) + ...
-            world.flower(4).year_activity(mod(t_d - 1, 365) + 1);
-              
-        if(activity_sum > 0)
-            for t_s = 1:Prop.Sim.eval_time_seconds
-                parfor i = 1:Prop.Sim.hive_count 
-                    hives(i).reset_s(t_d);
-                    hives(i).simulate_s(t_s, t_d);
-                end
-                if(mod(t_s,100)==0)
-                    %world.draw_s();
-                    %pause(0.0001);
-                    %t_s
-                end
-                % Print progress
-                percent_B = ceil(t_s/Prop.Sim.eval_time_seconds*50);
-                if(percent_B ~= percent_B_old)
-                    progstr_b = '';
-                    for j=1:percent_B
-                        progstr_b = strcat(progstr_b,'#');
-                    end
-                    for j=percent_B:49
-                        progstr_b = strcat(progstr_b,'.');
-                    end
-                    msg_b = sprintf(strcat('Progress (environment): [',progstr_b,']\n'), t_s, Prop.Sim.eval_time_seconds);
-                    fprintf([reversestr_b, msg_b]);
-                    reversestr_b = repmat(sprintf('\b'), 1, length(msg_b));
-                    percent_B_old = percent_B;
-                end
-            end
-        end
     end
     fprintf('\n');
     

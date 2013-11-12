@@ -39,7 +39,7 @@ classdef Hive < handle
         bees;                    % Array of bees
         waggles;                 % Available waggles to copy
         scouts_count;            % Current scout count
-        max_scount_percent;      % Max. percent of active bees that are scouts
+        max_scout_percent;      % Max. percent of active bees that are scouts
         bees_count;              % Current active bees
         
         
@@ -56,6 +56,10 @@ classdef Hive < handle
             obj.hive_ind = hive_index;
             
             obj.world = world;
+            obj.x_pos = Prop.Sim.Hive(obj.hive_ind).x_pos;
+            obj.y_pos = Prop.Sim.Hive(obj.hive_ind).y_pos;
+            
+            obj.is_extinct = 0;
 
             obj.max_sim_time = Prop.Sim.eval_time_days;
 
@@ -94,6 +98,7 @@ classdef Hive < handle
             obj.coB = Prop.Sim.Hive(obj.hive_ind).food_consumption_brood;
             
             obj.extinct_barrier = Prop.Sim.Hive(obj.hive_ind).extinct_barrier;
+            obj.max_scout_percent = Prop.Sim.Hive(obj.hive_ind).scout_count;
             
             obj.bees = Bee.empty(obj.F(1), 0);
 
@@ -108,7 +113,10 @@ classdef Hive < handle
             obj.daily_activity = interpolate_values(daily_activity_x, daily_activity_y,1,1,12,0,1);
             
             % Initialize empty beemap
-            obj.beemap = Map(0,obj.prop.Sim.world_size/10,obj.prop.Sim.world_size/10);
+            obj.beemap = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
+            
+            % Initialize patches map
+            obj.patches = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
 
             % Brood survival rate
             obj.S = @(H, f) f^2/(f^2 + obj.b^2) * H/(H+obj.v);
@@ -120,36 +128,41 @@ classdef Hive < handle
         % Iterative daily simulation step
         function simulate_s(obj, t_s, t_d, dt_s)
             for i = 1:round(obj.F(t_d))
+                % Don't record bees that don't work
+                if(obj.bees(i).work_mode ~= 0)
+                    % Add bee record at current position
+                    x = ceil(obj.bees(i).x_pos);
+                    y = ceil(obj.bees(i).y_pos);
+                    obj.beemap.array(y,x) = obj.beemap.array(y,x) - 1;
+                end
                 % Assign jobs to bees
                 if(obj.bees(i).work_mode == 0)
                      % More active bees possible?
-                     if(obj.bees_count < obj.F(t_d)*obj.daily_activity(t_s/3600))
+                     if(obj.bees_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600)))
                         % More scouts possible?
-                        if(obj.scouts_count < obj.F(t_d)*obj.daily_activity(t_s/3600)*max_scout_percent)
+                        if(obj.scouts_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600))*obj.max_scout_percent)
                             obj.scouts_count = obj.scouts_count + 1;
                             obj.bees_count = obj.bees_count + 1;
                             % Assign scout job
                             obj.bees(i).work_mode = 1;
                             obj.bees(i).path = Path();
+                            % Starting point in the hive
                             obj.bees(i).path.append(obj.x_pos,obj.y_pos);
+                            % Random starting direction from the hive
+                            obj.bees(i).alpha = rand()*2*pi;
                         else
                             obj.bees_count = obj.bees_count + 1;
                         end
                      end
                 end
-                % Don't record in hive proximity range (50m)
-                if(abs(obj.bees(i).x_pos-obj.x_pos) + abs(obj.bees(i).y_pos-obj.y_pos) > 50)
-                    % Remove bee record from last position
-                    obj.beemap.array(y,x) = obj.beemap.array(y,x) - 1;
-                end
-                % Let the bees work
-                obj.bees(i).work(t_s, t_d, dt_s);
                 % Update rasterized bee map
-                x = ceil(obj.bees(i).x_pos/10);
-                y = ceil(obj.bees(i).y_pos/10);
-                % Don't record in hive proximity range (50m)
-                if(abs(obj.bees(i).x_pos-obj.x_pos) + abs(obj.bees(i).y_pos-obj.y_pos) > 50)
+                % Don't record bees that don't work
+                if(obj.bees(i).work_mode ~= 0)
+                    % Let the bees work
+                    obj.bees(i).work(t_s, t_d, dt_s);
                     % Add bee record at current position
+                    x = ceil(obj.bees(i).x_pos);
+                    y = ceil(obj.bees(i).y_pos);
                     obj.beemap.array(y,x) = obj.beemap.array(y,x) + 1;
                 end
             end
@@ -163,14 +176,19 @@ classdef Hive < handle
                 obj.bees(i).work_time = 0;
                 obj.bees(i).food = 0;
                 obj.bees(i).time_counter = 0;
+                obj.bees(i).x_pos = obj.x_pos;
+                obj.bees(i).y_pos = obj.y_pos;
             end
+            % Reset hive
+            obj.bees_count = 0;
+            obj.scouts_count = 0;
         end
         
         % Iterative simulation step
         function simulate_d(obj, t_d)
             if(~obj.is_extinct)
                 % Function handles
-
+                obj.F(t_d)
                 % Brood change rate
                 dB = @(t) obj.L_year(mod(t_d - 1, 365) + 1) * obj.L * obj.S(obj.H(t), obj.f(t)) - obj.phi * obj.B(t);
 
@@ -199,10 +217,10 @@ classdef Hive < handle
                 obj.f(t_d + 1) = max(obj.f(t_d) + df(t_d), 0);
 
                 % Check if enough bees instantiated, increase if needed
-                if(length(obj.bees) < round(obj.F(t_d)))
-                    new_bees = Bee.empty(round(obj.F(t_d)), 0);
+                if(length(obj.bees) < round(obj.F(t_d+1)))
+                    new_bees = Bee.empty(round(obj.F(t_d+1)), 0);
                     new_bees(1:length(obj.bees)) = obj.bees(:);
-                    for i=length(obj.bees)+1:round(obj.F(t_d))
+                    for i=length(obj.bees)+1:round(obj.F(t_d+1))
                         new_bees(i) = Bee(obj, obj.world, obj.prop);
                     end
                     obj.bees = new_bees;
@@ -219,6 +237,15 @@ classdef Hive < handle
                 obj.f(t_d + 1) = obj.f(t_d);
             end
         end
+        
+        function draw_s(obj)
+            clf
+            colormap('hot')
+            imagesc(obj.patches.array);
+            %imagesc(obj.beemap.array);
+            colorbar
+        end
+        
         
         function plot(obj)
             subplot(2,1,1);

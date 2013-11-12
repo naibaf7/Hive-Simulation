@@ -3,11 +3,11 @@ classdef World < handle
     properties
         prop;
         % map with scent distribution, dimensions N/10 x N/10
-        scent_map
-        smog_map
+        % scent_map
+        % smog_map
         % scent gradient maps
-        grad_x
-        grad_y
+        % grad_x
+        % grad_y
         % map with flowers, smog source, dimensions N/10 x N/10
         type_map
         % map with flower quality, smog emission intensity, N/10 x N/10
@@ -23,9 +23,8 @@ classdef World < handle
         % Constructor
         function obj = World(Prop)
             obj.prop = Prop;
-            n = Prop.Sim.world_size;
-            obj.scent_map = Map(0, n/10, n/10);
-            obj.smog_map = Map(0, n/10, n/10);
+            % obj.scent_map = Map(0, obj.prop.Sim.world_size_10, obj.prop.Sim.world_size_10);
+            % obj.smog_map = Map(0, obj.prop.Sim.world_size_10, obj.prop.Sim.world_size_10);
             [obj.type_map, obj.quality_map, obj.maxquality_map] = generate_maps(Prop);
             
             % Convert time area vector from properties (2xN) to 1x365 values for the year and cancel out negative values:
@@ -38,9 +37,9 @@ classdef World < handle
             obj.flower(4).year_activity = zeros(1,365);
             obj.flower(4).year_activity(Prop.Sim.Flower(4).year_activity(1,:)) = max(Prop.Sim.Flower(4).year_activity(2,:),0);
             
-            obj.scent_map = Map(0,n/10,n/10);
-            obj.grad_x = Map(0,n/10,n/10);
-            obj.grad_y = Map(0,n/10,n/10);
+            % obj.scent_map = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
+            % obj.grad_x = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
+            % obj.grad_y = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
             
             % Looking if this is similar to P. 45 "Wisdom of the Hive", for
             % debug purposes ONLY:
@@ -69,33 +68,14 @@ classdef World < handle
             obj.quality_map.array(i) = obj.maxquality_map.array(i) * obj.flower(3).year_activity(mod(t_d - 1, 365) + 1);
             i = find(obj.type_map.array==4);
             obj.quality_map.array(i) = obj.maxquality_map.array(i) * obj.flower(4).year_activity(mod(t_d - 1, 365) + 1);
-            
         end
         
-        function update_scent_map(obj)
-            temp = imresize(obj.quality_map.array,[obj.prop.Sim.world_size/50,obj.prop.Sim.world_size/50]);
-            [potential, ~] = diffusion_poisson(temp, 10e-4, 1000);
-            obj.scent_map.array = imresize(potential,[obj.prop.Sim.world_size/10,obj.prop.Sim.world_size/10]);
-            [obj.grad_x.array, obj.grad_y.array] = gradient(obj.scent_map.array);
-        end
-        
-        % Iterative simulation step
-        function simulate_s(obj, t_s)
-
-        end
-        
-%         function update_diffusion(obj, t_s)
-%             n = obj.prop.Sim.world_size;     
-%             obj.scent_map.array(n/2,n/2) = 10;
-%             rate = 0.1;
-%             tic
-%             bottom = [obj.scent_map.array(2:end,:); obj.scent_map.array(1,:)];
-%             top = [obj.scent_map.array(end,:);obj.scent_map.array(1:(end-1),:)];
-%             right = [obj.scent_map.array(:,2:end), obj.scent_map.array(:,1)];
-%             left = [obj.scent_map.array(:,end),obj.scent_map.array(:,1:(end-1))];
-%             obj.scent_map.array = rate*obj.scent_map.array(:,:) + (1-rate) * (top(:,:) + bottom(:,:) + left(:,:) + right(:,:)) / 4;           
-%             toc
-%         end
+        %function update_scent_map(obj)
+        %    temp = imresize(obj.quality_map.array,[obj.prop.Sim.world_size/50,obj.prop.Sim.world_size/50]);
+        %    [potential, ~] = diffusion_poisson(temp, 10e-4, 1000);
+        %    obj.scent_map.array = imresize(potential,[obj.prop.Sim.world_size/10,obj.prop.Sim.world_size/10]);
+        %    [obj.grad_x.array, obj.grad_y.array] = gradient(obj.scent_map.array);
+        %end      
         
         function draw_map(obj)
             %flush
@@ -127,16 +107,7 @@ classdef World < handle
             %handle = gcf;
             pause(0.001);
         end
-        
-        function draw_s(obj)
-            clf
-            
-            %spy(obj.scent_map_c.array);
-            colormap('hot')
-            imagesc(obj.scent_map.array);
-            colorbar
-        end
-        
+              
         function draw_d(obj)
             draw_map(obj);
         end
