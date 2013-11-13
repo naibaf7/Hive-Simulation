@@ -2,12 +2,6 @@ classdef World < handle
 
     properties
         prop;
-        % map with scent distribution, dimensions N/10 x N/10
-        % scent_map
-        % smog_map
-        % scent gradient maps
-        % grad_x
-        % grad_y
         % map with flowers, smog source, dimensions N/10 x N/10
         type_map
         % map with flower quality, smog emission intensity, N/10 x N/10
@@ -23,8 +17,6 @@ classdef World < handle
         % Constructor
         function obj = World(Prop)
             obj.prop = Prop;
-            % obj.scent_map = Map(0, obj.prop.Sim.world_size_10, obj.prop.Sim.world_size_10);
-            % obj.smog_map = Map(0, obj.prop.Sim.world_size_10, obj.prop.Sim.world_size_10);
             [obj.type_map, obj.quality_map, obj.maxquality_map] = generate_maps(Prop);
             
             % Convert time area vector from properties (2xN) to 1x365 values for the year and cancel out negative values:
@@ -36,10 +28,6 @@ classdef World < handle
             obj.flower(3).year_activity(Prop.Sim.Flower(3).year_activity(1,:)) = max(Prop.Sim.Flower(3).year_activity(2,:),0);
             obj.flower(4).year_activity = zeros(1,365);
             obj.flower(4).year_activity(Prop.Sim.Flower(4).year_activity(1,:)) = max(Prop.Sim.Flower(4).year_activity(2,:),0);
-            
-            % obj.scent_map = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
-            % obj.grad_x = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
-            % obj.grad_y = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
             
             % Looking if this is similar to P. 45 "Wisdom of the Hive", for
             % debug purposes ONLY:
@@ -55,7 +43,6 @@ classdef World < handle
         
         function simulate_d(obj, t_d)
             update_quality_map(obj, t_d);
-            %update_scent_map(obj);
         end
         
         function update_quality_map(obj, t_d)
@@ -70,12 +57,6 @@ classdef World < handle
             obj.quality_map.array(i) = obj.maxquality_map.array(i) * obj.flower(4).year_activity(mod(t_d - 1, 365) + 1);
         end
         
-        %function update_scent_map(obj)
-        %    temp = imresize(obj.quality_map.array,[obj.prop.Sim.world_size/50,obj.prop.Sim.world_size/50]);
-        %    [potential, ~] = diffusion_poisson(temp, 10e-4, 1000);
-        %    obj.scent_map.array = imresize(potential,[obj.prop.Sim.world_size/10,obj.prop.Sim.world_size/10]);
-        %    [obj.grad_x.array, obj.grad_y.array] = gradient(obj.scent_map.array);
-        %end      
         
         function draw_map(obj)
             %flush
@@ -97,13 +78,6 @@ classdef World < handle
             %subplot(1,2,1);
             image(image_map)
             axis square
-            %subplot(1,2,2);
-            %colormap('hot');
-            %imagesc(obj.scent_map.array);
-            %axis square
-            %subplot(1,3,3);
-            %quiver(obj.grad_x.array,obj.grad_y.array);
-            %axis square
             %handle = gcf;
             pause(0.001);
         end

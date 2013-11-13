@@ -53,8 +53,17 @@ function hive_simulation()
         % The need is defined by checking if some flower is active at the
         % moment.
         activity_sum = sum(sum(world.quality_map.array));
-              
-        if(activity_sum > 0)
+        
+        % Check for extinct hives and hives with constant food rate
+        dont_calculate_sum = 0;
+        for i = 1:Prop.Sim.hive_count
+            if(hives(i).fixed_food_rate || hives(i).is_extinct)
+                dont_calculate_sum = dont_calculate_sum + 1;
+            end
+        end
+        
+        % There is activity, 
+        if(activity_sum > 0 && dont_calculate_sum ~= Prop.Sim.hive_count)
             dt_s = Prop.Sim.eval_step_seconds;
             for i = 1:Prop.Sim.hive_count
                 % Reset environment simulation for new day
@@ -63,17 +72,17 @@ function hive_simulation()
             for t_s = 1:Prop.Sim.eval_time_seconds
                 if(mod(t_s-1,dt_s)==0)
                     for i = 1:Prop.Sim.hive_count
-                        if(~hives(i).is_extinct)
+                        if(~hives(i).is_extinct && hives(i).fixed_food_rate == 0)
                             hives(i).simulate_s(t_s, t_d, dt_s);
                         end
                     end
                 end
+                % TODO: COMMENT OUT AGAIN
                 if(mod(t_s,240)==0)
-                    % TODO: COMMENT OUT AGAIN
                     hives(1).draw_s();
                     %world.draw_s();
                     pause(0.0001);
-                    t_s
+                    %t_s
                 end
                 % Print progress
                 percent_B = ceil(t_s/Prop.Sim.eval_time_seconds*50);
@@ -91,6 +100,12 @@ function hive_simulation()
                     percent_B_old = percent_B;
                 end
             end
+        else
+           for i = 1:Prop.Sim.hive_count
+               % Daily food income (aggregated) is zero if no flower
+               % activity
+               hives(i).daily_food_sum(t_d) = 0;
+           end
         end
         
         % Daily environment simulation

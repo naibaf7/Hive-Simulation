@@ -22,6 +22,10 @@ classdef Bee < handle
         time_counter;
         % current food carrying
         food;
+        % cluster size of this bee
+        % This bee can carry the cluster size times the normal food of a
+        % bee. One cluster bee stands for this amount of normal bees
+        cluster_size;
         x_pos;                   % X-position in the world
         y_pos;                   % Y-position in the world
         alpha;                   % Flight direction angle
@@ -53,6 +57,7 @@ classdef Bee < handle
             obj.rotate_scale = Prop.Sim.Hive(obj.hive.hive_ind).Bee.rotate_scale;
             obj.optimize_prob = Prop.Sim.Hive(obj.hive.hive_ind).Bee.optimize_prob;
             obj.change_waypoint = Prop.Sim.Hive(obj.hive.hive_ind).Bee.change_waypoint;
+            obj.cluster_size = 0;
         end
         
         function work(obj, t_d, t_s, dt_s)

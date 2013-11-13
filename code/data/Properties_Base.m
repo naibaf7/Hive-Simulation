@@ -7,9 +7,9 @@ Prop.Sys.cores = 8;
 % WORLD
 Prop.Sim.world_size = 10000;            % Meters
 Prop.Sim.world_size_10 = Prop.Sim.world_size/10;
-Prop.Sim.world_file = 'data\test2.png'; % Image file the world is based on
+Prop.Sim.world_file = 'data\equal_dist_normal.png'; % Image file the world is based on
 Prop.Sim.eval_step_days = 14;           % Days
-Prop.Sim.eval_time_days = 365*1;        % Days
+Prop.Sim.eval_time_days = 470;        % Days
 Prop.Sim.eval_time_seconds = 12*60*60;  % Seconds
 Prop.Sim.eval_step_seconds = 60;         % Seconds
 
@@ -101,7 +101,7 @@ Prop.Sim.Hive(1).laying_rate = 2000;
 Prop.Sim.Hive(1).social_inhibition = 0.75;
 Prop.Sim.Hive(1).adult_bee_emerging = 1/9;
 Prop.Sim.Hive(1).food_per_forager = 0.1;
-Prop.Sim.Hive(1).food = 0;
+Prop.Sim.Hive(1).food = 10000;
 % Food consumption adult bees, 0.007g/day
 Prop.Sim.Hive(1).food_consumption_adult = 0.007;
 % Food consumption brood/larvae, 0.018g/day
@@ -138,6 +138,13 @@ Prop.Sim.Hive(1).Bee.change_waypoint = 60;
 % Taken from P. 47 "Wisdom of the Hive"
 % 25km/h or 7m/s, divided by ten as we work in 10m resolution
 Prop.Sim.Hive(1).Bee.flight_speed = 7/10;
+
+% Maximum amount of bees simulated (if bee count is higher than this,
+% aggregated bee clusters will be simulated)
+Prop.Sim.Hive(1).max_forager_clusters = 1000;
+
+% Food rate is dynamic (environment simulation)
+Prop.Sim.Hive(1).fixed_food_rate = 0;
 
 
 

@@ -36,15 +36,21 @@ classdef Hive < handle
         x_pos;                   % X-position in the world
         y_pos;                   % Y-position in the world
         
-        bees;                    % Array of bees
+        foragers;                % Array of forager bees
+        scouts;                  % Array of scout bees
+        
         waggles;                 % Available waggles to copy
         scouts_count;            % Current scout count
-        max_scout_percent;      % Max. percent of active bees that are scouts
+        max_scout_percent;       % Max. percent of active bees that are scouts
         bees_count;              % Current active bees
         
+        max_forager_clusters;    % Amount of forager bees that can be simulated in total (clustering)
         
         beemap;                  % Rasterized map of bees (N/10xN/10, where N is the world size)
         patches;                 % Map of already discovered flower patches
+        
+        daily_food_sum;          % Aggregated collected food per day
+        fixed_food_rate;         % Fixed rate (original model) or advanced model
         
     end
     
@@ -61,12 +67,15 @@ classdef Hive < handle
             
             obj.is_extinct = 0;
 
+            obj.fixed_food_rate = Prop.Sim.Hive(obj.hive_ind).fixed_food_rate;
             obj.max_sim_time = Prop.Sim.eval_time_days;
 
             obj.B = zeros(1,obj.max_sim_time);
             obj.H = zeros(1,obj.max_sim_time);
             obj.f = zeros(1,obj.max_sim_time);
             obj.F = zeros(1,obj.max_sim_time);
+            
+            obj.daily_food_sum = zeros(1,obj.max_sim_time);
 
             obj.B(1) = Prop.Sim.Hive(obj.hive_ind).uncapped_brood;
             obj.H(1) = Prop.Sim.Hive(obj.hive_ind).hive_bees;
@@ -100,11 +109,19 @@ classdef Hive < handle
             obj.extinct_barrier = Prop.Sim.Hive(obj.hive_ind).extinct_barrier;
             obj.max_scout_percent = Prop.Sim.Hive(obj.hive_ind).scout_count;
             
-            obj.bees = Bee.empty(obj.F(1), 0);
+            obj.max_forager_clusters = Prop.Sim.Hive(obj.hive_ind).max_forager_clusters;
+            
+            obj.scouts = Bee.empty(round(obj.F(1)*obj.max_scout_percent), 0);
+            
+            obj.foragers = Bee.empty(obj.max_forager_clusters, 0);
 
             % Instantiate bees
-            for i=1:obj.F(1)
-                obj.bees(i) = Bee(obj, obj.world, obj.prop);
+            for i=1:round(obj.F(1)*obj.max_scout_percent)
+                obj.scouts(i) = Bee(obj, obj.world, obj.prop);
+            end
+            
+            for i=1:obj.max_forager_clusters
+                obj.foragers(i) = Bee(obj, obj.world, obj.prop);
             end
 
             % Interpolate daily activity
@@ -127,16 +144,27 @@ classdef Hive < handle
         
         % Iterative daily simulation step
         function simulate_s(obj, t_s, t_d, dt_s)
-            for i = 1:round(obj.F(t_d))
+            for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
                 % Don't record bees that don't work
-                if(obj.bees(i).work_mode ~= 0)
+                if(obj.scouts(i).work_mode ~= 0)
                     % Add bee record at current position
-                    x = ceil(obj.bees(i).x_pos);
-                    y = ceil(obj.bees(i).y_pos);
+                    x = ceil(obj.scouts(i).x_pos);
+                    y = ceil(obj.scouts(i).y_pos);
                     obj.beemap.array(y,x) = obj.beemap.array(y,x) - 1;
                 end
-                % Assign jobs to bees
-                if(obj.bees(i).work_mode == 0)
+            end
+            for i = 1:obj.max_forager_clusters
+                % Don't record bees that don't work
+                if(obj.foragers(i).work_mode ~= 0)
+                    % Add bee record at current position
+                    x = ceil(obj.foragers(i).x_pos);
+                    y = ceil(obj.foragers(i).y_pos);
+                    obj.beemap.array(y,x) = obj.beemap.array(y,x) - obj.foragers(i).cluster_size;
+                end
+            end
+            for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
+                % Assign jobs to scouts
+                if(obj.scouts(i).work_mode == 0)
                      % More active bees possible?
                      if(obj.bees_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600)))
                         % More scouts possible?
@@ -144,26 +172,44 @@ classdef Hive < handle
                             obj.scouts_count = obj.scouts_count + 1;
                             obj.bees_count = obj.bees_count + 1;
                             % Assign scout job
-                            obj.bees(i).work_mode = 1;
-                            obj.bees(i).path = Path();
+                            obj.scouts(i).work_mode = 1;
+                            obj.scouts(i).path = Path();
                             % Starting point in the hive
-                            obj.bees(i).path.append(obj.x_pos,obj.y_pos);
+                            obj.scouts(i).path.append(obj.x_pos,obj.y_pos);
                             % Random starting direction from the hive
-                            obj.bees(i).alpha = rand()*2*pi;
-                        else
-                            obj.bees_count = obj.bees_count + 1;
+                            obj.scouts(i).alpha = rand()*2*pi;
                         end
                      end
                 end
-                % Update rasterized bee map
+                obj.scouts(i).work(t_s, t_d, dt_s);
+            end
+            for i = 1:obj.max_forager_clusters
+                % Assign jobs to scouts
+                if(obj.foragers(i).work_mode == 0)
+                     % More active bees possible?
+                     if(obj.bees_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600)))
+                        % TODO: Assign path/patch
+                     end
+                else
+                    obj.foragers(i).work(t_s, t_d, dt_s);
+                end
+            end
+            for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
                 % Don't record bees that don't work
-                if(obj.bees(i).work_mode ~= 0)
-                    % Let the bees work
-                    obj.bees(i).work(t_s, t_d, dt_s);
+                if(obj.scouts(i).work_mode ~= 0)
                     % Add bee record at current position
-                    x = ceil(obj.bees(i).x_pos);
-                    y = ceil(obj.bees(i).y_pos);
+                    x = ceil(obj.scouts(i).x_pos);
+                    y = ceil(obj.scouts(i).y_pos);
                     obj.beemap.array(y,x) = obj.beemap.array(y,x) + 1;
+                end
+            end
+            for i = 1:obj.max_forager_clusters
+                % Don't record bees that don't work
+                if(obj.foragers(i).work_mode ~= 0)
+                    % Add bee record at current position
+                    x = ceil(obj.foragers(i).x_pos);
+                    y = ceil(obj.foragers(i).y_pos);
+                    obj.beemap.array(y,x) = obj.beemap.array(y,x) + obj.foragers(i).cluster_size;
                 end
             end
         end
@@ -171,24 +217,33 @@ classdef Hive < handle
         % Reset daily simulation parameters
         function reset_s(obj, t_d)
             % Reset bees
-            for i=1:obj.F(t_d)
-                obj.bees(i).work_mode = 0;
-                obj.bees(i).work_time = 0;
-                obj.bees(i).food = 0;
-                obj.bees(i).time_counter = 0;
-                obj.bees(i).x_pos = obj.x_pos;
-                obj.bees(i).y_pos = obj.y_pos;
+            for i=1:obj.max_forager_clusters
+                obj.foragers(i).work_mode = 0;
+                obj.foragers(i).work_time = 0;
+                obj.foragers(i).food = 0;
+                obj.foragers(i).time_counter = 0;
+                obj.foragers(i).x_pos = obj.x_pos;
+                obj.foragers(i).y_pos = obj.y_pos;
+                obj.foragers(i).cluster_size = obj.F(t_d)/obj.max_forager_clusters;
+            end
+            for i=1:round(obj.F(t_d)*obj.max_scout_percent)
+                obj.scouts(i).work_mode = 0;
+                obj.scouts(i).work_time = 0;
+                obj.scouts(i).food = 0;
+                obj.scouts(i).time_counter = 0;
+                obj.scouts(i).x_pos = obj.x_pos;
+                obj.scouts(i).y_pos = obj.y_pos;
             end
             % Reset hive
             obj.bees_count = 0;
             obj.scouts_count = 0;
+            obj.daily_food_sum(t_d) = 0;
         end
         
         % Iterative simulation step
         function simulate_d(obj, t_d)
             if(~obj.is_extinct)
                 % Function handles
-                obj.F(t_d)
                 % Brood change rate
                 dB = @(t) obj.L_year(mod(t_d - 1, 365) + 1) * obj.L * obj.S(obj.H(t), obj.f(t)) - obj.phi * obj.B(t);
 
@@ -202,7 +257,13 @@ classdef Hive < handle
                 dF = @(t) obj.H(t) * obj.R(obj.H(t), obj.F(t), obj.f(t)) - obj.m*obj.F(t);
 
                 % Food change rate
-                df = @(t) obj.c * obj.F(t) - obj.coFH * (obj.F(t) + obj.H(t)) - obj.coB * obj.B(t);
+                if(obj.fixed_food_rate == 1)
+                    % Fixed rate mode from original model
+                    df = @(t) obj.c * obj.F(t) - obj.coFH * (obj.F(t) + obj.H(t)) - obj.coB * obj.B(t);
+                else
+                    % Environment dependent mode from advanced model
+                    df = @(t) obj.daily_food_sum(t) - obj.coFH * (obj.F(t) + obj.H(t)) - obj.coB * obj.B(t);
+                end
 
                 % Calculate t+1
                 obj.B(t_d + 1) = max(obj.B(t_d) + dB(t_d), 0);
@@ -217,19 +278,21 @@ classdef Hive < handle
                 obj.f(t_d + 1) = max(obj.f(t_d) + df(t_d), 0);
 
                 % Check if enough bees instantiated, increase if needed
-                if(length(obj.bees) < round(obj.F(t_d+1)))
-                    new_bees = Bee.empty(round(obj.F(t_d+1)), 0);
-                    new_bees(1:length(obj.bees)) = obj.bees(:);
-                    for i=length(obj.bees)+1:round(obj.F(t_d+1))
-                        new_bees(i) = Bee(obj, obj.world, obj.prop);
+                if(length(obj.scouts) < round(obj.F(t_d+1)*obj.max_scout_percent))
+                    new_scouts = Bee.empty(round(obj.F(t_d+1)), 0);
+                    new_scouts(1:length(obj.scouts)) = obj.scouts(:);
+                    for i=length(obj.scouts)+1:round(obj.F(t_d+1))
+                        new_scouts(i) = Bee(obj, obj.world, obj.prop);
                     end
-                    obj.bees = new_bees;
+                    obj.scouts = new_scouts;
                 end
+                
+                % Hive extinct due to a too low bee count that cannot run a hive
                 if(obj.B(t_d+1)+obj.F(t_d+1) < obj.extinct_barrier)
                     obj.is_extinct = 1;
                 end
             else
-                % No bees in hive
+                % Hive extinct. No bees in the hive
                 obj.B(t_d + 1) = 0;
                 obj.F(t_d + 1) = 0;
                 obj.H(t_d + 1) = 0;
