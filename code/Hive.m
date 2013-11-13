@@ -45,6 +45,7 @@ classdef Hive < handle
         bees_count;              % Current active bees
         
         max_forager_clusters;    % Amount of forager bees that can be simulated in total (clustering)
+        cluster_size             % Size of a bee cluster
         
         beemap;                  % Rasterized map of bees (N/10xN/10, where N is the world size)
         patches;                 % Map of already discovered flower patches
@@ -110,6 +111,7 @@ classdef Hive < handle
             obj.max_scout_percent = Prop.Sim.Hive(obj.hive_ind).scout_count;
             
             obj.max_forager_clusters = Prop.Sim.Hive(obj.hive_ind).max_forager_clusters;
+            obj.cluster_size = 1;
             
             obj.scouts = Bee.empty(round(obj.F(1)*obj.max_scout_percent), 0);
             
@@ -159,7 +161,7 @@ classdef Hive < handle
                     % Add bee record at current position
                     x = ceil(obj.foragers(i).x_pos);
                     y = ceil(obj.foragers(i).y_pos);
-                    obj.beemap.array(y,x) = obj.beemap.array(y,x) - obj.foragers(i).cluster_size;
+                    obj.beemap.array(y,x) = obj.beemap.array(y,x) - obj.cluster_size;
                 end
             end
             for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
@@ -209,7 +211,7 @@ classdef Hive < handle
                     % Add bee record at current position
                     x = ceil(obj.foragers(i).x_pos);
                     y = ceil(obj.foragers(i).y_pos);
-                    obj.beemap.array(y,x) = obj.beemap.array(y,x) + obj.foragers(i).cluster_size;
+                    obj.beemap.array(y,x) = obj.beemap.array(y,x) + obj.cluster_size;
                 end
             end
         end
@@ -224,7 +226,6 @@ classdef Hive < handle
                 obj.foragers(i).time_counter = 0;
                 obj.foragers(i).x_pos = obj.x_pos;
                 obj.foragers(i).y_pos = obj.y_pos;
-                obj.foragers(i).cluster_size = obj.F(t_d)/obj.max_forager_clusters;
             end
             for i=1:round(obj.F(t_d)*obj.max_scout_percent)
                 obj.scouts(i).work_mode = 0;
@@ -235,6 +236,7 @@ classdef Hive < handle
                 obj.scouts(i).y_pos = obj.y_pos;
             end
             % Reset hive
+            obj.cluster_size = round(obj.F(t_d)/obj.max_forager_clusters);
             obj.bees_count = 0;
             obj.scouts_count = 0;
             obj.daily_food_sum(t_d) = 0;
