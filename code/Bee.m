@@ -5,19 +5,23 @@ classdef Bee < handle
         world;                    % The world the bee lives in
         % Current work mode
         % 0: no job
+        
         % 1: scout, searching flower patch
         % 2: scout, evaluating flower patch
         % 3: scout, returning to hive
         % 4: scout, waggle dance
-        % 11: forager, going to food source
-        % 12: forager, collecting food at source
-        % 13: forager, going to adjacent flowers
+        
+        % 11: forager, getting job
+        % 12: forager, going to food source
+        % 13: forager, collecting food at source
         % 14: forager, way back home
-        % 15: forager, food dispatch
-        % 16: forager, waggle dance
+        % 15: forager, food dispatch + waggle dance
+        
         work_mode;
         % work time, time spent in current work state
         work_time;
+        % wait time, time to spend in next work mode
+        wait_time;
         % time stepping counter
         time_counter;
         % current food carrying
@@ -36,6 +40,9 @@ classdef Bee < handle
         optimize_prob;           % Path optimization probability
         change_waypoint;         % Time after which to set a new waypoint (s)
         current_waypoint;        % Current waypoint for calculations
+        scouting_eval_time;      % Time for evaluating a flower patch
+        dispatch_time;           % Time to dispatch and get a new job
+        collect_time;            % Time spent to collect food
     end
     
     
@@ -56,9 +63,16 @@ classdef Bee < handle
             obj.rotate_scale = Prop.Sim.Hive(obj.hive.hive_ind).Bee.rotate_scale;
             obj.optimize_prob = Prop.Sim.Hive(obj.hive.hive_ind).Bee.optimize_prob;
             obj.change_waypoint = Prop.Sim.Hive(obj.hive.hive_ind).Bee.change_waypoint;
+            obj.scouting_eval_time = Prop.Sim.Hive(obj.hive.hive_ind).scouting_eval_time;
+            obj.dispatch_time = Prop.Sim.Hive(obj.hive.hive_ind).dispatch_time;
+            obj.collect_time = Prop.Sim.Hive(obj.hive.hive_ind).collect_time;
+            obj.food = 0;
         end
         
+        % Most complicated part of the simulation,
+        % bee agent based work algorithm with clustering
         function work(obj, t_d, t_s, dt_s)
+            obj.work_time = obj.work_time + dt_s;
             switch obj.work_mode
                 case 0
                     % Do nothing until job gets assigned
@@ -97,64 +111,141 @@ classdef Bee < handle
                                 % Mark the new patch, transition to new working
                                 % state, report quality and size
                                 [y,x] = ind2sub([obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10], ind);
-                                [psize, pquality] = obj.mark_flower_patch(x,y);
+                                [psize, pquality, ptype] = obj.hive.mark_flower_patch(x,y);
                                 obj.path.patch_size = psize;
                                 obj.path.patch_quality = pquality;
+                                obj.path.patch_type = ptype;
                                 % Last path point is the point where the flower
                                 % patch has been discovered
                                 obj.path.append(x,y);
                                 obj.work_mode = 2;
+                                % Reset work time for patch evaluation,
+                                % include random (normal distributed) variation
+                                obj.wait_time = (abs(randn())+0.5) * obj.scouting_eval_time;
+                                obj.work_time = 0;
                             end
                         end
                     else
                         % Scouting unsuccessful, return to hive
                         obj.work_mode = 2;
+                        % Wait time = 0, so that no patch evaluation time
+                        % is taken into account in the next work mode
+                        obj.wait_time = 0;
+                        obj.work_time = 0;
                     end
                         
                 case 2
-                    % TODO: Include wait time ('virtual time' to evaluate
-                    % patch)
-                    % Optimize path if probability says so
-                    if(rand() <= obj.optimize_prob)
-                        obj.path = obj.path.copy(1);
+                    % Return to hive as soon as evaluating time is over
+                    if(obj.work_time >= obj.wait_time)
+                        % Optimize path if probability says so
+                        if(rand() <= obj.optimize_prob)
+                            obj.path = obj.path.copy(1);
+                        end
+                        obj.current_waypoint = obj.path.length;
+                        obj.work_mode = 3;
                     end
-                    obj.current_waypoint = obj.path.length;
-                    obj.work_mode = 3;
+                    
                 case 3
                     % Fly back to hive
                     obj.move(-1,dt_s);
                     % Hive is reached, change work mode
                     if(obj.current_waypoint == 1)
                         obj.work_mode = 4;
+                        obj.work_time = 0;
+                        obj.wait_time = (abs(randn())+0.5) * obj.dispatch_time;
                     end
+                    
                 case 4
-                    % TODO: Scout doing waggle dance
-                    % Bee becomes unemployed again
-                    obj.work_mode = 0;
-                    obj.hive.scouts_count = obj.hive.scouts_count - 1;
-                    obj.hive.bees_count = obj.hive.bees_count - 1;
+                    % Scout does waggle dance
+                    % At hive, waggle dance and continue
+                    prob = obj.hive.food_source_compare(obj.path);
+                    % Bee decides if waggle dance or not (if scouting was
+                    % successful)
+                    if(obj.path.patch_type > 0)
+                        % Do waggle dance
+                        obj.hive.register_waggle_dance(obj.path, prob);
+                    end
+                    if(obj.work_time >= obj.wait_time)
+                        % Bee becomes unemployed again
+                        obj.work_mode = 0;
+                        obj.hive.scouts_count = obj.hive.scouts_count - 1;
+                        obj.hive.bees_count = obj.hive.bees_count - 1;
+                    end
+                    
                 case 11
+                    [got_path, obj.path] = obj.hive.watch_waggle();
+                    % Bee decided that the patch is good enough
+                    if(got_path == 1)
+                        obj.current_waypoint = 1;
+                        obj.work_mode = 12;
+                    end
+                    
                 case 12
+                    % Fly to flower patch
+                    obj.move(1,dt_s);
+                    % Flower patch is reached, change work mode
+                    if(obj.current_waypoint == obj.path.length)
+                        obj.food = min(obj.max_food,obj.world.flower(obj.path.patch_type).peak*obj.path.patch_quality/100);
+                        obj.work_mode = 13;
+                        % Reset work time for foraging at flower patch,
+                        % include random (normal distributed) variation
+                        obj.work_time = 0;
+                        obj.wait_time = (abs(randn())+0.5) * obj.collect_time;
+                    end
+                    
                 case 13
+                    % Return to hive as soon as foraging time is over
+                    if(obj.work_time >= obj.wait_time)
+                        % Optimize path if probability says so
+                        if(rand() <= obj.optimize_prob)
+                            obj.path = obj.path.copy(1);
+                        end
+                        obj.current_waypoint = obj.path.length;
+                        obj.work_mode = 14;
+                    end
+                    
                 case 14
+                    % Fly back to hive
+                    obj.move(-1,dt_s);
+                    % Hive is reached, change work mode
+                    if(obj.current_waypoint == 1)
+                        % Dispatch food to hive
+                        obj.hive.daily_food_sum(t_d) = obj.hive.daily_food_sum(t_d) + ...
+                        obj.hive.cluster_size * obj.food;
+                        obj.food = 0;
+                        obj.work_mode = 15;
+                        obj.work_time = 0;
+                        obj.wait_time = (abs(randn())+0.5) * obj.dispatch_time;
+                    end
+                    
+                case 15
+                    % At hive, waggle dance and continue
+                    prob = obj.hive.food_source_compare(obj.path);
+                    % Bee decides if waggle dance or not
+                    if(rand() < prob)
+                        % Do waggle dance
+                        obj.hive.register_waggle_dance(obj.path, prob);
+                    end
+                    if(obj.work_time >= obj.wait_time)
+                        % Move on to next working state
+                        if(rand() > prob)
+                            % Abandon food source, become unemployed
+                            obj.work_mode = 0;
+                            obj.hive.bees_count = obj.hive.bees_count - obj.hive.cluster_size;
+                        else
+                            % Continue using this food source
+                            obj.work_mode = 12;
+                            % Optimize path if probability says so
+                            if(rand() <= obj.optimize_prob)
+                                obj.path = obj.path.copy(1);
+                            end
+                        end
+                    end
+         
                 otherwise
             end
-            obj.work_time = obj.work_time + dt_s;
         end
         
-        % Mark a flower patch, report quality and size of the patch
-        function [psize, pquality] = mark_flower_patch(obj, x, y)
-            % Get flower patch that our scout bee discovered
-            patch = bwselect(logical(obj.world.type_map.array),x,y);
-            % Find nonzero fields, get indexes
-            ind = find(patch);
-            % Calculate patch size in 100m^2 units, 10^2m^2 per index
-            psize = length(ind);
-            % Calcualte average quality of the patch
-            pquality = sum(obj.world.quality_map.array(ind))/psize*100;
-            % Mark entire adjacent flower patch (segment, object)
-            obj.hive.patches.array(ind) = 1;
-        end
         
         function move(obj, direction, dt_s)
             % Calculate distance that can be passed in the calculation step

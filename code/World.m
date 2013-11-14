@@ -21,12 +21,16 @@ classdef World < handle
             
             % Convert time area vector from properties (2xN) to 1x365 values for the year and cancel out negative values:
             obj.flower(1).year_activity = zeros(1,365);
+            obj.flower(1).peak = Prop.Sim.Flower(1).peak;
             obj.flower(1).year_activity(Prop.Sim.Flower(1).year_activity(1,:)) = max(Prop.Sim.Flower(1).year_activity(2,:),0);
             obj.flower(2).year_activity = zeros(1,365);
+            obj.flower(2).peak = Prop.Sim.Flower(2).peak;
             obj.flower(2).year_activity(Prop.Sim.Flower(2).year_activity(1,:)) = max(Prop.Sim.Flower(2).year_activity(2,:),0);
             obj.flower(3).year_activity = zeros(1,365);
+            obj.flower(3).peak = Prop.Sim.Flower(3).peak;
             obj.flower(3).year_activity(Prop.Sim.Flower(3).year_activity(1,:)) = max(Prop.Sim.Flower(3).year_activity(2,:),0);
             obj.flower(4).year_activity = zeros(1,365);
+            obj.flower(4).peak = Prop.Sim.Flower(4).peak;
             obj.flower(4).year_activity(Prop.Sim.Flower(4).year_activity(1,:)) = max(Prop.Sim.Flower(4).year_activity(2,:),0);
             
             % Looking if this is similar to P. 45 "Wisdom of the Hive", for

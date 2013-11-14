@@ -62,7 +62,8 @@ function hive_simulation()
             end
         end
         
-        % There is activity, 
+        % There is activity, and there are some hives which are not extinct
+        % and don't have constant food rate, so do environment simulation
         if(activity_sum > 0 && dont_calculate_sum ~= Prop.Sim.hive_count)
             dt_s = Prop.Sim.eval_step_seconds;
             for i = 1:Prop.Sim.hive_count
@@ -82,6 +83,7 @@ function hive_simulation()
                     hives(1).draw_s();
                     %world.draw_s();
                     pause(0.0001);
+                    hives(1).daily_food_sum(t_d)
                     %t_s
                 end
                 % Print progress

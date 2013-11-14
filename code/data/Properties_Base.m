@@ -1,17 +1,27 @@
 % This is a sample file as reference. For actual simulations, make a copy!
 
 % SYSTEM
+% Identifier for data record
 Prop.Sys.identifier = 'Properties_Base';
+% If parallelization is possible, max. processors that should be used
 Prop.Sys.cores = 8;
 
 % WORLD
+% See "Wisdom of the Hive", P. 49 why this is a reasonable size for
+% simulation, as most flower patches detected will be in this area and the
+% 95th percentile is within 6km radius of the hive. This implies 100km^2 is
+% sufficient
 Prop.Sim.world_size = 10000;            % Meters
+% 100m^2 raster size (10m * 10m) is a reasonable scaling for the map as
+% flower patches, respective rastered areas can be assumed to be at least
+% 100m^2, which was also the seeding size mentioned ("Wisdom of the Hive",
+% P. 51)
 Prop.Sim.world_size_10 = Prop.Sim.world_size/10;
 Prop.Sim.world_file = 'data\equal_dist_normal.png'; % Image file the world is based on
-Prop.Sim.eval_step_days = 14;           % Days
-Prop.Sim.eval_time_days = 470;        % Days
-Prop.Sim.eval_time_seconds = 12*60*60;  % Seconds
-Prop.Sim.eval_step_seconds = 60;         % Seconds
+Prop.Sim.eval_time_days = 470;           % Days of simulation per run
+Prop.Sim.eval_time_seconds = 12*60*60;   % Seconds of simulation per day
+Prop.Sim.eval_step_seconds = 60;         % Seconds between two evaluation points
+Prop.Sim.record_step_seconds = 15*60;    % Daily simulation recording step size
 
 % Flowers
 % Describes how vital flowers are during a year
@@ -19,7 +29,7 @@ Prop.Sim.eval_step_seconds = 60;         % Seconds
 % Taken from P. 45, "Wisdom of the Hive"
 % 2xN vectors, days vs. activity factor
 % Peak values are in hive weight change in kg per day.
-% Assuming bee count = 100'000, we get peak/100'000 = kg/bee/day
+% Assuming bee count = 10'000, we get peak/10'000 = kg/bee/day
 % which * 1000 gives g/bee/day, what we need. Therefore we assume this is
 % the weight of pollen/nectar a bee can get per flight and flower.
 % Therefore we can take hive weight change/day as indicator for
@@ -27,36 +37,6 @@ Prop.Sim.eval_step_seconds = 60;         % Seconds
 
 % Final equation: peak * daily quality * 1/100 = reward per flower visit in
 % grams.
-
-
-% Dandelion (peak value 1.7):
-% Prop.Sim.Flower(1).peak = 1.7;
-% Prop.Sim.Flower(1).year_activity = [120:149;0.0588,0,0.1176,0.1765,-0.1765,-0.0588,0.1176,0.1176,-0.1176,-0.1765,-0.1765,-0.0588,-0.0588,0.2941,0.2941,0.2941,1.0,0.5882,0.5882,0.6471,0.0588,0.2353,0.8824,-0.1765,-0.5882,-0.0588,-0.1176,-0.1765,-0.1765,-0.1176];
-% Black locust (peak value 5.9):
-% Prop.Sim.Flower(2).peak = 5.9;
-% Prop.Sim.Flower(2).year_activity = [150:159;0,0.271186440677966,0.677966101694915,0.694915254237288,1,0.389830508474576,0.0847457627118644,0.254237288135593,0.220338983050847,-0.0169491525423729];
-% Raspberry + sumac (peak value 4.3)
-% Prop.Sim.Flower(3).peak = 4.3;
-% Prop.Sim.Flower(3).year_activity = [160:179;-0.0465116279069768,-0.0465116279069768,-0.0465116279069768,-0.0232558139534884,0,-0.0232558139534884,0.325581395348837,-0.0465116279069768,0.279069767441860,-0.116279069767442,0.883720930232558,0.813953488372093,0.883720930232558,1,0.441860465116279,0,0.418604651162791,0.813953488372093,0.883720930232558,-0.186046511627907];
-% Basswood (peak value 0.6)
-% Prop.Sim.Flower(4).peak = 0.6;
-% Prop.Sim.Flower(4).year_activity = [180:209;-1,-5/6,-0.5,-1/3,-1/3,1,5/6,1,1,5/3,-1/3,-5/6,-5/3,-1/3,1/3,-0.5,0,1/3,1/3,-5/6,0,0.5,1/3,-5/6,-5/3,0,-2/3,-0.5,-1/3,-1/3];
-
-
-% Hive weight change in kg/d for seasons. Spring: flowers, summer: woods,
-% autumn: unspecified. The 4th slot is interchangable/winter.
-% Spring flowers, p.45 in Wisdom of the Hive (dandelion, black locust, raspberry, sumac, peak value 5.9): 
-%Prop.Sim.Flower(1).peak = 5.9;
-%Prop.Sim.Flower(1).year_activity = [121:179;0.0169423728813559,0,0.0338847457627119,0.0508559322033898,-0.0508559322033898,-0.0169423728813559,0.0338847457627119,0.0338847457627119,-0.0338847457627119,-0.0508559322033898,-0.0508559322033898,-0.0169423728813559,-0.0169423728813559,0.0847406779661017,0.0847406779661017,0.0847406779661017,0.288135593220339,0.169481355932203,0.169481355932203,0.186452542372881,0.0169423728813559,0.0677983050847458,0.254250847457627,-0.0508559322033898,-0.169481355932203,-0.0169423728813559,-0.0338847457627119,-0.0508559322033898,-0.0508559322033898,-0.0338847457627119,0.271186440677966,0.677966101694915,0.694915254237288,1,0.389830508474576,0.0847457627118644,0.254237288135593,0.220338983050847,-0.0169491525423729,-0.0338983050847458,-0.0338983050847458,-0.0338983050847458,-0.0169491525423729,0,-0.0169491525423729,0.237288135593220,-0.0338983050847458,0.203389830508474,-0.0847457627118645,0.644067796610169,0.593220338983051,0.644067796610169,0.728813559322034,0.322033898305085,0,0.305084745762712,0.593220338983051,0.644067796610169,-0.135593220338983];
-% Summer woods, p.45 in Wisdom of the Hive (basswood, peak value 0.6)
-%Prop.Sim.Flower(2).peak = 0.6;
-%Prop.Sim.Flower(2).year_activity = [180:209;-1,-5/6,-0.5,-1/3,-1/3,1,5/6,1,1,5/3,-1/3,-5/6,-5/3,-1/3,1/3,-0.5,0,1/3,1/3,-5/6,0,0.5,1/3,-5/6,-5/3,0,-2/3,-0.5,-1/3,-1/3];
-% Autumn (Sep-Nov [currently only data for Sep available and implemented)), p.44 in Wisdom of the Hive (unspecified flowers)
-%Prop.Sim.Flower(3).peak = 4.9;
-%Prop.Sim.Flower(3).year_activity = [240:269;0.918367346938775,0.918367346938775,0.918367346938775,0.918367346938775,0.918367346938775,0.918367346938775,0.918367346938775,0.938775510204082,0.938775510204082,0.938775510204082,0.938775510204082,0.938775510204082,0.938775510204082,0.938775510204082,1,1,1,1,1,1,1,0.326530612244898,0.326530612244898,0.326530612244898,0.326530612244898,0.326530612244898,0.326530612244898,0.326530612244898,0.204081632653061,0.102040816326531];
-% unspecified
-%Prop.Sim.Flower(4).peak = 0.0;
-%Prop.Sim.Flower(4).year_activity = [330:359;0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 
 % Flowers (mainly active during spring):
@@ -128,16 +108,32 @@ Prop.Sim.Hive(1).Bee.max_food = 0.025;
 % 8km or 8000m, use 2km padding to world borders in 10m resolution
 Prop.Sim.Hive(1).Bee.max_dist = 4000/10;
 % Probability to optimize a path during one way
-% 50% chance
+% 50% chance. This is a freely chosen
+% property for the random walk algorithm!
 Prop.Sim.Hive(1).Bee.optimize_prob = 0.5;
-% Factor to change movement angle, multiplied by randn();
+% Factor to change movement angle, multiplied by randn();. This is a freely
+% chosen property for the random walk algorithm!
 Prop.Sim.Hive(1).Bee.rotate_scale = 0.5;
-% Time after which to set a new waypoint (s)
+% Time after which to set a new waypoint (s). This is a freely chosen
+% property for the random walk algorithm!
 Prop.Sim.Hive(1).Bee.change_waypoint = 60;
 % Flight speed
 % Taken from P. 47 "Wisdom of the Hive"
 % 25km/h or 7m/s, divided by ten as we work in 10m resolution
 Prop.Sim.Hive(1).Bee.flight_speed = 7/10;
+
+% An average of 5min spent to evaluate a flower patch
+% Assumption made based on flight speed and patch size
+Prop.Sim.Hive(1).scouting_eval_time = 3*60;
+
+% An average of 4min spent to dispatch food and get a new patch assigned,
+% respectively doing a waggle dance
+% Assumption made based on "Wisdom of the Hive", P. 107f
+Prop.Sim.Hive(1).dispatch_time = 4*60;
+
+% An average of 1min spent to collect food at the flower patch
+% Assumption made based on "Wisdom of the Hive", P. 107ff
+Prop.Sim.Hive(1).collect_time = 1*60;
 
 % Maximum amount of bees simulated (if bee count is higher than this,
 % aggregated bee clusters will be simulated)
@@ -145,6 +141,8 @@ Prop.Sim.Hive(1).max_forager_clusters = 1000;
 
 % Food rate is dynamic (environment simulation)
 Prop.Sim.Hive(1).fixed_food_rate = 0;
+
+
 
 
 
