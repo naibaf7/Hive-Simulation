@@ -96,7 +96,7 @@ function hive_simulation(proparray)
                             end
                         end
                     end
-                    if(mod(t_s-1,Prop.Sim.report_step_second)==0)
+                    if(mod(t_s-1,Prop.Sim.record_step_seconds)==0)
                         for i = 1:Prop.Sim.hive_count
                             % Write corresponding time to this simulated time into the
                             % report

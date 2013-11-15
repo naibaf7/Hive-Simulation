@@ -81,7 +81,7 @@ Prop.Sim.Hive(1).laying_rate = 2000;
 Prop.Sim.Hive(1).social_inhibition = 0.75;
 Prop.Sim.Hive(1).adult_bee_emerging = 1/9;
 Prop.Sim.Hive(1).food_per_forager = 0.1;
-Prop.Sim.Hive(1).food = 10000;
+Prop.Sim.Hive(1).food = 50000;
 % Food consumption adult bees, 0.007g/day
 Prop.Sim.Hive(1).food_consumption_adult = 0.007;
 % Food consumption brood/larvae, 0.018g/day
@@ -140,7 +140,7 @@ Prop.Sim.Hive(1).collect_time = 1*60;
 Prop.Sim.Hive(1).max_forager_clusters = 1000;
 
 % Food rate is dynamic (environment simulation)
-Prop.Sim.Hive(1).fixed_food_rate = 1;
+Prop.Sim.Hive(1).fixed_food_rate = 0;
 
 
 
