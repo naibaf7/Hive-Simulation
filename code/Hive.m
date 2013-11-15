@@ -41,6 +41,7 @@ classdef Hive < handle
         
         waggle_paths;            % Available waggles to copy
         waggle_data;             % Array for fast waggle evaluation
+        waggle_count;            % Current waggle count
         
         scouts_count;            % Current scout count
         max_scout_percent;       % Max. percent of active bees that are scouts
@@ -51,6 +52,14 @@ classdef Hive < handle
         
         beemap;                  % Rasterized map of bees (N/10xN/10, where N is the world size)
         patches;                 % Map of already discovered flower patches
+        
+        % We add a barrier to stop scouting bees as soon as all patches
+        % have been discovered, which is not something bees would do. But
+        % we can do it here as the scout bees don't have any effect after
+        % they found every patch, but it's computationally very expensive
+        % to keep them in the random walk algorithm.
+        patches_total;           % Total patches
+        patches_discovered;      % Discovered patches
         
         daily_food_sum;          % Aggregated collected food per day
         fixed_food_rate;         % Fixed rate (original model) or advanced model
@@ -117,9 +126,6 @@ classdef Hive < handle
             
             obj.scouts = Bee.empty(round(obj.F(1)*obj.max_scout_percent), 0);
             
-            obj.waggle_paths = Path.empty(0,0);
-            obj.waggle_data = zeros(0,4);
-            
             obj.foragers = Bee.empty(obj.max_forager_clusters, 0);
 
             % Instantiate bees
@@ -149,28 +155,53 @@ classdef Hive < handle
             obj.R = @(H, F, f) obj.amin + obj.amax*(obj.b^2/(obj.b^2+f^2)) - obj.sigma * (F/(F+H));
         end
         
+        % Count active patches
+        function count = count_patches(obj)
+            % Maps to logic maps conversion
+            logic_quality_map = logical(obj.world.quality_map.array);
+            logic_type_map = logical(obj.world.type_map.array);
+            logic_map = logic_quality_map & logic_type_map;
+            [sm,sn] = size(logic_map);
+            check_map = zeros(sm,sn);
+            count = 0;
+            % Go through map
+            for y = 1:sm
+                for x = 1:sn
+                    % Check map to avoid double counting
+                    if(check_map(y,x) == 0 && logic_map(y,x) == 1)
+                        patch = bwselect(logic_map,x,y);
+                        ind = find(patch);
+                        check_map(ind) = 1;
+                        count = count + 1;
+                    end
+                end
+            end
+        end
+        
+        % Compare own food source against all other food sources
         function prob = food_source_compare(obj, path)
-            [len,~] = size(obj.waggle_data);
-            if(len > 0)
+            if(obj.waggle_count > 0)
                 % Calculating relative probability compared to other
                 % patches
-                prob = path.patch_quality/(sum(obj.waggle_data(:,2))/len) * ...
-                    path.patch_size/(sum(obj.waggle_data(:,3))/len) * ...
-                    path.distance/(sum(obj.waggle_data(:,4))/len);
+                prob = path.patch_quality/(sum(obj.waggle_data(1:obj.waggle_count,2))/obj.waggle_count) * ...
+                    path.patch_size/(sum(obj.waggle_data(1:obj.waggle_count,3))/obj.waggle_count) * ...
+                    path.distance/(sum(obj.waggle_data(1:obj.waggle_count,4))/obj.waggle_count);
             else
                 % It's the first waggle we test against, so it's the best
                 prob = 1;
             end
         end
         
+        % Register a waggle dance after arriving at the hive
         function register_waggle_dance(obj, path, prob)
+            obj.waggle_count = obj.waggle_count + 1;
             % Enter path
-            obj.waggle_paths = [obj.waggle_paths; path];
+            obj.waggle_paths(obj.waggle_count) = path;
             % Enter data in separate array (for speed)
-            obj.waggle_data = [obj.waggle_data; prob, path.patch_quality, path.patch_size, path.distance];
-            % Normalize probabilities of picking a waggle
+            obj.waggle_data(obj.waggle_count, :) = [prob, path.patch_quality, path.patch_size, path.distance];
+            % Normalize probabilities of accepting a waggle dance
             if(prob > 1)
-                obj.waggle_data(:,1) = obj.waggle_data(:,1)/prob;
+                obj.waggle_data(1:obj.waggle_count,1) = obj.waggle_data(1:obj.waggle_count,1)/prob;
             end
         end
         
@@ -188,15 +219,16 @@ classdef Hive < handle
             ptype = obj.world.type_map.array(y,x);
             % Mark entire adjacent flower patch (segment, object)
             obj.patches.array(ind) = 1;
+            % Add flower patch to counting variable
+            obj.patches_discovered = obj.patches_discovered + 1;
         end
         
         % Watch a waggle dance and maybe use it
         function [got_path, path] = watch_waggle(obj)
             path = 0;
-            [len,~] = size(obj.waggle_data);
             % Select one, randomly
-            if(len > 0)
-                i = randi([1,len],1);
+            if(obj.waggle_count > 0)
+                i = randi([1,obj.waggle_count],1);
                 % Bee decided that the patch is good enough
                 if(rand() < obj.waggle_data(i,1))
                     got_path = 1;
@@ -212,26 +244,25 @@ classdef Hive < handle
         
         % Iterative daily simulation step
         function simulate_s(obj, t_s, t_d, dt_s)
-            obj.waggle_paths = Path.empty(0,0);
-            obj.waggle_data = zeros(0,4);
-            for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
-                % Don't record bees that don't work
-                if(obj.scouts(i).work_mode ~= 0)
-                    % Add bee record at current position
-                    x = ceil(obj.scouts(i).x_pos);
-                    y = ceil(obj.scouts(i).y_pos);
-                    obj.beemap.array(y,x) = obj.beemap.array(y,x) - 1;
-                end
-            end
-            for i = 1:obj.max_forager_clusters
-                % Don't record bees that don't work
-                if(obj.foragers(i).work_mode ~= 0)
-                    % Add bee record at current position
-                    x = ceil(obj.foragers(i).x_pos);
-                    y = ceil(obj.foragers(i).y_pos);
-                    obj.beemap.array(y,x) = obj.beemap.array(y,x) - obj.cluster_size;
-                end
-            end
+            obj.waggle_count = 0;
+%             for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
+%                 % Don't record bees that don't work
+%                 if(obj.scouts(i).work_mode ~= 0)
+%                     % Add bee record at current position
+%                     x = ceil(obj.scouts(i).x_pos);
+%                     y = ceil(obj.scouts(i).y_pos);
+%                     obj.beemap.array(y,x) = obj.beemap.array(y,x) - 1;
+%                 end
+%             end
+%             for i = 1:obj.max_forager_clusters
+%                 % Don't record bees that don't work
+%                 if(obj.foragers(i).work_mode ~= 0)
+%                     % Add bee record at current position
+%                     x = ceil(obj.foragers(i).x_pos);
+%                     y = ceil(obj.foragers(i).y_pos);
+%                     obj.beemap.array(y,x) = obj.beemap.array(y,x) - obj.cluster_size;
+%                 end
+%             end
             
             % Scouts working loop
             for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
@@ -269,24 +300,24 @@ classdef Hive < handle
                 end
             end
             
-            for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
-                % Don't record bees that don't work
-                if(obj.scouts(i).work_mode ~= 0)
-                    % Add bee record at current position
-                    x = ceil(obj.scouts(i).x_pos);
-                    y = ceil(obj.scouts(i).y_pos);
-                    obj.beemap.array(y,x) = obj.beemap.array(y,x) + 1;
-                end
-            end
-            for i = 1:obj.max_forager_clusters
-                % Don't record bees that don't work
-                if(obj.foragers(i).work_mode ~= 0)
-                    % Add bee record at current position
-                    x = ceil(obj.foragers(i).x_pos);
-                    y = ceil(obj.foragers(i).y_pos);
-                    obj.beemap.array(y,x) = obj.beemap.array(y,x) + obj.cluster_size;
-                end
-            end
+%             for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
+%                 % Don't record bees that don't work
+%                 if(obj.scouts(i).work_mode ~= 0)
+%                     % Add bee record at current position
+%                     x = ceil(obj.scouts(i).x_pos);
+%                     y = ceil(obj.scouts(i).y_pos);
+%                     obj.beemap.array(y,x) = obj.beemap.array(y,x) + 1;
+%                 end
+%             end
+%             for i = 1:obj.max_forager_clusters
+%                 % Don't record bees that don't work
+%                 if(obj.foragers(i).work_mode ~= 0)
+%                     % Add bee record at current position
+%                     x = ceil(obj.foragers(i).x_pos);
+%                     y = ceil(obj.foragers(i).y_pos);
+%                     obj.beemap.array(y,x) = obj.beemap.array(y,x) + obj.cluster_size;
+%                 end
+%             end
         end
         
         % Reset daily simulation parameters
@@ -313,6 +344,12 @@ classdef Hive < handle
             obj.bees_count = 0;
             obj.scouts_count = 0;
             obj.daily_food_sum(t_d) = 0;
+            % Allocate enough space for waggle dances
+            obj.waggle_paths = Path.empty(round(obj.F(t_d)*obj.max_scout_percent) + obj.max_forager_clusters,0);
+            obj.waggle_data = zeros(round(obj.F(t_d)*obj.max_scout_percent) + obj.max_forager_clusters,4);
+            % Count total patches, discovered patches = 0
+            obj.patches_total = obj.count_patches();
+            obj.patches_discovered = 0;
         end
         
         % Iterative simulation step
@@ -379,10 +416,10 @@ classdef Hive < handle
         function draw_s(obj)
             clf
             colormap('hot')
-            subplot(1,2,1);
-            imagesc(obj.patches.array);
-            subplot(1,2,2);
-            imagesc(obj.beemap.array);
+            %subplot(1,2,1);
+            %imagesc(obj.patches.array);
+            %subplot(1,2,2);
+            imagesc(logical(obj.beemap.array));
             colorbar
         end
         

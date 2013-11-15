@@ -106,7 +106,7 @@ Prop.Sim.Hive(1).scout_count = 0.06;
 Prop.Sim.Hive(1).Bee.max_food = 0.025;
 % Max. flight distance of a bee
 % 8km or 8000m, use 2km padding to world borders in 10m resolution
-Prop.Sim.Hive(1).Bee.max_dist = 4000/10;
+Prop.Sim.Hive(1).Bee.max_dist = 8000/10;
 % Probability to optimize a path during one way
 % 50% chance. This is a freely chosen
 % property for the random walk algorithm!
@@ -140,7 +140,7 @@ Prop.Sim.Hive(1).collect_time = 1*60;
 Prop.Sim.Hive(1).max_forager_clusters = 1000;
 
 % Food rate is dynamic (environment simulation)
-Prop.Sim.Hive(1).fixed_food_rate = 0;
+Prop.Sim.Hive(1).fixed_food_rate = 1;
 
 
 

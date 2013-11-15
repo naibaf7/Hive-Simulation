@@ -34,10 +34,9 @@ function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
     %scale the values of h to 0:5
     type_map.array = round(mod((type_map.array)*6,6));
 
-
-
-    figure
-    imagesc(type_map.array);
-    colormap(hsv);
+    % Use this in debug mode to test if the map has been read correctly:
+    %figure
+    %imagesc(type_map.array);
+    %colormap(hsv);
 end
 

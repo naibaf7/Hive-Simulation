@@ -89,41 +89,47 @@ classdef Bee < handle
                         y_min = ceil(obj.y_pos);
                         x_min = ceil(obj.x_pos);
                         % Random walk with border protection
-                        obj.x_pos = min(max(obj.x_pos + cos(obj.alpha)*obj.speed*dt_s,0),obj.prop.Sim.world_size_10);
-                        obj.y_pos = min(max(obj.y_pos + sin(obj.alpha)*obj.speed*dt_s,0),obj.prop.Sim.world_size_10);
+                        obj.x_pos = min(max(obj.x_pos + cos(obj.alpha)*obj.speed*dt_s,1),obj.prop.Sim.world_size_10);
+                        obj.y_pos = min(max(obj.y_pos + sin(obj.alpha)*obj.speed*dt_s,1),obj.prop.Sim.world_size_10);
                         obj.time_counter = obj.time_counter + dt_s;
-                        % Current (rounded) position
-                        y_max = ceil(obj.y_pos);
-                        x_max = ceil(obj.x_pos);
-                        % Get all points we passed on our way (bresenham line
-                        % algorithm)
-                        [y_points,x_points] = bresenham(x_min,y_min,x_max,y_max);
-                        % Flower patch discovered. A patch is discovered when:
-                        % - Quality is above zero (flowers are currently growing)
-                        % - Typemap indicates that there is a flower patch
-                        % - No other bee has marked this patch already
-                        inds = sub2ind([obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10],y_points,x_points);
-                        if(sum(obj.world.quality_map.array(inds)) > 0)
-                            ind = inds(find(obj.world.quality_map.array(inds),1,'first'));
-                            if(obj.world.type_map.array(ind) > 0 && ...
-                                obj.world.type_map.array(ind) < 5 && ...
-                                obj.hive.patches.array(ind) == 0)
-                                % Mark the new patch, transition to new working
-                                % state, report quality and size
-                                [y,x] = ind2sub([obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10], ind);
-                                [psize, pquality, ptype] = obj.hive.mark_flower_patch(x,y);
-                                obj.path.patch_size = psize;
-                                obj.path.patch_quality = pquality;
-                                obj.path.patch_type = ptype;
-                                % Last path point is the point where the flower
-                                % patch has been discovered
-                                obj.path.append(x,y);
-                                obj.work_mode = 2;
-                                % Reset work time for patch evaluation,
-                                % include random (normal distributed) variation
-                                obj.wait_time = (abs(randn())+0.5) * obj.scouting_eval_time;
-                                obj.work_time = 0;
+                        % Check only if there is a chance to discover a new
+                        % flower patch
+                        if(obj.hive.patches_total > obj.hive.patches_discovered)
+                            % Current (rounded) position
+                            y_max = ceil(obj.y_pos);
+                            x_max = ceil(obj.x_pos);
+                            % Get all points we passed on our way (bresenham line
+                            % algorithm)
+                            [y_points,x_points] = bresenham(x_min,y_min,x_max,y_max);
+                            % Flower patch discovered. A patch is discovered when:
+                            % - Quality is above zero (flowers are currently growing)
+                            % - Typemap indicates that there is a flower patch
+                            % - No other bee has marked this patch already
+                            inds = sub2ind([obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10],y_points,x_points);
+                            if(sum(obj.world.quality_map.array(inds)) > 0)
+                                ind = inds(find(obj.world.quality_map.array(inds),1,'first'));
+                                if(obj.world.type_map.array(ind) > 0 && ...
+                                    obj.world.type_map.array(ind) < 5 && ...
+                                    obj.hive.patches.array(ind) == 0)
+                                    % Mark the new patch, transition to new working
+                                    % state, report quality and size
+                                    [y,x] = ind2sub([obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10], ind);
+                                    [psize, pquality, ptype] = obj.hive.mark_flower_patch(x,y);
+                                    obj.path.patch_size = psize;
+                                    obj.path.patch_quality = pquality;
+                                    obj.path.patch_type = ptype;
+                                    % Last path point is the point where the flower
+                                    % patch has been discovered
+                                    obj.path.append(x,y);
+                                    obj.work_mode = 2;
+                                    % Reset work time for patch evaluation,
+                                    % include random (normal distributed) variation
+                                    obj.wait_time = (abs(randn())+0.5) * obj.scouting_eval_time;
+                                    obj.work_time = 0;
+                                end
                             end
+                        else
+                            crash
                         end
                     else
                         % Scouting unsuccessful, return to hive
