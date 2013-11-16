@@ -265,26 +265,32 @@ classdef Hive < handle
 %             end
             
             % Scouts working loop
-            for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
-                % Assign jobs to scouts
-                if(obj.scouts(i).work_mode == 0)
-                     % More active bees possible?
-                     if(obj.bees_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600)))
-                        % More scouts possible?
-                        if(obj.scouts_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600))*obj.max_scout_percent)
-                            obj.scouts_count = obj.scouts_count + 1;
-                            obj.bees_count = obj.bees_count + 1;
-                            % Assign scout job
-                            obj.scouts(i).work_mode = 1;
-                            obj.scouts(i).path = Path();
-                            % Starting point in the hive
-                            obj.scouts(i).path.append(obj.x_pos,obj.y_pos);
-                            % Random starting direction from the hive
-                            obj.scouts(i).alpha = rand()*2*pi;
-                        end
-                     end
+            % Work only if there is a chance to discover a new
+            % flower patch (not realistic but doesn't numerically
+            % change the foraging result and saves a lot of
+            % computation power)
+            if(obj.patches_total > obj.patches_discovered)
+                for i = 1:round(obj.F(t_d)*obj.max_scout_percent)
+                    % Assign jobs to scouts
+                    if(obj.scouts(i).work_mode == 0)
+                         % More active bees possible?
+                         if(obj.bees_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600)))
+                            % More scouts possible?
+                            if(obj.scouts_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600))*obj.max_scout_percent)
+                                obj.scouts_count = obj.scouts_count + 1;
+                                obj.bees_count = obj.bees_count + 1;
+                                % Assign scout job
+                                obj.scouts(i).work_mode = 1;
+                                obj.scouts(i).path = Path();
+                                % Starting point in the hive
+                                obj.scouts(i).path.append(obj.x_pos,obj.y_pos);
+                                % Random starting direction from the hive
+                                obj.scouts(i).alpha = rand()*2*pi;
+                            end
+                         end
+                    end
+                    obj.scouts(i).work(t_d, t_s, dt_s);
                 end
-                obj.scouts(i).work(t_d, t_s, dt_s);
             end
             
             % Foragers working loop

@@ -133,13 +133,13 @@ function hive_simulation(proparray)
                         percent_B_old = percent_B;
                     end
                 end
+                sim_day = sim_day + 1;
             else
                for i = 1:Prop.Sim.hive_count
                    % Daily food income (aggregated) is zero if no flower
                    % activity
                    hives(i).daily_food_sum(t_d) = 0;
                end
-               sim_day = sim_day + 1;
             end
 
             % Daily environment simulation
