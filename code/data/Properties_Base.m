@@ -74,9 +74,10 @@ Prop.Sim.Hive(1).max_recruitment = 0.25;
 % Describes how the laying rate of the queen varies during the year
 % From 1 to 365, arbitrary measure points + paddings
 % Taken from P. 34ff, "Wisdom of the Hive"
-% Approx. laying from March to October
+% Approx. laying from April/May to October, in winter only to keep the hive
+% alive
 % 2xN vectors, days vs. laying factor
-Prop.Sim.Hive(1).laying_function = [-30,1,32,60,91,121,153,182,213,244,274,305,335,366,395;-4,-3,-2,0.5,1,2,2,2,2,1,0.5,0,-2,-3,-4];
+Prop.Sim.Hive(1).laying_function = [-30,1,32,60,91,121,153,182,213,244,274,305,335,366,395;0.1,0.1,0.1,0.1,0.5,1,2,2,1,0.5,0.1,0.1,0.1,0.1,0.1];
 Prop.Sim.Hive(1).laying_rate = 2000;
 Prop.Sim.Hive(1).social_inhibition = 0.75;
 Prop.Sim.Hive(1).adult_bee_emerging = 1/9;

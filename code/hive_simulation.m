@@ -171,7 +171,6 @@ function hive_simulation(proparray)
         fprintf('\n');
 
         % Record simulation data
-                                            report(k).prop.Sys.identifier
 
         for i = 1:Prop.Sim.hive_count
             report(k).data.hives(i).uncapped_brood = hives(i).B;
@@ -180,7 +179,6 @@ function hive_simulation(proparray)
             report(k).data.hives(i).foragers = hives(i).F;
             report(k).data.hives(i).daily_food_sum = hives(i).daily_food_sum;
         end
-                                            report(k).prop.Sys.identifier
 
     end
     runtime_stop = toc(runtime_start);

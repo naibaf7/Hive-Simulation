@@ -128,8 +128,6 @@ classdef Bee < handle
                                     obj.work_time = 0;
                                 end
                             end
-                        else
-                            crash
                         end
                     else
                         % Scouting unsuccessful, return to hive

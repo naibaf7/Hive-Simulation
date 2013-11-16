@@ -347,6 +347,8 @@ classdef Hive < handle
             % Allocate enough space for waggle dances
             obj.waggle_paths = Path.empty(round(obj.F(t_d)*obj.max_scout_percent) + obj.max_forager_clusters,0);
             obj.waggle_data = zeros(round(obj.F(t_d)*obj.max_scout_percent) + obj.max_forager_clusters,4);
+            obj.waggle_count = 0;
+            obj.patches = Map(0,obj.prop.Sim.world_size_10,obj.prop.Sim.world_size_10);
             % Count total patches, discovered patches = 0
             obj.patches_total = obj.count_patches();
             obj.patches_discovered = 0;
