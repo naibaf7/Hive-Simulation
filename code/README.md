@@ -1,3 +1,3 @@
 # Code Folder 
 
-Your code goes here. You could also replace the content of this file with something more meaningful
+To run the simulation run hive_simulation.m, to change the simulation properties change the /data/Properties_Base.m file.
