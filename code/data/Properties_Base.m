@@ -46,7 +46,7 @@ Prop.Sim.Flower(1).year_activity = [131:140;sin(linspace(0,pi,10))];
 Prop.Sim.Flower(2).peak = 6;
 Prop.Sim.Flower(2).year_activity = [154:161,175:182,190:195;sin(linspace(0,pi,8)),sin(linspace(0,pi,8))/1.5,sin(linspace(0,pi,6))/6];
 % Fruits (mainly active during autumn:
-Prop.Sim.Flower(3).peak = 5;
+Prop.Sim.Flower(3).peak = 2;
 Prop.Sim.Flower(3).year_activity = [245:270;sin(linspace(0,pi,26))];
 
 % Left empty for future use:

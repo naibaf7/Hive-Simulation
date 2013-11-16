@@ -78,23 +78,25 @@ classdef Bee < handle
                     % Do nothing until job gets assigned
                 case 1
                     % Scouting
-                    if(obj.path.distance < obj.max_dist)
-                        if(obj.time_counter >= obj.change_waypoint)
-                            obj.time_counter = 0;
-                            obj.path.append(obj.x_pos,obj.y_pos);
-                            % Change in angle
-                            obj.alpha = obj.alpha+obj.rotate_scale*randn();
-                        end
-                        % Last (rounded) position
-                        y_min = ceil(obj.y_pos);
-                        x_min = ceil(obj.x_pos);
-                        % Random walk with border protection
-                        obj.x_pos = min(max(obj.x_pos + cos(obj.alpha)*obj.speed*dt_s,1),obj.prop.Sim.world_size_10);
-                        obj.y_pos = min(max(obj.y_pos + sin(obj.alpha)*obj.speed*dt_s,1),obj.prop.Sim.world_size_10);
-                        obj.time_counter = obj.time_counter + dt_s;
-                        % Check only if there is a chance to discover a new
-                        % flower patch
-                        if(obj.hive.patches_total > obj.hive.patches_discovered)
+                    % Work only if there is a chance to discover a new
+                    % flower patch (not realistic but doesn't numerically
+                    % change the foraging result and saves a lot of
+                    % computation power)
+                    if(obj.hive.patches_total > obj.hive.patches_discovered)
+                        if(obj.path.distance < obj.max_dist)
+                            if(obj.time_counter >= obj.change_waypoint)
+                                obj.time_counter = 0;
+                                obj.path.append(obj.x_pos,obj.y_pos);
+                                % Change in angle
+                                obj.alpha = obj.alpha+obj.rotate_scale*randn();
+                            end
+                            % Last (rounded) position
+                            y_min = ceil(obj.y_pos);
+                            x_min = ceil(obj.x_pos);
+                            % Random walk with border protection
+                            obj.x_pos = min(max(obj.x_pos + cos(obj.alpha)*obj.speed*dt_s,1),obj.prop.Sim.world_size_10);
+                            obj.y_pos = min(max(obj.y_pos + sin(obj.alpha)*obj.speed*dt_s,1),obj.prop.Sim.world_size_10);
+                            obj.time_counter = obj.time_counter + dt_s;
                             % Current (rounded) position
                             y_max = ceil(obj.y_pos);
                             x_max = ceil(obj.x_pos);
@@ -128,16 +130,15 @@ classdef Bee < handle
                                     obj.work_time = 0;
                                 end
                             end
+                        else
+                            % Scouting unsuccessful, return to hive
+                            obj.work_mode = 2;
+                            % Wait time = 0, so that no patch evaluation time
+                            % is taken into account in the next work mode
+                            obj.wait_time = 0;
+                            obj.work_time = 0;
                         end
-                    else
-                        % Scouting unsuccessful, return to hive
-                        obj.work_mode = 2;
-                        % Wait time = 0, so that no patch evaluation time
-                        % is taken into account in the next work mode
-                        obj.wait_time = 0;
-                        obj.work_time = 0;
                     end
-                        
                 case 2
                     % Return to hive as soon as evaluating time is over
                     if(obj.work_time >= obj.wait_time)
