@@ -100,7 +100,7 @@ function hive_simulation(proparray)
                         for i = 1:Prop.Sim.hive_count
                             % Write corresponding time to this simulated time into the
                             % report
-                            report(k).data.hives(i).day(sim_day).actual_time = t_s;
+                            report(k).data.hives(i).day(sim_day).actual_time(sim_second) = t_s;
                             % Record data at t_s into field sim_second
                             report(k).data.hives(i).day(sim_day).patches_discovered(sim_second) = hives(i).patches_discovered;
                             report(k).data.hives(i).day(sim_day).food_sum(sim_second) = hives(i).daily_food_sum(t_d);

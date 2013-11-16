@@ -300,6 +300,7 @@ classdef Hive < handle
                      % More active bees possible?
                      if(obj.bees_count < obj.F(t_d)*obj.daily_activity(ceil(t_s/3600)))
                         obj.foragers(i).work_mode = 11;
+                        obj.bees_count = obj.bees_count + obj.cluster_size;
                      end
                 else
                     obj.foragers(i).work(t_d, t_s, dt_s);
