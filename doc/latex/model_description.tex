@@ -1,5 +1,6 @@
 \section{Description of the Model}
-Our model is widely based on the studies of Khoury et al [X]. Food, brood, foragers and hive bees are the bases of our model. The dynamics of the hive is based upon their behaviour and interaction with each other (see Fig X). The bees are only females since they are responsible for the foraging process and the maintenance and sustainability of the population. For simplicity reasons, pollen and nectar are treated as if they were the same. After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the pupation to the food income. Neglecting the complicated process of becoming an adult bee, we assume that larvae become hive bees 12 days after pupation. The mortality rate of hive bees and capped brood is negligible if we do not implement specific infecting diseases. With all these information we can set up
+Our model is widely based on the studies of Khoury et al. \cite{khoury13}
+. Food, brood, foragers and hive bees are the bases of our model. The dynamics of the hive is based upon their behaviour and interaction with each other (see Fig X). The bees are only females since they are responsible for the foraging process and the maintenance and sustainability of the population. For simplicity reasons, pollen and nectar are treated as if they were the same. After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the pupation to the food income. Neglecting the complicated process of becoming an adult bee, we assume that larvae become hive bees 12 days after pupation. The mortality rate of hive bees and capped brood is negligible if we do not implement specific infecting diseases. With all these information we can set up
 \begin{equation}\label{rate of change of brood numbers}
 {dB \over dt} = LS(H,f)-\phi B
 \end{equation}
@@ -28,6 +29,7 @@ Rate of change in food stores:
 {df \over dt} = c F - \gamma_A (F+H) - \gamma_B B
 \end{equation}
 where $c$ describes the average food amount collected by a single forager per day. In contrast to Khoury, we implemented also a seasonal dependent factor, so c changes with rate X over time. $\gamma$ is the consumption of adult bees ($A$) and brood ($B$). It is not differentiated between foragers and hive bees.  
+
 
 
 
