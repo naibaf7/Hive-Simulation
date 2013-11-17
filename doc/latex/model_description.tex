@@ -4,7 +4,7 @@ Our model is widely based on the studies of Khoury et al. \cite{khoury13}
 \begin{equation}\label{rate of change of brood numbers}
 {dB \over dt} = LS(H,f)-\phi B
 \end{equation}
-representing the rate of change of brood numbers, where $L$ is the laying rate of the bee queen, $S(H,f)$ is a function of the number of hive bees and the amount of food available in the hive. $\phi$ is the adult bee emerging factor and $B$ represents the uncapped brood. The equation gives us the survival rate pf the brood. $S(H,f)$ is modelled as following:
+representing the rate of change of brood numbers, where $L$ is the laying rate of the bee queen, $S(H,f)$ is the survival rate, a function dependent on the number of hive bees and the amount of food available. $\phi$ is the adult bee emerging factor and $B$ represents the uncapped brood. The equation gives us the survival rate pf the brood. $S(H,f)$ is modelled as following:
 \begin{equation}\label{function of hive bees and food}
 S(H,f)={f^2 \over f^2+b^2}{H \over H+v}
 \end{equation}
@@ -23,12 +23,12 @@ with the recruitment function
 \begin{equation}\label{rate of change of foragers }
 HR(H,F,f) = \alpha_{min} + \alpha_{max}({b^2 \over b^2+f^2})-\sigma({F \over F+H})
 \end{equation}
-and the mortality rate $mF$. The recruitment function models the change from a hive bee to a forager bee. $\alpha_{min}$ denotes the transition when there is enough food but not much foragers. The rate is increased with less food described with $\alpha_{max}$. As before, $b$ is the food effect on the brood survival and $f$ is the amount of food. $\sigma$ is the rate of social inhibition and is dependent on the number of foragers and hive bees.\\
+and the mortality rate $mF$. The recruitment function models the change from a hive bee to a forager bee. $\alpha_{min}$ denotes the transition when there is enough food but not much foragers. The rate is increased with less food described with $\alpha_{max}$. As before, $b$ is the food effect on brood survival and $f$ is the amount of food. $\sigma$ is the strength of social inhibition and is dependent on the number of foragers and hive bees.\\
 Rate of change in food stores:
 \begin{equation}\label{Rate of change in food stores}
 {df \over dt} = c F - \gamma_A (F+H) - \gamma_B B
 \end{equation}
-where $c$ describes the average food amount collected by a single forager per day. In contrast to Khoury, we implemented also a seasonal dependent factor, so c changes with rate X over time. $\gamma$ is the consumption of adult bees ($A$) and brood ($B$). It is not differentiated between foragers and hive bees.  
+where $c$ describes the average food a single forager collects per day. In contrast to Khoury, we implemented also a seasonal dependent factor, so c changes with rate X over time. $\gamma$ is the consumption of adult bees ($A$) and brood ($B$). It is not differentiated between foragers and hive bees.  
 
 
 
