@@ -6,4 +6,16 @@
 \BOOKMARK [1][-]{section.6}{Summary and Outlook}{}% 6
 \BOOKMARK [1][-]{section.7}{References}{}% 7
 \BOOKMARK [1][-]{appendix.A}{Matlab Code}{}% 8
-\BOOKMARK [1][-]{appendix.B}{Additional Graphics}{}% 9
+\BOOKMARK [2][-]{subsection.A.1}{Properties\137Base.m}{appendix.A}% 9
+\BOOKMARK [2][-]{subsection.A.2}{hive\137simulation.m}{appendix.A}% 10
+\BOOKMARK [2][-]{subsection.A.3}{World.m}{appendix.A}% 11
+\BOOKMARK [2][-]{subsection.A.4}{Hive.m}{appendix.A}% 12
+\BOOKMARK [2][-]{subsection.A.5}{Bee.m}{appendix.A}% 13
+\BOOKMARK [2][-]{subsection.A.6}{Map.m}{appendix.A}% 14
+\BOOKMARK [2][-]{subsection.A.7}{Path.m}{appendix.A}% 15
+\BOOKMARK [2][-]{subsection.A.8}{Report.m}{appendix.A}% 16
+\BOOKMARK [2][-]{subsection.A.9}{generate\137maps.m}{appendix.A}% 17
+\BOOKMARK [2][-]{subsection.A.10}{interpolate\137function.m}{appendix.A}% 18
+\BOOKMARK [2][-]{subsection.A.11}{interpolate\137values.m}{appendix.A}% 19
+\BOOKMARK [2][-]{subsection.A.12}{bresenham.m}{appendix.A}% 20
+\BOOKMARK [1][-]{appendix.B}{Additional Graphics}{}% 21
