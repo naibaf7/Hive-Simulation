@@ -59,9 +59,9 @@ end
     plot(obj.data.hives.hive_bees,'b-','LineWidth', 2);
     plot(obj.data.hives.food_storage,'k-','LineWidth', 2);    
   %Add Graph Descriptions
-    legend('Uncapped Brood','Forager Bees','Hive Bees','Stored Food')
+    legend('uncapped brood','forager bees','hive bees','stored food')
     legend('Location','NorthWest')
-    title('Hive Statistics')
+    title('hive statistics')
     xlabel('days')
     ylabel('count / grams')
     
@@ -72,8 +72,8 @@ end
     xlim([0 obj.prop.Sim.eval_time_days])
     area(food_change/10,'FaceColor','g')
     %Add Graph Descriptions
-    title('Bee and Food Change')
-    legend('Bee Change','Food Change')
+    title('bee and food change')
+    legend('bee change','food change')
     legend('Location','NorthWest')
     xlabel('days')
     ylabel('(bees or 10g)/day')
@@ -87,8 +87,8 @@ end
     plot(foragers_min,'y-','LineWidth', 2)
     plot(foragers_max,'r-','LineWidth', 2)   
   %Add Graph Descriptions
-    title('Daily min/max of Scouts and Foragers')
-    legend('Scouts min','Scouts max','Foragers min','Foragers max')
+    title('daily min/max of scouts and foragers')
+    legend('scouts min','scouts max','foragers min','foragers max')
     legend('Location','NorthWest')
     xlabel('days')
     ylabel('bees')
@@ -100,8 +100,8 @@ end
     plot(flower_activity*100,'g-','LineWidth', 2)
     xlim([0 obj.prop.Sim.eval_time_days])
   %Add Graph Descriptions
-    title('Patches and Quality')
-    legend('Patches','Flower Quality')
+    title('patches and quality')
+    legend('patches','flower quality')
     legend('Location','NorthWest')
     xlabel('days')
     ylabel('count / %')

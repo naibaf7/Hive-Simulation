@@ -17,29 +17,38 @@ end
     fig = figure('name',strcat('Properties_Base_R',num2str(run_number)));
     set(gcf,'PaperPositionMode','auto','PaperType','A4')
     set(fig, 'Position', [0 0 944 1024])
+        legend_string = cell(iteration_number,1);
+    for i = 1:iteration_number;
+        legend_string{i} = strcat('run ',num2str(i));
+    end
 %Draw iterative Graph
     s(1) = subplot(4,1,1);
     plot(transp(uncapped_brood),'LineWidth', 2)
     xlim([0 obj.prop.Sim.eval_time_days])
-    title('Uncapped Brood')
+    title('uncapped brood')
+    legend(legend_string) 
     
     s(2) = subplot(4,1,2);
     plot(transp(foragers),'LineWidth', 2)
-    title('Foragers')
+    title('foragers')
     xlim([0 obj.prop.Sim.eval_time_days])
+    legend(legend_string) 
     
     s(3) = subplot(4,1,3);
     plot(transp(hive_bees),'LineWidth', 2)
-    title('Hive Bees')
+    title('hive bees')
     xlim([0 obj.prop.Sim.eval_time_days])
+    legend(legend_string) 
     
     s(4) = subplot(4,1,4);
     plot(transp(food_storage),'LineWidth', 2)
     title('Stored Food')
     xlim([0 obj.prop.Sim.eval_time_days])
+    legend(legend_string) 
     
 %Link all the x-axis    
     linkaxes( s, 'x')
+ 
 %Save as A4 eps and matlab fig
     print(strcat('Properties_Base_R',num2str(run_number)),'-depsc2');
     saveas(fig,strcat('Properties_Base_R',num2str(run_number)),'fig');
