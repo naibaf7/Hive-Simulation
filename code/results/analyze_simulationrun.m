@@ -34,8 +34,8 @@ end
 %Link all the x-axis    
     linkaxes( s, 'x')
 %Save as A4 eps and matlab fig
-    print(trcat('Properties_Base_R',num2str(run_number)),'-depsc2');
-    saveas(trcat('Properties_Base_R',num2str(run_number)),'fig');
+    print(strcat('Properties_Base_R',num2str(run_number)),'-depsc2');
+    saveas(fig,strcat('Properties_Base_R',num2str(run_number)),'fig');
     
 
 end
