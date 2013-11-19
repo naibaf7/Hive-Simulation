@@ -87,7 +87,7 @@ end
     plot(foragers_min,'y-','LineWidth', 2)
     plot(foragers_max,'r-','LineWidth', 2)   
   %Add Graph Descriptions
-    title('daily min/max of scouts and foragers')
+    title('Daily min/max of Scouts and Foragers')
     legend('Scouts min','Scouts max','Foragers min','Foragers max')
     legend('Location','NorthWest')
     xlabel('days')
