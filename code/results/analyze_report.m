@@ -1,6 +1,13 @@
 function analyze_report( obj )
-%ANALYZE_REPORT Summary of this function goes here
-%   Detailed explanation goes here
+%ANALYZE_REPORT generates graphes for a single simulation run
+%   Generates four Graphes and saves them as .eps and .fig
+% Included Graphes:
+%   -Hive Statistics
+%   -daily change in stored food and bees
+%   -daily max/min of scouts and foragers
+%   - count of active food patches and their quality
+%
+
 
 
 %Calculate daily bee population and food change
