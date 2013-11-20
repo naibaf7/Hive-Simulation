@@ -4,7 +4,7 @@
 % Identifier for data record
 Prop.Sys.identifier = 'Properties_Base';
 % If parallelization is possible, max. processors that should be used
-Prop.Sys.cores = 8;
+Prop.Sys.cores = 6;
 
 % WORLD
 % See "Wisdom of the Hive", P. 49 why this is a reasonable size for
