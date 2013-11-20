@@ -35,7 +35,7 @@ end
 flower_activity = zeros(1,obj.prop.Sim.eval_time_days);
 for i = 1:4
     for j = 1:size(obj.prop.Sim.Flower(1, i).year_activity,2)
-        flower_activity(obj.prop.Sim.Flower(1, i).year_activity(1,j))=flower_activity(obj.prop.Sim.Flower(1, i).year_activity(1,j)) + obj.prop.Sim.Flower(1, i).year_activity(2,j);
+        flower_activity(obj.prop.Sim.Flower(1, i).year_activity(1,j))=flower_activity(obj.prop.Sim.Flower(1, i).year_activity(1,j)) + obj.prop.Sim.Flower(1, i).peak *obj.prop.Sim.Flower(1, i).year_activity(2,j);
     end
 end
 
@@ -97,7 +97,7 @@ end
     s(4) = subplot(4,1,4);
     plot(patches,'b-','LineWidth', 2)
     hold on
-    plot(flower_activity*100,'g-','LineWidth', 2)
+    plot((flower_activity/max(flower_activity))*100,'g-','LineWidth', 2)
     xlim([0 obj.prop.Sim.eval_time_days])
   %Add Graph Descriptions
     title('patches and quality')

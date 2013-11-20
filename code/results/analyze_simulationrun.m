@@ -6,7 +6,7 @@ reports = cell(iteration_number, jteration_number) ;
 for i = 1:iteration_number;
 for j = 1:jteration_number;
     load(strcat('Properties_Base_R',num2str(run_number),'_',num2str(i),'_',num2str(j),'_report.mat'));
-	%analyze_report(obj);
+	analyze_report(obj);
     reports{i,j} = obj;
 end
 end
