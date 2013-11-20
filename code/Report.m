@@ -15,7 +15,6 @@ classdef Report < handle
         
         % Save to file
         function save(obj)
-            obj.prop.Sys.identifier
             save(strcat(pwd,'\results\',obj.prop.Sys.identifier,'_report.mat'), 'obj','-mat');
         end
         
