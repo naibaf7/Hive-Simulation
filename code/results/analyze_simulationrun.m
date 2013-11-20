@@ -12,28 +12,38 @@ end
 [uncapped_brood,foragers,hive_bees,food_storage,eval_time_days] = load_reports(run_number,iteration_number,jteration_number);
 
 if jteration_number > 1;
-    for i = 1:iteration_number;
-	
+    %wipeout old matrizes
+    plot_uncapped_brood = zeros(jteration_number,eval_time_days);
+    plot_foragers = zeros(jteration_number,eval_time_days);
+    plot_hive_bees = zeros(jteration_number,eval_time_days);
+    plot_food_storage = zeros(jteration_number,eval_time_days);
+    for i = 1:iteration_number;        
         %make plot matrices
         for j = 1:jteration_number
-            plot_uncapped_brood(j,:)= cell2mat(uncapped_brood(i,j));
-            plot_foragers(j,:)= cell2mat(foragers(i,j));
-            plot_hive_bees(j,:)= cell2mat(hive_bees(i,j));
-            plot_food_storage(j,:)= cell2mat(food_storage(i,j));
+            plot_uncapped_brood(j,:) = cell2mat(uncapped_brood(i,j));
+            plot_foragers(j,:) = cell2mat(foragers(i,j));
+            plot_hive_bees(j,:) = cell2mat(hive_bees(i,j));
+            plot_food_storage(j,:) = cell2mat(food_storage(i,j));
         end
-		
+        
         %Prepare legend strings
         legend_string = generate_legend_string(jteration_number);
         
         %1.Draw for 2D simulation runs
         fig = draw_graphics(plot_uncapped_brood,plot_foragers,plot_hive_bees,plot_food_storage,legend_string,eval_time_days);
         set(fig,'name',strcat('Properties_Base_R',num2str(run_number),'_',num2str(i),'_i'));
-		
+        
         %Save as A4 eps and matlab fig
-       save(fig,strcat('Properties_Base_R',num2str(run_number),'_',num2str(i),'_i'));        
+        save(fig,strcat('Properties_Base_R',num2str(run_number),'_',num2str(i),'_i'));
     end
+    %wipeout old matrizes
+    plot_uncapped_brood = zeros(iteration_number,eval_time_days);
+    plot_foragers = zeros(iteration_number,eval_time_days);
+    plot_hive_bees = zeros(iteration_number,eval_time_days);
+    plot_food_storage = zeros(iteration_number,eval_time_days);
+    
     for i = 1:jteration_number;
-	
+        
         %make plot matrices
         for j = 1:iteration_number
             plot_uncapped_brood(j,:)= cell2mat(uncapped_brood(j,i));
@@ -52,7 +62,11 @@ if jteration_number > 1;
     end
     
 else
-   
+    %wipeout old matrizes
+    plot_uncapped_brood = zeros(iteration_number,eval_time_days);
+    plot_foragers = zeros(iteration_number,eval_time_days);
+    plot_hive_bees = zeros(iteration_number,eval_time_days);
+    plot_food_storage = zeros(iteration_number,eval_time_days);
     %make plot matrices
     for j = 1:iteration_number
         plot_uncapped_brood(j,:)= cell2mat(uncapped_brood(j,1));
@@ -60,14 +74,14 @@ else
         plot_hive_bees(j,:)= cell2mat(hive_bees(j,1));
         plot_food_storage(j,:)= cell2mat(food_storage(j,1));
     end
-	
+    
     %Prepare legend strings
     legend_string = generate_legend_string(iteration_number);
     
     %Draw for 1D simulation runs
     fig = draw_graphics(plot_uncapped_brood,plot_foragers,plot_hive_bees,plot_food_storage,legend_string,eval_time_days);
     set(fig,'name',strcat('Properties_Base_R',num2str(run_number)));
-	
+    
     %Save as A4 eps and matlab fig
     save(fig,strcat('Properties_Base_R',num2str(run_number)));
 end
@@ -129,13 +143,17 @@ for i = 1:iteration_number;
         reports{i,1} = obj;
     end
 end
-eval_time_days = obj.prop.Sim.eval_time_days;
+eval_time_days = obj.prop.Sim.eval_time_days+1;
+uncapped_brood = cell(iteration_number,jteration_number);
+foragers = cell(iteration_number,jteration_number);
+hive_bees = cell(iteration_number,jteration_number);
+food_storage = cell(iteration_number,jteration_number);
 for i = 1:iteration_number;
     for j = 1:jteration_number;
-        uncapped_brood{i,j}= reports{i,j}.data.hives.uncapped_brood;
-        foragers{i,j}= reports{i,j}.data.hives.foragers;
-        hive_bees{i,j}= reports{i,j}.data.hives.hive_bees;
-        food_storage{i,j}= reports{i,j}.data.hives.food_storage;
+        uncapped_brood{i,j} = reports{i,j}.data.hives.uncapped_brood;
+        foragers{i,j} = reports{i,j}.data.hives.foragers;
+        hive_bees{i,j} = reports{i,j}.data.hives.hive_bees;
+        food_storage{i,j} = reports{i,j}.data.hives.food_storage;
     end
 end
 end
