@@ -13,32 +13,35 @@ end
 
 if jteration_number > 1;
     for i = 1:iteration_number;
-        %make plot matrizes
+	
+        %make plot matrices
         for j = 1:jteration_number
             plot_uncapped_brood(j,:)= cell2mat(uncapped_brood(i,j));
             plot_foragers(j,:)= cell2mat(foragers(i,j));
             plot_hive_bees(j,:)= cell2mat(hive_bees(i,j));
             plot_food_storage(j,:)= cell2mat(food_storage(i,j));
         end
-        %Perpare legend strings
+		
+        %Prepare legend strings
         legend_string = generate_legend_string(jteration_number);
         
         %1.Draw for 2D simulation runs
         fig = draw_graphics(plot_uncapped_brood,plot_foragers,plot_hive_bees,plot_food_storage,legend_string,eval_time_days);
         set(fig,'name',strcat('Properties_Base_R',num2str(run_number),'_',num2str(i),'_i'));
+		
         %Save as A4 eps and matlab fig
        save(fig,strcat('Properties_Base_R',num2str(run_number),'_',num2str(i),'_i'));        
     end
     for i = 1:jteration_number;
-        
-        %make plot matrizes
+	
+        %make plot matrices
         for j = 1:iteration_number
             plot_uncapped_brood(j,:)= cell2mat(uncapped_brood(j,i));
             plot_foragers(j,:)= cell2mat(foragers(j,i));
             plot_hive_bees(j,:)= cell2mat(hive_bees(j,i));
             plot_food_storage(j,:)= cell2mat(food_storage(j,i));
         end
-        %Perpare legend strings
+        %Prepare legend strings
         legend_string = generate_legend_string(iteration_number);
         
         %2.Draw for 2D simulation runs
@@ -49,20 +52,22 @@ if jteration_number > 1;
     end
     
 else
-    
-    %make plot matrizes
+   
+    %make plot matrices
     for j = 1:iteration_number
         plot_uncapped_brood(j,:)= cell2mat(uncapped_brood(j,1));
         plot_foragers(j,:)= cell2mat(foragers(j,1));
         plot_hive_bees(j,:)= cell2mat(hive_bees(j,1));
         plot_food_storage(j,:)= cell2mat(food_storage(j,1));
     end
-    %Perpare legend strings
+	
+    %Prepare legend strings
     legend_string = generate_legend_string(iteration_number);
     
     %Draw for 1D simulation runs
     fig = draw_graphics(plot_uncapped_brood,plot_foragers,plot_hive_bees,plot_food_storage,legend_string,eval_time_days);
     set(fig,'name',strcat('Properties_Base_R',num2str(run_number)));
+	
     %Save as A4 eps and matlab fig
     save(fig,strcat('Properties_Base_R',num2str(run_number)));
 end
