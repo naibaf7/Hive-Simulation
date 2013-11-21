@@ -6,10 +6,10 @@ run('data\Properties_Base.m');
 % Load the properties into memory, make copies and modify them on the go
 
 % The testcases, variable change 1:
-% 1. all flowers
-% 2. no spring flowers
-% 3. no summer flowers
-% 4. no autumn flowers
+% 1. Autumn flower peak = 2
+% 2. Autumn flower peak = 1.5
+% 3. Autumn flower peak = 1
+% 4. Autumn flower peak = 0.5
 
 % The testcases, variable change 2:
 % 1. Autumn flowers shifted by 4 days

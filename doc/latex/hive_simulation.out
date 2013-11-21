@@ -25,4 +25,41 @@
 \BOOKMARK [3][-]{subsubsection.5.3.3}{Variations on autumn flowers}{subsection.5.3}% 25
 \BOOKMARK [1][-]{section.6}{Summary and Outlook}{}% 26
 \BOOKMARK [1][-]{section.7}{References}{}% 27
-\BOOKMARK [1][-]{appendix.A}{Additional Graphics}{}% 28
+\BOOKMARK [1][-]{appendix.A}{Matlab Code}{}% 28
+\BOOKMARK [2][-]{subsection.A.1}{Properties\137Base.m}{appendix.A}% 29
+\BOOKMARK [2][-]{subsection.A.2}{hive\137simulation.m}{appendix.A}% 30
+\BOOKMARK [2][-]{subsection.A.3}{World.m}{appendix.A}% 31
+\BOOKMARK [2][-]{subsection.A.4}{Hive.m}{appendix.A}% 32
+\BOOKMARK [2][-]{subsection.A.5}{Bee.m}{appendix.A}% 33
+\BOOKMARK [2][-]{subsection.A.6}{Map.m}{appendix.A}% 34
+\BOOKMARK [2][-]{subsection.A.7}{Path.m}{appendix.A}% 35
+\BOOKMARK [2][-]{subsection.A.8}{Report.m}{appendix.A}% 36
+\BOOKMARK [2][-]{subsection.A.9}{generate\137maps.m}{appendix.A}% 37
+\BOOKMARK [2][-]{subsection.A.10}{interpolate\137function.m}{appendix.A}% 38
+\BOOKMARK [2][-]{subsection.A.11}{interpolate\137values.m}{appendix.A}% 39
+\BOOKMARK [2][-]{subsection.A.12}{bresenham.m}{appendix.A}% 40
+\BOOKMARK [1][-]{appendix.B}{Additional Graphics}{}% 41
+\BOOKMARK [2][-]{subsection.B.1}{Simulation run without environment simulation}{appendix.B}% 42
+\BOOKMARK [3][-]{subsubsection.B.1.1}{Runscript with changes relative to the base properties}{subsection.B.1}% 43
+\BOOKMARK [3][-]{subsubsection.B.1.2}{Constant laying rate, constant food income}{subsection.B.1}% 44
+\BOOKMARK [3][-]{subsubsection.B.1.3}{Varying laying rate, constant food income}{subsection.B.1}% 45
+\BOOKMARK [2][-]{subsection.B.2}{Simulation run with missing flower patches}{appendix.B}% 46
+\BOOKMARK [3][-]{subsubsection.B.2.1}{Runscript with changes relative to the base properties}{subsection.B.2}% 47
+\BOOKMARK [3][-]{subsubsection.B.2.2}{All flower patches}{subsection.B.2}% 48
+\BOOKMARK [3][-]{subsubsection.B.2.3}{Missing spring flowers}{subsection.B.2}% 49
+\BOOKMARK [3][-]{subsubsection.B.2.4}{Missing summer flowers}{subsection.B.2}% 50
+\BOOKMARK [3][-]{subsubsection.B.2.5}{Missing autumn flowers}{subsection.B.2}% 51
+\BOOKMARK [2][-]{subsection.B.3}{Simulation run with varying autumn flowers}{appendix.B}% 52
+\BOOKMARK [3][-]{subsubsection.B.3.1}{Runscript with changes relative to the base properties}{subsection.B.3}% 53
+\BOOKMARK [3][-]{subsubsection.B.3.2}{Peak = 2, delayed by 4 days}{subsection.B.3}% 54
+\BOOKMARK [3][-]{subsubsection.B.3.3}{Peak = 2, delayed by 12 days}{subsection.B.3}% 55
+\BOOKMARK [3][-]{subsubsection.B.3.4}{Peak = 2, delayed by 20 days}{subsection.B.3}% 56
+\BOOKMARK [3][-]{subsubsection.B.3.5}{Peak = 1.5, delayed by 4 days}{subsection.B.3}% 57
+\BOOKMARK [3][-]{subsubsection.B.3.6}{Peak = 1.5, delayed by 12 days}{subsection.B.3}% 58
+\BOOKMARK [3][-]{subsubsection.B.3.7}{Peak = 1.5, delayed by 20 days}{subsection.B.3}% 59
+\BOOKMARK [3][-]{subsubsection.B.3.8}{Peak = 1, delayed by 4 days}{subsection.B.3}% 60
+\BOOKMARK [3][-]{subsubsection.B.3.9}{Peak = 1, delayed by 12 days}{subsection.B.3}% 61
+\BOOKMARK [3][-]{subsubsection.B.3.10}{Peak = 1, delayed by 20 days}{subsection.B.3}% 62
+\BOOKMARK [3][-]{subsubsection.B.3.11}{Peak = 0.5, delayed by 4 days}{subsection.B.3}% 63
+\BOOKMARK [3][-]{subsubsection.B.3.12}{Peak = 0.5, delayed by 12 days}{subsection.B.3}% 64
+\BOOKMARK [3][-]{subsubsection.B.3.13}{Peak = 0.5, delayed by 20 days}{subsection.B.3}% 65
