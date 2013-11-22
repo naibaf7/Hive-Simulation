@@ -1,0 +1,30 @@
+
+% Define state styles
+\tikzstyle{decision} = [diamond, draw, top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{state} = [rectangle, draw, top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow, text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+
+
+\begin{tikzpicture}[node distance = 2cm, auto]
+	% Place nodes
+	\node [state] (init) {initialize model};
+	\node [cloud, left of=init] (expert) {expert};
+	\node [cloud, right of=init] (system) {system};
+	\node [state, below of=init] (identify) {identify candidate models};
+	\node [state, below of=identify] (evaluate) {evaluate candidate models};
+	\node [state, left of=evaluate, node distance=3cm] (update) {update model};
+	\node [decision, below of=evaluate] (decide) {is best candidate better?};
+	\node [state, below of=decide, node distance=3cm] (stop) {stop};
+	% Draw edges
+	\path [line] (init) -- (identify);
+	\path [line] (identify) -- (evaluate);
+	\path [line] (evaluate) -- (decide);
+	\path [line] (decide) -| node [near start] {yes} (update);
+	\path [line] (update) |- (identify);
+	\path [line] (decide) -- node {no}(stop);
+	\path [line,dashed] (expert) -- (init);
+	\path [line,dashed] (system) -- (init);
+	\path [line,dashed] (system) |- (evaluate);
+\end{tikzpicture}
+
+
