@@ -1,30 +1,72 @@
 
 % Define state styles
-\tikzstyle{decision} = [diamond, draw, top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
-\tikzstyle{state} = [rectangle, draw, top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow, text width=5em, text centered, rounded corners, minimum height=4em]
-\tikzstyle{line} = [draw, -latex']
+\tikzstyle{decision} = [diamond, draw, top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow, text width=2cm, text centered, node distance=2cm, inner sep=0pt]
+\tikzstyle{state} = [rectangle, draw, top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow, text width=2cm, text centered, rounded corners, minimum height=2cm]
+\tikzstyle{line} = [line width=1.5pt, draw, -latex']
 
 
-\begin{tikzpicture}[node distance = 2cm, auto]
-	% Place nodes
-	\node [state] (init) {initialize model};
-	\node [cloud, left of=init] (expert) {expert};
-	\node [cloud, right of=init] (system) {system};
-	\node [state, below of=init] (identify) {identify candidate models};
-	\node [state, below of=identify] (evaluate) {evaluate candidate models};
-	\node [state, left of=evaluate, node distance=3cm] (update) {update model};
-	\node [decision, below of=evaluate] (decide) {is best candidate better?};
-	\node [state, below of=decide, node distance=3cm] (stop) {stop};
-	% Draw edges
-	\path [line] (init) -- (identify);
-	\path [line] (identify) -- (evaluate);
-	\path [line] (evaluate) -- (decide);
-	\path [line] (decide) -| node [near start] {yes} (update);
-	\path [line] (update) |- (identify);
-	\path [line] (decide) -- node {no}(stop);
-	\path [line,dashed] (expert) -- (init);
-	\path [line,dashed] (system) -- (init);
-	\path [line,dashed] (system) |- (evaluate);
-\end{tikzpicture}
-
+\begin{figure}\label{fig:stateTransitionsEnvironment}
+	\centering
+	\scalebox{0.9}{
+	\small
+	\begin{tikzpicture}[node distance = 3cm and 3cm, auto]
+		% Place nodes
+		\node [state] (unemployed) {Unemployed bee};
+		\node [decision, right of=unemployed, node distance = 3.5cm] (moreBees) {More active bees possible?};
+		\node [decision, right of=moreBees, node distance = 4cm] (moreScouts) {More scouts possible?};
+		\node [state, right of=moreScouts, node distance = 4cm] (foragerBee) {Forager bee, picking waggle dance randomly};
+		\node [decision, below of=foragerBee, node distance = 3cm] (pq1) {Evaluate $p < q$};
+		\node [state, below of=pq1, node distance = 3cm] (foragerBeeToPatch) {Forager bee, on the way to the flower patch};
+		\node [decision, below of=foragerBeeToPatch, node distance = 3.5cm] (foragerPatchReached) {Flower patch reached?};
+		\node [state, below of=foragerPatchReached, node distance = 3.5cm] (collectingFood) {Forager bee, collecting food};
+		\node [state, below of=moreScouts, node distance = 3cm] (randomWalk) {Scout bee, doing random walk};
+		\node [decision, below of=randomWalk, node distance = 3cm] (foundPatch) {Flower patch found?};
+		\node [decision, below of=foundPatch, node distance = 3.5cm] (limitReached) {Distance limit reached?};
+		\node [state, below of=limitReached, node distance = 3.5cm] (scoutToHive) {Scout bee, returning to hive};
+		\node [state, below of=collectingFood, node distance = 3.5cm] (foragerToHive) {Forager bee, returning to hive};
+		\node [decision, left of=scoutToHive, node distance = 4cm] (scoutHiveReached) {Hive reached?};
+		\node [decision, left of=foragerToHive, node distance = 4cm] (foragerHiveReached) {Hive reached?};
+		\node [decision, above of=scoutHiveReached, node distance = 6.5cm] (scoutingSuccess) {Scouting successful?};
+		\node [state, above of=scoutingSuccess, node distance = 3.5cm] (scoutWaggle) {Scout bee, doing waggle dance};
+		\node [state, left of=foragerHiveReached, node distance = 3cm] (foodUnloading) {Forager bee, food unloading};
+		\node [decision, left of=foodUnloading, node distance = 3.5cm] (pq2) {Evaluate $p < q$};
+		\node [decision, below of=unemployed, node distance = 9.5cm] (pq3) {Evaluate $p < q$};
+		\node [state, below of=pq3, node distance = 3.5cm] (foragerWaggle) {Forager bee, doing waggle dance};
+		% Draw edges
+		\path [line] +(-2cm, 0.0) -- (unemployed.west);
+		\path [line] (unemployed) -- (moreBees);
+		\path [line] (moreBees.north) -- +(0, +0.5cm) -| node [near start]{no} (unemployed.north);
+		\path [line] (moreBees.east) -- node [near start]{yes} (moreScouts.west);
+		\path [line] (moreScouts.east) -- node [near start] {no} (foragerBee.west);
+		\path [line] (foragerBee.south) -- (pq1.north);
+		\path [line] (pq1.south) -- node [near start] {yes} (foragerBeeToPatch.north);
+		\path [line] (pq1.east) -- +(+0.5cm, 0.0) |- node [near start] {no} (foragerBee.east);
+		\path [line] (foragerBeeToPatch.south) -- (foragerPatchReached.north);
+		\path [line] (foragerPatchReached.south) -- node [near start] {yes} (collectingFood.north);
+		\path [line] (foragerPatchReached.east) -- node [near start] {no} +(+0.5cm, 0.0) |- (foragerBeeToPatch.east);
+		\path [line] (moreScouts.south) -- node [near start] {yes} (randomWalk.north);
+		\path [line] (randomWalk.south) -- (foundPatch.north);
+		\path [line] (foundPatch.south) -- node [near start] {no} (limitReached.north);
+		\path [line] (limitReached.south) -- node [near start] {yes} (scoutToHive.north);
+		\path [line] (limitReached.west) -- node [near start] {no} +(-0.5cm, 0.0) |- (randomWalk.west);
+		\path [line] (foundPatch.east) -- +(0.5cm, 0.0) |- node [near start] {yes} (scoutToHive.east);
+		\path [line] (scoutToHive.west) -- (scoutHiveReached.east);
+		\path [line] (collectingFood.south) -- (foragerToHive.north);
+		\path [line] (foragerToHive.west) -- (foragerHiveReached.east);
+		\path [line] (scoutHiveReached.south) -- +(0.0cm, -0.5cm) -| node [near start] {no} (scoutToHive.south);
+		\path [line] (foragerHiveReached.south) -- +(0.0cm, -0.5cm) -| node [near start] {no} (foragerToHive.south);
+		\path [line] (scoutHiveReached.north) -- node [near start] {yes} (scoutingSuccess.south);
+		\path [line] (scoutingSuccess.west) -- +(-0.5cm, 0.0cm) -| node [near start] {no} (unemployed.south);
+		\path [line] (scoutingSuccess.north) -- node [near start] {yes} (scoutWaggle);
+		\path [line] (scoutWaggle.west) -- +(-0.5cm, 0.0cm) -| (unemployed.south);
+		\path [line] (foragerHiveReached.west) -- node [near start] {yes} (foodUnloading);
+		\path [line] (foodUnloading.west) -- (pq2);
+		\path [line] (pq3.north) -- node [near start] {no} (unemployed);
+		\path [line] (pq2.west) -- node [near start] {yes} +(-0.5cm, 0.0cm) |- +(0.0cm, 2.0cm) -| (foragerWaggle.south);
+		\path [line] (foragerWaggle.north) -- (pq3.south);
+		\path [line] (pq3.west) -- node [near start] {yes} +(-0.5cm, 0.0cm) |- +(0.0cm, -9cm) -| +(14.71cm, 0.0cm) |-  (foragerBeeToPatch);
+		\path [line] (pq2.north) -- node [near start] {no} +(0.0cm, 0.65cm) -- +(1cm, 0.65cm) |- (pq3.east);
+	\end{tikzpicture}}
+	\caption{\textit{State transitions of the bees in the environmental simulation.}}
+\end{figure}
 

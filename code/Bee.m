@@ -15,7 +15,7 @@ classdef Bee < handle
         % 12: forager, going to food source
         % 13: forager, collecting food at source
         % 14: forager, way back home
-        % 15: forager, food dispatch + waggle dance
+        % 15: forager, food unload + waggle dance
         
         work_mode;
         % work time, time spent in current work state
@@ -41,7 +41,7 @@ classdef Bee < handle
         change_waypoint;         % Time after which to set a new waypoint (s)
         current_waypoint;        % Current waypoint for calculations
         scouting_eval_time;      % Time for evaluating a flower patch
-        dispatch_time;           % Time to dispatch and get a new job
+        unload_time;             % Time to unload and get a new job
         collect_time;            % Time spent to collect food
     end
     
@@ -64,7 +64,7 @@ classdef Bee < handle
             obj.optimize_prob = Prop.Sim.Hive(obj.hive.hive_ind).Bee.optimize_prob;
             obj.change_waypoint = Prop.Sim.Hive(obj.hive.hive_ind).Bee.change_waypoint;
             obj.scouting_eval_time = Prop.Sim.Hive(obj.hive.hive_ind).scouting_eval_time;
-            obj.dispatch_time = Prop.Sim.Hive(obj.hive.hive_ind).dispatch_time;
+            obj.unload_time = Prop.Sim.Hive(obj.hive.hive_ind).unload_time;
             obj.collect_time = Prop.Sim.Hive(obj.hive.hive_ind).collect_time;
             obj.food = 0;
         end
@@ -151,7 +151,7 @@ classdef Bee < handle
                     if(obj.current_waypoint == 1)
                         obj.work_mode = 4;
                         obj.work_time = 0;
-                        obj.wait_time = (abs(randn())+0.5) * obj.dispatch_time;
+                        obj.wait_time = (abs(randn())+0.5) * obj.unload_time;
                     end
                     
                 case 4
@@ -208,13 +208,13 @@ classdef Bee < handle
                     obj.move(-1,dt_s);
                     % Hive is reached, change work mode
                     if(obj.current_waypoint == 1)
-                        % Dispatch food to hive
+                        % Unload food to hive
                         obj.hive.daily_food_sum(t_d) = obj.hive.daily_food_sum(t_d) + ...
                         obj.hive.cluster_size * obj.food;
                         obj.food = 0;
                         obj.work_mode = 15;
                         obj.work_time = 0;
-                        obj.wait_time = (abs(randn())+0.5) * obj.dispatch_time;
+                        obj.wait_time = (abs(randn())+0.5) * obj.unload_time;
                     end
                     
                 case 15

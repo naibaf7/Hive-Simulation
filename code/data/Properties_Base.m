@@ -127,10 +127,10 @@ Prop.Sim.Hive(1).Bee.flight_speed = 7/10;
 % Assumption made based on flight speed and patch size
 Prop.Sim.Hive(1).scouting_eval_time = 3*60;
 
-% An average of 4min spent to dispatch food and get a new patch assigned,
+% An average of 4min spent to unload food and get a new patch assigned,
 % respectively doing a waggle dance
 % Assumption made based on "Wisdom of the Hive", P. 107f
-Prop.Sim.Hive(1).dispatch_time = 4*60;
+Prop.Sim.Hive(1).unload_time = 4*60;
 
 % An average of 1min spent to collect food at the flower patch
 % Assumption made based on "Wisdom of the Hive", P. 107ff
