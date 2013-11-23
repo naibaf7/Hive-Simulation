@@ -54,6 +54,27 @@
       \field{title}{Modelling Food and Population Dynamics in Honey Bee Colonies}
       \field{year}{2013}
     \endentry
+    \entry{seeley95}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Harvard University Press}%
+      }
+      \strng{namehash}{42eb2bc19dd88d0f20023f52f0775a56}
+      \strng{fullhash}{42eb2bc19dd88d0f20023f52f0775a56}
+      \field{sortinit}{S}
+      \field{labeltitle}{The Wisdom of the Hive}
+      \field{subtitle}{The Social Physiology of Honey Bee Colonies}
+      \field{title}{The Wisdom of the Hive}
+      \field{year}{1995}
+    \endentry
   \endsortlist
 \endrefsection
 \endinput

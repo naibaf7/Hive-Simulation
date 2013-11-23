@@ -1,4 +1,4 @@
 [0] Config.pm:318> INFO - This is Biber 1.8
 [0] Config.pm:321> INFO - Logfile is 'hive_simulation.blg'
-[119] biber-MSWIN:272> INFO - === %a %b %e, %Y, %H:%M:%S
-[134] Biber.pm:333> INFO - Reading 'hive_simulation.bcf'
+[130] biber-MSWIN:272> INFO - === %a %b %e, %Y, %H:%M:%S
+[143] Biber.pm:333> INFO - Reading 'hive_simulation.bcf'

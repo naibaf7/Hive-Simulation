@@ -1,6 +1,6 @@
 \section{Description of the Model}
 \subsection{Basic model: Hive simulation}
-	Our model is widely based on the studies and equations of Khoury et al. \cite{khoury13}. Food, seasons, brood, foragers and hive bees are the cornerstone of our model. The dynamics of the hive is based on the bee's behaviour and their interaction with the environment as well as natural influences, i.e. seasons (see Fig X). Food here means nectar and pollen, which is not further distinguished for simplicity reasons. There are only female bees since they are responsible for the foraging process and the maintenance and sustainability of the population. After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the pupation to the food income. Neglecting the complicated process of becoming an adult bee, we assume that larvae become hive bees 12 days after pupation. The mortality rate of hive bees and capped brood is negligible if we do not implement specific infecting diseases. With all these information we can set up
+	Our model is widely based on the studies and equations of \textit{Khoury et al.} \cite{khoury13}. Food, seasons, brood, foragers and hive bees are the cornerstone of our model. The dynamics of the hive is based on the bee's behaviour and their interaction with the environment as well as natural influences, i.e. seasons (see Fig X). Food here means nectar and pollen, which is not further distinguished for simplicity reasons. There are only female bees since they are responsible for the foraging process and the maintenance and sustainability of the population. After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the pupation to the food income. Neglecting the complicated process of becoming an adult bee, we assume that larvae become hive bees 12 days after pupation. The mortality rate of hive bees and capped brood is negligible if we do not implement specific infecting diseases. With all these information we can set up
 	
 	\begin{equation}\label{eq:changeBroodNumbers}
 		{dB \over dt} = LS(H,f)-\phi B
@@ -40,6 +40,8 @@
 		{df \over dt} = c F - \gamma_A (F+H) - \gamma_B B
 	\end{equation}
 	
+	
+	
 	%TODO This is actually wrong, we did not change c in our (basic) model... have a look at the code. In the advanced model, we replace the term c * F with the result from the actual environment simulation! Please correct.
 	where $c$ describes the average food a single forager collects per day. In contrast to Khoury, we implemented also a seasonal dependent factor, so c changes with rate X over time. $\gamma$ is the consumption of adult bees ($A$) and brood ($B$). It is not differentiated between foragers and hive bees.  
 
@@ -55,7 +57,7 @@
 		
 		%TODO: Description of what changed here!
 		
-		To make the model a bit more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on $^{[citation.needed]}$ are used for the laying rate $L(t)$ (Figure \ref{fig:dynLayingRate}).
+		To make the model a bit more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on \textit{Wisdom of the Hive}, pp. 34 \cite{seeley95} are used for the laying rate $L(t)$ (Figure \ref{fig:dynLayingRate}). T.D. Seeley denotes that the queen starts reproducing by early spring. We assumed that reproduction between April/May and October is realistic, as we obtained similar numbers of bees in summer (maxima) and winter (minima) to the empirical data of T.D. Seeley \cite{seeley95}. The minimal laying rate of 200 eggs per day is used to compensate mortality during winter. The top end of the laying rate (2000 eggs per day) is the same as used by \textit{Khoury et al.} \cite{khoury13}. The results are discussed in chapters \ref{chap:constantFoodConstantLaying} and \ref{chap:constantFoodDynamicLaying} with the correspondig plots in appendix \ref{chap:sim_R0_1} and \ref{chap:sim_R0_2}.
 		
 		\begin{equation}\label{eq:changeBroodNumbersTime}
 			{dB \over dt} = L(t)S(H,f)-\phi B
@@ -65,13 +67,14 @@
 	
 	
 	\subsection{Advanced model: Environment simulation}
-	
+		\input{data/model_overview.tex}
+	%TODO
 		\subsubsection{Map and flower patches}
-		
+		%TODO
 		
 		\subsubsection{Bees' working states}
 			\input{data/working_states.tex}
-		
+			%TODO
 		
 		\subsubsection{Foragers' distribution across flower patches}
 		
