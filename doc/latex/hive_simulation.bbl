@@ -1,8 +1,60 @@
-\begin{thebibliography}{1}
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\bibitem{khoury13}
-D.~S. Khoury, B.~A. Barron, and R.~M. Myerscough.
-\newblock Modelling food and population dynamics in honey bee colonies.
-\newblock {\em PLoS ONE}, 2013.
 
-\end{thebibliography}
+\refsection{0}
+  \sortlist{entry}{nty}
+    \entry{MVTB}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=c0e503339314930d140b67b5e7c55c3e}{Corke}{C\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=c0e503339314930d140b67b5e7c55c3e}{Corke}{C\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{c0e503339314930d140b67b5e7c55c3e}
+      \strng{fullhash}{c0e503339314930d140b67b5e7c55c3e}
+      \field{sortinit}{C}
+      \field{labeltitle}{Robotics and Machine Vision Toolboxes for MATLAB (MVTB)}
+      \field{title}{Robotics and Machine Vision Toolboxes for MATLAB (MVTB)}
+      \verb{url}
+      \verb https://code.google.com/p/matlab-toolboxes-robotics-vision/
+      \endverb
+    \endentry
+    \entry{khoury13}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=a3c49bd1e8edc7b8a7771c2060c2f1d7}{Khoury}{K\bibinitperiod}{D.\bibnamedelimi S.}{D\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+        {{hash=8c605b21fd3e518324fa6596e1324c7c}{Barron}{B\bibinitperiod}{B.\bibnamedelimi A.}{B\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=3248a7ce113d5ca7f2ba7bd31640cfaf}{Myerscough}{M\bibinitperiod}{R.\bibnamedelimi M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=a3c49bd1e8edc7b8a7771c2060c2f1d7}{Khoury}{K\bibinitperiod}{D.\bibnamedelimi S.}{D\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+        {{hash=8c605b21fd3e518324fa6596e1324c7c}{Barron}{B\bibinitperiod}{B.\bibnamedelimi A.}{B\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=3248a7ce113d5ca7f2ba7bd31640cfaf}{Myerscough}{M\bibinitperiod}{R.\bibnamedelimi M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{83b8570ac55467d03754a1350597f4ed}
+      \strng{fullhash}{83b8570ac55467d03754a1350597f4ed}
+      \field{sortinit}{K}
+      \field{labeltitle}{Modelling Food and Population Dynamics in Honey Bee Colonies}
+      \field{journaltitle}{PLoS ONE}
+      \field{title}{Modelling Food and Population Dynamics in Honey Bee Colonies}
+      \field{year}{2013}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
