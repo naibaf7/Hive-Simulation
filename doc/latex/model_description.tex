@@ -40,23 +40,29 @@
 		{df \over dt} = c F - \gamma_A (F+H) - \gamma_B B
 	\end{equation}
 	
-	% This is actually wrong, we did not change c in our (basic) model... have a look at the code. In the advanced model, we replace the term c * F with the result from the actual environment simulation! Please correct.
+	%TODO This is actually wrong, we did not change c in our (basic) model... have a look at the code. In the advanced model, we replace the term c * F with the result from the actual environment simulation! Please correct.
 	where $c$ describes the average food a single forager collects per day. In contrast to Khoury, we implemented also a seasonal dependent factor, so c changes with rate X over time. $\gamma$ is the consumption of adult bees ($A$) and brood ($B$). It is not differentiated between foragers and hive bees.  
 
 	\subsection{Changing laying rate over seasons}
-		\begin{figure}\label{fig:dynLayingRate}
+		\begin{figure}
 			\centering
 			\scalebox{.75}{\includegraphics{data/egg_plot.eps}}
 			\caption{\textit{The laying rate of the bee queen plotted over a year. The amount of eggs is capped after 2000 eggs.}}
+			\label{fig:dynLayingRate}
 			% http://www.beesource.com/point-of-view/walt-wright/how-many-eggs-can-a-queen-lay
 			% TODO: Rearrange/put link somewhere else
 		\end{figure}
 		
-		% TODO: Description of what changed here!
+		%TODO: Description of what changed here!
+		
+		To make the model a bit more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on $^{[citation.needed]}$ are used for the laying rate $L(t)$ (Figure \ref{fig:dynLayingRate}).
 		
 		\begin{equation}\label{eq:changeBroodNumbersTime}
 			{dB \over dt} = L(t)S(H,f)-\phi B
 		\end{equation}
+		
+
+	
 	
 	\subsection{Advanced model: Environment simulation}
 	
