@@ -1,5 +1,4 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: hive_simulation.aux
-I found no \citation commands---while reading file hive_simulation.aux
-I found no \bibdata command---while reading file hive_simulation.aux
-I found no \bibstyle command---while reading file hive_simulation.aux
-(There were 3 error messages)
+[0] Config.pm:361> INFO - This is Biber 1.5
+[0] Config.pm:364> INFO - Logfile is 'hive_simulation.blg'
+[119] biber-MSWIN:190> INFO - === %a %b %e, %Y, %H:%M:%S
+[120] Biber.pm:327> INFO - Reading 'hive_simulation.bcf'
