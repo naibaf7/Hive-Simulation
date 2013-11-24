@@ -1,8 +1,8 @@
 
 % Define state styles
-\tikzstyle{resource} = [circle, draw, top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow, text width=2cm, text centered, node distance=2cm, minimum height=2cm]
-\tikzstyle{bee} = [rectangle, draw, top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow, text width=2cm, text centered, rounded corners, minimum height=2cm]
-\tikzstyle{environment} = [circle, draw, top color=white, bottom color = green!30, draw=green!50!black!100, drop shadow, text width=2cm, text centered, rounded corners, minimum height=2cm]
+\tikzstyle{resource} = [circle, draw, top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow, text width=1cm, text centered, node distance=2cm, minimum height=1cm]
+\tikzstyle{bee} = [rectangle, draw, top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow, text width=2cm, text centered, rounded corners, minimum height=1cm]
+\tikzstyle{natural} = [rectangle, draw, top color=white, bottom color = green!30, draw=green!50!black!100, drop shadow, text width=2cm, text centered, rounded corners, minimum height=1cm]
 \tikzstyle{line} = [line width=1.5pt, draw, -latex']
 
 
@@ -13,21 +13,32 @@
 	\begin{tikzpicture}[node distance = 3cm and 3cm, auto]
 		% Place nodes
 		\node [bee] (queen) {Queen};
-		\node [bee, below of=queen, node distance = 4cm] (brood) {Uncapped brood};
-		\node [bee, below of=brood, node distance = 4cm] (hiveBees) {Hive bees};
-		\node [bee, below of=hiveBees, node distance = 4cm] (foragers) {Foragers};
-		%\node []
-		%\node [resource] (unemployed) {Unemployed bee};
-		%\node [bee, right of=unemployed, node distance = 3.5cm] (moreBees) {More active bees possible?};
-		%\node [environment, right of=moreBees, node distance = 4cm] (moreScouts) {More scouts possible?};
+		\node [bee, below of=queen, node distance = 2cm] (brood) {Uncapped brood};
+		\node [bee, below of=brood, node distance = 2cm] (hiveBees) {Hive bees};
+		\node [bee, below of=hiveBees, node distance = 2cm] (foragers) {Foragers and scouts};
+		\node [resource, right of=brood, node distance = 3.5cm] (food) {Food};
+		\node [natural, right of=food, node distance = 3.5cm] (environment) {Environment};
+		\node [natural, below of=environment, node distance = 2cm] (flowers) {Flowers};
+		\node [natural, above of=environment, node distance = 2cm] (seasons) {Seasons};
 		% Draw edges
-		%\path [line] +(-2cm, 0.0) -- (unemployed.north);
-%		\path [line] (queen.south) -- node {eclosion} (brood.north);
-		\path [line] (brood.south) -- node {} (hiveBees.north);
-		\path [line] (hiveBees.south) edge [bend left] node {food income requirements} (foragers.north);
-		\path [line] (foragers.north) edge [bend left] node {social inhibition} (hiveBees.south);
-	\end{tikzpicture}}
-	\caption{\textit{Advanced honey bee social dynamics covered by this model}}
+		\path [line] (queen.south) -- node {egg laying} (brood.north);
+		\path [line] (brood.south) -- node {eclosion} (hiveBees.north);
+		\path [line] ($(hiveBees.south)+(-0.25cm, 0.0cm)$) -- node [left] {food income requirements} ($(foragers.north)+(-0.25cm, 0.0cm)$);
+		\path [line] ($(foragers.north)+(+0.25cm, 0.0cm)$) -- node [right] {social inhibition} ($(hiveBees.south)+(+0.25cm, 0.0cm)$);
+		\path [line] (foragers.west) -- +(-1.0cm, 0.0cm) node [near end] {death};
+		\path [line, dashed] (hiveBees.west) -- +(-0.5cm, 0.0cm) |-  node [near start] {affect survival} (brood.west);
+		\path [line] (environment.north) -- node [left] {season durations}(seasons.south);
+		\path [line] (environment.south) -- node [left] {patch distribution} (flowers.north);
+		\path [line, dotted] (food) -- (queen.east);
+		\path [line, dotted] (food) -- (hiveBees.east);
+		\path [line, dotted] (food) -- (foragers.east);
+		\path [line, dotted] (food) -- (brood.east);
+		\path [line, dashed] (seasons.west) -- node {affect laying rate} (queen.east);
+		\path [line, dashed] (seasons.east) -- +(0.5cm, 0.0cm) |- node [near start] {affect growth} (flowers.east);
+		\path [line, dashed] (flowers.south) -- +(0.0cm, -2.5cm) node [above left] {foraging source availability} -| (foragers.south);
+		\path [line, dotted] (foragers.east) -| node [near start, below] {food collection} (food.south);
+	\end{tikzpicture}} 
+	\caption{\textit{Advanced honey bee social dynamics covered by this model.}}
 	\label{fig:modelOverview}
 \end{figure}
 

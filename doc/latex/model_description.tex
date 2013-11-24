@@ -57,18 +57,17 @@
 		
 		%TODO: Description of what changed here!
 		
-		To make the model a bit more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on \textit{Wisdom of the Hive}, pp. 34 \cite{seeley95} are used for the laying rate $L(t)$ (Figure \ref{fig:dynLayingRate}). T.D. Seeley denotes that the queen starts reproducing by early spring. We assumed that reproduction between April/May and October is realistic, as we obtained similar numbers of bees in summer (maxima) and winter (minima) to the empirical data of T.D. Seeley \cite{seeley95}. The minimal laying rate of 200 eggs per day is used to compensate mortality during winter. The top end of the laying rate (2000 eggs per day) is the same as used by \textit{Khoury et al.} \cite{khoury13}. The results are discussed in chapters \ref{chap:constantFoodConstantLaying} and \ref{chap:constantFoodDynamicLaying} with the correspondig plots in appendix \ref{chap:sim_R0_1} and \ref{chap:sim_R0_2}.
+		To make the model a bit more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on \textit{Wisdom of the Hive}, pp. 34 \cite{seeley95} are used for the laying rate $L(t)$ (Figure \ref{fig:dynLayingRate}). \textit{T.D. Seeley} denotes that the queen starts reproducing by early spring. We assumed that reproduction between April/May and October is realistic, as we obtained similar numbers of bees in summer (maxima) and winter (minima) to the empirical data of \textit{T.D. Seeley} \cite{seeley95}. The minimal laying rate of 200 eggs per day is used to compensate mortality during winter. The top end of the laying rate (2000 eggs per day) is the same as used by \textit{Khoury et al.} \cite{khoury13}. The results are discussed in chapters \ref{chap:constantFoodConstantLaying} and \ref{chap:constantFoodDynamicLaying} with the correspondig plots in appendix \ref{chap:sim_R0_1} and \ref{chap:sim_R0_2}.
 		
 		\begin{equation}\label{eq:changeBroodNumbersTime}
 			{dB \over dt} = L(t)S(H,f)-\phi B
 		\end{equation}
 		
-
-	
+		The introduction of dynamic laying rates led to problems with the mortality rates tested by \textit{Khoury et al.} \cite{khoury13}. The colony simulated by us did not survive with any daily mortality rates higher than 0.1 (10\%). This side effect occurs because not enough new bees emerge from eggs in order to compensate mortality. However, we found that the new mortality rates assumed in our simulation (0.075 or 7.5\% daily mortality) are still realistic. \textit{Henry et al.} \cite{henry12} denote mortality rates between 0.102 and 0.316 in empirical testing, which is the range in which \textit{Khoury et al.} \cite{khoury13} simulated. \textit{R. Dukas} \cite{dukas08} observed that mortality of foragers is in this range mainly because of predation. As we apply the mortality to all days, even in times and seasons without foraging (all bees stay in the hive), our simulated mortality rates are naturally lower.
 	
 	\subsection{Advanced model: Environment simulation}
 		\input{data/model_overview.tex}
-	%TODO
+		As we were interested in observing the social dynamics under different food availability conditions, in contrast to the model of 
 		\subsubsection{Map and flower patches}
 		%TODO
 		

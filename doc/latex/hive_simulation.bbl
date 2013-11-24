@@ -19,6 +19,21 @@
 
 \refsection{0}
   \sortlist{entry}{nty}
+    \entry{henry12}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=9821c9526d9c5399e3431ee6820db68b}{al.}{a\bibinitperiod}{Henry}{H\bibinitperiod}{et}{e\bibinitperiod}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9821c9526d9c5399e3431ee6820db68b}{al.}{a\bibinitperiod}{Henry}{H\bibinitperiod}{et}{e\bibinitperiod}{}{}}%
+      }
+      \strng{namehash}{9821c9526d9c5399e3431ee6820db68b}
+      \strng{fullhash}{9821c9526d9c5399e3431ee6820db68b}
+      \field{sortinit}{a}
+      \field{labeltitle}{A Common Pesticide Decreases Foraging Success and Survival in Honey bees}
+      \field{journaltitle}{Sciencemag}
+      \field{title}{A Common Pesticide Decreases Foraging Success and Survival in Honey bees}
+      \field{year}{2012}
+    \endentry
     \entry{MVTB}{online}{}
       \name{labelname}{1}{}{%
         {{hash=c0e503339314930d140b67b5e7c55c3e}{Corke}{C\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
@@ -35,6 +50,21 @@
       \verb https://code.google.com/p/matlab-toolboxes-robotics-vision/
       \endverb
     \endentry
+    \entry{dukas08}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=161409b481930e9f0b3c1db6d42790be}{Dukas}{D\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=161409b481930e9f0b3c1db6d42790be}{Dukas}{D\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{161409b481930e9f0b3c1db6d42790be}
+      \strng{fullhash}{161409b481930e9f0b3c1db6d42790be}
+      \field{sortinit}{D}
+      \field{labeltitle}{Mortality rates of honey bees in the wild}
+      \field{journaltitle}{Insectes Sociaux}
+      \field{title}{Mortality rates of honey bees in the wild}
+      \field{year}{2008}
+    \endentry
     \entry{khoury13}{article}{}
       \name{labelname}{3}{}{%
         {{hash=a3c49bd1e8edc7b8a7771c2060c2f1d7}{Khoury}{K\bibinitperiod}{D.\bibnamedelimi S.}{D\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
@@ -50,7 +80,7 @@
       \strng{fullhash}{83b8570ac55467d03754a1350597f4ed}
       \field{sortinit}{K}
       \field{labeltitle}{Modelling Food and Population Dynamics in Honey Bee Colonies}
-      \field{journaltitle}{PLoS ONE}
+      \field{journaltitle}{PLOS ONE}
       \field{title}{Modelling Food and Population Dynamics in Honey Bee Colonies}
       \field{year}{2013}
     \endentry
