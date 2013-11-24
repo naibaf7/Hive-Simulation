@@ -32,7 +32,6 @@ set(fig, 'Position', [0 0 944 1024])
 
 
 %Draw Patches
-%s(4) = subplot(4,1,4);
 plot(transp(plot_data(11:12,:)),'-','LineWidth', 2)
 xlim([0 test_time])
 %Add Graph Descriptions
