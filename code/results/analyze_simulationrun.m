@@ -118,6 +118,9 @@ xlim([0 xlimit])
 legend(legend_string)
 %Link all the x-axis
 linkaxes( s, 'x')
+for i=1:4
+    grid(s(i), 'on');
+end
 end
 
 function  [legend_string] = generate_legend_string(length)

@@ -25,7 +25,7 @@
 		\begin{equation}\label{eq:recruitmentFunction}
 			R(H,F,f) = \alpha_{min} + \alpha_{max}({b^2 \over b^2+f^2})-\sigma({F \over F+H})
 		\end{equation}
-		
+				
 	This equation models the change from a hive bee to a forager bee. $\alpha_{min}$ denotes the transition when there is enough food but not much foragers. Conversely, $\alpha_{max}$ is used for less food. As before, $b$ is the food effect on brood survival and $f$ is the amount of food. $\sigma$ is the strength of social inhibition and is dependent on the number of foragers and hive bees.\\
 	The third differential equation describes correspondingly the rate at which the number of foragers changes:
 	
@@ -49,8 +49,6 @@
 			\caption{\textit{The laying rate of the bee queen plotted over a year. The amount of eggs is capped after 2000 eggs. }}
 			\label{fig:dynLayingRate}
 		\end{figure}
-		
-		%TODO: Description of what changed here!
 		
 		To make the model more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on \textit{Wisdom of the Hive}, pp. 34 \cite{seeley95} are used for the laying rate $L(t)$ (Figure \ref{fig:dynLayingRate}). \textit{T.D. Seeley} denotes that the queen starts reproducing by early spring. We assumed that reproduction between April/May and October is realistic, as we obtained similar numbers of bees in summer (maxima) and winter (minima) to the empirical data of \textit{T.D. Seeley} \cite{seeley95}. The minimal laying rate of 200 eggs per day is used to compensate mortality during winter. The peak of the laying rate (2000 eggs per day) is the same as used by \textit{Khoury et al.} \cite{khoury13} and \textit{Wright} \cite{wright08}. The results are discussed in chapters \ref{chap:constantFoodConstantLaying} and \ref{chap:constantFoodDynamicLaying} with the corresponding plots in appendix \ref{chap:sim_R0_1} and \ref{chap:sim_R0_2}.
 		
@@ -79,18 +77,18 @@
 		
 		
 	\subsection{Empirical data bases}
-		By carefully analysing the different waggle dances of the forager bees, \textit{T.D. Seeley} states in \textit{Wisdom of the Hive} pp. 37ff that 95\% of the foraging process occurs in a radius of 6.0 km (maximum distance at 10.9 km, mean distance at 2.2 km and the modal distance at 1.6 km)\cite{seeley95} The approximation of $(6~km * 2)^2 \approx 100~km^2$ should be sufficient for the simulation and comprehend all important data. In our model, we split the area up into a grid of 10 m * 10 m tiles of flower patches. \\
-		The flower patches themselves are divided into their different blossom: spring, summer and autumn. The empirical data was taken from the \textit{Wisdom of the Hive} p. 44 (year 1982) and the following page. We merged the raw data and received a new graph for the whole year (see fig.~\ref{fig:seasonalFlowers}) The values are in hive weight change per kilogram per day. With equation \ref{eq:foodPerFlight}, we can find out the weight of food a bee can carry per flight.
+		By carefully analysing the different waggle dances of the forager bees, \textit{T.D. Seeley} states in \textit{Wisdom of the Hive} pp. 37ff that 95\% of the foraging process occurs in a radius of 6.0 km (maximum distance at 10.9 km, mean distance at 2.2 km and the modal distance at 1.6 km)\cite{seeley95} The approximation of $(6~km \cdot 2)^2 \approx 100~km^2$ should be sufficient for the simulation and comprehend all important data. In our model, we split the area up into a grid of 10 m $\cdot$ 10 m tiles of flower patches. \\
+		The flower patches themselves are divided into their different blossom: spring, summer and autumn. The empirical data was taken from the \textit{Wisdom of the Hive} p. 44 (year 1982) and the following page. We merged the raw data and received a new graph for the whole year (see Figure \ref{fig:seasonalFlowers}) The values are in hive weight change per kilogram per day. With equation \ref{eq:foodPerFlight}, we can find out the weight of food a bee can collect per flight to a flower patch.
 		
 		\begin{equation}\label{eq:foodPerFlight}
-					\frac{M \frac{kg}{d}}{C}*1000 \frac{g}{kg} = Weight~per~bee~and~flower
+					\frac{M(t) \frac{kg}{d}}{C(t)}\cdot 1000 \frac{g}{kg} = Weight~per~bee~and~flower
 		\end{equation}
-		Where M is a local certain height in the graph (fig. \ref{fig:seasonalFlowers}) and C is the bee count of the hive. Thus we can take hive weight change per day as an indicator for the flower quality at any given day of the year. 
+		Where $M(t)$ is a local certain height in the graph (Figure \ref{fig:seasonalFlowers}) and $C(t)$ is the bee count of the hive approximated for day $t$ in \textit{T.D. Seeley's} empirical data \cite{seeley95}. Thus we can take hive weight change per day as an indicator for the flower quality and flower type present at any given day of the year. 
 		
 		
 			\begin{figure}
 					\centering
-					\scalebox{.75}{\includegraphics{data/seasonal_flowers.eps}}
+					\scalebox{0.9}{\includegraphics{data/seasonal_flowers.eps}}
 					\caption{\textit{This figure shows the percentage change of the hive. elias, what does this graph show? percentage of flowers/quality? this doesnt mean anything to me, maybe inappropriately labelled?}}
 				\label{fig:seasonalFlowers}
 				\end{figure}

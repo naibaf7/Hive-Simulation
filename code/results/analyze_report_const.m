@@ -56,6 +56,9 @@ ylabel('(bees or 10g)/day')
 
 %Link all the x-axis
 linkaxes( s, 'x')
+for i=1:4
+    grid(s(i), 'on')
+end
 %Save as A4 eps and matlab fig
 print(fig,obj.prop.Sys.identifier,'-depsc2');
 saveas(fig,obj.prop.Sys.identifier,'fig');
