@@ -3,7 +3,7 @@ function analyze_report( obj )
 %   Generates one graph and saves them as .eps and .fig
 %   - count of active food patches and their quality
 
-test_time = obj.prop.Sim.eval_time_days+1;
+test_time = 365;
 
 %Calculate flower activity
 flower_activity = zeros(1,test_time);
@@ -13,37 +13,31 @@ for i = 1:4
     end
 end
 
-%Calculate active patches
-patches = zeros(1,test_time);
-
-for i = 1:size(obj.data.hives.day,2);
-    patches(obj.data.hives.day(1,i).actual_day)=obj.data.hives.day(1,i).patches_total;
-end
 
 %put data in matrix
 
-plot_data(11,:) = patches;
-plot_data(12,:) =(flower_activity/max(flower_activity))*100;
+plot_data(12,:) =(flower_activity)%/max(flower_activity))*100;
 %Draw
 fig = figure('name',obj.prop.Sys.identifier);
-set(gcf,'PaperPositionMode','auto','PaperType','A4')
-set(fig, 'Position', [0 0 944 1024])
+set(gcf,'PaperPositionMode','auto','PaperUnit','inches','PaperSize',[5, 2])
+%set(fig, 'Position', [0 0 944 1024])
 %Draw iterative Graph
 
 
 %Draw Patches
-plot(transp(plot_data(11:12,:)),'-','LineWidth', 2)
+plot(transp(plot_data(12:12,:)),'-','Color',[0 0.5 0],'LineWidth', 2)
+grid on
 xlim([0 test_time])
 %Add Graph Descriptions
-title('patches and quality')
-legend('patches','flower quality')
+title('flower blooming and quality')
+legend('quality/blooming')
 legend('Location','NorthWest')
-xlabel('days')
-ylabel('count / %')
+xlabel('year (t) [d]')
+ylabel('M(t) [kg/d]')
 
-%Save as A4 eps and matlab fig
-print(fig,obj.prop.Sys.identifier,'-depsc2');
-saveas(fig,obj.prop.Sys.identifier,'fig');
+%Save as eps and matlab fig
+print(fig,'seasonal_flowers','-depsc2');
+saveas(fig,'seasonal_flowers','fig');
 
 
 
