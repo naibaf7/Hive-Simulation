@@ -30,10 +30,10 @@ grid on
 xlim([0 test_time])
 %Add Graph Descriptions
 title('flower blooming and quality')
-legend('quality/blooming')
+legend('quality/blooming indicator')
 legend('Location','NorthWest')
-xlabel('year (t) [d]')
-ylabel('M(t) [kg/d]')
+xlabel('t [d]')
+ylabel('M [kg/d]')
 
 %Save as eps and matlab fig
 print(fig,'seasonal_flowers','-depsc2');

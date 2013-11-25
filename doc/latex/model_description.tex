@@ -40,7 +40,7 @@
 		{df \over dt} = c F - \gamma_A (F+H) - \gamma_B B
 	\end{equation}
          
-	where $c$ describes the average food a single forager collects per day. In our extended model, we also implemented a season dependent factor with the result that c changes over time (see subsection~\ref{subsec:advancedModel} on page~\pageref{subsec:advancedModel}.). $\gamma$ is the consumption of adult bees ($A$) and brood ($B$).
+	where $c$ describes the average food a single forager collects per day. $\gamma$ is the consumption of adult bees ($A$) and brood ($B$). In our extended model, we implemented an actual environment simulation so that the food income changes over time (see chapter \ref{chap:advancedModel}). Equation \ref{eq:changeFoodStoreConst} is then replaced by equation \ref{eq:changeFoodStoreDyn}, which takes the daily food income instead of a fixed rate $c$ per forager.
 
 	\subsection{Changing laying rate over seasons}
 		\begin{figure}
@@ -50,46 +50,48 @@
 			\label{fig:dynLayingRate}
 		\end{figure}
 		
-		To make the model more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on \textit{Wisdom of the Hive}, pp. 34 \cite{seeley95} are used for the laying rate $L(t)$ (Figure \ref{fig:dynLayingRate}). \textit{T.D. Seeley} denotes that the queen starts reproducing by early spring. We assumed that reproduction between April/May and October is realistic, as we obtained similar numbers of bees in summer (maxima) and winter (minima) to the empirical data of \textit{T.D. Seeley} \cite{seeley95}. The minimal laying rate of 200 eggs per day is used to compensate mortality during winter. The peak of the laying rate (2000 eggs per day) is the same as used by \textit{Khoury et al.} \cite{khoury13} and \textit{Wright} \cite{wright08}. The results are discussed in chapters \ref{chap:constantFoodConstantLaying} and \ref{chap:constantFoodDynamicLaying} with the corresponding plots in appendix \ref{chap:sim_R0_1} and \ref{chap:sim_R0_2}.
+		To make the model more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on \textit{Wisdom of the Hive}, pp. 34 \cite{seeley95} are used for the laying rate $L_t$ (Figure \ref{fig:dynLayingRate}). \textit{T.D. Seeley} denotes that the queen starts reproducing by early spring. We assumed that reproduction between April/May and October is realistic, as we obtained similar numbers of bees in summer (maxima) and winter (minima) to the empirical data of \textit{T.D. Seeley} \cite{seeley95}. The minimal laying rate of 200 eggs per day is used to compensate mortality during winter. The peak of the laying rate (2000 eggs per day) is the same as used by \textit{Khoury et al.} \cite{khoury13} and \textit{Wright} \cite{wright08}. The results are discussed in chapters \ref{chap:constantFoodConstantLaying} and \ref{chap:constantFoodDynamicLaying} with the corresponding plots in appendix \ref{chap:sim_R0_1} and \ref{chap:sim_R0_2}.
 		
 		\begin{equation}\label{eq:changeBroodNumbersTime}
-			{dB \over dt} = L(t)S(H,f)-\phi B
+			{dB \over dt} = L_tS(H,f)-\phi B
 		\end{equation}
 		
 		The introduction of dynamic laying rates led to problems with the mortality rates tested by \textit{Khoury et al.} \cite{khoury13}. The colony we simulated did not survive with any daily mortality rates higher than 0.1 (10\%). There are not enough bees emerging from eggs in order to compensate the mortality rate. However, we found that the new mortality rates assumed in our simulation (0.075 or 7.5\% daily mortality) are still realistic. \textit{Henry et al.} \cite{henry12} describe mortality rates between 0.102 and 0.316 in empirical testing, which is the range in which \textit{Khoury et al.} \cite{khoury13} simulated. \textit{R. Dukas} \cite{dukas08} observed that mortality of foragers is in this range mainly because of predation. As we apply the mortality to all days, even in times and seasons without foraging (all bees stay in the hive), our simulated mortality rates are naturally lower.
 	
-	\subsection{Advanced model: Environment simulation}\label{subsec:advancedModel}
+	\subsection{Advanced model: Environment simulation}
+		\label{chap:advancedModel}
 		\input{data/model_overview.tex}
-		%TODO
-		%TODO [This is actually wrong,] we did not change c in our (basic) model... have a look at the code. In the advanced model, we replace the term c * F with the result from the actual environment simulation! Please correct.
-		Food dependent on flowers\\
-		In contrast to Khoury, we implemented also a seasonal dependent factor, so c changes with rate X over time. \\
-		\\
-		As we were interested in observing the social dynamics under different food availability conditions, in contrast to the model of 
+		As we were interested in observing the social dynamics under different food availability conditions, in contrast to the model of \textit{Khoury et al.} \cite{khoury13}, we had to implement a simulation for the environment. This advanced model introduces an environment with seasons which affect the queen's laying rate (see equation \ref{eq:changeBroodNumbersTime}), the distribution and quality of flower patches and seasonal flower growth.
+		The forager bees are then simulated on the environment, searching and collecting food according to the rules in chapter \ref{chap:beeWorkingStates}. An overview of the complete model is given in Figure \ref{fig:modelOverview}.
+		
 		\subsubsection{Map and flower patches}
 		%TODO
 		
 		\subsubsection{Bees' working states}
+			\label{chap:beeWorkingStates}
 			\input{data/working_states.tex}
 			%TODO
 		
 		\subsubsection{Foragers' distribution across flower patches}
-		
+		\begin{equation}\label{eq:changeFoodStoreDyn}
+			{df \over dt} = f_{d,t}- \gamma_A (F+H) - \gamma_B B
+		\end{equation}
+		Where $f_{d,t}$ denotes the amount of food the foragers collected on day $t$.
 		
 	\subsection{Empirical data bases}
-		By analysing the different waggle dances of the forager bees, \textit{T.D. Seeley} states in \textit{Wisdom of the Hive} pp.~37ff that 95\% of the foraging process occurs in a radius of 6.0~km (maximum distance at 10.9~km, mean distance at 2.2~km and the modal distance at 1.6~km \cite{seeley95} The approximation of $(6~km * 2)^2 \approx 100~km^2$ should be sufficient for the simulation and comprehend all important data. In our model, we split the area up into a grid of 10~m~*~10~m tiles of flower patches. \\
+		By analysing the different waggle dances of the forager bees, \textit{T.D. Seeley} states in \textit{Wisdom of the Hive} pp.~37ff that 95\% of the foraging process occurs in a radius of 6.0~km (maximum distance at 10.9~km, mean distance at 2.2~km and the modal distance at 1.6~km \cite{seeley95} The approximation of $(6~km~$\cdot$~2)^2 \approx 100~km^2$ should be sufficient for the simulation and comprehend all important data. In our model, we split the area up into a grid of 10~m~$\cdot$~10~m tiles of flower patches. \\
 		The flower patches themselves are divided into their different blossom: spring, summer and autumn. The empirical data was taken from the \textit{Wisdom of the Hive} p.~44 (year 1982) and the following page. We merged the raw data and received a new graph for the whole year (see fig.~\ref{fig:seasonalFlowers}) The values are in hive weight change per kilogram per day. With equation \ref{eq:foodPerFlight}, we can find out the weight of food a bee can carry per flight.
 		
 		\begin{equation}\label{eq:foodPerFlight}
-					\frac{M(t) \frac{kg}{d}}{C(t)}\cdot 1000 \frac{g}{kg} = Weight~per~bee~and~flower
+			\frac{M \frac{kg}{d}}{C}\cdot 1000 \frac{g}{kg} = Weight~per~bee~and~flower
 		\end{equation}
-		Where $M(t)$ is a local certain height in the graph (Figure \ref{fig:seasonalFlowers}) and $C(t)$ is the bee count of the hive approximated for day $t$ in \textit{T.D. Seeley's} empirical data \cite{seeley95}. Thus we can take hive weight change per day as an indicator for the flower quality and flower type present at any given day of the year. 
+		Where $M$ is a local certain height in the graph (Figure \ref{fig:seasonalFlowers}) and $C$ is the bee count of the hive approximated for day $t$ in \textit{T.D. Seeley's} empirical data \cite{seeley95}. Thus we can take hive weight change per day as an indicator for the flower quality and flower type present at any given day of the year. 
 		
 		
-			\begin{figure}
-					\centering
-					\scalebox{0.9}{\includegraphics{data/seasonal_flowers.eps}}
-					\caption{\textit{This figure shows the percentage change of the hive. elias, what does this graph show? percentage of flowers/quality? this doesnt mean anything to me, maybe inappropriately labelled?}}
-				\label{fig:seasonalFlowers}
-				\end{figure}
+		\begin{figure}
+			\centering
+			\scalebox{0.9}{\includegraphics{data/seasonal_flowers.eps}}
+			\caption{\textit{This figure shows the percentage change of the hive. elias, what does this graph show? percentage of flowers/quality? this doesnt mean anything to me, maybe inappropriately labelled?}}
+			\label{fig:seasonalFlowers}
+		\end{figure}
 	
