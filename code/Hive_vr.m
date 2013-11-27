@@ -430,19 +430,60 @@ classdef Hive_vr < handle
         end
         
         % Draw hive map
-        function draw_s(obj)
+        function draw_s(obj, h, vid_obj)
+            [n,~] = size(obj.beemap_foragers.array);
+
             clf
             colormap('copper')
-            cm = colormap;
-            cm = flipud(cm);
-            imagesc(obj.beemap_foragers.array);
-            %subplot(1,3,1);
-            %imagesc(obj.patches.array);
-            %subplot(1,3,2);
-            %imagesc(logical(obj.beemap_scouts.array));
-            %subplot(1,3,3);
+            cm_f = colormap;
+            cm_f = flipud(cm_f)+0.01;
+            cm_f = cm_f/max(max(cm_f));
+            cm_f(1,:) = [0,0,0];
+            da_f = obj.beemap_foragers.array + 1;
+            im_f = ind2rgb(da_f,cm_f);
+            
+            cm_s = [1,1,1;0.2,0.2,1];
+            da_s = obj.beemap_scouts.array * 100;
+            % For display without scouts:
+            da_s(:,:) = 0;
+            im_s = ind2rgb(da_s,cm_s);
+            
+            colormap('summer');
+            cm_p = colormap;
+            cm_p = flipud(cm_p)+0.01;
+            cm_p = cm_p/max(max(cm_p));
+            cm_p(1,:) = [0,0,0];
+            [ns, ~] = size(obj.patches.array);
+            da_s_p = zeros(n,n);
+            da_p = obj.patches.array .* obj.world.quality_map.array;
+            for i = 1:ns
+                for j = 1:ns
+                    da_s_p(ceil(obj.beemap_vr_scaling*i),ceil(obj.beemap_vr_scaling*j)) = ...
+                        max(da_s_p(ceil(obj.beemap_vr_scaling*i),ceil(obj.beemap_vr_scaling*j)),da_p(i,j));
+                end
+            end
+            
+            da_s_p = round(da_s_p * 100/max(max(da_s_p)));
+            im_p = ind2rgb(da_s_p,cm_p);
+            
+            da_h = zeros(n,n);
+            cxp_h = ceil(obj.beemap_vr_scaling*obj.x_pos);
+            cyp_h = ceil(obj.beemap_vr_scaling*obj.y_pos);
+            da_h(cyp_h-2:cyp_h+2,cxp_h-2:cxp_h+2) = 100;
+            im_h = ind2rgb(da_h, [0,0,0;1,0.01,0.01]);
+
+            im_s(find(im_p)) = im_p(find(im_p));
+            im_s(find(im_f)) = im_f(find(im_f));
+            im_s(find(im_h)) = im_h(find(im_h));
+            image(im_s);
+            xlabel({'-The red area is the hive',...
+                '-The blue dots are scouts',...
+                '-The orange-brown dots are foragers (darker means more foragers at the particular place)'...,
+                '-The yellow-green dots are flower patches (more profitable towards green)'});
+            
             axis square
-            colorbar
+            curr_frame = getframe(h);
+            writeVideo(vid_obj,curr_frame);
         end
         
         

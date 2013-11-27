@@ -26,6 +26,12 @@ function hive_simulation_vr()
         report(k) = Report(proparray(k));
     end
     
+    vid_obj = VideoWriter('video.avi');
+    open(vid_obj);
+    h = figure();
+    set(h, 'Position', [300, 150, 1024, 768]); 
+    
+    
     runtime_start = tic;
     % Parfor loop allows simulating multiple scenarios at once
     for k = 1:length(proparray)
@@ -40,6 +46,7 @@ function hive_simulation_vr()
         for i = 1:Prop.Sim.hive_count
             hives(i) = Hive_vr(i, world, Prop);
         end
+        
 
         % Start simulation
         fprintf('Starting simulation (%d days)...\n', Prop.Sim.eval_time_days);
@@ -113,11 +120,9 @@ function hive_simulation_vr()
                     end
                     % TODO: COMMENT OUT AGAIN
                      if(mod(t_s,60)==0)
-                         hives(1).draw_s();
+                         hives(1).draw_s(h, vid_obj);
                          %world.draw_s();
-                         pause(0.0001);
-                         hives(1).patches_discovered
-                         t_s
+                         pause(0.1);
                      end
                     % Print progress
                     percent_B = ceil(t_s/Prop.Sim.eval_time_seconds*50);
