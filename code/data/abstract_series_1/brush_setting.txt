@@ -1,7 +1,0 @@
-Paintbrush
-Opacity: 100%
-Brush: 2. Hardness 075
-Size: 400
-H: Type
-S: 1
-V: 1
