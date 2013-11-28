@@ -5,7 +5,9 @@ plot_data(1,:) = obj.patches_discovered/obj.patches_total;
 plot_data(2,:) = obj.food_sum/max(obj.food_sum);
 plot_data(3,:) = obj.scouts_count/max(obj.scouts_count);
 plot_data(4,:) = obj.forager_count/max(obj.forager_count);
-total_patches = obj.patches_total;
+for i=2:48
+    plot_data(5,i)= 10*(plot_data(2,i)-plot_data(2,i-1));
+end
 actual_day = obj.actual_day;
 
 
@@ -17,11 +19,11 @@ set(fig, 'Position', [0 0 944 400])
 plot(transp(plot_data),'-','LineWidth', 2);
 xlim([1 48])
 %Add Graph Descriptions
-legend('patches discoverd','food collected','scout bees','forager bees')
+legend('patches discoverd','food collected','scout bees','forager bees','food collected change')
 legend('Location','NorthWest')
 title(strcat('day ',num2str(actual_day)))
 xlabel('0.5 h')
-ylabel('percent')
+ylabel('percent / food collected change in percent/10')
 
 %Save as A4 eps and matlab fig
 print(strcat('Properties_Base_R1_1_day',num2str(actual_day)),'-depsc2');
