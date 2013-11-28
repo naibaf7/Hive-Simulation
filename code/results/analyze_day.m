@@ -22,8 +22,10 @@ xlim([1 48])
 legend('patches discoverd','food collected','scout bees','forager bees','food collected change')
 legend('Location','NorthWest')
 title(strcat('day ',num2str(actual_day)))
-xlabel('0.5 h')
+xlabel('time')
 ylabel('percent / food collected change in percent/10')
+grid on
+set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
 
 %Save as A4 eps and matlab fig
 print(strcat('Properties_Base_R1_1_day',num2str(actual_day)),'-depsc2');
