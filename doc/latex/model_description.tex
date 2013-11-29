@@ -64,15 +64,45 @@
 		As we were interested in observing the social dynamics under different food availability conditions, in contrast to the model of \textit{Khoury et al.} \cite{khoury13}, we had to implement a simulation for the environment. This advanced model introduces an environment with seasons which affect the queen's laying rate (see equation \ref{eq:changeBroodNumbersTime}), the distribution and quality of flower patches and seasonal flower growth.
 		The forager bees are then simulated on the environment, searching and collecting food according to the rules in chapter \ref{chap:beeWorkingStates}. An overview of the complete model is given in Figure \ref{fig:modelOverview}.
 		
-		\subsubsection{Map and flower patches}
-		%TODO
-		
 		\subsubsection{Bees' working states}
+			\label{chap:beesWorkingStates}
+			The environment simulation only simulates forager and scout bees. Hive bees are not considered as agents. For the foragers and scouts, we developed a set of simple rules which try to be as close as possible to the foraging process described by \textit{T.D. Seeley} \cite{seeley95}. All essential rules are represented in Figure \ref{fig:stateTransitionsEnvironment}.\\
 			\label{chap:beeWorkingStates}
 			\input{data/working_states.tex}
-			%TODO
+			
+			At the beginning of every day ($t_s = 0$), all bees are unemployed. There are three possibilities for every unemployed bee which are considered in every simulation step:
+			\begin{itemize}
+				\item If the amount of active bees according to the current time of the day is not reached, the bee can get a job assigned. Otherwise the bee stays unemployed.
+				\item If the maxima of scouts is not reached (6\% of the bees' foragers \cite*{seeley95}, p. 86), then the bee becomes a scout.
+				\item Otherwise, the bee becomes a forager.\\
+			\end{itemize}
+			
+			When a bee agent gets a scouting job assigned, the agent continues the following way:
+			\begin{itemize}
+				\item The scout performs a random walk (see chapter \ref{chap:randomWalk}) and checks with every iteration step, if any flower patch has been passed (see chapter \ref{chap:bresenhamAlgorithm}).
+				\item If a flower patch is found or the flight distance limit is reached, the bee returns to the hive. Path optimization (see chapter \ref{chap:pathOptimization}) may occur.
+				\item Back in the hive, the bee performs a waggle dance if scouting has been successful and goes back to the unemployed state.\\
+			\end{itemize}
+			
+			When a bee agent gets a foraging job assigned, the agent continues the following way:
+			\begin{itemize}
+				\item Among the available waggle dances, the forager chooses randomly and evaluates if the food source is good enough ($p < q$) to visit or not (see chapter \ref{chap:foragersDistribution}). This is repeated in every iteration step until the forager decides to visit the flower patch represented by the chosen waggle dance.
+				\item The forager flies to the patch and, once reached, collects as much food as the flowers in the patch allows (see chapter \ref{chap:mapFlowerPatchQuality}).
+				\item After foraging, the bee returns to the hive. Path optimization may occur again.
+				\item Back in the hive, the forager unloads the collected food (increasing $f_{d,t}$, equation \ref{eq:changeFoodStoreDyn}).
+				\item The bee now has to evaluate the food source several times (($p < q$), once per iteration step) and decide if it is worth reporting the patch (executing a waggle dance) or not.
+				\item A final evaluation ($p < q$) has to be done to decide if the forager will abandon it's own food source and become unemployed or fly to the same patch again.
+			\end{itemize}
+	
 		
 		\subsubsection{Foragers' distribution across flower patches}
+			It is clear from chapter \ref{chap:beesWorkingStates} that after some time, the bees will focus on newly reported and then on the most profitable food sources because of relative quality evaluation. $p \in {[0,1]}$ denotes an equally distributed random value. $q$ denotes the relative quality of a given flower patch compared to all patches currently available as a waggle dance. In detail, the evaluation ($p < q$) works as follows:
+			%TODO
+		
+		\label{chap:foragersDistribution}
+		Depending on the random variable $p$ and the relative patch quality $q$ represented 
+		
+		
 		\begin{equation}\label{eq:changeFoodStoreDyn}
 			{df \over dt} = f_{d,t}- \gamma_A (F+H) - \gamma_B B
 		\end{equation}

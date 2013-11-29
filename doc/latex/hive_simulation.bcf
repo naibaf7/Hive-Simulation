@@ -1978,8 +1978,11 @@
     <bcf:citekey order="11">khoury13</bcf:citekey>
     <bcf:citekey order="12">seeley95</bcf:citekey>
     <bcf:citekey order="13">seeley95</bcf:citekey>
-    <bcf:citekey order="14">MVTB</bcf:citekey>
-    <bcf:citekey order="15">MVTB</bcf:citekey>
+    <bcf:citekey order="14">seeley95</bcf:citekey>
+    <bcf:citekey order="15">seeley95</bcf:citekey>
+    <bcf:citekey order="16">MVTB</bcf:citekey>
+    <bcf:citekey order="17">khoury13</bcf:citekey>
+    <bcf:citekey order="18">MVTB</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" type="entry" label="nty">
   <bcf:sorting>
