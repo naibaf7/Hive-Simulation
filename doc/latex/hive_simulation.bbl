@@ -84,6 +84,38 @@
       \field{title}{Modelling Food and Population Dynamics in Honey Bee Colonies}
       \field{year}{2013}
     \endentry
+    \entry{potts10}{article}{}
+      \name{labelname}{6}{}{%
+        {{hash=a554455db08295f7dc3bcc44178d6d9d}{Potts}{P\bibinitperiod}{Simon\bibnamedelima G.}{S\bibinitperiod\bibinitdelim G\bibinitperiod}{}{}{}{}}%
+        {{hash=dd7c8ae091844f002cac731be38f8751}{Biesmeijer}{B\bibinitperiod}{Jacobus\bibnamedelima C.}{J\bibinitperiod\bibinitdelim C\bibinitperiod}{}{}{}{}}%
+        {{hash=e64b7e31c52a065d95de7ad95073f872}{Kremen}{K\bibinitperiod}{Claire}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=bf851f3688edd99c7ec68c5245f3157d}{Neumann}{N\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=d71c4c77f2881c4cf9f33980bf22014d}{Schweiger}{S\bibinitperiod}{Oliver}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=9d725a257dbc803b8d8a5da23f4b8274}{Kunin}{K\bibinitperiod}{William\bibnamedelima E.}{W\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{6}{}{%
+        {{hash=a554455db08295f7dc3bcc44178d6d9d}{Potts}{P\bibinitperiod}{Simon\bibnamedelima G.}{S\bibinitperiod\bibinitdelim G\bibinitperiod}{}{}{}{}}%
+        {{hash=dd7c8ae091844f002cac731be38f8751}{Biesmeijer}{B\bibinitperiod}{Jacobus\bibnamedelima C.}{J\bibinitperiod\bibinitdelim C\bibinitperiod}{}{}{}{}}%
+        {{hash=e64b7e31c52a065d95de7ad95073f872}{Kremen}{K\bibinitperiod}{Claire}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=bf851f3688edd99c7ec68c5245f3157d}{Neumann}{N\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=d71c4c77f2881c4cf9f33980bf22014d}{Schweiger}{S\bibinitperiod}{Oliver}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=9d725a257dbc803b8d8a5da23f4b8274}{Kunin}{K\bibinitperiod}{William\bibnamedelima E.}{W\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{b80773f2a07b55732f8c418910363c5d}
+      \strng{fullhash}{7dcdd5e61013912d92a961bfabf7c135}
+      \field{sortinit}{P}
+      \field{labeltitle}{Global pollinator declines: trends, impacts and drivers}
+      \field{issn}{0169-5347}
+      \field{journaltitle}{Trends in Ecology & Evolution}
+      \field{number}{6}
+      \field{title}{Global pollinator declines: trends, impacts and drivers}
+      \field{volume}{25}
+      \field{year}{2010}
+      \field{pages}{345\bibrangedash 353}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/j.tree.2010.01.007
+      \endverb
+    \endentry
     \entry{seeley95}{book}{}
       \name{labelname}{1}{}{%
         {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
@@ -104,6 +136,34 @@
       \field{subtitle}{The Social Physiology of Honey Bee Colonies}
       \field{title}{Thde Wisdom of the Hive}
       \field{year}{1995}
+    \endentry
+    \entry{thomann13}{article}{}
+      \name{labelname}{4}{}{%
+        {{hash=ea5ca92775d95a99792ffb1dc1dcbb68}{Thomann}{T\bibinitperiod}{Michel}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=88807710203b3baebd061ec9db6b738f}{Imbert}{I\bibinitperiod}{Eric}{E\bibinitperiod}{}{}{}{}}%
+        {{hash=9b226d8649e2ab861c5ba59cec472d07}{Devaux}{D\bibinitperiod}{Céline}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=fabd4aae6617cab47ea1f9f1d73f08eb}{Cheptou}{C\bibinitperiod}{Pierre-Olivier}{P\bibinithyphendelim O\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=ea5ca92775d95a99792ffb1dc1dcbb68}{Thomann}{T\bibinitperiod}{Michel}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=88807710203b3baebd061ec9db6b738f}{Imbert}{I\bibinitperiod}{Eric}{E\bibinitperiod}{}{}{}{}}%
+        {{hash=9b226d8649e2ab861c5ba59cec472d07}{Devaux}{D\bibinitperiod}{Céline}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=fabd4aae6617cab47ea1f9f1d73f08eb}{Cheptou}{C\bibinitperiod}{Pierre-Olivier}{P\bibinithyphendelim O\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{dc5bcca2374f0da5458e506e0d9c626f}
+      \strng{fullhash}{21fb47c432061ff8b5d99dcf1fa64a02}
+      \field{sortinit}{T}
+      \field{labeltitle}{Flowering plants under global pollinator decline}
+      \field{issn}{1360-1385}
+      \field{journaltitle}{Trends in Plant Science}
+      \field{number}{7}
+      \field{title}{Flowering plants under global pollinator decline}
+      \field{volume}{18}
+      \field{year}{2013}
+      \field{pages}{353\bibrangedash 359}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/j.tplants.2013.04.002
+      \endverb
     \endentry
     \entry{wright08}{online}{}
       \name{labelname}{1}{}{%
