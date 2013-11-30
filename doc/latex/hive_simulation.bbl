@@ -50,6 +50,40 @@
       \verb https://code.google.com/p/matlab-toolboxes-robotics-vision/
       \endverb
     \endentry
+    \entry{decourtye04}{article}{}
+      \name{labelname}{7}{}{%
+        {{hash=5aa891d899624626533f6e5d62148668}{Decourtye}{D\bibinitperiod}{Axel}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=bd2322cf5a1b0b2529af68e84fd71e19}{Armengaud}{A\bibinitperiod}{Catherine}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=94fbae9bd3b4e90649d7c3bee4f1174e}{Renou}{R\bibinitperiod}{Michel}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=bd0785ddfe47733b5230c9fd89052779}{Devillers}{D\bibinitperiod}{James}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=3b5a412255f3aa247e8e012f8b1e91cb}{Cluzeau}{C\bibinitperiod}{Sophie}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=88f8ca55557e439c843e04341bbf505c}{Gauthier}{G\bibinitperiod}{Monique}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=3948f692e1cb355d69191eea1dc7ef04}{Pham-Delègue}{P\bibinithyphendelim D\bibinitperiod}{Minh-Hà}{M\bibinithyphendelim H\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{7}{}{%
+        {{hash=5aa891d899624626533f6e5d62148668}{Decourtye}{D\bibinitperiod}{Axel}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=bd2322cf5a1b0b2529af68e84fd71e19}{Armengaud}{A\bibinitperiod}{Catherine}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=94fbae9bd3b4e90649d7c3bee4f1174e}{Renou}{R\bibinitperiod}{Michel}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=bd0785ddfe47733b5230c9fd89052779}{Devillers}{D\bibinitperiod}{James}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=3b5a412255f3aa247e8e012f8b1e91cb}{Cluzeau}{C\bibinitperiod}{Sophie}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=88f8ca55557e439c843e04341bbf505c}{Gauthier}{G\bibinitperiod}{Monique}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=3948f692e1cb355d69191eea1dc7ef04}{Pham-Delègue}{P\bibinithyphendelim D\bibinitperiod}{Minh-Hà}{M\bibinithyphendelim H\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{db0f9468c0a522e95f9c02bc514ccb0f}
+      \strng{fullhash}{95454dd20fb05002f6d0062618dbcd64}
+      \field{sortinit}{D}
+      \field{labeltitle}{Imidacloprid impairs memory and brain metabolism in the honeybee (Apis mellifera L.)}
+      \field{issn}{0048-3575}
+      \field{journaltitle}{Pesticide Biochemistry and Physiology}
+      \field{number}{2}
+      \field{title}{Imidacloprid impairs memory and brain metabolism in the honeybee (Apis mellifera L.)}
+      \field{volume}{78}
+      \field{year}{2004}
+      \field{pages}{83\bibrangedash 92}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/j.pestbp.2003.10.001
+      \endverb
+    \endentry
     \entry{dukas08}{article}{}
       \name{labelname}{1}{}{%
         {{hash=161409b481930e9f0b3c1db6d42790be}{Dukas}{D\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
@@ -106,7 +140,7 @@
       \field{sortinit}{P}
       \field{labeltitle}{Global pollinator declines: trends, impacts and drivers}
       \field{issn}{0169-5347}
-      \field{journaltitle}{Trends in Ecology & Evolution}
+      \field{journaltitle}{Trends in Ecology \& Evolution}
       \field{number}{6}
       \field{title}{Global pollinator declines: trends, impacts and drivers}
       \field{volume}{25}
