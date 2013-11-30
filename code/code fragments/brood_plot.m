@@ -14,9 +14,10 @@ function  brood_plot()
             
             plot(L_year*laying_rate,'linewidth',2);
             
-            xlabel('1 year [d]');
-            ylabel('amount of eggs');
+            xlabel('t [d]');
+            ylabel('L_t [amount of eggs]');
             axis([0 365 0 2200]);
+            grid on
             %legend('amount');
 
 

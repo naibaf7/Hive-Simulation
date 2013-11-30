@@ -3,10 +3,13 @@
 
 	
 \subsection{Map and flower patch quality}
+	\label{chap:mapFlowerPatchQuality}
 	For the environment, two maps are used. One map indicates which flower type grows at a given integer location %TODO
+	
 \subsection{Hives}
 \subsection{Scouts}
 	\subsubsection{Random walk}
+		\label{chap:randomWalk}
 		\begin{figure}
 			\centering
 			\scalebox{.75}{\includegraphics{data/random_walk.eps}}
@@ -14,19 +17,27 @@
 			\label{fig:randomWalk}
 		\end{figure}
 	\subsubsection{Bresenham line algorithm}
+		\label{chap:bresenhamAlgorithm}
 		\begin{figure}
 			\centering
 			\scalebox{.75}{\includegraphics{data/bresenham.eps}}
 			\caption{\textit{Example of Bresenham's line algorithm with map and path segment.}}
 			\label{fig:bresenham}
 		\end{figure}
-		As the scout bees pass a distance of $v \cdot \Delta t_s$, respectively $\sqrt{(v_x \cdot \Delta t_s)^2 + (v_y \cdot \Delta t_s)^2}$ for a velocity $v$ and time step $\Delta t_s$ in every iteration step, multiple field are being passed at once. In order to check all fields between the last and current iteration step, the Bresenham line algorithm is used. With this method, all integer coordinates between two given points on the map are reported back. Afterwards, every obtained point can be checked against the current quality- and type-map of the environment simulation.
+		As the scout bees pass a distance of $v \cdot \Delta t_s$, respectively $\sqrt{(v_x \cdot \Delta t_s)^2 + (v_y \cdot \Delta t_s)^2}$ for a velocity $v$ and time step $\Delta t_s$ in every iteration step, multiple field are being passed at once. In order to check all fields between the last and current iteration step for flower patches, the Bresenham line algorithm is used. With this method, all integer coordinates between two given points on the map are reported back. Afterwards, every obtained point can be checked against the current quality- and type-map of the environment simulation.
 		For this simple algorithm, a pre-existing implementation is used \cite{MVTB}, appendix \ref{chap:MATLAB_bresenham}. Figure \ref{fig:bresenham} is an example on a 15x15 map with coordinates $(x = 4, y = 3)$ to $(x = 12, y = 14)$ and reported points (black boxes).
+
 \subsection{Foragers}
 	\subsubsection{Path optimization}
+		\label{chap:pathOptimization}
 		\begin{figure}
 			\centering
 			\scalebox{.9}{\includegraphics{data/optimization.eps}}
 			\caption{\textit{Example of path optimization used to short cut the path to flower patches.}}
 			\label{fig:pathOptimization}
 		\end{figure}
+		
+		We assume bees can optimize the original path they obtain from a waggle dance, as the bees are able to orientate themselves in the environment with sun positioning and so on
+		%TODO Citation
+		%TODO FIND SOURCE
+		indicates that the path reported by a scout bee can be very random and not efficient (not the most direct possible path)...

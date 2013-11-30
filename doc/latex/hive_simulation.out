@@ -4,26 +4,26 @@
 \BOOKMARK [2][-]{subsection.3.1}{Basic model: Hive simulation}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{Changing laying rate over seasons}{section.3}% 5
 \BOOKMARK [2][-]{subsection.3.3}{Advanced model: Environment simulation}{section.3}% 6
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Map and flower patches}{subsection.3.3}% 7
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Bees' working states}{subsection.3.3}% 8
-\BOOKMARK [3][-]{subsubsection.3.3.3}{Foragers' distribution across flower patches}{subsection.3.3}% 9
-\BOOKMARK [2][-]{subsection.3.4}{Empirical data bases}{section.3}% 10
-\BOOKMARK [1][-]{section.4}{Implementation}{}% 11
-\BOOKMARK [2][-]{subsection.4.1}{General implementation}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.2}{Map and flower patch quality}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.3}{Hives}{section.4}% 14
-\BOOKMARK [2][-]{subsection.4.4}{Scouts}{section.4}% 15
-\BOOKMARK [3][-]{subsubsection.4.4.1}{Random walk}{subsection.4.4}% 16
-\BOOKMARK [3][-]{subsubsection.4.4.2}{Bresenham line algorithm}{subsection.4.4}% 17
-\BOOKMARK [2][-]{subsection.4.5}{Foragers}{section.4}% 18
-\BOOKMARK [3][-]{subsubsection.4.5.1}{Path optimization}{subsection.4.5}% 19
-\BOOKMARK [1][-]{section.5}{Simulation Results and Discussion}{}% 20
-\BOOKMARK [2][-]{subsection.5.1}{Constant food and egg laying}{section.5}% 21
-\BOOKMARK [2][-]{subsection.5.2}{Constant food, dynamic egg laying}{section.5}% 22
-\BOOKMARK [2][-]{subsection.5.3}{Environmental model}{section.5}% 23
-\BOOKMARK [3][-]{subsubsection.5.3.1}{Typical simulated day}{subsection.5.3}% 24
-\BOOKMARK [3][-]{subsubsection.5.3.2}{Missing flower seasons}{subsection.5.3}% 25
-\BOOKMARK [3][-]{subsubsection.5.3.3}{Variations on autumn flowers}{subsection.5.3}% 26
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Bees' working states}{subsection.3.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Foragers' distribution across flower patches}{subsection.3.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{Empirical data bases}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Implementation}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{General implementation}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Map and flower patch quality}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Hives}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.4}{Scouts}{section.4}% 14
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Random walk}{subsection.4.4}% 15
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Bresenham line algorithm}{subsection.4.4}% 16
+\BOOKMARK [2][-]{subsection.4.5}{Foragers}{section.4}% 17
+\BOOKMARK [3][-]{subsubsection.4.5.1}{Path optimization}{subsection.4.5}% 18
+\BOOKMARK [1][-]{section.5}{Simulation Results and Discussion}{}% 19
+\BOOKMARK [2][-]{subsection.5.1}{Constant food and egg laying}{section.5}% 20
+\BOOKMARK [2][-]{subsection.5.2}{Constant food, dynamic egg laying}{section.5}% 21
+\BOOKMARK [2][-]{subsection.5.3}{Environmental model}{section.5}% 22
+\BOOKMARK [2][-]{subsection.5.4}{Empirical data based run}{section.5}% 23
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Typical simulated day}{subsection.5.4}% 24
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Missing flower seasons}{subsection.5.4}% 25
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Variations on autumn flowers}{subsection.5.4}% 26
 \BOOKMARK [1][-]{section.6}{Summary and Outlook}{}% 27
 \BOOKMARK [1][-]{section.7}{References}{}% 28
 \BOOKMARK [1][-]{appendix.A}{Matlab Code}{}% 29
