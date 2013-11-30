@@ -58,7 +58,7 @@ Prop.Sim.Smog.year_activity = [0,0;0,0];        % TODO
 
 % HIVES
 % Hive 1
-% Most values from the reference paper
+% Most values from the reference paper, khoury13
 Prop.Sim.hive_count = 1;
 Prop.Sim.Hive(1).x_pos = Prop.Sim.world_size_10/2;
 Prop.Sim.Hive(1).y_pos = Prop.Sim.world_size_10/2;
