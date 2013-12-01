@@ -1984,17 +1984,16 @@
     <bcf:citekey order="17">seeley95</bcf:citekey>
     <bcf:citekey order="18">seeley95</bcf:citekey>
     <bcf:citekey order="19">seeley95</bcf:citekey>
-    <bcf:citekey order="20">MVTB</bcf:citekey>
+    <bcf:citekey order="20">seeley95</bcf:citekey>
     <bcf:citekey order="21">khoury13</bcf:citekey>
-    <bcf:citekey order="22">henry12</bcf:citekey>
-    <bcf:citekey order="23">khoury13</bcf:citekey>
-    <bcf:citekey order="24">dukas08</bcf:citekey>
-<<<<<<< HEAD
-    <bcf:citekey order="25">schmickl07</bcf:citekey>
-    <bcf:citekey order="26">MVTB</bcf:citekey>
-=======
-    <bcf:citekey order="25">MVTB</bcf:citekey>
->>>>>>> dd39b3fc7d351323834038a5c83bb9c097911186
+    <bcf:citekey order="22">khoury13</bcf:citekey>
+    <bcf:citekey order="23">MVTB</bcf:citekey>
+    <bcf:citekey order="24">khoury13</bcf:citekey>
+    <bcf:citekey order="25">henry12</bcf:citekey>
+    <bcf:citekey order="26">khoury13</bcf:citekey>
+    <bcf:citekey order="27">dukas08</bcf:citekey>
+    <bcf:citekey order="28">schmickl07</bcf:citekey>
+    <bcf:citekey order="29">MVTB</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" type="entry" label="nty">
   <bcf:sorting>
