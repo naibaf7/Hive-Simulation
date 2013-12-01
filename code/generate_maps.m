@@ -8,8 +8,8 @@ function [type_map,quality_map,maxquality_map] = generate_maps(Prop)
 % 30-90: Flower 1               MEAN: 60
 % 90-150: Flower 2              MEAN: 120
 % 150-210: Flower 3             MEAN: 180
-% 210-270: Flower 4             MEAN: 240
-% 270-330: Smog                 MEAN: 300
+% 210-270: Unused               MEAN: 240
+% 270-330: Unused               MEAN: 300
 % for S, choose 100, for V choose quality between 0 and 100%
 
 
