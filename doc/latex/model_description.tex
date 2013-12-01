@@ -203,32 +203,15 @@
 			\end{figure}
 			
 			\subsubsection{Bees' parameter}
-			Our bee number input is fully build on \textit{Khoury's} model \cite{khoury13}. He used 16000 hive bees and 8000 forager bees which seems to be the right order of magnitude.
+			Our bee numbers are fully built on \textit{D. S. Khoury's} model \cite{khoury13}. He used 16~000 hive bees and 8~000 forager bees which seems to be the right order of magnitude and is congruent with \textit{T. D. Seeley's} estimation of about 20~000 \cite{seeley95}. 
 			
-			The efficiency by which the food is delivered to the brood by the hive bees, $v$, is according to \textit{Khoury} set to 5000 and indicates, that about half of the eggs die before pupation. $f=500$ means, that there is 500 g of food to start with. 
 			
-			As remarked in the section \ref{hiveSimulation}, we simplify the complicated ageing process (larvae to hive bee) to a 12-day-cycle. On the other hand, mortality rate is 0.075 (compare \ref{subsec:Constant food, dynamic egg laying}.) 
-			
-			The recruitment time is according to http://www.life.illinois.edu/robinson/Research/Pdf/BES42.pdf $\alpha = 0.25$ as minimal, as well as for maximal value.   
+			$v$ is the parameter that governs the effect of hive bees on brood survival, $f$ governs the food effect on brood survival respectively (see section \ref{hiveSimulation}). $f=50~000$ corresponds to 50~000 g of food to start with. The parameter $\phi=\frac{1}{9}$, the adult bee emerging factor is assumed. Those values are extracted from \textit{Khoury's} paper and are empirically tested but not explained any further.\\ Although, the food consumption for adult bees (0.007 g) and brood (0.018 g) is taken from explicitly mentioned data \cite{harbo93}.
+					
+			As remarked at the beginning of section \ref{hiveSimulation}, we simplify the complicated ageing process (larvae to hive bee) to 12 days. Mortality rate is set to 0.075 and thus slightly lower than the values of \textit{Khoury}. This will be discussed later in section \ref{chap:constantFoodDynamicLaying}.) 
+			\\
+			The recruitment factor $\alpha = 0.25$ is set according to \textit{Khoury's} model.
 			
 		
 		
-	%-Why is it 470 days?
-%	-bee count 10'000? why? 
-%	-hive bees 16000
-%	-foragers 8000
-%	-food_brood_eff = 500;
-%	-hive_brood_eff = 5000;
-%	-aging_time = 12
-%	-mortality = 0.075 (see above)
-%	-min recruitment 0.25
-%	-max rec 0.25
-%	-laying rate in winter -> to keep hive alive
-%	-social inhibition (<=!=> recruitment)
-%	-adult bee emerging 1/9
-%	-food = 50000
-%	-food_consumption_adult = 0.007
-%	-food_consumption_brood = 0.018
-%	-Barrier for extinction. If total bee count is lower than this, a hive is considered extinct (no more computation, all values constant and/or zero) extinct_barrier = 500;
-%	 
-	
+
