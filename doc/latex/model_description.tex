@@ -65,12 +65,12 @@
 		\input{data/model_overview.tex}
 
 		As we were interested in observing the social dynamics under different food availability conditions, in contrast to the model of \textit{Khoury et al.} \cite{khoury13}, we had to implement a simulation for the environment. This advanced model introduces an environment with seasons which affect the queen's laying rate (see equation \ref{eq:changeBroodNumbersTime}), the distribution and quality of flower patches and seasonal flower growth.
-		The forager bees are then simulated on the environment, searching and collecting food according to the rules in chapter \ref{chap:beeWorkingStates}. An overview of the complete model is given in Figure \ref{fig:modelOverview}.
+		The forager bees are then simulated on the environment, searching and collecting food according to the rules in chapter \ref{chap:beesWorkingStates}. An overview of the complete model is given in Figure \ref{fig:modelOverview}.\\
+		 Note that the environment simulation is triggered for day $t$ after the basic model has computed all differential equations for day $t-1$. If there is no flower blooming on day $t$, we assume the daily food income $f_{d,t} = 0$ (see equation \ref{eq:changeFoodStoreDyn}) and skip the environment simulation for this day.
 		
 		\subsubsection{Bees' working states}
 			\label{chap:beesWorkingStates}
 			The environment simulation only simulates forager and scout bees. Hive bees are not considered as agents. For the foragers and scouts, we developed a set of simple rules which try to be as close as possible to the foraging process described by \textit{T.D. Seeley} \cite{seeley95}. All essential rules are represented in Figure \ref{fig:stateTransitionsEnvironment}.\\
-			\label{chap:beeWorkingStates}
 			\input{data/working_states.tex}
 			
 			At the beginning of every day ($t_s = 0$), all bees are unemployed. There are three possibilities for every unemployed bee which are considered in every simulation step:
@@ -90,7 +90,7 @@
 			When a bee agent gets a foraging job assigned, the agent continues the following way:
 			\begin{itemize}
 				\item Among the available waggle dances, the forager chooses randomly and evaluates if the food source is good enough ($p < q$) to visit or not (see chapter \ref{chap:foragersDistribution}). This is repeated in every iteration step until the forager decides to visit the flower patch represented by the chosen waggle dance.
-				\item The forager flies to the patch and, once reached, collects as much food as the flowers in the patch allows (see chapter \ref{chap:mapFlowerPatchQuality}).
+				\item The forager flies to the patch and, once reached, collects as much food as the flowers in the patch allow (see chapter \ref{chap:mapFlowerPatchQuality}).
 				\item After foraging, the bee returns to the hive. Path optimization may occur again.
 				\item Back in the hive, the forager unloads the collected food (increasing $f_{d,t}$, equation \ref{eq:changeFoodStoreDyn}).
 				\item The bee now has to evaluate the food source several times (($p < q$), once per iteration step) and decide if it is worth reporting the patch (executing a waggle dance) or not.
@@ -99,30 +99,100 @@
 	
 		
 		\subsubsection{Foragers' distribution across flower patches}
-			It is clear from chapter \ref{chap:beesWorkingStates} that after some time, the bees will focus on newly reported and then on the most profitable food sources because of relative quality evaluation. $p \in {[0,1]}$ denotes an equally distributed random value. $q$ denotes the relative quality of a given flower patch compared to all patches currently available as a waggle dance. In detail, the evaluation ($p < q$) works as follows:
-			%TODO
-		
-		\label{chap:foragersDistribution}
-		Depending on the random variable $p$ and the relative patch quality $q$ represented 
-		
-		
-		\begin{equation}\label{eq:changeFoodStoreDyn}
-			\frac{df}{dt} = f_{d,t}- \gamma_A (F+H) - \gamma_B B
-		\end{equation}
-		Where $f_{d,t}$ denotes the amount of food the foragers collected on day $t$.
+			\label{chap:foragersDistribution}
+			It is clear from chapter \ref{chap:beesWorkingStates} that after some time, the bees will focus on newly reported and then on the most profitable food sources because of relative quality evaluation. $p \in {[0,1]}$ denotes an equally distributed random value. $q$ denotes the relative quality of a given flower patch compared to all patches currently available as a waggle dance. In detail, the evaluation ($p < q$) works as follows:\\
+			
+			At the beginning of every iteration step, the waggle count $n_w$ is set to zero. Every bee that does a waggle dance at the moment then writes the flower quality $b_w$, distance to the flower patch $d_w$ and size of the patch $A_w$ into the corresponding vector. This gives three vectors:
+			
+			\[
+				\begin{pmatrix}
+					b_{w,1} \\ b_{w,2} \\ \dots \\ b_{w,n_w}
+				\end{pmatrix}
+				\qquad
+				\begin{pmatrix}
+					d_{w,1} \\ d_{w,2} \\ \dots \\ d_{w,n_w}
+				\end{pmatrix}
+				\qquad
+				\begin{pmatrix}
+					A_{w,1} \\ A_{w,2} \\ \dots \\ A_{w,n_w}
+				\end{pmatrix}
+			\]
+			
+			To compare a (potential) waggle dance with given $b_w$, $d_w$ and $A_w$ against the existing ones, the following formula is used:
+			\begin{equation}\label{eq:evalPatchQuality}
+				q_w = b_w \cdot
+				\max(
+				\begin{pmatrix}
+					b_{w,1} \\ b_{w,2} \\ \dots \\ b_{w,n_w}
+				\end{pmatrix})^{-1}
+				\cdot
+				d_w \cdot
+				\max(
+				\begin{pmatrix}
+					d_{w,1} \\ d_{w,2} \\ \dots \\ d_{w,n_w}
+				\end{pmatrix})^{-1}
+				\cdot
+				A_w \cdot
+				\max(
+				\begin{pmatrix}
+					A_{w,1} \\ A_{w,2} \\ \dots \\ A_{w,n_w}
+				\end{pmatrix})^{-1}
+			\end{equation}
+			
+			We update and obtain a fourth vector, every time a new waggle dance is executed, keeping track of all relative patch qualities. Every time a bee decides to do a waggle dance in the current iteration step, the update is computed:
+			\begin{equation}\label{eq:evalPatchQualityNormalize}
+				\begin{pmatrix}
+					q_{w,1} \\ q_{w,2} \\ \dots \\ q_{w,n_w} \\ q_{w,n_w + 1}
+				\end{pmatrix}
+				=
+				\begin{pmatrix}
+					q_{w,1} \\ q_{w,2} \\ \dots \\ q_{w,n_w} \\ q_w
+				\end{pmatrix}
+				\cdot
+				\max(
+				\begin{pmatrix}
+					q_{w,1} \\ q_{w,2} \\ \dots \\ q_{w,n_w}
+				\end{pmatrix}, q_w)^{-1}
+			\end{equation}
+			
+			Obviously, if the new patch is the best one, $q_w > 1$ holds, otherwise $q_w \in (0,1]$. In the first case there will always be a waggle dance propagating this patch. Otherwise it depends on how the bee chooses randomly $p \in [0,1]$ and then if $p < q_w$ holds. The same evaluation happens when a bee has to decide on giving up a patch or after watching a waggle dance (see fig. \ref{fig:stateTransitionsEnvironment}). \\
+			Of course, on the implementation side, we have to keep track which vector index $i \in [1,n_w] \subsetneq \N$ belongs to which path element. The path a bee chooses will be copied to the bee's memory.\\
+
+			A path for a certain patch can get smaller by optimization (see chapter \ref{chap:pathOptimization}), thus we can obtain a better relative quality $q_w$. This will lead to higher propagation probability for the same patch. This means more bees will (over time) take the shorter path to any given flower patch, either by optimizing themselves or by looking at waggle dances of patches with shorter paths.\\
+	
+			The question arises how bees can have such deep knowledge of the own patch and the quality of patches represented by waggle dances. \textit{T.D. Seeley} \cite{seeley95} gives insight and assumptions on this matter. In chapter 5.4., p. 92, he states that bees can use dance duration, frequency and variation to communicate patch profitability. This indicates our model is an useful approximation in terms of waggle dance/path sharing. In chapter 5.5, he writes that travel distance and expected profit are the driving factors in determining patch quality. We also added the patch size $A_w$ in our model, which should be fine as it is also a profit indicator when looking at the patch in a larger scale. The last question is if bees have preprogrammed knowledge what a good and a bad flower patch is or if this is a relative question depending on daily situations. We assumed the second one, and \textit{T.D. Seeley} confirms this in chapter 5.7. on p. 104: For food unloading, hive bees prefer to unload the most profitable income first. This means bees with a bad flower patch have to wait longer, telling them their choice was probably not the best. Waiting times may vary randomly, thus adding randomness to the evaluations ($p < q$, fig. \ref{fig:stateTransitionsEnvironment}) makes sense as well.
+	
+		\subsubsection{Food collection}
+			With every flight, a bee can gather up to $f_b = \min(b_w,f_{b,max})$ grams of pollen and nectar, where $f_{b,max}$ is the physical top limit of the bee. $b_w$ is derived from $f_{b,f}$ (see chapter \ref{chap:flowerPatchesAndFood}) by multiplying $f_{b,f}$ with the growing quality of a certain patch on day $t$, denoted $q_{p,t} \in (0,1]$. The daily food sum is increased every time a bee reaches the hive:
+			
+			\begin{equation}\label{eq:foodChangeDailyComputation}
+				f_{d,t} = f_{d,t} + f_b \cdot F_{b,t} = f_{d,t} + \min(f_{b,f} \cdot q_{p,t},f_{b,max}) \cdot F_{b,t}
+			\end{equation}
+			
+			An additional factor $F_{b,t}$ is used for clustering. This means we only simulate up to $\frac{F}{F_{b,t}}$ actual agents on day $t$ and then interpolate to the actual value, which saves a lot of computation time. For relatively small cluster sizes, respectively many actual agents (in the order of 1000), the variation of $f_{d,t}$ will be small because the mean value of bees visiting a patch over a whole day is about the same as without clustering, according to the law of large numbers (LLN).\\
+			Finally, we obtain a new equation to replace the original equation \ref{eq:changeFoodStoreConst} for the daily food change:
+			
+			\begin{equation}\label{eq:changeFoodStoreDyn}
+				\frac{df}{dt} = f_{d,t} - \gamma_A (F+H) - \gamma_B B
+			\end{equation}
+			
+			Where $f_{d,t}$ denotes the amount of food the foragers collected on day $t$.\\
+			
+			We discuss the numerical results of this model in chapter \ref{chap:environmentalModelDiscussion}.
 		
 	\subsection{Empirical data bases}
 		\subsubsection{Area around the hive}
 			By analysing the different waggle dances of the forager bees, \textit{T.D. Seeley} states in \textit{Wisdom of the Hive} pp.~37ff that 95\% of the foraging process occurs in a radius of 6.0~km (maximum distance at 10.9~km, mean distance at 2.2~km and the modal distance at 1.6~km \cite{seeley95}. The approximation of our modelled square $\text{(6~km}\cdot\text{2)}^2 \approx \text{100~km}^2$ should be sufficient for the simulation and comprehend all important data. In our model, we split the area up into a grid of 10~m~$\cdot$~10~m tiles of flower patches.
 			
 		\subsubsection{Flower patches and food}
+			\label{chap:flowerPatchesAndFood}
 			The flower patches themselves are divided into their different blossom: spring, summer and autumn. The empirical data was taken from \textit{Wisdom of the Hive} p.~44f (year 1982). We merged the raw data and received a new graph for the whole year (see fig.~\ref{fig:seasonalFlowers}). With equation \ref{eq:foodPerFlight}, we can find out the weight of food a bee carries per flight. 
 			
 			\begin{equation}\label{eq:foodPerFlight}
-						w \,[\frac{g}{flight\, and\, bee}] = \frac{M \,[\frac{kg}{day}]}{C \,[bees] \cdot l \,[\frac{flights}{day \,and\, bee}]}\cdot 1000 \,[\frac{g}{kg}]
+						f_{b,f} \,[\frac{g}{flight\, and\, bee}] = \frac{M \,[\frac{kg}{day}]}{C \,[bees] \cdot l \,[\frac{flights}{day \,and\, bee}]}\cdot 1000 \,[\frac{g}{kg}]
 			\end{equation}
 			
-			The result $w$ is an approximation in gram per bee and flight. $M$ denotes the change of the mass of the hive per day in kilograms (see fig.~\ref{fig:seasonalFlowers}) and $C$ represents the forager bee count approximated for a specific day of \textit{T.D. Seeley's} empirical data \cite{seeley95}. $l$ is the flight count a bee can do in average per day. Thus, we can take hive weight change per day as an indicator for the flower quality and flower type present at a given day of the year. This is the best approximation we tried, we did not find actual data of blooming and foraging profit as it is very difficult to measure this in nature.
+			The result $f_{b,f}$ is an approximation in gram per bee and flight. $M$ denotes the change of the mass of the hive per day in kilograms (see fig.~\ref{fig:seasonalFlowers}) and $C$ represents the forager bee count approximated for a specific day of \textit{T.D. Seeley's} empirical data \cite{seeley95}. $l$ is the flight count a bee can do in average per day. Thus, we can take hive weight change per day as an indicator for the flower quality and flower type present at a given day of the year. This is the best approximation we tried, we did not find actual data of blooming and foraging profit as it is very difficult to measure this in nature.
 			
 			\begin{figure}
 				\centering
