@@ -21,7 +21,7 @@
 	
 	The map is encoded in HSV (fig. \ref{fig:hsvEncoding}). From the 360° color hue circle ($H_{HSV} \in \{0,1,\ldots,360\}$), always 60° are assigned to one integer type value $j \in \{0,\ldots,5\}$. Value 0 is used for empty space and values 1 to 3 for the three flower seasons/types we implemented. Values 4 and 5 are for future extensions such as smog/pesticide sources. More values can be gained by assigning less than 60° per type. The saturation $S_{HSV} \in [0,1]$ is always kept at 1. For the flower patch quality basis, the $V_{HSV} \in [0,1]$ component is used.\\
 	
-	To obtain the daily map for environment simulation, the normalized blooming indicator (see fig. \ref{fig:seasonalFlowers}) of each flower type $i \in \{1,2,3\}$ is separately multiplied with the $S_{HSV}$ value of the basis map where flower type $i$ occurs (see fig. \ref{fig:normeqMap}). As a result, some flowers don't appear on the map and those that appear get scaled in quality according to the daily situation (see fig. \ref{fig:modelOverview}). From the obtained scaled quality map, the bees now read the value $b_w$ when visiting a patch. This is the driving factor for forager distribution (see chapter \ref{chap:foragersDistribution}).
+	To obtain the daily map for environment simulation, the normalized blooming indicator (see fig. \ref{fig:seasonalFlowers}) of each flower type $i \in \{1,2,3\}$ is separately multiplied with the $V_{HSV}$ value of the basis map where flower type $i$ occurs (see fig. \ref{fig:normeqMap}). As a result, some flowers don't appear on the map and those that appear get scaled in quality according to the daily situation (see fig. \ref{fig:modelOverview}). From the obtained scaled quality map, the bees now read the value $b_w$ when visiting a patch. This is the driving factor for forager distribution (see chapter \ref{chap:foragersDistribution}).
 	
 	\begin{figure}
 		\centering
@@ -40,7 +40,13 @@
 			\caption{\textit{Example of a random walk executed by a scout bee.}}
 			\label{fig:randomWalk}
 		\end{figure}
-		%TODO
+		
+		Very little is known about the searching behaviour of scout bees \cite{seeley95}, p.~87f. \textit{T.D. Seeley} mentions that scouts fly low above the ground and inspect flowers they encounter during their flight. Naturally, the flight distance is limited. Considering this, a random walk is the most logical behaviour to simulate scout bees. The random walk is stopped when a scout encounters a new flower. Previously discovered flower patches are ignored by scouts, as bees mark already visited patches with the Nasonov pheromone \cite{winston91} p.~133ff.\\
+		The random walk is preformed in following steps:
+		\begin{itemize}
+			\item The bee starts from the hive with an equally distributed random angle $\alpha$.
+			\item After a number of time steps, 
+		\end{itemize}
 		
 		
 	\subsubsection{Bresenham line algorithm}

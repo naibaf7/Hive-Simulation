@@ -18,113 +18,7 @@
 
 
 \refsection{0}
-  \sortlist{entry}{nty}
-    \entry{henry12}{article}{}
-      \name{labelname}{1}{}{%
-        {{hash=9821c9526d9c5399e3431ee6820db68b}{al.}{a\bibinitperiod}{Henry}{H\bibinitperiod}{et}{e\bibinitperiod}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=9821c9526d9c5399e3431ee6820db68b}{al.}{a\bibinitperiod}{Henry}{H\bibinitperiod}{et}{e\bibinitperiod}{}{}}%
-      }
-      \strng{namehash}{9821c9526d9c5399e3431ee6820db68b}
-      \strng{fullhash}{9821c9526d9c5399e3431ee6820db68b}
-      \field{sortinit}{a}
-      \field{labeltitle}{A Common Pesticide Decreases Foraging Success and Survival in Honey bees}
-      \field{journaltitle}{Sciencemag}
-      \field{title}{A Common Pesticide Decreases Foraging Success and Survival in Honey bees}
-      \field{year}{2012}
-    \endentry
-    \entry{bernadou09}{article}{}
-      \name{labelname}{5}{}{%
-        {{hash=a65b4a13a1a1cfb72191b884c9021499}{Bernadou}{B\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
-        {{hash=dd84e61afcf7197933df9b38777eabac}{Démares}{D\bibinitperiod}{F.}{F\bibinitperiod}{}{}{}{}}%
-        {{hash=f5547b5763e92e8b14cc90e55b89e069}{Couret-Fauvel}{C\bibinithyphendelim F\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
-        {{hash=a353f63c81f5d5285b328e762c196691}{Sandoz}{S\bibinitperiod}{J.C.}{J\bibinitperiod}{}{}{}{}}%
-        {{hash=c8fbd7eca1c5ecdcfe1cca1af31f52b2}{Gauthier}{G\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{5}{}{%
-        {{hash=a65b4a13a1a1cfb72191b884c9021499}{Bernadou}{B\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
-        {{hash=dd84e61afcf7197933df9b38777eabac}{Démares}{D\bibinitperiod}{F.}{F\bibinitperiod}{}{}{}{}}%
-        {{hash=f5547b5763e92e8b14cc90e55b89e069}{Couret-Fauvel}{C\bibinithyphendelim F\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
-        {{hash=a353f63c81f5d5285b328e762c196691}{Sandoz}{S\bibinitperiod}{J.C.}{J\bibinitperiod}{}{}{}{}}%
-        {{hash=c8fbd7eca1c5ecdcfe1cca1af31f52b2}{Gauthier}{G\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{a0bab24acf5e0741399f66a551289103}
-      \strng{fullhash}{7886e53b3be4f3d4c81cf0cf8524df04}
-      \field{sortinit}{B}
-      \field{labeltitle}{Effect of fipronil on side-specific antennal tactile learning in the honeybee}
-      \field{issn}{0022-1910}
-      \field{journaltitle}{Journal of Insect Physiology}
-      \field{number}{12}
-      \field{title}{Effect of fipronil on side-specific antennal tactile learning in the honeybee}
-      \field{volume}{55}
-      \field{year}{2009}
-      \field{pages}{1099\bibrangedash 1106}
-      \verb{doi}
-      \verb http://dx.doi.org/10.1016/j.jinsphys.2009.08.019
-      \endverb
-    \endentry
-    \entry{MVTB}{online}{}
-      \name{labelname}{1}{}{%
-        {{hash=c0e503339314930d140b67b5e7c55c3e}{Corke}{C\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=c0e503339314930d140b67b5e7c55c3e}{Corke}{C\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{c0e503339314930d140b67b5e7c55c3e}
-      \strng{fullhash}{c0e503339314930d140b67b5e7c55c3e}
-      \field{sortinit}{C}
-      \field{labeltitle}{Robotics and Machine Vision Toolboxes for MATLAB (MVTB)}
-      \field{title}{Robotics and Machine Vision Toolboxes for MATLAB (MVTB)}
-      \verb{url}
-      \verb https://code.google.com/p/matlab-toolboxes-robotics-vision/
-      \endverb
-    \endentry
-    \entry{decourtye04}{article}{}
-      \name{labelname}{5}{}{%
-        {{hash=5aa891d899624626533f6e5d62148668}{Decourtye}{D\bibinitperiod}{Axel}{A\bibinitperiod}{}{}{}{}}%
-        {{hash=bd0785ddfe47733b5230c9fd89052779}{Devillers}{D\bibinitperiod}{James}{J\bibinitperiod}{}{}{}{}}%
-        {{hash=3b5a412255f3aa247e8e012f8b1e91cb}{Cluzeau}{C\bibinitperiod}{Sophie}{S\bibinitperiod}{}{}{}{}}%
-        {{hash=28be02e015885215225adff031969d9d}{Charreton}{C\bibinitperiod}{Mercedes}{M\bibinitperiod}{}{}{}{}}%
-        {{hash=3948f692e1cb355d69191eea1dc7ef04}{Pham-Delègue}{P\bibinithyphendelim D\bibinitperiod}{Minh-Hà}{M\bibinithyphendelim H\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{5}{}{%
-        {{hash=5aa891d899624626533f6e5d62148668}{Decourtye}{D\bibinitperiod}{Axel}{A\bibinitperiod}{}{}{}{}}%
-        {{hash=bd0785ddfe47733b5230c9fd89052779}{Devillers}{D\bibinitperiod}{James}{J\bibinitperiod}{}{}{}{}}%
-        {{hash=3b5a412255f3aa247e8e012f8b1e91cb}{Cluzeau}{C\bibinitperiod}{Sophie}{S\bibinitperiod}{}{}{}{}}%
-        {{hash=28be02e015885215225adff031969d9d}{Charreton}{C\bibinitperiod}{Mercedes}{M\bibinitperiod}{}{}{}{}}%
-        {{hash=3948f692e1cb355d69191eea1dc7ef04}{Pham-Delègue}{P\bibinithyphendelim D\bibinitperiod}{Minh-Hà}{M\bibinithyphendelim H\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{db0f9468c0a522e95f9c02bc514ccb0f}
-      \strng{fullhash}{ac38bd6da126423112d4156eba3c70c5}
-      \field{sortinit}{D}
-      \field{labeltitle}{Imidacloprid impairs memory and brain metabolism in the honeybee (Apis mellifera L.)}
-      \field{issn}{0147-6513}
-      \field{journaltitle}{Pesticide Biochemistry and Physiology}
-      \field{number}{3}
-      \field{title}{Imidacloprid impairs memory and brain metabolism in the honeybee (Apis mellifera L.)}
-      \field{volume}{57}
-      \field{year}{2004}
-      \field{pages}{410\bibrangedash 419}
-      \verb{doi}
-      \verb http://dx.doi.org/10.1016/j.ecoenv.2003.08.001
-      \endverb
-    \endentry
-    \entry{dukas08}{article}{}
-      \name{labelname}{1}{}{%
-        {{hash=161409b481930e9f0b3c1db6d42790be}{Dukas}{D\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=161409b481930e9f0b3c1db6d42790be}{Dukas}{D\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{161409b481930e9f0b3c1db6d42790be}
-      \strng{fullhash}{161409b481930e9f0b3c1db6d42790be}
-      \field{sortinit}{D}
-      \field{labeltitle}{Mortality rates of honey bees in the wild}
-      \field{journaltitle}{Insectes Sociaux}
-      \field{title}{Mortality rates of honey bees in the wild}
-      \field{year}{2008}
-    \endentry
+  \sortlist{entry}{none}
     \entry{khoury13}{article}{}
       \name{labelname}{3}{}{%
         {{hash=a3c49bd1e8edc7b8a7771c2060c2f1d7}{Khoury}{K\bibinitperiod}{D.\bibnamedelimi S.}{D\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
@@ -138,11 +32,32 @@
       }
       \strng{namehash}{83b8570ac55467d03754a1350597f4ed}
       \strng{fullhash}{83b8570ac55467d03754a1350597f4ed}
-      \field{sortinit}{K}
+      \field{sortinit}{0}
       \field{labeltitle}{Modelling Food and Population Dynamics in Honey Bee Colonies}
       \field{journaltitle}{PLOS ONE}
       \field{title}{Modelling Food and Population Dynamics in Honey Bee Colonies}
       \field{year}{2013}
+    \endentry
+    \entry{seeley95}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Harvard University Press}%
+      }
+      \strng{namehash}{42eb2bc19dd88d0f20023f52f0775a56}
+      \strng{fullhash}{42eb2bc19dd88d0f20023f52f0775a56}
+      \field{sortinit}{0}
+      \field{labeltitle}{The Wisdom of the Hive}
+      \field{subtitle}{The Social Physiology of Honey Bee Colonies}
+      \field{title}{The Wisdom of the Hive}
+      \field{year}{1995}
     \endentry
     \entry{potts10}{article}{}
       \name{labelname}{6}{}{%
@@ -163,7 +78,7 @@
       }
       \strng{namehash}{b80773f2a07b55732f8c418910363c5d}
       \strng{fullhash}{7dcdd5e61013912d92a961bfabf7c135}
-      \field{sortinit}{P}
+      \field{sortinit}{0}
       \field{labeltitle}{Global pollinator declines: trends, impacts and drivers}
       \field{issn}{0169-5347}
       \field{journaltitle}{Trends in Ecology \& Evolution}
@@ -175,51 +90,6 @@
       \verb{doi}
       \verb http://dx.doi.org/10.1016/j.tree.2010.01.007
       \endverb
-    \endentry
-    \entry{schmickl07}{article}{}
-      \name{labelname}{2}{}{%
-        {{hash=1a656c9ed703efa748474c75dcabb52b}{Schmickl}{S\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
-        {{hash=fd07aa540bcaf8e052838d5e978964c6}{Crailsheim}{C\bibinitperiod}{Karl}{K\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{2}{}{%
-        {{hash=1a656c9ed703efa748474c75dcabb52b}{Schmickl}{S\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
-        {{hash=fd07aa540bcaf8e052838d5e978964c6}{Crailsheim}{C\bibinitperiod}{Karl}{K\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{34da9b937020e1bdf8dd3814165831cf}
-      \strng{fullhash}{34da9b937020e1bdf8dd3814165831cf}
-      \field{sortinit}{S}
-      \field{labeltitle}{HoPoMo: A model of honeybee intracolonial population dynamics and resource management}
-      \field{issn}{0304-3800}
-      \field{journaltitle}{Ecological Modelling}
-      \field{number}{1–2}
-      \field{title}{HoPoMo: A model of honeybee intracolonial population dynamics and resource management}
-      \field{volume}{204}
-      \field{year}{2007}
-      \field{pages}{219\bibrangedash 245}
-      \verb{doi}
-      \verb http://dx.doi.org/10.1016/j.ecolmodel.2007.01.001
-      \endverb
-    \endentry
-    \entry{seeley95}{book}{}
-      \name{labelname}{1}{}{%
-        {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
-      }
-      \list{location}{1}{%
-        {London}%
-      }
-      \list{publisher}{1}{%
-        {Harvard University Press}%
-      }
-      \strng{namehash}{42eb2bc19dd88d0f20023f52f0775a56}
-      \strng{fullhash}{42eb2bc19dd88d0f20023f52f0775a56}
-      \field{sortinit}{S}
-      \field{labeltitle}{Thde Wisdom of the Hive}
-      \field{subtitle}{The Social Physiology of Honey Bee Colonies}
-      \field{title}{Thde Wisdom of the Hive}
-      \field{year}{1995}
     \endentry
     \entry{thomann13}{article}{}
       \name{labelname}{4}{}{%
@@ -236,7 +106,7 @@
       }
       \strng{namehash}{dc5bcca2374f0da5458e506e0d9c626f}
       \strng{fullhash}{21fb47c432061ff8b5d99dcf1fa64a02}
-      \field{sortinit}{T}
+      \field{sortinit}{0}
       \field{labeltitle}{Flowering plants under global pollinator decline}
       \field{issn}{1360-1385}
       \field{journaltitle}{Trends in Plant Science}
@@ -249,6 +119,66 @@
       \verb http://dx.doi.org/10.1016/j.tplants.2013.04.002
       \endverb
     \endentry
+    \entry{decourtye04}{article}{}
+      \name{labelname}{5}{}{%
+        {{hash=5aa891d899624626533f6e5d62148668}{Decourtye}{D\bibinitperiod}{Axel}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=bd0785ddfe47733b5230c9fd89052779}{Devillers}{D\bibinitperiod}{James}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=3b5a412255f3aa247e8e012f8b1e91cb}{Cluzeau}{C\bibinitperiod}{Sophie}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=28be02e015885215225adff031969d9d}{Charreton}{C\bibinitperiod}{Mercedes}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=3948f692e1cb355d69191eea1dc7ef04}{Pham-Delègue}{P\bibinithyphendelim D\bibinitperiod}{Minh-Hà}{M\bibinithyphendelim H\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{5}{}{%
+        {{hash=5aa891d899624626533f6e5d62148668}{Decourtye}{D\bibinitperiod}{Axel}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=bd0785ddfe47733b5230c9fd89052779}{Devillers}{D\bibinitperiod}{James}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=3b5a412255f3aa247e8e012f8b1e91cb}{Cluzeau}{C\bibinitperiod}{Sophie}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=28be02e015885215225adff031969d9d}{Charreton}{C\bibinitperiod}{Mercedes}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=3948f692e1cb355d69191eea1dc7ef04}{Pham-Delègue}{P\bibinithyphendelim D\bibinitperiod}{Minh-Hà}{M\bibinithyphendelim H\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{db0f9468c0a522e95f9c02bc514ccb0f}
+      \strng{fullhash}{ac38bd6da126423112d4156eba3c70c5}
+      \field{sortinit}{0}
+      \field{labeltitle}{Imidacloprid impairs memory and brain metabolism in the honeybee (Apis mellifera L.)}
+      \field{issn}{0147-6513}
+      \field{journaltitle}{Pesticide Biochemistry and Physiology}
+      \field{number}{3}
+      \field{title}{Imidacloprid impairs memory and brain metabolism in the honeybee (Apis mellifera L.)}
+      \field{volume}{57}
+      \field{year}{2004}
+      \field{pages}{410\bibrangedash 419}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/j.ecoenv.2003.08.001
+      \endverb
+    \endentry
+    \entry{bernadou09}{article}{}
+      \name{labelname}{5}{}{%
+        {{hash=a65b4a13a1a1cfb72191b884c9021499}{Bernadou}{B\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=dd84e61afcf7197933df9b38777eabac}{Démares}{D\bibinitperiod}{F.}{F\bibinitperiod}{}{}{}{}}%
+        {{hash=f5547b5763e92e8b14cc90e55b89e069}{Couret-Fauvel}{C\bibinithyphendelim F\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=a353f63c81f5d5285b328e762c196691}{Sandoz}{S\bibinitperiod}{J.C.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=c8fbd7eca1c5ecdcfe1cca1af31f52b2}{Gauthier}{G\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{5}{}{%
+        {{hash=a65b4a13a1a1cfb72191b884c9021499}{Bernadou}{B\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=dd84e61afcf7197933df9b38777eabac}{Démares}{D\bibinitperiod}{F.}{F\bibinitperiod}{}{}{}{}}%
+        {{hash=f5547b5763e92e8b14cc90e55b89e069}{Couret-Fauvel}{C\bibinithyphendelim F\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=a353f63c81f5d5285b328e762c196691}{Sandoz}{S\bibinitperiod}{J.C.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=c8fbd7eca1c5ecdcfe1cca1af31f52b2}{Gauthier}{G\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{a0bab24acf5e0741399f66a551289103}
+      \strng{fullhash}{7886e53b3be4f3d4c81cf0cf8524df04}
+      \field{sortinit}{0}
+      \field{labeltitle}{Effect of fipronil on side-specific antennal tactile learning in the honeybee}
+      \field{issn}{0022-1910}
+      \field{journaltitle}{Journal of Insect Physiology}
+      \field{number}{12}
+      \field{title}{Effect of fipronil on side-specific antennal tactile learning in the honeybee}
+      \field{volume}{55}
+      \field{year}{2009}
+      \field{pages}{1099\bibrangedash 1106}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/j.jinsphys.2009.08.019
+      \endverb
+    \endentry
     \entry{wright08}{online}{}
       \name{labelname}{1}{}{%
         {{hash=5bdd3734346985f101dde9be129e9eec}{Wright}{W\bibinitperiod}{Walt}{W\bibinitperiod}{}{}{}{}}%
@@ -258,12 +188,102 @@
       }
       \strng{namehash}{5bdd3734346985f101dde9be129e9eec}
       \strng{fullhash}{5bdd3734346985f101dde9be129e9eec}
-      \field{sortinit}{W}
+      \field{sortinit}{0}
       \field{labeltitle}{How Many Eggs CAN a Queen Lay?}
       \field{title}{How Many Eggs CAN a Queen Lay?}
       \field{year}{2008}
       \verb{url}
       \verb http://www.beesource.com/point-of-view/walt-wright/how-many-eggs-can-a-queen-lay/
+      \endverb
+    \endentry
+    \entry{winston91}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=8e075d97a455559e5eec8256a8308fa8}{Winston}{W\bibinitperiod}{Mark\bibnamedelima L.}{M\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=8e075d97a455559e5eec8256a8308fa8}{Winston}{W\bibinitperiod}{Mark\bibnamedelima L.}{M\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Harvard University Press}%
+      }
+      \strng{namehash}{8e075d97a455559e5eec8256a8308fa8}
+      \strng{fullhash}{8e075d97a455559e5eec8256a8308fa8}
+      \field{sortinit}{0}
+      \field{labeltitle}{The Biology of the Honey Bee}
+      \field{title}{The Biology of the Honey Bee}
+      \field{year}{1991}
+    \endentry
+    \entry{MVTB}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=c0e503339314930d140b67b5e7c55c3e}{Corke}{C\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=c0e503339314930d140b67b5e7c55c3e}{Corke}{C\bibinitperiod}{Peter}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{c0e503339314930d140b67b5e7c55c3e}
+      \strng{fullhash}{c0e503339314930d140b67b5e7c55c3e}
+      \field{sortinit}{0}
+      \field{labeltitle}{Robotics and Machine Vision Toolboxes for MATLAB (MVTB)}
+      \field{title}{Robotics and Machine Vision Toolboxes for MATLAB (MVTB)}
+      \verb{url}
+      \verb https://code.google.com/p/matlab-toolboxes-robotics-vision/
+      \endverb
+    \endentry
+    \entry{henry12}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=9821c9526d9c5399e3431ee6820db68b}{al.}{a\bibinitperiod}{Henry}{H\bibinitperiod}{et}{e\bibinitperiod}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9821c9526d9c5399e3431ee6820db68b}{al.}{a\bibinitperiod}{Henry}{H\bibinitperiod}{et}{e\bibinitperiod}{}{}}%
+      }
+      \strng{namehash}{9821c9526d9c5399e3431ee6820db68b}
+      \strng{fullhash}{9821c9526d9c5399e3431ee6820db68b}
+      \field{sortinit}{0}
+      \field{labeltitle}{A Common Pesticide Decreases Foraging Success and Survival in Honey bees}
+      \field{journaltitle}{Sciencemag}
+      \field{title}{A Common Pesticide Decreases Foraging Success and Survival in Honey bees}
+      \field{year}{2012}
+    \endentry
+    \entry{dukas08}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=161409b481930e9f0b3c1db6d42790be}{Dukas}{D\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=161409b481930e9f0b3c1db6d42790be}{Dukas}{D\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{161409b481930e9f0b3c1db6d42790be}
+      \strng{fullhash}{161409b481930e9f0b3c1db6d42790be}
+      \field{sortinit}{0}
+      \field{labeltitle}{Mortality rates of honey bees in the wild}
+      \field{journaltitle}{Insectes Sociaux}
+      \field{title}{Mortality rates of honey bees in the wild}
+      \field{year}{2008}
+    \endentry
+    \entry{schmickl07}{article}{}
+      \name{labelname}{2}{}{%
+        {{hash=1a656c9ed703efa748474c75dcabb52b}{Schmickl}{S\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=fd07aa540bcaf8e052838d5e978964c6}{Crailsheim}{C\bibinitperiod}{Karl}{K\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=1a656c9ed703efa748474c75dcabb52b}{Schmickl}{S\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=fd07aa540bcaf8e052838d5e978964c6}{Crailsheim}{C\bibinitperiod}{Karl}{K\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{34da9b937020e1bdf8dd3814165831cf}
+      \strng{fullhash}{34da9b937020e1bdf8dd3814165831cf}
+      \field{sortinit}{0}
+      \field{labeltitle}{HoPoMo: A model of honeybee intracolonial population dynamics and resource management}
+      \field{issn}{0304-3800}
+      \field{journaltitle}{Ecological Modelling}
+      \field{number}{1–2}
+      \field{title}{HoPoMo: A model of honeybee intracolonial population dynamics and resource management}
+      \field{volume}{204}
+      \field{year}{2007}
+      \field{pages}{219\bibrangedash 245}
+      \verb{doi}
+      \verb http://dx.doi.org/10.1016/j.ecolmodel.2007.01.001
       \endverb
     \endentry
   \endsortlist
