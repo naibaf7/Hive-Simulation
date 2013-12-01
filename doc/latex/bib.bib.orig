@@ -76,8 +76,9 @@
 
 
 @article{decourtye04,
-	title		= "Imidacloprid impairs memory and brain metabolism in the honeybee (Apis mellifera L.)",
-	journal		= "Pesticide Biochemistry and Physiology",
+<<<<<<< HEAD
+	title			= "Effects of imidacloprid and deltamethrin on associative learning in honeybees under semi-field and laboratory conditions ",
+	journal		= "Ecotoxicology and Environmental Safety ",
 	volume		= "57",
 	number		= "3",
 	pages			= "410 - 419",
@@ -85,6 +86,17 @@
 	issn			= "0147-6513",
 	doi			= "http://dx.doi.org/10.1016/j.ecoenv.2003.08.001",
 	author		= "Axel Decourtye and James Devillers and Sophie Cluzeau and Mercedes Charreton and Minh-Hà Pham-Delègue",
+=======
+	title		= "Imidacloprid impairs memory and brain metabolism in the honeybee (Apis mellifera L.)",
+	journal		= "Pesticide Biochemistry and Physiology",
+	volume		= "78",
+	number		= "2",
+	pages		= "83 - 92",
+	year		= "2004",
+	issn		= "0048-3575",
+	doi			= "http://dx.doi.org/10.1016/j.pestbp.2003.10.001",
+	author		= "Axel Decourtye and Catherine Armengaud and Michel Renou and James Devillers and Sophie Cluzeau and Monique Gauthier and Minh-Hà Pham-Delègue",
+>>>>>>> dd39b3fc7d351323834038a5c83bb9c097911186
 }
 
 
