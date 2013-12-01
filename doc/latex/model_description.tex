@@ -1,6 +1,6 @@
 \section{Description of the Model}
 \subsection{Basic model: Hive simulation}
-	\label{hiveSimulation}
+	\label{chap:basicModel}
 	Our model is widely based on the studies and equations of \textit{Khoury et al.} \cite{khoury13}. We used his quantitative models (equation~\ref{eq:changeBroodNumbers} to~\ref{eq:changeFoodStoreConst}) as described bellow and added new parameters to find out more about the bee's behaviour.\\
 	Food, seasons, brood, foragers and hive bees are the cornerstone of our model. The dynamics of the hive is based on the bee's behaviour and their interaction with the environment as well as natural influences, i.e. seasons (which are separately added to \textit{Khoury's} model). Food here means nectar and pollen, which doesn't need to be further distinguished after according to \textit{Khoury} for simplicity reasons. After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the brood to the food income and the relations between the bee number. Neglecting the complex process of reaching adulthood, we assume, according to \textit{Khoury} that larvae become adult hive bees 12 days after pupation. The mortality rate of hive bees or capped brood is negligible if there are not specific diseases implemented. The agents are only female bees, since they are responsible for maintenance and sustainability of the hive and foraging process. The males are ordinary hive bees. With all these information we can set up the equation for the brood number change:
 	
@@ -91,9 +91,9 @@
 			When a bee agent gets a foraging job assigned, the agent continues the following way:
 			\begin{itemize}
 				\item Among the available waggle dances, the forager chooses randomly and evaluates if the food source is good enough ($p < q$) to visit or not (see chapter \ref{chap:foragersDistribution}). This is repeated in every iteration step until the forager decides to visit the flower patch represented by the chosen waggle dance.
-				\item The forager flies to the patch and, once reached, collects as much food as the flowers in the patch allow (see chapter \ref{chap:mapFlowerPatchQuality}).
+				\item The forager flies to the patch and, once reached, collects as much food as the flowers in the patch allow (see chapter \ref{chap:foodCollection}).
 				\item After foraging, the bee returns to the hive. Path optimization may occur again.
-				\item Back in the hive, the forager unloads the collected food (increasing $f_{d,t}$, equation \ref{eq:changeFoodStoreDyn}).
+				\item Back in the hive, the forager unloads the collected food (increasing $f_{d,t}$, equations \ref{eq:foodChangeDailyComputation} and \ref{eq:changeFoodStoreDyn}).
 				\item The bee now has to evaluate the food source several times (($p < q$), once per iteration step) and decide if it is worth reporting the patch (executing a waggle dance) or not.
 				\item A final evaluation ($p < q$) has to be done to decide if the forager will abandon it's own food source and become unemployed or fly to the same patch again.
 			\end{itemize}
@@ -157,17 +157,18 @@
 			\end{equation}
 			
 			Obviously, if the new patch is the best one, $q_w > 1$ holds, otherwise $q_w \in (0,1]$. In the first case there will always be a waggle dance propagating this patch. Otherwise it depends on how the bee chooses randomly $p \in [0,1]$ and then if $p < q_w$ holds. The same evaluation happens when a bee has to decide on giving up a patch or after watching a waggle dance (see fig. \ref{fig:stateTransitionsEnvironment}). \\
-			Of course, on the implementation side, we have to keep track which vector index $i \in [1,n_w] \subsetneq \N$ belongs to which path element. The path a bee chooses will be copied to the bee's memory.\\
+			Of course, on the implementation side, we have to keep track which vector index $i \in \{1,2, \ldots n_w\}$ belongs to which path element. The path a bee chooses is copied to the bee's memory.\\
 
-			A path for a certain patch can get smaller by optimization (see chapter \ref{chap:pathOptimization}), thus we can obtain a better relative quality $q_w$. This will lead to higher propagation probability for the same patch. This means more bees will (over time) take the shorter path to any given flower patch, either by optimizing themselves or by looking at waggle dances of patches with shorter paths.\\
+			A path for a certain patch can get smaller by optimization (see chapter \ref{chap:pathOptimization}), thus the patch can obtain a better relative quality $q_w$. This will lead to higher propagation probability for the same patch. This means more bees will (over time) take the shorter path to any given flower patch, either by optimizing themselves or by looking at waggle dances of patches with shorter paths.\\
 	
 			The question arises how bees can have such deep knowledge of the own patch and the quality of patches represented by waggle dances. \textit{T.D. Seeley} \cite{seeley95} gives insight and assumptions on this matter. In chapter 5.4., p. 92, he states that bees can use dance duration, frequency and variation to communicate patch profitability. This indicates our model is an useful approximation in terms of waggle dance/path sharing. In chapter 5.5, he writes that travel distance and expected profit are the driving factors in determining patch quality. We also added the patch size $A_w$ in our model, which should be fine as it is also a profit indicator when looking at the patch in a larger scale. The last question is if bees have preprogrammed knowledge what a good and a bad flower patch is or if this is a relative question depending on daily situations. We assumed the second one, and \textit{T.D. Seeley} confirms this in chapter 5.7. on p. 104: For food unloading, hive bees prefer to unload the most profitable income first. This means bees with a bad flower patch have to wait longer, telling them their choice was probably not the best. Waiting times may vary randomly, thus adding randomness to the evaluations ($p < q$, fig. \ref{fig:stateTransitionsEnvironment}) makes sense as well.
 	
 		\subsubsection{Food collection}
-			With every flight, a bee can gather up to $f_b = \min(b_w,f_{b,max})$ grams of pollen and nectar, where $f_{b,max}$ is the physical top limit of the bee. $b_w$ is derived from $f_{b,f}$ (see chapter \ref{chap:flowerPatchesAndFood}) by multiplying $f_{b,f}$ with the growing quality of a certain patch on day $t$, denoted $q_{p,t} \in (0,1]$. The daily food sum is increased every time a bee reaches the hive:
+			\label{chap:foodCollection}
+			With every flight, a bee can gather $f_b = \min(f_{p,t},f_{b,max})$ grams of pollen and nectar, where $f_{b,max}$ is the physical top limit of the bee. $f_{p,t}$ is derived from $f_{b,f}$ (see chapter \ref{chap:flowerPatchesAndFood}) by multiplying $\max(f_{b,f})$ with the growing quality of a certain patch on day $t$, denoted $b_w \in (0,1]$. Note that $b_w$ itself is derived from the map (see chapter \ref{chap:mapFlowerPatchQuality}) and $f_{b,f}$. The daily food sum is increased every time a forager bee reaches the hive:
 			
 			\begin{equation}\label{eq:foodChangeDailyComputation}
-				f_{d,t} = f_{d,t} + f_b \cdot F_{b,t} = f_{d,t} + \min(f_{b,f} \cdot q_{p,t},f_{b,max}) \cdot F_{b,t}
+				f_{d,t} = f_{d,t} + f_b \cdot F_{b,t} = f_{d,t} + \min(\max(f_{b,f}) \cdot b_w,f_{b,max}) \cdot F_{b,t}
 			\end{equation}
 			
 			An additional factor $F_{b,t}$ is used for clustering. This means we only simulate up to $\frac{F}{F_{b,t}}$ actual agents on day $t$ and then interpolate to the actual value, which saves a lot of computation time. For relatively small cluster sizes, respectively many actual agents (in the order of 1000), the variation of $f_{d,t}$ will be small because the mean value of bees visiting a patch over a whole day is about the same as without clustering, according to the law of large numbers (LLN).\\
@@ -197,7 +198,7 @@
 			
 			\begin{figure}
 				\centering
-				\scalebox{0.9}{\includegraphics{data/seasonal_flowers.eps}}
+				\scalebox{0.7}{\includegraphics{data/seasonal_flowers.eps}}
 				\caption{\textit{This figure shows the change of the mass of the hive for any day in the year. It correlates with the quality of a flower patch and the type of flower, respectively.}}
 				\label{fig:seasonalFlowers}
 			\end{figure}
@@ -213,5 +214,5 @@
 			The recruitment factor $\alpha = 0.25$ is set according to \textit{Khoury's} model.
 			
 		
-		
+		%TODO:
 
