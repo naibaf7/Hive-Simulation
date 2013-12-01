@@ -1970,25 +1970,27 @@
     <bcf:citekey order="3">potts10</bcf:citekey>
     <bcf:citekey order="4">thomann13</bcf:citekey>
     <bcf:citekey order="5">decourtye04</bcf:citekey>
-    <bcf:citekey order="6">khoury13</bcf:citekey>
-    <bcf:citekey order="7">seeley95</bcf:citekey>
-    <bcf:citekey order="8">khoury13</bcf:citekey>
-    <bcf:citekey order="9">seeley95</bcf:citekey>
+    <bcf:citekey order="6">bernadou09</bcf:citekey>
+    <bcf:citekey order="7">khoury13</bcf:citekey>
+    <bcf:citekey order="8">seeley95</bcf:citekey>
+    <bcf:citekey order="9">khoury13</bcf:citekey>
     <bcf:citekey order="10">seeley95</bcf:citekey>
-    <bcf:citekey order="11">khoury13</bcf:citekey>
-    <bcf:citekey order="12">wright08</bcf:citekey>
-    <bcf:citekey order="13">khoury13</bcf:citekey>
+    <bcf:citekey order="11">seeley95</bcf:citekey>
+    <bcf:citekey order="12">khoury13</bcf:citekey>
+    <bcf:citekey order="13">wright08</bcf:citekey>
     <bcf:citekey order="14">khoury13</bcf:citekey>
-    <bcf:citekey order="15">seeley95</bcf:citekey>
+    <bcf:citekey order="15">khoury13</bcf:citekey>
     <bcf:citekey order="16">seeley95</bcf:citekey>
     <bcf:citekey order="17">seeley95</bcf:citekey>
     <bcf:citekey order="18">seeley95</bcf:citekey>
-    <bcf:citekey order="19">MVTB</bcf:citekey>
-    <bcf:citekey order="20">khoury13</bcf:citekey>
-    <bcf:citekey order="21">henry12</bcf:citekey>
-    <bcf:citekey order="22">khoury13</bcf:citekey>
-    <bcf:citekey order="23">dukas08</bcf:citekey>
-    <bcf:citekey order="24">MVTB</bcf:citekey>
+    <bcf:citekey order="19">seeley95</bcf:citekey>
+    <bcf:citekey order="20">MVTB</bcf:citekey>
+    <bcf:citekey order="21">khoury13</bcf:citekey>
+    <bcf:citekey order="22">henry12</bcf:citekey>
+    <bcf:citekey order="23">khoury13</bcf:citekey>
+    <bcf:citekey order="24">dukas08</bcf:citekey>
+    <bcf:citekey order="25">schmickl07</bcf:citekey>
+    <bcf:citekey order="26">MVTB</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" type="entry" label="nty">
   <bcf:sorting>

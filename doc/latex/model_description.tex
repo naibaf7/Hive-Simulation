@@ -1,5 +1,6 @@
 \section{Description of the Model}
 \subsection{Basic model: Hive simulation}
+	\label{hiveSimulation}
 	Our model is widely based on the studies and equations of \textit{Khoury et al.} \cite{khoury13}. We used his quantitative models (equation~\ref{eq:changeBroodNumbers} to~\ref{eq:changeFoodStoreConst}) as described bellow and added new parameters to find out more about the bee's behaviour.\\
 	Food, seasons, brood, foragers and hive bees are the cornerstone of our model. The dynamics of the hive is based on the bee's behaviour and their interaction with the environment as well as natural influences, i.e. seasons (which are separately added to \textit{Khoury's} model). Food here means nectar and pollen, which doesn't need to be further distinguished after according to \textit{Khoury} for simplicity reasons. After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the brood to the food income and the relations between the bee number. Neglecting the complex process of reaching adulthood, we assume, according to \textit{Khoury} that larvae become adult hive bees 12 days after pupation. The mortality rate of hive bees or capped brood is negligible if there are not specific diseases implemented. The agents are only female bees, since they are responsible for maintenance and sustainability of the hive and foraging process. The males are ordinary hive bees. With all these information we can set up the equation for the brood number change:
 	
@@ -130,6 +131,16 @@
 				\caption{\textit{This figure shows the change of the mass of the hive for any day in the year. It correlates with the quality of a flower patch and the type of flower, respectively.}}
 				\label{fig:seasonalFlowers}
 			\end{figure}
+			
+			\subsubsection{Bees' parameter}
+			Our bee number input is fully build on \textit{Khoury's} model \cite{khoury13}. He used 16000 hive bees and 8000 forager bees which seems to be the right order of magnitude.
+			
+			The efficiency by which the food is delivered to the brood by the hive bees, $v$, is according to \textit{Khoury} set to 5000 and indicates, that about half of the eggs die before pupation. $f=500$ means, that there is 500 g of food to start with. 
+			
+			As remarked in the section \ref{hiveSimulation}, we simplify the complicated ageing process (larvae to hive bee) to a 12-day-cycle. On the other hand, mortality rate is 0.075 (compare \ref{subsec:Constant food, dynamic egg laying}.) 
+			
+			The recruitment time is according to http://www.life.illinois.edu/robinson/Research/Pdf/BES42.pdf $\alpha = 0.25$ as minimal, as well as for maximal value.   
+			
 		
 		
 	%-Why is it 470 days?
