@@ -20,7 +20,7 @@ plot(transp(plot_data),'-','LineWidth', 2);
 xlim([1 48])
 %Add Graph Descriptions
 legend('patches discoverd','food collected','scout bees','forager bees','food collected change')
-legend('Location','NorthWest')
+legend('Location','NorthEastOutside')
 title(strcat('day ',num2str(actual_day)))
 xlabel('time')
 ylabel('percent / food collected change in percent/10')
