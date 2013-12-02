@@ -10,7 +10,7 @@
 	
 	The bees all navigate on a map with the hive in the middle of the map. Every pixel on the map equals to a patch of 100 m$^2$.\\
 	
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
 		\scalebox{.2}{\includegraphics{data/equal_dist_normal_iv.png}}
 		\caption{\textit{Example of an equal distributed flower patch, normal distributed quality map. Note that the encoding is given by Figure \ref{fig:hsvEncoding} but background black has been swapped out with white for better visibility.}}
@@ -21,7 +21,7 @@
 	
 	To obtain the daily map for environment simulation, the normalized blooming indicator (see fig. \ref{fig:seasonalFlowers}) of each flower type $i \in \{1,2,3\}$ is separately multiplied with the $V_{HSV}$ value of the basis map where flower type $i$ occurs (see fig. \ref{fig:normeqMap}). As a result, some flowers don't appear on the map and those that appear get scaled in quality according to the daily situation (see fig. \ref{fig:modelOverview}). From the obtained scaled quality map, the bees now read the value $b_w$ when visiting a patch. This is the driving factor for forager distribution (see chapter \ref{chap:foragersDistribution}).
 	
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
 		\scalebox{.7}{\includegraphics{data/hsv_encoding.png}}
 		\caption{\textit{Map encoding in HSV.}}
@@ -49,7 +49,7 @@
 		An example of such a random walk is given in Figure \ref{fig:randomWalk}.
 		
 		\label{chap:randomWalk}
-		\begin{figure}
+		\begin{figure}[h]
 			\centering
 			\scalebox{.75}{\includegraphics{data/random_walk.eps}}
 			\caption{\textit{Example of a random walk executed by a scout bee.}}
@@ -58,7 +58,7 @@
 		
 	\subsubsection{Bresenham line algorithm}
 		\label{chap:bresenhamAlgorithm}
-		\begin{figure}
+		\begin{figure}[h]
 			\centering
 			\scalebox{.75}{\includegraphics{data/bresenham.eps}}
 			\caption{\textit{Example of Bresenham's line algorithm with map and path segment.}}
@@ -71,7 +71,7 @@
 	\subsubsection{Path optimization}
 		\label{chap:pathOptimization}
 		
-				\begin{figure}
+				\begin{figure}[h]
 					\centering
 					\scalebox{.9}{\includegraphics{data/optimization.eps}}
 					\caption{\textit{Example of path optimization used to short cut the path to flower patches.}}
