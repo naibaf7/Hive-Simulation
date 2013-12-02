@@ -1,4 +1,5 @@
 function bresenham_test()
+    set(gca,'FontSize',14); 
 
     dim = 15;
 
@@ -33,6 +34,8 @@ function bresenham_test()
     plot(x1,y1,'rx','MarkerSize',10,'LineWidth',3);
     hold on
     plot(x2,y2,'rx','MarkerSize',10,'LineWidth',3);
+    xlabel('distance [10 m]');
+    ylabel('distance [10 m]');
 
 
 end
