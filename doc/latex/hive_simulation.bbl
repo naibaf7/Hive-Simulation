@@ -88,7 +88,7 @@
       \field{year}{2010}
       \field{pages}{345\bibrangedash 353}
       \verb{doi}
-      \verb http://dx.doi.org/10.1016/j.tree.2010.01.007
+      \verb 10.1016/j.tree.2010.01.007
       \endverb
     \endentry
     \entry{thomann13}{article}{}
@@ -116,7 +116,7 @@
       \field{year}{2013}
       \field{pages}{353\bibrangedash 359}
       \verb{doi}
-      \verb http://dx.doi.org/10.1016/j.tplants.2013.04.002
+      \verb 10.1016/j.tplants.2013.04.002
       \endverb
     \endentry
     \entry{decourtye04}{article}{}
@@ -146,7 +146,7 @@
       \field{year}{2004}
       \field{pages}{410\bibrangedash 419}
       \verb{doi}
-      \verb http://dx.doi.org/10.1016/j.ecoenv.2003.08.001
+      \verb 10.1016/j.ecoenv.2003.08.001
       \endverb
     \endentry
     \entry{bernadou09}{article}{}
@@ -176,8 +176,68 @@
       \field{year}{2009}
       \field{pages}{1099\bibrangedash 1106}
       \verb{doi}
-      \verb http://dx.doi.org/10.1016/j.jinsphys.2009.08.019
+      \verb 10.1016/j.jinsphys.2009.08.019
       \endverb
+    \endentry
+    \entry{schweiger10}{article}{}
+      \name{labelname}{22}{}{%
+        {{hash=1f50f37c64c7502e7dc7126ddf832254}{Schweiger}{S\bibinitperiod}{O.}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=b44c98f8c1bdd0129f22864d3bcb3947}{Biesmeijer}{B\bibinitperiod}{J.C.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=dafd017f6c26c58b3a7cded202e86a0e}{Bommarco}{B\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=cf716c94c711b1e164f98cc8eae49df1}{Hickler}{H\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=59c70c0989c2427ef5ed63736730ee90}{Hulme}{H\bibinitperiod}{P.E.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=be49d2de0feaadda86788880a832305b}{Klotz}{K\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=4d039aad26afcb73ca0212de1a318c93}{Kühn}{K\bibinitperiod}{I.}{I\bibinitperiod}{}{}{}{}}%
+        {{hash=f335bb4ec5be0c3253efb44a605834f2}{Moora}{M\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=80b91d305447560f324624642f049ff8}{Nielsen}{N\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=58b7b48f76102de5ed276e47fb7bea82}{Ohlemüller}{O\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=9d08b5165cd9325124405799166c165b}{Petanidou}{P\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=dafbc3be047e8505c411c8abeace07aa}{Potts}{P\bibinitperiod}{S.G.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=6899a66bc4946ba96d2ea184744fdddb}{Pyšek}{P\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=0fa29b5cb20f583dc45146b6b6fb5edb}{Stout}{S\bibinitperiod}{J.C.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=f89737eaaf1fabd1a7644acd658324fa}{Sykes}{S\bibinitperiod}{M.T.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=3f6b3c3120a98f9060ae5777b1a06bee}{Tscheulin}{T\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=f2ce4f8f3cdea38d975d796b5c162876}{Vilà}{V\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=6dcf18b48df0bb47d1d72583acdef06b}{Walther}{W\bibinitperiod}{G.-R.}{G\bibinithyphendelim R\bibinitperiod}{}{}{}{}}%
+        {{hash=e63c7f6146e2094545a77ca445479709}{Westphal}{W\bibinitperiod}{C.}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=4687a71184fb4330aad180fbc4e837ea}{Winter}{W\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=6174750f3b260fb70a3f0a10aa276980}{Zobel}{Z\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=03f8bdef50fd7c6dafc1c253f27f1bea}{Settele}{S\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{22}{}{%
+        {{hash=1f50f37c64c7502e7dc7126ddf832254}{Schweiger}{S\bibinitperiod}{O.}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=b44c98f8c1bdd0129f22864d3bcb3947}{Biesmeijer}{B\bibinitperiod}{J.C.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=dafd017f6c26c58b3a7cded202e86a0e}{Bommarco}{B\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=cf716c94c711b1e164f98cc8eae49df1}{Hickler}{H\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=59c70c0989c2427ef5ed63736730ee90}{Hulme}{H\bibinitperiod}{P.E.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=be49d2de0feaadda86788880a832305b}{Klotz}{K\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=4d039aad26afcb73ca0212de1a318c93}{Kühn}{K\bibinitperiod}{I.}{I\bibinitperiod}{}{}{}{}}%
+        {{hash=f335bb4ec5be0c3253efb44a605834f2}{Moora}{M\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=80b91d305447560f324624642f049ff8}{Nielsen}{N\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=58b7b48f76102de5ed276e47fb7bea82}{Ohlemüller}{O\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=9d08b5165cd9325124405799166c165b}{Petanidou}{P\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=dafbc3be047e8505c411c8abeace07aa}{Potts}{P\bibinitperiod}{S.G.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=6899a66bc4946ba96d2ea184744fdddb}{Pyšek}{P\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=0fa29b5cb20f583dc45146b6b6fb5edb}{Stout}{S\bibinitperiod}{J.C.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=f89737eaaf1fabd1a7644acd658324fa}{Sykes}{S\bibinitperiod}{M.T.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=3f6b3c3120a98f9060ae5777b1a06bee}{Tscheulin}{T\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+        {{hash=f2ce4f8f3cdea38d975d796b5c162876}{Vilà}{V\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=6dcf18b48df0bb47d1d72583acdef06b}{Walther}{W\bibinitperiod}{G.-R.}{G\bibinithyphendelim R\bibinitperiod}{}{}{}{}}%
+        {{hash=e63c7f6146e2094545a77ca445479709}{Westphal}{W\bibinitperiod}{C.}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=4687a71184fb4330aad180fbc4e837ea}{Winter}{W\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=6174750f3b260fb70a3f0a10aa276980}{Zobel}{Z\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=03f8bdef50fd7c6dafc1c253f27f1bea}{Settele}{S\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{5f482d5e485292b3d7eb9c757ac00474}
+      \strng{fullhash}{13479a9b3507bce5b1e7201a939ab540}
+      \field{sortinit}{0}
+      \field{labeltitle}{Multiple stressors on biotic interactions: How climate change and alien species interact to affect pollination}
+      \field{journaltitle}{Biological Reviews}
+      \field{number}{4}
+      \field{title}{Multiple stressors on biotic interactions: How climate change and alien species interact to affect pollination}
+      \field{volume}{85}
+      \field{year}{2010}
+      \field{pages}{777\bibrangedash 795}
     \endentry
     \entry{wright08}{online}{}
       \name{labelname}{1}{}{%
@@ -195,6 +255,23 @@
       \verb{url}
       \verb http://www.beesource.com/point-of-view/walt-wright/how-many-eggs-can-a-queen-lay/
       \endverb
+    \endentry
+    \entry{harbo93}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=60b5130051b4fd84ffafa7c4c2ece09a}{Harbo}{H\bibinitperiod}{John\bibnamedelima R.}{J\bibinitperiod\bibinitdelim R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=60b5130051b4fd84ffafa7c4c2ece09a}{Harbo}{H\bibinitperiod}{John\bibnamedelima R.}{J\bibinitperiod\bibinitdelim R\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{60b5130051b4fd84ffafa7c4c2ece09a}
+      \strng{fullhash}{60b5130051b4fd84ffafa7c4c2ece09a}
+      \field{sortinit}{0}
+      \field{labeltitle}{Effect of brood rearing on honey consumption and the survival of worker honey bees.}
+      \field{journaltitle}{Journal of Apicultural Research}
+      \field{title}{Effect of brood rearing on honey consumption and the survival of worker honey bees.}
+      \field{volume}{32}
+      \field{year}{1993}
+      \field{pages}{11\bibrangedash 17}
     \endentry
     \entry{winston91}{book}{}
       \name{labelname}{1}{}{%
@@ -230,6 +307,26 @@
       \field{title}{Robotics and Machine Vision Toolboxes for MATLAB (MVTB)}
       \verb{url}
       \verb https://code.google.com/p/matlab-toolboxes-robotics-vision/
+      \endverb
+    \endentry
+    \entry{lihoreau11}{article}{}
+      \name{labelname}{2}{}{%
+        {{hash=da78c548f577135bc7aefcfd4674f3b6}{Mathieu\bibnamedelima Lihoreau}{M\bibinitperiod\bibinitdelim L\bibinitperiod}{Steven\bibnamedelimb C.\bibnamedelimi Lecomber}{S\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{Lars\bibnamedelima Chittka}{L\bibinitperiod\bibinitdelim C\bibinitperiod}}%
+        {{hash=add6fafbc81a15114c17299aae4e6a31}{Raine}{R\bibinitperiod}{Nigel\bibnamedelima E.}{N\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=da78c548f577135bc7aefcfd4674f3b6}{Mathieu\bibnamedelima Lihoreau}{M\bibinitperiod\bibinitdelim L\bibinitperiod}{Steven\bibnamedelimb C.\bibnamedelimi Lecomber}{S\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim L\bibinitperiod}{}{}{Lars\bibnamedelima Chittka}{L\bibinitperiod\bibinitdelim C\bibinitperiod}}%
+        {{hash=add6fafbc81a15114c17299aae4e6a31}{Raine}{R\bibinitperiod}{Nigel\bibnamedelima E.}{N\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{6e8be054529a5ee5f9171e8fea98e464}
+      \strng{fullhash}{6e8be054529a5ee5f9171e8fea98e464}
+      \field{sortinit}{0}
+      \field{labeltitle}{Bees do not use nearest-neighbour rules for optimization of multi-location routes}
+      \field{journaltitle}{biology letters}
+      \field{title}{Bees do not use nearest-neighbour rules for optimization of multi-location routes}
+      \field{year}{2011}
+      \verb{doi}
+      \verb 10.1098/rsbl.2011.0661
       \endverb
     \endentry
     \entry{henry12}{article}{}
@@ -283,7 +380,7 @@
       \field{year}{2007}
       \field{pages}{219\bibrangedash 245}
       \verb{doi}
-      \verb http://dx.doi.org/10.1016/j.ecolmodel.2007.01.001
+      \verb 10.1016/j.ecolmodel.2007.01.001
       \endverb
     \endentry
   \endsortlist
