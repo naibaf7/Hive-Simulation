@@ -10,22 +10,22 @@
 	
 	The bees all navigate on a map with the hive in the middle of the map. Every pixel on the map equals to a patch of 100 m$^2$.\\
 	
-	\begin{figure}[h]
-		\centering
-		\scalebox{.2}{\includegraphics{data/equal_dist_normal_iv.png}}
-		\caption{\textit{Example of an equal distributed flower patch, normal distributed quality map. Note that the encoding is given by Figure \ref{fig:hsvEncoding} but background black has been swapped out with white for better visibility.}}
-		\label{fig:normeqMap}
-	\end{figure}
-	
 	The map is encoded in HSV (fig. \ref{fig:hsvEncoding}). From the 360° color hue circle ($H_{HSV} \in \{0,1,\ldots,360\}$), always 60° are assigned to one integer type value $j \in \{0,\ldots,5\}$. Value 0 is used for empty space and values 1 to 3 for the three flower seasons/types we implemented. Values 4 and 5 are for future extensions such as smog/pesticide sources. More values can be gained by assigning less than 60° per type. The saturation $S_{HSV} \in [0,1]$ is always kept at 1. For the flower patch quality basis, the $V_{HSV} \in [0,1]$ component is used.\\
 	
-	To obtain the daily map for environment simulation, the normalized blooming indicator (see fig. \ref{fig:seasonalFlowers}) of each flower type $i \in \{1,2,3\}$ is separately multiplied with the $V_{HSV}$ value of the basis map where flower type $i$ occurs (see fig. \ref{fig:normeqMap}). As a result, some flowers don't appear on the map and those that appear get scaled in quality according to the daily situation (see fig. \ref{fig:modelOverview}). From the obtained scaled quality map, the bees now read the value $b_w$ when visiting a patch. This is the driving factor for forager distribution (see chapter \ref{chap:foragersDistribution}).
-	
-	\begin{figure}[h]
+	\begin{figure}[H]
 		\centering
 		\scalebox{.7}{\includegraphics{data/hsv_encoding.png}}
 		\caption{\textit{Map encoding in HSV.}}
 		\label{fig:hsvEncoding}
+	\end{figure}
+	
+	To obtain the daily map for environment simulation, the normalized blooming indicator (see fig. \ref{fig:seasonalFlowers}) of each flower type $i \in \{1,2,3\}$ is separately multiplied with the $V_{HSV}$ value of the basis map where flower type $i$ occurs (see fig. \ref{fig:normeqMap}). As a result, some flowers don't appear on the map and those that appear get scaled in quality according to the daily situation (see fig. \ref{fig:modelOverview}). From the obtained scaled quality map, the bees now read the value $b_w$ when visiting a patch. This is the driving factor for forager distribution (see chapter \ref{chap:foragersDistribution}).
+	
+	\begin{figure}[H]
+		\centering
+		\scalebox{.2}{\includegraphics{data/equal_dist_normal_iv.png}}
+		\caption{\textit{Example of an equal distributed flower patch, normal distributed quality map. Note that the encoding is given by Figure \ref{fig:hsvEncoding} but background black has been swapped out with white for better visibility.}}
+		\label{fig:normeqMap}
 	\end{figure}
 	
 	
@@ -49,7 +49,7 @@
 		An example of such a random walk is given in Figure \ref{fig:randomWalk}.
 		
 		\label{chap:randomWalk}
-		\begin{figure}[h]
+		\begin{figure}[H]
 			\centering
 			\scalebox{.75}{\includegraphics{data/random_walk.eps}}
 			\caption{\textit{Example of a random walk executed by a scout bee.}}
@@ -58,7 +58,7 @@
 		
 	\subsubsection{Bresenham line algorithm}
 		\label{chap:bresenhamAlgorithm}
-		\begin{figure}[h]
+		\begin{figure}[H]
 			\centering
 			\scalebox{.75}{\includegraphics{data/bresenham.eps}}
 			\caption{\textit{Example of Bresenham's line algorithm with map and path segment.}}
@@ -70,13 +70,6 @@
 \subsection{Foragers}
 	\subsubsection{Path optimization}
 		\label{chap:pathOptimization}
-		
-				\begin{figure}[h]
-					\centering
-					\scalebox{.9}{\includegraphics{data/optimization.eps}}
-					\caption{\textit{Example of path optimization used to short cut the path to flower patches.}}
-					\label{fig:pathOptimization}
-				\end{figure}
 		
 		We assume bees can optimize the original path they obtain from a waggle dance, as the bees are able to orientate themselves in the environment with sun positioning \cite{seeley95}, p. 37. The implementation used is a simple one, in order to keep computation times low. At every point where optimization may occur (see chapter \ref{chap:beesWorkingStates}), there is a 50\% chance of optimization. Optimization works as follows:
 		\[
@@ -92,4 +85,13 @@
 			\end{pmatrix}
 		\]
 		This means every second way point is skipped, while starting- and endpoints are preserved. According to the triangle inequality, the $L^2$ norm of the distance can only become smaller after every such step, therefore it is an optimization in terms of path length. The outcome of such an optimization process on the path from Figure \ref{fig:randomWalk} is presented in Figure \ref{fig:pathOptimization}.\\
+		
+		\begin{figure}[H]
+			\centering
+			\scalebox{.9}{\includegraphics{data/optimization.eps}}
+			\caption{\textit{Example of path optimization used to short cut the path to flower patches.}}
+			\label{fig:pathOptimization}
+		\end{figure}
+		
 		Comparing this model of optimization with empirical observations made by \textit{Lihoreau et. al} \cite{lihoreau11}, p. 3, shows that our model is a good approximation: They state that the bees reduce their travel times gradually with experience and higher numbers of flights. The same happens with our model, as the shortest path is not taken directly, but shorter paths are taken after visiting a certain patch often enough. The only difference is that we don't explicitly simulate multi-patch sequences (bees can visit multiple patches before returning to the hive) while \textit{Lihoreau et. al} primarily focus on this matter.
+		
