@@ -1,9 +1,8 @@
 \section{Implementation}
 \subsection{General implementation}
-	The basic simulation consists only of evaluating equations for every time step. The implementation can be found in the \textit{Hive.m} code, appendix \ref{chap:MATLAB_Hive}. Variable names are chosen so that they match \textit{Khoury et al.} \cite{khoury13} and chapter \ref{chap:basicModel} as close as possible.\\
-	For the advanced model, the following hierarchy is used: The top level is the \textit{hive\_simulation.m} (\ref{chap:MATLAB_hive_simulation}) file, which sets up the whole simulation. Then it keeps track of data and iterates through days in the hive simulation and through seconds in the environment simulation. The \textit{Prop} class (\ref{chap:MATLAB_Base}) is an implicit struct which allows to plug in and change empirical data and simulation parameters. For the environment simulation, \textit{Bee} (\ref{chap:MATLAB_Bee}) is the class for agents, \textit{Hive} (\ref{chap:MATLAB_Hive}) for hives and \textit{World} (\ref{chap:MATLAB_World}) for the maps.\\
-	The final report (simulation results) is stored as class \textit{Report} (\ref{chap:MATLAB_Report}) with an implicit struct, making data analysis easy and extendible.\\
-	All important code files can be found in appendix \ref{chap:MATLAB_Code}.
+	The basic simulation consists only of evaluating equations for every time step. The implementation can be found in the \textit{Hive.m} code. Variable names are chosen so that they match \textit{Khoury et al.} \cite{khoury13} and chapter \ref{chap:basicModel} as close as possible.\\
+	For the advanced model, the following hierarchy is used: The top level is the \textit{hive\_simulation.m} file, which sets up the whole simulation. Then it keeps track of data and iterates through days in the hive simulation and through seconds in the environment simulation. The \textit{Prop} class (\textit{Properties\_Base.m}) is an implicit struct which allows to plug in and change empirical data and simulation parameters. For the environment simulation, \textit{Bee} (\textit{Bee.m}) is the class for agents, \textit{Hive} (\textit{Hive.m}) for hives and \textit{World} (\textit{World.m}) for the maps.\\
+	The final report (simulation results) is stored as class \textit{Report} (\textit{Report.m}) with an implicit struct, making data analysis easy and extendible.\\
 	
 \subsection{Map and flower patch quality}
 	\label{chap:mapFlowerPatchQuality}
@@ -65,7 +64,7 @@
 			\label{fig:bresenham}
 		\end{figure}
 		As the scout bees pass a distance of $v \cdot \Delta t_s$, respectively $\sqrt{(v_x \cdot \Delta t_s)^2 + (v_y \cdot \Delta t_s)^2}$ for a velocity $v$ and time step $\Delta t_s$ in every iteration step, multiple field are being passed at once. In order to check all fields between the last and current iteration step for flower patches, the Bresenham line algorithm is used. With this method, all integer coordinates between two given points on the map are reported back. Afterwards, every obtained point can be checked against the current quality- and type-map of the environment simulation.
-		For this simple algorithm, a pre-existing implementation is used \cite{MVTB}, appendix \ref{chap:MATLAB_bresenham}. Figure \ref{fig:bresenham} is an example on a 15x15 map with coordinates $(x = 4, y = 3)$ to $(x = 12, y = 14)$ and reported points (black boxes).
+		For this simple algorithm, a pre-existing implementation is used \cite{MVTB}. Figure \ref{fig:bresenham} is an example on a 15x15 map with coordinates $(x = 4, y = 3)$ to $(x = 12, y = 14)$ and reported points (black boxes).
 
 \subsection{Foragers}
 	\subsubsection{Path optimization}
