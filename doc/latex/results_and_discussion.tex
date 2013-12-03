@@ -10,18 +10,18 @@
 	
 	The colony we simulated did not survive with any daily mortality rates higher than 0.1. There are not enough bees emerging from eggs in order to compensate the mortality rate. However, we found that the new mortality rates assumed in our simulation (0.075 daily mortality) are still realistic. \textit{Henry et al.} \cite{henry12} describe mortality rates between 0.102 and 0.316 in empirical testing, which is the range in which \textit{Khoury et al.} \cite{khoury13} simulated. \textit{R. Dukas} \cite{dukas08} observed that mortality of foragers is in this range mainly because of predation. As we apply the mortality to all days, even in times and seasons without foraging (all bees stay in the hive), our simulated mortality rates are naturally lower.\\
 	
-	The stored food still increases infinite but now the correlation between the number of forager bees and the daily increase in stored food is very to see (linear correlation coefficient =  0.9775).
+	The stored food still increases infinite.
 
 \subsection{Environmental model}
 	\label{chap:environmentalModelDiscussion}
 	For testing the environmental model, we decided to change the quality indicator and delay seasons (especially autumn). The map (see chapter \ref{chap:mapFlowerPatchQuality}) is always a randomly generated map with equally distributed flower patches across the map and normal distributed flower patch quality. All other parameters are kept fixed so that the results are unambiguous.
 	\subsection{Empirical data based run}
-	In this run we wanted to see if our model can produce the same results as \textit{T.D. Seeley's} experiments from \textit{Wisdom of the hive} pp. 44 fig. 2.14. Our date correlates quite well with the empirical data before swarming occurs, year 1982 compared to graph \ref{chap:sim_R1_1}. As swarming was never a part of our model were satisfied with the accuracy of our model.
+	In this run we wanted to see if our model can produce the same results as \textit{T.D. Seeley's} experiments from \textit{Wisdom of the hive} pp. 44 fig. 2.14. Our date correlates quite well with the empirical data before swarming occurs, year 1982 compared to graph \ref{chap:sim_R1_1}. As swarming was never a part of our model were satisfied with the accuracy of our model.\\
 	Compared to our earlier simulations, the food collection rate is now dominated by the availability of flowers. The forager count is still a important factor as later simulations will show.
 	
 	\subsubsection{Typical simulated day}
-	In a typical summer day after 2.5 houres $80\%$ of the patches are discovered by the scout bees.
-		
+	In a typical summer day after 2.5 hours $80\%$ of the patches are discovered by the scout bees. The rate at which the food is collected is increasing throughout the day. The quite erratic changes in the first 4 hours, we attribute to the finding of new patches and the first path optimizations taking effect. The rate of increase stabilizes as the path optimization has run it's course and no new food sources are discovered.
+	
 		\begin{figure}[H]
 			\centering
 			\scalebox{.75}{\includegraphics{../../code/results/Properties_Base_R1_1_day158.eps}}
@@ -31,7 +31,11 @@
 	 
 	%TODO /PLANNED a summer day video / pictures	
 	\subsubsection{Missing flower seasons}
-	% summer and fall essential
+	In our first set of simulations \ref{chap:sim_R1} we tested if any of the simulated blooming seasons is not essential to the hive. We found that the spring season falling out totally did not prevent the simulated hive from surviving. The peaks of the stored food in the summer where lower then those from the standard run \ref{chap:sim_R1_1}. This is because the bees are able to compensate the missing food income by consuming their stored food.\\
+	On the other hand if summer or fall are missing the hive collapses. In the case of
+	 missing summer food income the bees will survive the summer but the hive population dwindles to a level %could be an interesting question where this level is exactly
+	 where they can not collect enough food in the fall to survive the winter. In case of a missing fall food income, the hive will starve as the bees consume th whole stored food before the winter really kicks in. In both cases the bees try to compensate by assigning more foragers, which doesn't help and would be counterproductive in a real world scenario as the flying foragers would need more food than idle hive-bees % might not be true but kinda sounds good.
+	 and by cannibalizing their brood which can help them trough short term food lack but not through whole missing seasons.
 	\subsubsection{Variations on autumn flowers}
 	% we'll see what i find outd
 	
