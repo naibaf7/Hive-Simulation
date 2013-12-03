@@ -19,11 +19,11 @@ set(fig, 'Position', [0 0 944 400])
 plot(transp(plot_data),'-','LineWidth', 2);
 xlim([1 48])
 %Add Graph Descriptions
-legend('patches discoverd','food collected','scout bees','forager bees','food collected change')
+legend('patches discoverd','food collected','scout bees','forager bees','food collected change * 10')
 legend('Location','NorthEastOutside')
 title(strcat('day ',num2str(actual_day)))
 xlabel('time')
-ylabel('percent / food collected change in percent/10')
+ylabel('percent')
 grid on
 set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
 
