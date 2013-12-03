@@ -1,4 +1,4 @@
-function [ output_args ] = analyze_simulationrun( run_number,iteration_number, varargin )
+function [ uncapped_brood,foragers,hive_bees,food_storage,run_data] = analyze_simulationrun( run_number,iteration_number, varargin )
 %ANALYZE_SIMULATIONRUN Analyze a 1 or 2D simulation run.
 %   Detailed explanation goes here
 
@@ -9,7 +9,7 @@ else
     jteration_number = varargin{1};
 end
 %load report files
-[uncapped_brood,foragers,hive_bees,food_storage,eval_time_days] = load_reports(run_number,iteration_number,jteration_number);
+[uncapped_brood,foragers,hive_bees,food_storage,eval_time_days, run_data] = load_reports(run_number,iteration_number,jteration_number);
 
 if jteration_number > 1;
     %wipeout old matrizes
@@ -130,7 +130,7 @@ for j = 1:length;
 end
 end
 
-function [uncapped_brood,foragers,hive_bees,food_storage,eval_time_days] = load_reports(run_number,iteration_number,jteration_number)
+function [uncapped_brood,foragers,hive_bees,food_storage,eval_time_days ,reports] = load_reports(run_number,iteration_number,jteration_number)
 %load report files
 reports = cell(iteration_number,jteration_number);
 for i = 1:iteration_number;
