@@ -10,7 +10,7 @@ function analyze_food_variation()
         end
     end
     
-    fig = figure();
+    fig = figure('name','food variation');
     set(gcf,'PaperPositionMode','auto','PaperType','A4')
     set(fig, 'Position', [0 0 944 400])
     mean = (1/20)*sum(food_mat);
@@ -20,6 +20,7 @@ function analyze_food_variation()
     set(gca,'FontSize',12);
     plot(mean,'b-','LineWidth',2);
     xlim([1 240])
+    title('food variation')
     legend('standard deviation','food collected (mean)')
     legend('Location','NorthWest')
     xlabel('days')
