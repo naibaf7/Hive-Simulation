@@ -56,30 +56,32 @@ function analyze_day()
     hold on
     plot(1:48,mean,'r-','LineWidth',2,'Color',[0.75, 0, 0.75]);
     
-%     actual_day = obj.data.hives(1).day(select_day).actual_day;
+    actual_day = obj.data.hives(1).day(select_day).actual_day;
 % 
 % 
+      
 %     fig = figure('name',strcat('Properties_Base_R1_1_day',num2str(actual_day)));
 %     set(gcf,'PaperPositionMode','auto','PaperType','A4')
 %     set(fig, 'Position', [0 0 944 400])
-% 
+     %fig = figure();
+     grid on
+     set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
 %     %Draw iterative Graph
-%     set(gca,'FontSize',12);
+     set(gca,'FontSize',12);
 %     plot(transp(plot_data),'-','LineWidth', 2);
      xlim([1 48])
      ylim([0 1])
 %     %Add Graph Descriptions
-%     legend('patches discoverd','food collected','scout bees','forager bees','food collected change \cdot 10')
-%     legend('Location','NorthEastOutside')
+     legend('standard deviation','patches discoverd','standard deviation','food collected','standard deviation','scout bees','standard deviation','forager bees','standard deviation','food collected change \cdot 10')
+     legend('Location','NorthEastOutside')
 %     title(strcat('day ',num2str(actual_day)))
      xlabel('time')
      ylabel('percent')
-     grid on
-     set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
+
 % 
 %     %Save as A4 eps and matlab fig
-%     print(strcat('Properties_Base_R1_1_day',num2str(actual_day)),'-depsc2');
-%     saveas(fig,strcat('Properties_Base_R1_1_day',num2str(actual_day)),'fig');
+     print(strcat('Properties_Base_R2_variation_day',num2str(actual_day)),'-depsc2');
+     saveas(fig,strcat('Properties_Base_R2_variation_day',num2str(actual_day)),'fig');
 
 end
 
