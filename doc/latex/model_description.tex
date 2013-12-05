@@ -21,7 +21,7 @@
 		\frac{dH}{dt}=\phi B(t-\tau)-HR(H,F,f)
 	\end{equation}
 	
-	$\tau$ is the ageing time and $\phi B(t-\tau)$ is the rate at which adult bees develop from pupation to adult bees (emergence rate). $H$ is again the hive bee number, the last term is the recruitment function and given as
+	$\tau$ is the aging time and $\phi B(t-\tau)$ is the rate at which adult bees develop from pupation to adult bees (emergence rate). $H$ is again the hive bee number, the last term is the recruitment function and given as
 		
 		\begin{equation}\label{eq:recruitmentFunction}
 			R(H,F,f) = \alpha_{min} + \alpha_{max}(\frac{b^2}{b^2+f^2})-\sigma(\frac{F}{F+H})
@@ -72,22 +72,19 @@
 		\subsubsection{Bees' working states}
 			\label{chap:beesWorkingStates}
 			The environment simulation only simulates forager and scout bees. Hive bees are not considered as agents. For the foragers and scouts, we developed a set of simple rules which try to be as close as possible to the foraging process described by \textit{T.D. Seeley} \cite{seeley95}. All essential rules are represented in Figure \ref{fig:stateTransitionsEnvironment}.\\
-			\input{data/working_states.tex}
-			
+			\input{data/working_states.tex}			
 			At the beginning of every day ($t_s = 0$), all bees are unemployed. There are three possibilities for every unemployed bee which are considered in every simulation step:
 			\begin{itemize}
 				\item If the amount of active bees according to the current time of the day is not reached, the bee can get a job assigned. Otherwise the bee stays unemployed.
 				\item If the maxima of scouts is not reached (6\% of the bees' foragers \cite*{seeley95}, p.~86), then the bee becomes a scout.
-				\item Otherwise, the bee becomes a forager.\\
-			\end{itemize}
-			
+				\item Otherwise, the bee becomes a forager.
+			\end{itemize}			
 			When a bee agent gets a scouting job assigned, the agent continues the following way:
 			\begin{itemize}
 				\item The scout performs a random walk (see chapter \ref{chap:randomWalk}) and checks with every iteration step, if any flower patch has been passed (see chapter \ref{chap:bresenhamAlgorithm}).
 				\item If a flower patch is found or the flight distance limit is reached, the bee returns to the hive. Path optimization (see chapter \ref{chap:pathOptimization}) may occur.
-				\item Back in the hive, the bee performs a waggle dance if scouting has been successful and goes back to the unemployed state.\\
-			\end{itemize}
-			
+				\item Back in the hive, the bee performs a waggle dance if scouting has been successful and goes back to the unemployed state.
+			\end{itemize}			
 			When a bee agent gets a foraging job assigned, the agent continues the following way:
 			\begin{itemize}
 				\item Among the available waggle dances, the forager chooses randomly and evaluates if the food source is good enough ($p < q$) to visit or not (see chapter \ref{chap:foragersDistribution}). This is repeated in every iteration step until the forager decides to visit the flower patch represented by the chosen waggle dance.
@@ -97,8 +94,7 @@
 				\item The bee now has to evaluate the food source several times (($p < q$), once per iteration step) and decide if it is worth reporting the patch (executing a waggle dance) or not.
 				\item A final evaluation ($p < q$) has to be done to decide if the forager will abandon it's own food source and become unemployed or fly to the same patch again.
 			\end{itemize}
-	
-		
+					
 		\subsubsection{Foragers' distribution across flower patches}
 			\label{chap:foragersDistribution}
 			It is clear from chapter \ref{chap:beesWorkingStates} that after some time, the bees will focus on newly reported and then on the most profitable food sources because of relative quality evaluation. $p \in {[0,1]}$ denotes an equally distributed random value. $q$ denotes the relative quality of a given flower patch compared to all patches currently available as a waggle dance. In detail, the evaluation ($p < q$) works as follows:\\
