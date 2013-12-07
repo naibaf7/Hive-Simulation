@@ -1,6 +1,6 @@
 \section{Implementation}
 \subsection{General implementation}
-	The basic simulation consists only of evaluating equations for every time step. The implementation can be found in the \textit{Hive.m} code. Variable names are chosen so that they match \textit{Khoury et al.} \cite{khoury13} and chapter \ref{chap:basicModel} as close as possible.\\
+	The basic simulation consists only of the evaluation of the equations for every time step. The implementation can be found in the \textit{Hive.m} code. Variable names are chosen so that they match \textit{Khoury et al.} \cite{khoury13} and chapter \ref{chap:basicModel} as close as possible.\\
 	For the advanced model, the following hierarchy is used: The top level is the \textit{hive\_simulation.m} file, which sets up the whole simulation. Then it keeps track of data and iterates through days in the hive simulation and through seconds in the environment simulation. The \textit{Prop} class (\textit{Properties\_Base.m}) is an implicit struct which allows to plug in and change empirical data and simulation parameters. For the environment simulation, \textit{Bee} (\textit{Bee.m}) is the class for agents, \textit{Hive} (\textit{Hive.m}) for hives and \textit{World} (\textit{World.m}) for the maps.\\
 	The final report (simulation results) is stored as class \textit{Report} (\textit{Report.m}) with an implicit struct, making data analysis easy and extendible.\\
 	
