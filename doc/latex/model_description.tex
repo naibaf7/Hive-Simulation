@@ -151,7 +151,7 @@
 	
 		\subsubsection{Food collection}
 			\label{chap:foodCollection}
-			With every flight, a bee can gather $f_b = \min(f_{p,t},f_{b,max})$ grams of pollen and nectar, where $f_{b,max}$ is the physical top limit of the bee. $f_{p,t}$ is derived from $f_{b,f}$ (see chapter \ref{chap:flowerPatchesAndFood}) by multiplying $\max(f_{b,f})$ with the growing quality of a certain patch on day $t$, denoted $b_w \in (0,1]$. Note that $b_w$ itself is derived from the map (see chapter \ref{chap:mapFlowerPatchQuality}) and $f_{b,f}$. The daily food sum is increased every time a forager bee reaches the hive:			
+			With every flight, a bee can gather $f_b = \min(f_{p,t},f_{b,max})$ grams of pollen and nectar, where $f_{b,max}$ is the physical top limit of the bee. $f_{p,t}$ (the reward of a certain patch) is derived from $f_{b,f}$ (see chapter \ref{chap:flowerPatchesAndFood}) by multiplying $\max(f_{b,f})$ with the growing quality of a certain patch on day $t$, denoted $b_w \in (0,1]$. Note that $b_w$ itself is derived from the map (see chapter \ref{chap:mapFlowerPatchQuality}) and the normalized $\frac{f_{b,f}}{\max(f_{b,f})}$. The daily food sum is increased every time a forager bee reaches the hive:			
 			\begin{equation}\label{eq:foodChangeDailyComputation}
 				f_{d,t} = f_{d,t} + f_b \cdot F_{b,t} = f_{d,t} + \min(\max(f_{b,f}) \cdot b_w,f_{b,max}) \cdot F_{b,t}
 			\end{equation}
