@@ -26,7 +26,7 @@ legend('patches discoverd','food collected','scout bees','forager bees','food co
 legend('Location','NorthEastOutside')
 title(strcat('day ',num2str(actual_day)))
 xlabel('time')
-ylabel('percent')
+ylabel('fraction of day peak')
 grid on
 set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
 

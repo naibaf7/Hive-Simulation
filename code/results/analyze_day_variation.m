@@ -31,7 +31,7 @@ function analyze_day()
     legend('standard deviation','patches discoverd');
     legend('Location','NorthEastOutside')
     xlabel('time')
-    ylabel('percent')
+    ylabel('fraction of day peak') 
     xlim([1 48])
     set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
 
@@ -47,7 +47,7 @@ function analyze_day()
     legend('standard deviation','food collected');
     legend('Location','NorthEastOutside')
     xlabel('time')
-    ylabel('percent')
+    ylabel('fraction of day peak') 
     xlim([1 48])
     set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
     
@@ -62,7 +62,7 @@ function analyze_day()
     legend('standard deviation','scout bees');
     legend('Location','NorthEastOutside')
     xlabel('time')
-    ylabel('percent')
+    ylabel('fraction of day peak') 
     xlim([1 48])
     set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
     
@@ -77,7 +77,7 @@ function analyze_day()
     legend('standard deviation','forager bees');
     legend('Location','NorthEastOutside')
     xlabel('time')
-    ylabel('percent')
+    ylabel('fraction of day peak') 
     xlim([1 48])
     set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
     
@@ -92,7 +92,7 @@ function analyze_day()
     legend('standard deviation','food change');
     legend('Location','NorthEastOutside')
     xlabel('time')
-    ylabel('percent')
+    ylabel('fraction of day peak') 
     xlim([1 48])
     set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
 

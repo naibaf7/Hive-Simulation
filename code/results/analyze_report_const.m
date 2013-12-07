@@ -40,7 +40,7 @@ legend('uncapped brood','forager bees','hive bees','stored food')
 legend('Location','NorthWest')
 title('hive statistics')
 xlabel('days')
-ylabel('count / grams')
+ylabel('bees | grams')
 
 %Draw bee and food change
 s(2) = subplot(2,1,2);
@@ -48,10 +48,10 @@ plot(transp(plot_data(5:6,:)),'-','LineWidth', 2)
 xlim([0 test_time])
 %Add Graph Descriptions
 title('bee and food change')
-legend('bee change','food change')
+legend('bee change','food change \cdot 10')
 legend('Location','NorthWest')
 xlabel('days')
-ylabel('(bees or 10g)/day')
+ylabel('bees/day | grams/day')
 
 
 %Link all the x-axis
