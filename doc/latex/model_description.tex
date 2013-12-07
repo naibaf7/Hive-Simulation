@@ -2,11 +2,11 @@
 \subsection{Basic model: Hive simulation}
 	\label{chap:basicModel}
 	Our model is widely based on the studies and equations of \textit{Khoury et al.} \cite{khoury13}. We used his quantitative models (equation~\ref{eq:changeBroodNumbers} to~\ref{eq:changeFoodStoreConst}) as described bellow and added new parameters to find out more about the bee's behaviour.\\
-	Food, seasons, brood, foragers and hive bees are the cornerstone of our model. The dynamics of the hive is based on the bee's behaviour and their interaction with the environment as well as natural influences, i.e. seasons (which are separately added to \textit{Khoury's} model). Food here means nectar and pollen, which doesn't need to be further distinguished after according to \textit{Khoury} for simplicity reasons. After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the brood to the food income and the relations between the bee number. Neglecting the complex process of reaching adulthood, we assume, according to \textit{Khoury} that larvae become adult hive bees 12 days after pupation. The mortality rate of hive bees or capped brood is negligible if there are not specific diseases implemented. The agents are only female bees, since they are responsible for maintenance and sustainability of the hive and foraging process. The males are ordinary hive bees. With all these information we can set up the equation for the brood number change:	
+	Food, seasons, brood, foragers and hive bees are the cornerstone of our model. The dynamics of the hive is based on the bee's behaviour and their interaction with the environment as well as natural influences, i.e. seasons (which are separately added to \textit{Khoury's} model). Food here means nectar and pollen, which are not further distinguished according to \textit{Khoury} to keep simplify the model (see chapter \ref{chap:modelRestrictions}). After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the brood to the food income and the relations between the bee number. Neglecting the complex process of reaching adulthood, we assume, according to \textit{Khoury} that larvae become adult hive bees 12 days after pupation. The mortality rate of hive bees or capped brood is negligible if there are not specific diseases implemented. The agents are only female bees, since they are responsible for maintenance and sustainability of the hive and foraging process. The males are ordinary hive bees. With all these information we can firstly set up the equation for the brood number change:	
 	\begin{equation}\label{eq:changeBroodNumbers}
 		\frac{dB}{dt} = LS(H,f)-\phi B
 	\end{equation}	
-	It associates different factors to the brood number. $L$ is rate of the bee queen and $S(H,f)$ is a function of the survival rate dependent on the amount of food and the number of hive bees. $\phi$ is the adult bee emerging factor and $B$ represents the uncapped brood. The equation gives us the survival rate of the brood $B$. $S(H,f)$ with $H$ representing the number of hive bees and $f$ the amount of food, is modelled as following:
+	It associates different factors to the brood number. $L$ is rate of the bee queen and $S(H,f)$ is a function of the survival rate dependent on the amount of food $f$ and the number of hive bees $H$. $\phi$ is the adult bee emerging factor and $B$ represents the brood. The equation gives us the survival rate of the brood. $S(H,f)$ is modelled as following:
 	\begin{equation}\label{eq:functionHiveBeesFood}
 		S(H,f)=\frac{f^2}{f^2+b^2}\frac{H}{H+v}
 	\end{equation}	
@@ -17,7 +17,7 @@
 		\frac{dH}{dt}=\phi B(t-\tau)-HR(H,F,f)
 	\end{equation}
 	
-	$\tau$ is the aging time and $\phi B(t-\tau)$ is the rate at which adult bees develop from pupation to adult bees (emergence rate). $H$ is again the hive bee number, the last term is the recruitment function and given as		
+	$\tau$ is the ageing time and $\phi B(t-\tau)$ is the rate at which adult bees develop from pupation to adult bees (emergence rate). $H$ is again the hive bee number, the last term is the recruitment function and given as		
 		\begin{equation}\label{eq:recruitmentFunction}
 			R(H,F,f) = \alpha_{min} + \alpha_{max}(\frac{b^2}{b^2+f^2})-\sigma(\frac{F}{F+H})
 		\end{equation}
@@ -28,14 +28,14 @@
 		\frac{dF}{dt} = HR(H,F,f)-m F
 	\end{equation}
 	
-	The mortality rate $mF$ indicated the rate at which the foragers $F$ die. The recruitment function is the same as above.\\	
-	The last equation outlines with the rate of food change in the hive's stores. Forager bees and hive bees are treated equally because their consumption is almost the same. 	
+	The mortality rate $mF$ indicates the rate $m$ at which the foragers $F$ die. The recruitment function is the same as above.\\	
+	The fourth and last equation tells us the rate of food change in the hive's stores. Foragers and hive bees are treated equally because their consumption is, according to \textit{Khoury}, almost the same. 	
 	\begin{equation}\label{eq:changeFoodStoreConst}
 		\frac{df}{dt} = c F - \gamma_A (F+H) - \gamma_B B
 	\end{equation}
 	
-	where $c$ describes the average food a single forager collects per day.$\gamma$ is the consumption of adult bees ($A$) and brood ($B$). In our extended model, we implemented an actual environment simulation so that the food income changes over time (see chapter \ref{chap:advancedModel}). Equation \ref{eq:changeFoodStoreConst} is then replaced by equation \ref{eq:changeFoodStoreDyn}, which takes the daily food income instead of a fixed rate $c$ per forager.\\	
-	With those four differential equations, the change of brood (\ref{eq:changeBroodNumbers}), hive bee number (\ref{eq:changeHiveBees}), foragers (\ref{eq:changeForagers}) and change of food store (\ref{eq:changeFoodStoreConst}) and the functions of the brood survival rate, correlating to the hive bee number and the food store (\ref{eq:functionHiveBeesFood}) and a recruitment function (\ref{eq:recruitmentFunction}), we can simulate a basic model of a hive with its interactions and changes. So far, it is identical with \textit{Khoury's} model.
+	where $c$ describes the average food a single forager collects per day. $\gamma$ is the consumption of adult bees ($A$) and brood ($B$). In our extended model, we implemented an actual environment simulation so that the food income changes over time (see chapter \ref{chap:advancedModel}). Equation \ref{eq:changeFoodStoreConst} is then replaced by equation \ref{eq:changeFoodStoreDyn}, which takes the daily food income instead of a fixed rate $c$ per forager.\\	
+	With those four differential equations, the change of brood (\ref{eq:changeBroodNumbers}), change of hive bee number (\ref{eq:changeHiveBees}), change of foragers (\ref{eq:changeForagers}) and change of food store (\ref{eq:changeFoodStoreConst}) and the functions of the brood survival rate, correlating to the hive bee number and the food store (\ref{eq:functionHiveBeesFood}) and a recruitment function (\ref{eq:recruitmentFunction}), we can simulate a basic model of a hive with its interactions and changes. So far, it is identical with \textit{Khoury's} model.
 
 	\subsection{Changing laying rate over seasons}
 		\begin{figure}[H]
@@ -192,7 +192,7 @@
 			Our bee numbers are fully built on \textit{D. S. Khoury's} model \cite{khoury13}. He used 16~000 hive bees and 8~000 forager bees which seems to be the right order of magnitude and is congruent with \textit{T. D. Seeley's} estimation of about 20~000 \cite{seeley95}. 
 			
 			
-			$v$ is the parameter that governs the effect of hive bees on brood survival, $f$ governs the food effect on brood survival respectively (see section \ref{chap:basicModel}). $f=50~000$ corresponds to 50~000 g of food to start with. The parameter $\phi=\frac{1}{9}$, the adult bee emerging factor is assumed. Those values are extracted from \textit{Khoury's} paper and are empirically tested but not explained any further.\\ Although, the food consumption for adult bees (0.007 g) and brood (0.018 g) is taken from explicitly mentioned data \cite{harbo93}.
+			$v$ is the parameter that governs the effect of hive bees on brood survival, $b$ governs the food effect on brood survival respectively (see chapter \ref{chap:basicModel}). $f=50~000$ corresponds to 50~000 g of food to start with. The parameter $\phi=\frac{1}{9}$, the adult bee emerging factor is assumed. Those values are extracted from \textit{Khoury's} paper and are empirically tested but not explained any further.\\ Although, the food consumption for adult bees (0.007 g) and brood (0.018 g) is taken from explicitly mentioned data \cite{harbo93}.
 					
 			As remarked at the beginning of section \ref{chap:basicModel}, we simplify the complicated ageing process (larvae to hive bee) to 12 days. Mortality rate is set to 0.075 and thus slightly lower than the values of \textit{Khoury}. This is discussed later in section \ref{chap:constantFoodDynamicLaying}.
 			\\
