@@ -18,12 +18,10 @@
 	
 \subsection{Empirical data based runs}
 	In this run we wanted to see if our model can produce the same results as \textit{T.D. Seeley's} experiments from \textit{Wisdom of the hive} p. 44, Figure  2.14, year 1982. Our graphs in \ref{chap:sim_R1_1} correlate well with the empirical data (before a swarm leaves the hive). As swarming was never a part of our model, we're satisfied with the accuracy of the results. Furthermore, we could compare the graphs only visually, since \textit{T.D. Seeley} did not publish any  extensive numerical data of his empirical evidence.\\
-	Compared to our earlier simulations, the food collection rate is now dominated by the availability of flowers. The forager count is still a important factor as later simulations show.
-	%TODO: What kind of factor? please explain this sentence and maybe refer to those "later simulations".
+	Compared to our earlier simulations, the food collection rate is now dominated by the availability of flowers and the forager count.
 	
 	\subsubsection{Typical simulated day (environment interaction)}
-		On a typical summer day (see fig. \ref{fig:day158}), the scout bees discover about $80\%$ of the patches after 2.5 hours. The rate at which the food is collected is increasing throughout the day. We attribute the fluctuating changes in the first 4 hours to the discovery of new patches and the first path optimizations taking effect. The slope of stored food stabilizes as the path optimization has run it's course and no new food sources are discovered.\\
-		%TODO: how does the fig work?
+		On a typical summer day, the scout bees discover about $80\%$ of the patches after 2.5 hours. The rate at which the food is collected is increasing throughout the day, which is represented by the \textit{food collected change} graph in Figure \ref{fig:day158}. We attribute the fluctuating changes in the first 4 hours to the discovery of new patches and the first path optimizations taking effect. The change of collected food stabilizes as the path optimization has run it's course and no new food sources are discovered (see fig. \ref{fig:day158}).\\
 		
 		For the statistical analysis of a typical summer day, we've averaged the values and calculated the standard deviations for every parameter captured during an environment simulation (see fig. \ref{fig:day158variation}). The 20 runs needed for chapter \ref{chap:variationsOnAutumnFlowers} were used as data basis. For spring and autumn, the plots would look approximately the same because an equal distributed flower map is used. This means the same optimizations and scouting behaviours are expected.\\
 		High correlation can be found between the amount of discovered patches and the slope/change of food income (linear correlation coefficient of 0.9263). This is expected, because with a higher count of discovered patches, bees are able to figure out the best ones and increase their income.
@@ -37,7 +35,7 @@
 		\begin{figure}[H]
 			\centering
 			\scalebox{.75}{\includegraphics{../../code/results/Properties_Base_R1_1_day158.eps}}
-			\caption{\textit{A summer day (day 158) from the standard run R1\_1. Values are given in fraction the maximum value reached on day 158.}}
+			\caption{\textit{A summer day (day 158) from the standard run R1\_1. Values are given in fraction of the maximum value reached on day 158.}}
 			\label{fig:day158}
 		\end{figure}
 		
@@ -63,13 +61,6 @@
 		We found that shifting the season has no huge effect as forager counts do not vary that much in those 16 days difference. We assume that shifting the season back also decreases the blooming quality. Therefore, with $M = 0.5\,\frac{kg}{day}$ (see graphs \ref{chap:sim_R2_4_1} to \ref{chap:sim_R2_4_5}), the hive can not survive. The minimal stability point is around $M = 1\,\frac{kg}{day}$ (see graphs \ref{chap:sim_R2_3_1} to \ref{chap:sim_R2_3_5}). At this point, the variation of collected food over the year (see fig. \ref{fig:foodVariation}) becomes significant enough (3 to 5 kg) to affect the survival.\\
 		
 		Note that the standard deviation in Figure \ref{fig:foodVariation} basically sums up from the environment simulation (daily standard deviation of food income, see fig. \ref{fig:day158variation}). Therefore it only increases on foraging days, not during days without foraging, and does not decrease.
-		
-		%\begin{figure}[H]
-		%	\centering
-		%	\scalebox{.75}{\includegraphics{../../code/results/survival.eps}}
-		%	\caption{\textit{Survival (white) or death (black) of the hive due to lack of food (< 20 kg) or lack of bees (< 1000 %bees) at the end of the year.}}
-		%	\label{fig:hiveSurvival}
-		%\end{figure}
 		
 		\begin{figure}[H]
 			\centering
