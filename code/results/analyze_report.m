@@ -73,7 +73,7 @@ plot(transp(plot_data(5:6,:)),'-','LineWidth', 2)
 xlim([0 test_time])
 %Add Graph Descriptions
 title('daily bee and food change')
-legend('bee change','food change \cdot 10')
+legend('bee change','food change \cdot 10^{-1}')
 legend('Location','NorthWest')
 xlabel('days')
 ylabel('bees/day | grams/day')
