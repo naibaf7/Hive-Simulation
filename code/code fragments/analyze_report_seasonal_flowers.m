@@ -23,8 +23,10 @@ set(gcf,'PaperPositionMode','auto','PaperUnit','inches','PaperSize',[5, 2])
 %set(fig, 'Position', [0 0 944 1024])
 %Draw iterative Graph
 
-
+%hold on
 %Draw Patches
+set(gca,'FontSize',14); 
+
 plot(transp(plot_data(12:12,:)),'-','Color',[0 0.5 0],'LineWidth', 2)
 grid on
 xlim([0 test_time])

@@ -1,19 +1,15 @@
 \section{Description of the Model}
 \subsection{Basic model: Hive simulation}
 	\label{chap:basicModel}
-	Our model is widely based on the studies and equations of \textit{Khoury et al.} \cite{khoury13}. We used his quantitative models (equation~\ref{eq:changeBroodNumbers} to~\ref{eq:changeFoodStoreConst}) as described bellow and added new parameters to find out more about the bee's behaviour.\\
-	Food, seasons, brood, foragers and hive bees are the cornerstone of our model. The dynamics of the hive is based on the bee's behaviour and their interaction with the environment as well as natural influences, i.e. seasons (which are separately added to \textit{Khoury's} model). Food here means nectar and pollen, which doesn't need to be further distinguished after according to \textit{Khoury} for simplicity reasons. After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the brood to the food income and the relations between the bee number. Neglecting the complex process of reaching adulthood, we assume, according to \textit{Khoury} that larvae become adult hive bees 12 days after pupation. The mortality rate of hive bees or capped brood is negligible if there are not specific diseases implemented. The agents are only female bees, since they are responsible for maintenance and sustainability of the hive and foraging process. The males are ordinary hive bees. With all these information we can set up the equation for the brood number change:
-	
+	Our model is widely based on the studies and equations of \textit{D.S. Khoury et al.} \cite{khoury13}. We used his quantitative models (equation~\ref{eq:changeBroodNumbers} to~\ref{eq:changeFoodStoreConst}) as described bellow and added new parameters to find out more about the bee's behaviour.\\
+	Food, seasons, brood, foragers and hive bees are the cornerstone of our model. The dynamics of the hive is based on the bee's behaviour and their interaction with the environment as well as natural influences, i.e. seasons (which are separately added to \textit{D.S. Khoury's} model). Food here means nectar and pollen, which are not further distinguished according to \textit{D.S. Khoury} to keep simplify the model (see chapter \ref{chap:modelRestrictions}). After the queen laid an egg, a larvae develops inside a honeycomb cell. The equations show the proportionality of the brood to the food income and the relations between the bee number. Neglecting the complex process of reaching adulthood, we assume, according to \textit{D.S. Khoury} that larvae become adult hive bees 12 days after pupation. The mortality rate of hive bees or capped brood is negligible if there are not specific diseases implemented. The agents are only female bees, since they are responsible for maintenance and sustainability of the hive and foraging process. The males are ordinary hive bees. With all these information we can firstly set up the equation for the brood number change:	
 	\begin{equation}\label{eq:changeBroodNumbers}
 		\frac{dB}{dt} = LS(H,f)-\phi B
-	\end{equation}
-	
-	It associates different factors to the brood number. $L$ is rate of the bee queen and $S(H,f)$ is a function of the survival rate dependent on the amount of food and the number of hive bees. $\phi$ is the adult bee emerging factor and $B$ represents the uncapped brood. The equation gives us the survival rate of the brood $B$. $S(H,f)$ with $H$ representing the number of hive bees and $f$ the amount of food, is modelled as following:
-	
+	\end{equation}	
+	It associates different factors to the brood number. $L$ is rate of the bee queen and $S(H,f)$ is a function of the survival rate dependent on the amount of food $f$ and the number of hive bees $H$. $\phi$ is the adult bee emerging factor and $B$ represents the brood. The equation gives us the survival rate of the brood. $S(H,f)$ is modelled as following:
 	\begin{equation}\label{eq:functionHiveBeesFood}
 		S(H,f)=\frac{f^2}{f^2+b^2}\frac{H}{H+v}
-	\end{equation}
-	
+	\end{equation}	
 	The variable $v$ indicates the effect of the hive bees on the brood, whereas $b$ shows the food effect on brood survival. It decreases as food increases. As $f$ and $H$ become very large, $S(H,f)$ becomes constant. The first factor is a sigmoid function and shows the correlation of the food available and the capped brood. A decrease in brood can occur because of lack of food (they cannot be fed) and / or because adult bees consume the larvae to keep the resources in the hive and recycle the proteins (cannibalism). The second factor models the interdependency of the hive bee numbers on the survival of the brood. If there are large stores of food but no hive bees that can provide the food to the larvae, the brood survival also declines.  
 	\\
 	The second differential equation describes the rate at which the number of hive bees changes.	
@@ -21,90 +17,80 @@
 		\frac{dH}{dt}=\phi B(t-\tau)-HR(H,F,f)
 	\end{equation}
 	
-	$\tau$ is the ageing time and $\phi B(t-\tau)$ is the rate at which adult bees develop from pupation to adult bees (emergence rate). $H$ is again the hive bee number, the last term is the recruitment function and given as
-		
+	$\tau$ is the ageing time and $\phi B(t-\tau)$ is the rate at which adult bees develop from pupation to adult bees (emergence rate). $H$ is again the hive bee number, the last term is the recruitment function and given as		
 		\begin{equation}\label{eq:recruitmentFunction}
 			R(H,F,f) = \alpha_{min} + \alpha_{max}(\frac{b^2}{b^2+f^2})-\sigma(\frac{F}{F+H})
 		\end{equation}
 				
 	This function models the change from a hive bee to a forager bee. $\alpha_{min}$ denotes the transition when there is enough food but not much foragers. Vice versa, $\alpha_{max}$ is used for less food. As before, $b$ is the food effect on brood survival and $f$ is the amount of food. $\sigma$ is the strength of social inhibition and is dependent on the number of foragers and hive bees.\\
-	The third differential equation describes correspondingly the rate at which the number of foragers changes:
-	
+	The third differential equation describes correspondingly the rate at which the number of foragers changes:	
 	\begin{equation}\label{eq:changeForagers}
 		\frac{dF}{dt} = HR(H,F,f)-m F
 	\end{equation}
 	
-	The mortality rate $mF$ indicated the rate at which the foragers $F$ die. The recruitment function is the same as above.\\	
-	The last equation outlines with the rate of food change in the hive's stores. Forager bees and hive bees are treated equally because their consumption is almost the same. 
-	
+	The mortality rate $mF$ indicates the rate $m$ at which the foragers $F$ die. The recruitment function is the same as above.\\	
+	The fourth and last equation tells us the rate of food change in the hive's stores. Foragers and hive bees are treated equally because their consumption is, according to \textit{D.S. Khoury}, almost the same. 	
 	\begin{equation}\label{eq:changeFoodStoreConst}
 		\frac{df}{dt} = c F - \gamma_A (F+H) - \gamma_B B
 	\end{equation}
 	
-	where $c$ describes the average food a single forager collects per day.$\gamma$ is the consumption of adult bees ($A$) and brood ($B$). In our extended model, we implemented an actual environment simulation so that the food income changes over time (see chapter \ref{chap:advancedModel}). Equation \ref{eq:changeFoodStoreConst} is then replaced by equation \ref{eq:changeFoodStoreDyn}, which takes the daily food income instead of a fixed rate $c$ per forager.\\
-	
-	With those four differential equations, the change of brood (\ref{eq:changeBroodNumbers}), hive bee number (\ref{eq:changeHiveBees}), foragers (\ref{eq:changeForagers}) and change of food store (\ref{eq:changeFoodStoreConst}) and the functions of the brood survival rate, correlating to the hive bee number and the food store (\ref{eq:functionHiveBeesFood}) and a recruitment function (\ref{eq:recruitmentFunction}), we can simulate a basic model of a hive with its interactions and changes. So far, it is identical with \textit{Khoury's} model.
+	where $c$ describes the average food a single forager collects per day. $\gamma$ is the consumption of adult bees ($A$) and brood ($B$). In our extended model, we implemented an actual environment simulation so that the food income changes over time (see chapter \ref{chap:advancedModel}). Equation \ref{eq:changeFoodStoreConst} is then replaced by equation \ref{eq:changeFoodStoreDyn}, which takes the daily food income instead of a fixed rate $c$ per forager.\\	
+	With those four differential equations, the change of brood (\ref{eq:changeBroodNumbers}), change of hive bee number (\ref{eq:changeHiveBees}), change of foragers (\ref{eq:changeForagers}) and change of food store (\ref{eq:changeFoodStoreConst}) and the functions of the brood survival rate, correlating to the hive bee number and the food store (\ref{eq:functionHiveBeesFood}) and a recruitment function (\ref{eq:recruitmentFunction}), we can simulate a basic model of a hive with its interactions and changes. So far, it is identical with \textit{D.S. Khoury's} model.
 
 	\subsection{Changing laying rate over seasons}
-		\begin{figure}
+		\begin{figure}[H]
 			\centering
 			\scalebox{.75}{\includegraphics{data/egg_plot.eps}}
 			\caption{\textit{The laying rate of the bee queen plotted over a year. The amount of eggs is capped after 2000 eggs. }}
 			\label{fig:dynLayingRate}
 		\end{figure}
 		
-		To make the model more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on \textit{Wisdom of the Hive}, p.~34 \cite{seeley95} are used for the laying rate $L_t$ (see fig.~\ref{fig:dynLayingRate}). \textit{T.D. Seeley} denotes that the queen starts reproducing by early spring. We assumed that reproduction between April/May and October is realistic, as we obtained similar numbers of bees in summer (maxima) and winter (minima) to the empirical data of \textit{T.D. Seeley} \cite{seeley95}. The minimal laying rate of 200 eggs per day is used to compensate mortality during winter. The peak of the laying rate (2000 eggs per day) is the same as used by \textit{Khoury et al.} \cite{khoury13} and \textit{Wright} \cite{wright08}. The results are discussed in chapters \ref{chap:constantFoodConstantLaying} and \ref{chap:constantFoodDynamicLaying} with the corresponding plots in appendix \ref{chap:sim_R0_1} and \ref{chap:sim_R0_2}.
-		
+		To make the model more realistic, equation \ref{eq:changeBroodNumbers} is replaced by equation \ref{eq:changeBroodNumbersTime}. This incorporates that the bee queen does not have a constant laying rate. Instead, interpolated values based on \textit{Wisdom of the Hive}, p.~34 \cite{seeley95} are used for the laying rate $L_t$ (see fig.~\ref{fig:dynLayingRate}). \textit{T.D. Seeley} denotes that the queen starts reproducing by early spring. We assumed that reproduction between April/May and October is realistic, as we obtained similar numbers of bees in summer (maxima) and winter (minima) to the empirical data of \textit{T.D. Seeley} \cite{seeley95}. The minimal laying rate of 200 eggs per day is used to compensate mortality during winter. The peak of the laying rate (2000 eggs per day) is the same as used by \textit{D.S. Khoury et al.} \cite{khoury13} and \textit{Wright} \cite{wright08}. The results are discussed in chapters \ref{chap:constantFoodConstantLaying} and \ref{chap:constantFoodDynamicLaying} with the corresponding plots in appendix \ref{chap:sim_R0_1} and \ref{chap:sim_R0_2}.		
 		\begin{equation}\label{eq:changeBroodNumbersTime}
 			\frac{dB}{dt} = L_tS(H,f)-\phi B
 		\end{equation}
 		
-		The introduction of dynamic laying rates led to problems with the mortality rates tested by \textit{Khoury et al.} \cite{khoury13}. We discuss this in chapter \ref{chap:constantFoodDynamicLaying}.
+		The introduction of dynamic laying rates led to problems with the mortality rates tested by \textit{D.S. Khoury et al.} \cite{khoury13}. We discuss this in chapter \ref{chap:constantFoodDynamicLaying}.
 	
 	\subsection{Advanced model: Environment simulation}
 		\label{chap:advancedModel}
 		\input{data/model_overview.tex}
 
-		As we were interested in observing the social dynamics under different food availability conditions, in contrast to the model of \textit{Khoury et al.} \cite{khoury13}, we had to implement a simulation for the environment. This advanced model introduces an environment with seasons which affect the queen's laying rate (see equation \ref{eq:changeBroodNumbersTime}), the distribution and quality of flower patches and seasonal flower growth.
-		The forager bees are then simulated on the environment, searching and collecting food according to the rules in chapter \ref{chap:beesWorkingStates}. An overview of the complete model is given in Figure \ref{fig:modelOverview}.\\
-		 Note that the environment simulation is triggered for day $t$ after the basic model has computed all differential equations for day $t-1$. If there is no flower blooming on day $t$, we assume the daily food income $f_{d,t} = 0$ (see equation \ref{eq:changeFoodStoreDyn}) and skip the environment simulation for this day.
+		As we were interested in observing the social dynamics under different food availability conditions, in contrast to the model of \textit{D.S. Khoury et al.} \cite{khoury13}, we had to implement a simulation for the environment. This advanced model introduces an environment with seasons which affect the queen's laying rate (see equation \ref{eq:changeBroodNumbersTime}), the distribution and quality of flower patches and seasonal flower growth.
+		The forager bees are then simulated in this environment, searching and collecting food according to the rules in chapter \ref{chap:beesWorkingStates}. An overview of the complete model is given in Figure \ref{fig:modelOverview}.\\
+		Note that the environment simulation is triggered for day $t$ after the basic model has computed all differential equations for day $t-1$. If there is no flower blooming on day $t$, we assume the daily food income $f_{d,t} = 0$ (see equation \ref{eq:changeFoodStoreDyn}) and skip the environment simulation for this day.
 		
 		\subsubsection{Bees' working states}
 			\label{chap:beesWorkingStates}
 			The environment simulation only simulates forager and scout bees. Hive bees are not considered as agents. For the foragers and scouts, we developed a set of simple rules which try to be as close as possible to the foraging process described by \textit{T.D. Seeley} \cite{seeley95}. All essential rules are represented in Figure \ref{fig:stateTransitionsEnvironment}.\\
-			\input{data/working_states.tex}
-			
+			\input{data/working_states.tex}			
 			At the beginning of every day ($t_s = 0$), all bees are unemployed. There are three possibilities for every unemployed bee which are considered in every simulation step:
 			\begin{itemize}
 				\item If the amount of active bees according to the current time of the day is not reached, the bee can get a job assigned. Otherwise the bee stays unemployed.
 				\item If the maxima of scouts is not reached (6\% of the bees' foragers \cite*{seeley95}, p.~86), then the bee becomes a scout.
-				\item Otherwise, the bee becomes a forager.\\
-			\end{itemize}
-			
+				\item Otherwise, the bee becomes a forager.
+			\end{itemize}			
 			When a bee agent gets a scouting job assigned, the agent continues the following way:
 			\begin{itemize}
 				\item The scout performs a random walk (see chapter \ref{chap:randomWalk}) and checks with every iteration step, if any flower patch has been passed (see chapter \ref{chap:bresenhamAlgorithm}).
 				\item If a flower patch is found or the flight distance limit is reached, the bee returns to the hive. Path optimization (see chapter \ref{chap:pathOptimization}) may occur.
-				\item Back in the hive, the bee performs a waggle dance if scouting has been successful and goes back to the unemployed state.\\
-			\end{itemize}
-			
+				\item Back in the hive, the bee performs a waggle dance if scouting has been successful and goes back to the unemployed state.
+			\end{itemize}			
 			When a bee agent gets a foraging job assigned, the agent continues the following way:
 			\begin{itemize}
 				\item Among the available waggle dances, the forager chooses randomly and evaluates if the food source is good enough ($p < q$) to visit or not (see chapter \ref{chap:foragersDistribution}). This is repeated in every iteration step until the forager decides to visit the flower patch represented by the chosen waggle dance.
 				\item The forager flies to the patch and, once reached, collects as much food as the flowers in the patch allow (see chapter \ref{chap:foodCollection}).
 				\item After foraging, the bee returns to the hive. Path optimization may occur again.
-				\item Back in the hive, the forager unloads the collected food (increasing $f_{d,t}$, equations \ref{eq:foodChangeDailyComputation} and \ref{eq:changeFoodStoreDyn}).
-				\item The bee now has to evaluate the food source several times (($p < q$), once per iteration step) and decide if it is worth reporting the patch (executing a waggle dance) or not.
+				\item Back in the hive, the forager unloads the collected food (increasing $f_{d,t}$, see equations \ref{eq:foodChangeDailyComputation} and \ref{eq:changeFoodStoreDyn}).
+				\item The bee now has to evaluate the food source several times (($p < q$), once per iteration step) and decide if it is worth reporting the patch (performing a waggle dance) or not.
 				\item A final evaluation ($p < q$) has to be done to decide if the forager will abandon it's own food source and become unemployed or fly to the same patch again.
 			\end{itemize}
-	
-		
+					
 		\subsubsection{Foragers' distribution across flower patches}
 			\label{chap:foragersDistribution}
-			It is clear from chapter \ref{chap:beesWorkingStates} that after some time, the bees will focus on newly reported and then on the most profitable food sources because of relative quality evaluation. $p \in {[0,1]}$ denotes an equally distributed random value. $q$ denotes the relative quality of a given flower patch compared to all patches currently available as a waggle dance. In detail, the evaluation ($p < q$) works as follows:\\
+			It is clear from chapter \ref{chap:beesWorkingStates} that after some time, the bees will focus on newly reported and then on the most profitable food sources because of the relative quality evaluation. $p \in {[0,1]}$ denotes an equally distributed random value. $q$ denotes the relative quality of a given flower patch compared to all patches currently available as a waggle dance. In detail, the evaluation ($p < q$) works as follows:\\
 			
-			At the beginning of every iteration step, the waggle count $n_w$ is set to zero. Every bee that does a waggle dance at the moment then writes the flower quality $b_w$, distance to the flower patch $d_w$ and size of the patch $A_w$ into the corresponding vector. This gives three vectors:
-			
+			At the beginning of every iteration step, the waggle count $n_w$ is set to zero. Every bee that does a waggle dance at the moment then writes the flower quality $b_w$, distance to the flower patch $d_w$ and size of the patch $A_w$ into the corresponding vector. This gives three vectors:			
 			\[
 				\begin{pmatrix}
 					b_{w,1} \\ b_{w,2} \\ \dots \\ b_{w,n_w}
@@ -156,25 +142,22 @@
 				\end{pmatrix}, q_w)^{-1}
 			\end{equation}
 			
-			Obviously, if the new patch is the best one, $q_w > 1$ holds, otherwise $q_w \in (0,1]$. In the first case there will always be a waggle dance propagating this patch. Otherwise it depends on how the bee chooses randomly $p \in [0,1]$ and then if $p < q_w$ holds. The same evaluation happens when a bee has to decide on giving up a patch or after watching a waggle dance (see fig. \ref{fig:stateTransitionsEnvironment}). \\
+			Obviously, if the new patch is the best one, $q_w > 1$ holds, otherwise $q_w \in (0,1]$. In the first case there will always be a waggle dance propagating this patch. Otherwise, it depends on how the bee chooses randomly $p \in [0,1]$ and then if $p < q_w$ holds. The same evaluation happens when a bee has to decide on giving up a patch or after watching a waggle dance (see fig. \ref{fig:stateTransitionsEnvironment}). \\
 			Of course, on the implementation side, we have to keep track which vector index $i \in \{1,2, \ldots, n_w\}$ belongs to which path element. The path a bee chooses is copied to the bee's memory.\\
 
 			A path for a certain patch can get smaller by optimization (see chapter \ref{chap:pathOptimization}), thus the patch can obtain a better relative quality $q_w$. This will lead to higher propagation probability for the same patch. This means more bees will (over time) take the shorter path to any given flower patch, either by optimizing themselves or by looking at waggle dances of patches with shorter paths.\\
 	
-			The question arises how bees can have such deep knowledge of the own patch and the quality of patches represented by waggle dances. \textit{T.D. Seeley} \cite{seeley95} gives insight and assumptions on this matter. In chapter 5.4., p.~92, he states that bees can use dance duration, frequency and variation to communicate patch profitability. This indicates our model is an useful approximation in terms of waggle dance/path sharing. In chapter 5.5, he writes that travel distance and expected profit are the driving factors in determining patch quality. We also added the patch size $A_w$ in our model, which should be fine as it is also a profit indicator when looking at the patch in a larger scale. The last question is if bees have preprogrammed knowledge what a good and a bad flower patch is or if this is a relative question depending on daily situations. We assumed the second one, and \textit{T.D. Seeley} confirms this in chapter 5.7. on p.~104: For food unloading, hive bees prefer to unload the most profitable income first. This means bees with a bad flower patch have to wait longer, telling them their choice was probably not the best. Waiting times may vary randomly, thus adding randomness to the evaluations ($p < q$, fig. \ref{fig:stateTransitionsEnvironment}) makes sense as well.
+			The question arises, how bees can have such deep knowledge of the own patch and the quality of patches represented by waggle dances. \textit{T.D. Seeley} \cite{seeley95} gives insight and assumptions on this matter. In chapter 5.4., p.~92, he states that bees can use dance duration, frequency and variation to communicate patch profitability. This indicates our model is a useful approximation in terms of waggle dance/path sharing. In chapter 5.5., he writes that travel distance and expected profit are the driving factors in determining patch quality. We also added the patch size $A_w$ in our model, which should be fine as it is also a profit indicator when looking at the patch in a larger scale. The last question is if bees have preprogrammed knowledge what a good and a bad flower patch is or if this is a relative question depending on daily situations. We assumed the second one and \textit{T.D. Seeley} confirms this in chapter 5.7. on p.~104: For food unloading, hive bees prefer to unload the most profitable income first. This means, bees with a bad flower patch have to wait longer, telling them their choice was probably not the best. Waiting times may vary randomly, thus adding randomness to the evaluations ($p < q$, fig. \ref{fig:stateTransitionsEnvironment}) makes sense as well.
 	
 		\subsubsection{Food collection}
 			\label{chap:foodCollection}
-			With every flight, a bee can gather $f_b = \min(f_{p,t},f_{b,max})$ grams of pollen and nectar, where $f_{b,max}$ is the physical top limit of the bee. $f_{p,t}$ is derived from $f_{b,f}$ (see chapter \ref{chap:flowerPatchesAndFood}) by multiplying $\max(f_{b,f})$ with the growing quality of a certain patch on day $t$, denoted $b_w \in (0,1]$. Note that $b_w$ itself is derived from the map (see chapter \ref{chap:mapFlowerPatchQuality}) and $f_{b,f}$. The daily food sum is increased every time a forager bee reaches the hive:
-			
+			With every flight, a bee can gather $f_b = \min(f_{p,t},f_{b,max})$ grams of pollen and nectar, where $f_{b,max}$ is the physical top limit of the bee. $f_{p,t}$ (the reward of a certain patch) is derived from $f_{b,f}$ (see chapter \ref{chap:flowerPatchesAndFood}) by multiplying $\max(f_{b,f})$ with the growing quality of a certain patch on day $t$, denoted $b_w \in (0,1]$. Note that $b_w$ itself is derived from the map (see chapter \ref{chap:mapFlowerPatchQuality}) and the normalized $\frac{f_{b,f}}{\max(f_{b,f})}$. The daily food sum is increased every time a forager bee reaches the hive:			
 			\begin{equation}\label{eq:foodChangeDailyComputation}
 				f_{d,t} = f_{d,t} + f_b \cdot F_{b,t} = f_{d,t} + \min(\max(f_{b,f}) \cdot b_w,f_{b,max}) \cdot F_{b,t}
 			\end{equation}
 			
-			An additional factor $F_{b,t}$ is used for clustering. This means we only simulate up to $\frac{F}{F_{b,t}}$ actual agents on day $t$ and then interpolate to the actual value, which saves a lot of computation time. For relatively small cluster sizes, respectively many actual agents (in the order of 1000), the variation of $f_{d,t}$ will be small because the mean value of bees visiting a patch over a whole day is about the same as without clustering, according to the law of large numbers (LLN).\\
-			Finally, we obtain a new equation to replace the original equation \ref{eq:changeFoodStoreConst} for the daily food change:
-			
-			\begin{equation}\label{eq:changeFoodStoreDyn}
+			An additional factor $F_{b,t}$ is used for clustering. This means we only simulate up to $\frac{F}{F_{b,t}}$ actual agents on day $t$ and then interpolate to the actual value, which saves a lot of computation time. For relatively small cluster sizes, respectively, many actual agents (in the order of 1000), the variation of $f_{d,t}$ will be small because the mean value of bees visiting a patch over a whole day is about the same as without clustering, according to the law of large numbers (LLN).\\
+			Finally, we obtain a new equation to replace the original equation \ref{eq:changeFoodStoreConst} for the daily food change:	\begin{equation}\label{eq:changeFoodStoreDyn}
 				\frac{df}{dt} = f_{d,t} - \gamma_A (F+H) - \gamma_B B
 			\end{equation}
 			
@@ -183,36 +166,34 @@
 			We discuss the numerical results of this model in chapter \ref{chap:environmentalModelDiscussion}.
 		
 	\subsection{Empirical data bases}
+		\label{chap:empiricalDataBases}
 		\subsubsection{Area around the hive}
-			By analysing the different waggle dances of the forager bees, \textit{T.D. Seeley} states in \textit{Wisdom of the Hive} pp.~37ff that 95\% of the foraging process occurs in a radius of 6.0~km (maximum distance at 10.9~km, mean distance at 2.2~km and the modal distance at 1.6~km \cite{seeley95}. The approximation of our modelled square $\text{(6~km}\cdot\text{2)}^2 \approx \text{100~km}^2$ should be sufficient for the simulation and comprehend all important data. In our model, we split the area up into a grid of 10~m~$\cdot$~10~m tiles of flower patches.
+			\label{chap:areaAroundTheHive}
+			By analysing the different waggle dances of the forager bees, \textit{T.D. Seeley} states in \textit{Wisdom of the Hive} pp.~37ff., that 95\% of the foraging process occurs in a radius of 6.0~km (maximum distance at 10.9~km, mean distance at 2.2~km and the modal distance at 1.6~km \cite{seeley95}. The approximation of our modelled square $\text{(6~km}\cdot\text{2)}^2 \approx \text{100~km}^2$ should be sufficient for the simulation and comprehend all important data. In our model, we split the area up into a grid of 10~m~$\cdot$~10~m tiles of flower patches.
 			
 		\subsubsection{Flower patches and food}
 			\label{chap:flowerPatchesAndFood}
-			The flower patches themselves are divided into their different blossom: spring, summer and autumn. The empirical data was taken from \textit{Wisdom of the Hive} p.~44f (year 1982). We merged the raw data and received a new graph for the whole year (see fig.~\ref{fig:seasonalFlowers}). With equation \ref{eq:foodPerFlight}, we can find out the weight of food a bee carries per flight. 
-			
+			The flower patches themselves are divided into their different blossom: spring, summer and autumn. The empirical data was taken from \textit{Wisdom of the Hive} pp.~44f.: Year 1982 from Figure 2.14 was combined with the data from Figure 15.2 (representing the significant months of weight gain) and we received a new graph for the whole year (see fig.~\ref{fig:seasonalFlowers}). With equation \ref{eq:foodPerFlight}, we can find out the weight of food a bee carries per flight.
 			\begin{equation}\label{eq:foodPerFlight}
 						f_{b,f} \,[\frac{g}{flight\, and\, bee}] = \frac{M \,[\frac{kg}{day}]}{C \,[bees] \cdot l \,[\frac{flights}{day \,and\, bee}]}\cdot 1000 \,[\frac{g}{kg}]
 			\end{equation}
 			
-			The result $f_{b,f}$ is an approximation in gram per bee and flight. $M$ denotes the change of the mass of the hive per day in kilograms (see fig.~\ref{fig:seasonalFlowers}) and $C$ represents the forager bee count approximated for a specific day of \textit{T.D. Seeley's} empirical data \cite{seeley95}. $l$ is the flight count a bee can do in average per day. Thus, we can take hive weight change per day as an indicator for the flower quality and flower type present at a given day of the year. This is the best approximation we tried, we did not find actual data of blooming and foraging profit as it is very difficult to measure this in nature.
+			The result $f_{b,f}$ is an approximation in gram per bee and flight. $M$ denotes the change of the mass of the hive per day in kilograms (see fig.~\ref{fig:seasonalFlowers}) and $C$ represents the forager bee count approximated for a specific day of \textit{T.D. Seeley's} empirical data \cite{seeley95}. $l$ denotes the number of flights a bee can perform on average per day. Thus, we can take hive weight change per day as an indicator for the flower quality and flower type present at a given day of the year. This is the best approximation we tried; unfortunately, we did not find actual data of blooming and foraging profit, as it is very difficult to measure this in nature quantitatively.
 			
-			\begin{figure}
+			\begin{figure}[H]
 				\centering
 				\scalebox{0.7}{\includegraphics{data/seasonal_flowers.eps}}
 				\caption{\textit{This figure shows the change of the mass of the hive for any day in the year. It correlates with the quality of a flower patch and the type of flower, respectively.}}
 				\label{fig:seasonalFlowers}
 			\end{figure}
 			
-			\subsubsection{Bees' parameter}
-			Our bee numbers are fully built on \textit{D. S. Khoury's} model \cite{khoury13}. He used 16~000 hive bees and 8~000 forager bees which seems to be the right order of magnitude and is congruent with \textit{T. D. Seeley's} estimation of about 20~000 \cite{seeley95}. 
+		\subsubsection{Bees' parameter}
+			\label{chap:beesParameters}
+			The data about bee numbers are fully built on \textit{D.S. Khoury's} model \cite{khoury13}. He used 16~000 hive bees and 8~000 forager bees which seems to be the right order of magnitude and is congruent with \textit{T.D. Seeley's} estimation of about 20~000 \cite{seeley95}.\\ 		
 			
-			
-			$v$ is the parameter that governs the effect of hive bees on brood survival, $f$ governs the food effect on brood survival respectively (see section \ref{chap:basicModel}). $f=50~000$ corresponds to 50~000 g of food to start with. The parameter $\phi=\frac{1}{9}$, the adult bee emerging factor is assumed. Those values are extracted from \textit{Khoury's} paper and are empirically tested but not explained any further.\\ Although, the food consumption for adult bees (0.007 g) and brood (0.018 g) is taken from explicitly mentioned data \cite{harbo93}.
+			The food consumption for adult bees (0.007 g) and brood (0.018 g) was taken from \textit{J. R. Harbo's} works \cite{harbo93}.\\
 					
-			As remarked at the beginning of section \ref{chap:basicModel}, we simplify the complicated ageing process (larvae to hive bee) to 12 days. Mortality rate is set to 0.075 and thus slightly lower than the values of \textit{Khoury}. This is discussed later in section \ref{chap:constantFoodDynamicLaying}.
-			\\
-			The recruitment factor $\alpha = 0.25$ is set according to \textit{Khoury's} model.
-			
-		
-		%TODO:
+			As remarked at the beginning of chapter \ref{chap:basicModel}, we simplify the complicated ageing process (larvae to hive bee) to 12 days without further distinction between eggs, larvae or pupae. Mortality rate is set to 0.075 and thus slightly lower than the values of \textit{D.S. Khoury}. This is discussed later in section \ref{chap:constantFoodDynamicLaying}.\\
 
+			The food $f=50~000$ corresponds to 50~000 g of food to start with. The parameter for the adult bee emerging factor $\phi=\frac{1}{9}$ is an assumption and was adopted from \textit{D.S. Khoury's} paper, as well as $v$, $b$ and the recruitment factor $\alpha = 0.25$ (see chapter \ref{chap:basicModel}). Those values are empirically tested but not explained any further.\\
+						

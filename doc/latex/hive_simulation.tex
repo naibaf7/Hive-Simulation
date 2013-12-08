@@ -21,6 +21,7 @@
 \usepackage{listings}
 \usepackage[framed]{mcode}
 \usepackage{tikz}
+\usepackage{float}
 \usetikzlibrary{shapes,arrows,positioning,shadows,calc}
 
 \input{./includes/standard-definitions.tex}
@@ -38,6 +39,7 @@
 \date{date}
 
 \begin{document}
+\setlength{\parindent}{0mm}
 
 \input{cover.tex}
 \newpage
@@ -77,9 +79,13 @@
 \input{summary_and_outlook.tex}
 \input{references.tex}
 
+
+\newpage
+
 \appendix
 
-\input{matlab_code.tex}
+%Without source code:
+%\input{matlab_code.tex}
 \input{additional_graphics.tex}
 
 \end{document}

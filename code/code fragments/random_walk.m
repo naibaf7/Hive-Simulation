@@ -1,4 +1,5 @@
 function random_walk()
+    set(gca,'FontSize',14);
     alpha = rand()*2*pi;
     v = 7;
     scale = 0.5;
@@ -10,6 +11,8 @@ function random_walk()
         w(1,i+1) = w(1,i) + cos(alpha)*v;
         w(2,i+1) = w(2,i) + sin(alpha)*v;
         plot(w(1,1:i),w(2,1:i),'LineWidth',2);
+        xlabel('distance [m]');
+        ylabel('distance [m]');
         pause(0.001);
     end
     pause(3);

@@ -7,7 +7,7 @@ plot_data(i,:,2) = obj.data.hives.day(1,i).food_sum;
 plot_data(i,:,3) = obj.data.hives.day(1,i).scouts_count;
 plot_data(i,:,4) = obj.data.hives.day(1,i).forager_count;
 for j=2:48
-    plot_data(i,j,5) = obj.data.hives.day(1,i).food_sum(1,j)-obj.data.hives.day(1,i).food_sum(1,j-1);
+    plot_data(i,j,5) = (obj.data.hives.day(1,i).food_sum(1,j)-obj.data.hives.day(1,i).food_sum(1,j-1))/max(obj.data.hives.day(1,i).food_sum/10);
 end
 legend_string{i} = strcat('day',num2str(obj.data.hives.day(1,i).actual_day));
 end

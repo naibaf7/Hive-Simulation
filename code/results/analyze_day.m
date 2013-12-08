@@ -1,4 +1,6 @@
 function [ output_args ] = analyze_day( obj )
+
+
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 plot_data(1,:) = obj.patches_discovered/obj.patches_total;
@@ -16,14 +18,15 @@ set(gcf,'PaperPositionMode','auto','PaperType','A4')
 set(fig, 'Position', [0 0 944 400])
 
 %Draw iterative Graph
+set(gca,'FontSize',12);
 plot(transp(plot_data),'-','LineWidth', 2);
 xlim([1 48])
 %Add Graph Descriptions
-legend('patches discoverd','food collected','scout bees','forager bees','food collected change')
+legend('patches discoverd','food collected','scout bees','forager bees','food collected change \cdot 10')
 legend('Location','NorthEastOutside')
 title(strcat('day ',num2str(actual_day)))
 xlabel('time')
-ylabel('percent / food collected change in percent/10')
+ylabel('fraction of day peak')
 grid on
 set(gca,'XTickLabel',{'9:15','10:30','11:45','13:00','14:15','15:30','16:45','18:00','19:15','20:30'});
 

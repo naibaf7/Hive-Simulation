@@ -1,0 +1,45 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{none}
+    \entry{Smith:2012qr}{book}{}
+      \name{labelname}{2}{}{%
+        {{hash=bc5cc98ac8a294fc55dd890fdd3b8100}{Smith}{S\bibinitperiod}{J.\bibnamedelimi M.}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=45e8476371267d5356ed4f97937c5019}{Jones}{J\bibinitperiod}{A.\bibnamedelimi B.}{A\bibinitperiod\bibinitdelim B\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=bc5cc98ac8a294fc55dd890fdd3b8100}{Smith}{S\bibinitperiod}{J.\bibnamedelimi M.}{J\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+        {{hash=45e8476371267d5356ed4f97937c5019}{Jones}{J\bibinitperiod}{A.\bibnamedelimi B.}{A\bibinitperiod\bibinitdelim B\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Publisher}%
+      }
+      \strng{namehash}{e37bd72cd7985d299db8014f4e2efa92}
+      \strng{fullhash}{e37bd72cd7985d299db8014f4e2efa92}
+      \field{sortinit}{0}
+      \field{labeltitle}{Book Title}
+      \field{edition}{7th}
+      \field{title}{Book Title}
+      \field{year}{2012}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

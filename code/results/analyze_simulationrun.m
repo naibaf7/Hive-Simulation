@@ -1,4 +1,4 @@
-function [ output_args ] = analyze_simulationrun( run_number,iteration_number, varargin )
+function [ uncapped_brood,foragers,hive_bees,food_storage,run_data] = analyze_simulationrun( run_number,iteration_number, varargin )
 %ANALYZE_SIMULATIONRUN Analyze a 1 or 2D simulation run.
 %   Detailed explanation goes here
 
@@ -9,7 +9,7 @@ else
     jteration_number = varargin{1};
 end
 %load report files
-[uncapped_brood,foragers,hive_bees,food_storage,eval_time_days] = load_reports(run_number,iteration_number,jteration_number);
+[uncapped_brood,foragers,hive_bees,food_storage,eval_time_days, run_data] = load_reports(run_number,iteration_number,jteration_number);
 
 if jteration_number > 1;
     %wipeout old matrizes
@@ -17,7 +17,7 @@ if jteration_number > 1;
     plot_foragers = zeros(jteration_number,eval_time_days);
     plot_hive_bees = zeros(jteration_number,eval_time_days);
     plot_food_storage = zeros(jteration_number,eval_time_days);
-    for i = 1:iteration_number;        
+    for i = 1:iteration_number;
         %make plot matrices
         for j = 1:jteration_number
             plot_uncapped_brood(j,:) = cell2mat(uncapped_brood(i,j));
@@ -97,18 +97,24 @@ s(1) = subplot(4,1,1);
 plot(transp( plot_uncapped_brood),'LineWidth', 2)
 xlim([0 xlimit])
 title('uncapped brood')
+xlabel('days')
+ylabel('count')
 legend(legend_string)
 
 s(2) = subplot(4,1,2);
 plot(transp( plot_foragers),'LineWidth', 2)
 title('foragers')
 xlim([0 xlimit])
+xlabel('days')
+ylabel('count')
 legend(legend_string)
 
 s(3) = subplot(4,1,3);
 plot(transp( plot_hive_bees),'LineWidth', 2)
 title('hive bees')
 xlim([0 xlimit])
+xlabel('days')
+ylabel('count')
 legend(legend_string)
 
 s(4) = subplot(4,1,4);
@@ -116,6 +122,8 @@ plot(transp( plot_food_storage),'LineWidth', 2)
 title('Stored Food')
 xlim([0 xlimit])
 legend(legend_string)
+xlabel('days')
+ylabel('grams')
 %Link all the x-axis
 linkaxes( s, 'x')
 for i=1:4
@@ -130,7 +138,7 @@ for j = 1:length;
 end
 end
 
-function [uncapped_brood,foragers,hive_bees,food_storage,eval_time_days] = load_reports(run_number,iteration_number,jteration_number)
+function [uncapped_brood,foragers,hive_bees,food_storage,eval_time_days ,reports] = load_reports(run_number,iteration_number,jteration_number)
 %load report files
 reports = cell(iteration_number,jteration_number);
 for i = 1:iteration_number;
