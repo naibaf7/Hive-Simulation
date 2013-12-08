@@ -7,8 +7,7 @@
 \subsection{Map and flower patch quality}
 	\label{chap:mapFlowerPatchQuality}
 	
-	The bees all navigate on a map with the hive in the middle of the map. Every pixel on the map equals to a patch of 100 m$^2$.\\
-	
+	The bees all navigate on a map with the hive in the middle of the map. Every pixel on the map equals to a patch of 100 m$^2$.\\	
 	The map is encoded in HSV (see fig. \ref{fig:hsvEncoding}). From the 360° color hue circle ($H_{HSV} \in \{0,1,\ldots,360\}$), always 60° are assigned to one integer type value $j \in \{0,\ldots,5\}$. Value 0 is used for empty space and values 1 to 3 for the three flower seasons/types we implemented. Values 4 and 5 are for future extensions such as smog/pesticide sources. More values can be gained by assigning less than 60° per type. The saturation $S_{HSV} \in [0,1]$ is always kept at 1. For the flower patch quality basis, the brightness value $V_{HSV} \in [0,1]$ is used.\\
 	
 	\begin{figure}[H]
@@ -34,7 +33,7 @@
 		The random walk is preformed in following steps:
 		\begin{itemize}
 			\item The bee starts from the hive with an equally distributed random angle $\alpha \in [0, 2 \cdot \pi]$ (radian).
-			\item After a number of time steps (we've chosen one time step, so 60 seconds), the angle $\alpha$ is changed by at most $r\cdot0.5$ (radical angle changes are not desired), where $r$ is a normal distributed random value.
+			\item After a number of time steps (we have chosen one time step, so 60 seconds), the angle $\alpha$ is changed by at most $r\cdot0.5$ (radical angle changes are not desired), where $r$ is a normally distributed random value.
 			\item Between two angle changes, the scout bee flies with 7 m/s into the chosen direction.
 			\item The path points are recorded at every angle change point. The distance passed is calculated and stored in a $L^2$ norm scalar.
 		\end{itemize}
@@ -63,7 +62,7 @@
 			\caption{\textit{Example of Bresenham's line algorithm with map and path segment.}}
 			\label{fig:bresenham}
 		\end{figure}
-		As the scout bees pass a distance of $v \cdot \Delta t_s$, respectively $\sqrt{(v_x \cdot \Delta t_s)^2 + (v_y \cdot \Delta t_s)^2}$ for a velocity $v$ and time step $\Delta t_s$ in every iteration step, multiple field are being passed at once. In order to check all fields between the last and current iteration step for flower patches, the Bresenham line algorithm is used. With this method, all integer coordinates between two given points on the map are reported back. Afterwards, every obtained point can be checked against the current quality- and type-map of the environment simulation.
+		As the scout bees pass a distance of $v \cdot \Delta t_s$, respectively $\sqrt{(v_x \cdot \Delta t_s)^2 + (v_y \cdot \Delta t_s)^2}$ for a velocity $v$ and time step $\Delta t_s$ in every iteration step, multiple fields are being passed at once. In order to check all fields between the last and current iteration step for flower patches, the Bresenham line algorithm is used. With this method, all integer coordinates between two given points on the map are reported back. Afterwards, every obtained point can be checked against the current quality- and type-map of the environment simulation.
 		For this simple algorithm, a pre-existing implementation is used \cite{MVTB}. Figure \ref{fig:bresenham} is an example on a 15x15 map with coordinates $(x = 4, y = 3)$ to $(x = 12, y = 14)$ and reported points (black boxes).
 
 \subsection{Foragers}
@@ -92,5 +91,5 @@
 			\label{fig:pathOptimization}
 		\end{figure}
 		
-		Comparing this model of optimization with empirical observations made by \textit{Lihoreau et. al} \cite{lihoreau11}, p. 3, shows that our model is a good approximation: They state that the bees reduce their travel times gradually with experience and higher numbers of flights. The same happens with our model, as the shortest path is not taken directly, but shorter paths are taken after visiting a certain patch often enough. The only difference is that we don't explicitly simulate multi-patch sequences (bees can visit multiple patches before returning to the hive) while \textit{Lihoreau et. al} primarily focus on this matter.
+		Comparing this model of optimization with empirical observations made by \textit{Lihoreau et. al} \cite{lihoreau11}, p. 3, shows that our model is a good approximation: They state that the bees reduce their travel times gradually with experience and higher numbers of flights. The same happens in our model, as the shortest path is not taken directly, but shorter paths are taken after visiting a certain patch often enough. The only difference is that we don't explicitly simulate multi-patch sequences (bees can visit multiple patches before returning to the hive) while \textit{Lihoreau et. al} primarily focus on this matter.
 		
