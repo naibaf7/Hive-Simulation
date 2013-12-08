@@ -21,7 +21,17 @@
 	Compared to our earlier simulations, the food collection rate is now dominated by the availability of flowers and the forager count.
 	
 	\subsubsection{Typical simulated day (environment interaction)}
+	
+					\begin{figure}[H]
+						\centering
+						\scalebox{.75}{\includegraphics{../../code/results/Properties_Base_R1_1_day158.eps}}
+						\caption{\textit{A summer day (day 158) from the standard run \ref{chap:sim_R1_1}. Values are given in fraction of the maximum value reached on day 158.}}
+						\label{fig:day158}
+					\end{figure}
+					
 		The analysed day number 158 represents a peak in summer flower blooming, so we can easily extract some information. On a 'typical' summer day like this, the scout bees discover about $80\%$ of the patches after 2.5 hours. The rate at which the food is collected is increasing throughout the day, which is represented by the \textit{food collected change} graph in Figure \ref{fig:day158}. We attribute the fluctuating changes in the first 4 hours to the discovery of new patches and the first path optimizations taking effect. The change of collected food stabilizes as the path optimization has run its course and no new food sources are discovered (see fig. \ref{fig:day158}).\\
+		
+
 		
 		For the statistical analysis of this summer day, we've averaged the values and calculated the standard deviations for every parameter captured during an environment simulation (see fig. \ref{fig:day158variation}). The 20 runs needed for chapter \ref{chap:variationsOnAutumnFlowers} were used as data basis. For spring and autumn, the plots would look approximately the same because an equally distributed flower map is used. This means the same optimizations and scouting behaviours are expected.\\
 		High correlation can be found between the amount of discovered patches and the slope/change of food income (linear correlation coefficient of 0.9263). This was expected because with a higher count of discovered patches, bees are able to figure out the best ones and increase their income.\\
@@ -31,13 +41,6 @@
 		The standard deviations are not significant for the discovered flower patches because with the high amount of scouts on this particular day (about 6\% of 20~000 bees), most of the introduced randomness is compensated (random walk, see chapter \ref{chap:randomWalk}).\\
 		The number of active scouts and foragers varies a little, but mainly follows the activity curve we've chosen. The deviation is higher for scouts than for foragers because the amount of scouts is about 20 times smaller while the introduced variations happen in an absolute way (the balance between scouts and foragers can vary between two runs).\\
 		Food income change has the highest deviation values because this is strongly dependent on the bees' selection of waggle dances (see chapter \ref{chap:foragersDistribution}). However, over the day, the deviation becomes smaller because bees always optimize towards the highest food income. This is also reflected in the total food collected over the day: At the beginning, we observe low deviations. The highest values are found on the middle of the day. At the end of the simulated day, the deviation is close to non-existent.
-		
-		\begin{figure}[H]
-			\centering
-			\scalebox{.75}{\includegraphics{../../code/results/Properties_Base_R1_1_day158.eps}}
-			\caption{\textit{A summer day (day 158) from the standard run \ref{chap:sim_R1_1}. Values are given in fraction of the maximum value reached on day 158.}}
-			\label{fig:day158}
-		\end{figure}
 		
 		\begin{figure}[H]
 			\centering
