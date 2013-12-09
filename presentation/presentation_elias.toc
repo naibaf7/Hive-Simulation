@@ -1,0 +1,21 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Displaying Text}{3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Paragraphs of Text and Formatting}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Bullet Points and Numbered Lists}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Verbatim}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Displaying Information}{7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Table}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Figure}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Theorem}{10}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Citations}{11}
