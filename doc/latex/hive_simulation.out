@@ -26,7 +26,7 @@
 \BOOKMARK [2][-]{subsection.5.4}{Empirical data based runs}{section.5}% 26
 \BOOKMARK [3][-]{subsubsection.5.4.1}{Typical simulated day \(environment interaction\)}{subsection.5.4}% 27
 \BOOKMARK [3][-]{subsubsection.5.4.2}{Missing flower seasons}{subsection.5.4}% 28
-\BOOKMARK [3][-]{subsubsection.5.4.3}{Variations on autumn flowers}{subsection.5.4}% 29
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Variations of autumnal flowers}{subsection.5.4}% 29
 \BOOKMARK [3][-]{subsubsection.5.4.4}{Model restrictions}{subsection.5.4}% 30
 \BOOKMARK [1][-]{section.6}{Summary and Outlook}{}% 31
 \BOOKMARK [2][-]{subsection.6.1}{Realistic flowers and maps}{section.6}% 32
@@ -46,15 +46,15 @@
 \BOOKMARK [3][-]{subsubsection.A.2.5}{Missing autumn flowers}{subsection.A.2}% 46
 \BOOKMARK [2][-]{subsection.A.3}{Simulation run with varying autumn flowers}{appendix.A}% 47
 \BOOKMARK [3][-]{subsubsection.A.3.1}{Runscript with changes relative to the base properties}{subsection.A.3}% 48
-\BOOKMARK [3][-]{subsubsection.A.3.2}{Peak = 2, delayed by 4 days}{subsection.A.3}% 49
-\BOOKMARK [3][-]{subsubsection.A.3.3}{Peak = 2, delayed by 12 days}{subsection.A.3}% 50
-\BOOKMARK [3][-]{subsubsection.A.3.4}{Peak = 2, delayed by 20 days}{subsection.A.3}% 51
-\BOOKMARK [3][-]{subsubsection.A.3.5}{Peak = 1.5, delayed by 4 days}{subsection.A.3}% 52
-\BOOKMARK [3][-]{subsubsection.A.3.6}{Peak = 1.5, delayed by 12 days}{subsection.A.3}% 53
-\BOOKMARK [3][-]{subsubsection.A.3.7}{Peak = 1.5, delayed by 20 days}{subsection.A.3}% 54
-\BOOKMARK [3][-]{subsubsection.A.3.8}{Peak = 1, delayed by 4 days}{subsection.A.3}% 55
-\BOOKMARK [3][-]{subsubsection.A.3.9}{Peak = 1, delayed by 12 days}{subsection.A.3}% 56
-\BOOKMARK [3][-]{subsubsection.A.3.10}{Peak = 1, delayed by 20 days}{subsection.A.3}% 57
-\BOOKMARK [3][-]{subsubsection.A.3.11}{Peak = 0.5, delayed by 4 days}{subsection.A.3}% 58
-\BOOKMARK [3][-]{subsubsection.A.3.12}{Peak = 0.5, delayed by 12 days}{subsection.A.3}% 59
-\BOOKMARK [3][-]{subsubsection.A.3.13}{Peak = 0.5, delayed by 20 days}{subsection.A.3}% 60
+\BOOKMARK [3][-]{subsubsection.A.3.2}{Peak M = 2, delayed by 4 days}{subsection.A.3}% 49
+\BOOKMARK [3][-]{subsubsection.A.3.3}{Peak M = 2, delayed by 12 days}{subsection.A.3}% 50
+\BOOKMARK [3][-]{subsubsection.A.3.4}{Peak M = 2, delayed by 20 days}{subsection.A.3}% 51
+\BOOKMARK [3][-]{subsubsection.A.3.5}{Peak M = 1.5, delayed by 4 days}{subsection.A.3}% 52
+\BOOKMARK [3][-]{subsubsection.A.3.6}{Peak M = 1.5, delayed by 12 days}{subsection.A.3}% 53
+\BOOKMARK [3][-]{subsubsection.A.3.7}{Peak M = 1.5, delayed by 20 days}{subsection.A.3}% 54
+\BOOKMARK [3][-]{subsubsection.A.3.8}{Peak M = 1, delayed by 4 days}{subsection.A.3}% 55
+\BOOKMARK [3][-]{subsubsection.A.3.9}{Peak M = 1, delayed by 12 days}{subsection.A.3}% 56
+\BOOKMARK [3][-]{subsubsection.A.3.10}{Peak M = 1, delayed by 20 days}{subsection.A.3}% 57
+\BOOKMARK [3][-]{subsubsection.A.3.11}{Peak M = 0.5, delayed by 4 days}{subsection.A.3}% 58
+\BOOKMARK [3][-]{subsubsection.A.3.12}{Peak M = 0.5, delayed by 12 days}{subsection.A.3}% 59
+\BOOKMARK [3][-]{subsubsection.A.3.13}{Peak M = 0.5, delayed by 20 days}{subsection.A.3}% 60
