@@ -383,25 +383,6 @@
       \verb 10.1016/j.ecolmodel.2007.01.001
       \endverb
     \endentry
-    \entry{khoury11}{article}{}
-      \name{labelname}{3}{}{%
-        {{hash=a3c49bd1e8edc7b8a7771c2060c2f1d7}{Khoury}{K\bibinitperiod}{D.\bibnamedelimi S.}{D\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
-        {{hash=8c605b21fd3e518324fa6596e1324c7c}{Barron}{B\bibinitperiod}{B.\bibnamedelimi A.}{B\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
-        {{hash=3248a7ce113d5ca7f2ba7bd31640cfaf}{Myerscough}{M\bibinitperiod}{R.\bibnamedelimi M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{3}{}{%
-        {{hash=a3c49bd1e8edc7b8a7771c2060c2f1d7}{Khoury}{K\bibinitperiod}{D.\bibnamedelimi S.}{D\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
-        {{hash=8c605b21fd3e518324fa6596e1324c7c}{Barron}{B\bibinitperiod}{B.\bibnamedelimi A.}{B\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
-        {{hash=3248a7ce113d5ca7f2ba7bd31640cfaf}{Myerscough}{M\bibinitperiod}{R.\bibnamedelimi M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{83b8570ac55467d03754a1350597f4ed}
-      \strng{fullhash}{83b8570ac55467d03754a1350597f4ed}
-      \field{sortinit}{0}
-      \field{labeltitle}{A Quantitative Model of Honey Bee Colony Population Dynamics}
-      \field{journaltitle}{PLOS ONE}
-      \field{title}{A Quantitative Model of Honey Bee Colony Population Dynamics}
-      \field{year}{2011}
-    \endentry
   \endsortlist
 \endrefsection
 \endinput
