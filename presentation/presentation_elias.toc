@@ -8,12 +8,14 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{Missing flower season comparison}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Spring}{6}
+\contentsline {subsection}{Spring}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Summer}{7}
+\contentsline {subsection}{Summer}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Critical points in the fall season}{8}
+\contentsline {section}{Critical points in the fall season}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Death criteria:}{9}
+\contentsline {subsection}{Death criteria:}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Overview}{11}
+\contentsline {subsection}{Overview}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Variation}{13}
