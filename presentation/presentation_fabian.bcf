@@ -4,11 +4,11 @@
   <bcf:options component="biber" type="global">
     <bcf:option type="singlevalued">
       <bcf:key>output_encoding</bcf:key>
-      <bcf:value>utf8</bcf:value>
+      <bcf:value>ascii</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>input_encoding</bcf:key>
-      <bcf:value>utf8</bcf:value>
+      <bcf:value>ascii</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>debug</bcf:key>
@@ -1942,44 +1942,7 @@
     <bcf:datasource type="file" datatype="bibtex">bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">khoury13</bcf:citekey>
-    <bcf:citekey order="2">seeley95</bcf:citekey>
-    <bcf:citekey order="3">potts10</bcf:citekey>
-    <bcf:citekey order="4">thomann13</bcf:citekey>
-    <bcf:citekey order="5">decourtye04</bcf:citekey>
-    <bcf:citekey order="6">bernadou09</bcf:citekey>
-    <bcf:citekey order="7">schweiger10</bcf:citekey>
-    <bcf:citekey order="8">khoury13</bcf:citekey>
-    <bcf:citekey order="9">seeley95</bcf:citekey>
-    <bcf:citekey order="10">khoury13</bcf:citekey>
-    <bcf:citekey order="11">seeley95</bcf:citekey>
-    <bcf:citekey order="12">seeley95</bcf:citekey>
-    <bcf:citekey order="13">khoury13</bcf:citekey>
-    <bcf:citekey order="14">wright08</bcf:citekey>
-    <bcf:citekey order="15">khoury13</bcf:citekey>
-    <bcf:citekey order="16">khoury13</bcf:citekey>
-    <bcf:citekey order="17">seeley95</bcf:citekey>
-    <bcf:citekey order="18">seeley95</bcf:citekey>
-    <bcf:citekey order="19">seeley95</bcf:citekey>
-    <bcf:citekey order="20">seeley95</bcf:citekey>
-    <bcf:citekey order="21">seeley95</bcf:citekey>
-    <bcf:citekey order="22">khoury13</bcf:citekey>
-    <bcf:citekey order="23">seeley95</bcf:citekey>
-    <bcf:citekey order="24">harbo93</bcf:citekey>
-    <bcf:citekey order="25">khoury13</bcf:citekey>
-    <bcf:citekey order="26">seeley95</bcf:citekey>
-    <bcf:citekey order="27">winston91</bcf:citekey>
-    <bcf:citekey order="28">MVTB</bcf:citekey>
-    <bcf:citekey order="29">seeley95</bcf:citekey>
-    <bcf:citekey order="30">lihoreau11</bcf:citekey>
-    <bcf:citekey order="31">khoury13</bcf:citekey>
-    <bcf:citekey order="32">henry12</bcf:citekey>
-    <bcf:citekey order="33">khoury13</bcf:citekey>
-    <bcf:citekey order="34">dukas08</bcf:citekey>
-    <bcf:citekey order="35">seeley95</bcf:citekey>
-    <bcf:citekey order="36">schmickl07</bcf:citekey>
-    <bcf:citekey order="37">khoury13</bcf:citekey>
-    <bcf:citekey order="38">seeley95</bcf:citekey>
+    <bcf:citekey order="1">Smith:2012qr</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" type="entry" label="none">
   <bcf:sorting>
