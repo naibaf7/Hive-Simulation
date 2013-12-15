@@ -2,20 +2,14 @@
 \defcounter {refsection}{0}\relax 
 \select@language {english}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Displaying Text}{3}
+\contentsline {section}{Introduction}{3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Paragraphs of Text and Formatting}{4}
+\contentsline {section}{Description of the Standard Model}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Bullet Points and Numbered Lists}{5}
+\contentsline {section}{Environmental Influences}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Verbatim}{6}
+\contentsline {section}{Advanced model: Environment simulation}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Displaying Information}{7}
+\contentsline {section}{Simulation results and analysis}{19}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Table}{8}
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Figure}{9}
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Theorem}{10}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{Citations}{11}
+\contentsline {section}{Summary}{30}

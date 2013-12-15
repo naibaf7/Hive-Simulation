@@ -1,9 +1,4 @@
 [0] Config.pm:318> INFO - This is Biber 1.8
 [0] Config.pm:321> INFO - Logfile is 'presentation.blg'
-[118] biber-MSWIN:272> INFO - === %a %b %e, %Y, %H:%M:%S
-[118] Biber.pm:333> INFO - Reading 'presentation.bcf'
-[243] Biber.pm:630> INFO - Found 1 citekeys in bib section 0
-[285] Biber.pm:3053> INFO - Processing section 0
-[324] Biber.pm:3190> INFO - Looking for bibtex format file 'bib.bib' for section 0
-[332] Utils.pm:185> ERROR - Can't read bib.bib
-[333] Biber.pm:109> INFO - ERRORS: 1
+[122] biber-MSWIN:272> INFO - === %a %b %e, %Y, %H:%M:%S
+[137] Biber.pm:333> INFO - Reading 'presentation.bcf'

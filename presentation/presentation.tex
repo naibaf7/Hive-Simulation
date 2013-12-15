@@ -1,11 +1,11 @@
 \documentclass[
-paper=128mm:96mm, % The same paper size as used in the beamer class
-fontsize=11pt, % Font size
-pagesize, % Write page size to dvi or pdf
-parskip=half-, % Paragraphs separated by half a line
-]{scrartcl} % KOMA script (article)
+	paper=128mm:96mm,
+	fontsize=11pt,
+	pagesize,
+	parskip=half-,
+]{scrartcl}
 
-\linespread{1.12} % Increase line spacing for readability
+\linespread{1}
 
 %------------------------------------------------
 % Colors
@@ -25,40 +25,53 @@ parskip=half-, % Paragraphs separated by half a line
 %------------------------------------------------
 % Margins
 \usepackage[ % Page margins settings
-includeheadfoot,
-top=3.5mm,
-bottom=3.5mm,
-left=5.5mm,
-right=5.5mm,
-headsep=6.5mm,
-footskip=8.5mm
+	includeheadfoot,
+	top=3.5mm,
+	bottom=3.5mm,
+	left=5.5mm,
+	right=5.5mm,
+	headsep=6.5mm,
+	footskip=8.5mm
 ]{geometry}
 %------------------------------------------------
 
 %------------------------------------------------
 % Fonts
-\usepackage[T1]{fontenc}	 % For correct hyphenation and T1 encoding
-\usepackage{lmodern} % Default font: latin modern font
-%\usepackage{fourier} % Alternative font: utopia
-%\usepackage{charter} % Alternative font: low-resolution roman font
-\renewcommand{\familydefault}{\sfdefault} % Sans serif - this may need to be commented to see the alternative fonts
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
 %------------------------------------------------
 
 %------------------------------------------------
 % Various required packages
-\usepackage{amsthm} % Required for theorem environments
-\usepackage{bm} % Required for bold math symbols (used in the footer of the slides)
-\usepackage{graphicx} % Required for including images in figures
-\usepackage{tikz} % Required for colored boxes
-\usepackage{booktabs} % Required for horizontal rules in tables
-\usepackage{multicol} % Required for creating multiple columns in slides
-\usepackage{lastpage} % For printing the total number of pages at the bottom of each slide
-\usepackage[english]{babel} % Document language - required for customizing section titles
-\usepackage{microtype} % Better typography
-\usepackage{tocstyle} % Required for customizing the table of contents
-\usepackage[backend=biber,sorting=none,natbib=true,style=numeric]{biblatex} % For references
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{lastpage}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{tocstyle}
+\usepackage[backend=biber,sorting=none,natbib=true,style=numeric]{biblatex}
 \usepackage{wallpaper}
 \usepackage{epstopdf}
+\usepackage{amssymb, amsmath}
+\usepackage{pdfpages}
+\usepackage[english]{babel}
+\usepackage{empheq}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{cases}
+\usepackage{scrextend}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{shapes,arrows,positioning,shadows,calc}
+\usepackage[export]{adjustbox}
 %------------------------------------------------
 
 %------------------------------------------------
@@ -96,10 +109,7 @@ footskip=8.5mm
 \ohead{
 \hspace{-2mm}
 \begin{tikzpicture}[remember picture, overlay]
-	%\node [xshift=\paperwidth/2,yshift=-\headheight] (mybar) at (current page.north west) [rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=2\headheight,top color=mygreen!64,bottom color=mygreen]{}; % Colored bar
 	\node at (-\paperwidth/2+3.2cm,0) {\includegraphics{data/banner.png}};
-	%\node[below of=mybar,yshift=3.3mm,rectangle,shade,inner sep=0pt,minimum width=128mm,minimum height =1.5mm,top color=black!50,bottom color=white]{}; % Shadow under the colored bar
-	%shadow
 \end{tikzpicture}
 \color{black}\runninghead} % Header text defined by the \runninghead command below and colored white for contrast
 %------------------------------------------------
@@ -189,156 +199,295 @@ footskip=8.5mm
 \end{tikzpicture}
 % Text within the box
 \begin{flushright}
-\vspace{0.6cm}
-\color{white}\sffamily
-{\bfseries\Large\mytitle\par} % Title
-\vspace{0.5cm}
-\normalsize
-\myauthor\par % Author name
-\mydate\par % Date
-\vfill
+	\vspace{0.6cm}
+	\color{white}\sffamily
+	{\bfseries\Large\mytitle\par}
+	\vspace{0.5cm}
+	\normalsize
+	\myauthor\par
+	\mydate\par
+	\vfill
 \end{flushright}
 
 \clearpage
 \ClearWallPaper
+
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
-\thispagestyle{empty} % No slide header and footer
-
-\small\tableofcontents % Change the font size and print the table of contents - it may be useful to shrink the font size further if the presentation is full of sections
-% To exclude sections/subsections from the table of contents, put an asterisk after \(sub)section like so: \section*{Section Name}
+\small\tableofcontents
 
 \clearpage
 
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
-
-\section{Displaying Text}
-
-\clearpage
-
-%------------------------------------------------
-
-\subsection{Paragraphs of Text and Formatting}
-
-	\textit{Sed iaculis} dapibus gravida. Morbi sed tortor erat, nec interdum arcu. Sed id lorem lectus. Quisque viverra augue id sem ornare non aliquam nibh tristique. Aenean in ligula nisl. Nulla sed tellus ipsum.
+\section{Introduction}
+	% Define styles
+	\tikzstyle{paper} = [rectangle, draw, top color=white, bottom color=yellow!60, draw=red!50!black!100, drop shadow, text width=2cm, text centered, node distance=2cm, minimum height=1cm]
+	\tikzstyle{data} = [rectangle, draw, top color=white, bottom color=green!60, draw=red!50!black!100, drop shadow, text width=2cm, text centered, node distance=2cm, minimum height=1cm]
+	\tikzstyle{line} = [line width=1.5pt, draw, -latex']
+	\begin{figure}[h]
+		\centering
+		\scalebox{0.65}{
+		\small
+		\begin{tikzpicture}[node distance = 3cm and 3cm, auto]
+			% nodes
+			\node [paper] (khoury) {Khoury};
+			\node [paper, below of = khoury, node distance = 1.5cm] (seeley) {Seeley};
+			\node [paper, below of = seeley, node distance = 1.5cm] (others) {others};
+			\node [data, right of = seeley, node distance = 4cm] (data) {Data};
+			\node [data, right of = data, node distance = 4cm] (matlab) {Matlab}; 
+			\node [data, right of = matlab, node distance = 4cm] (result) {Results};
+			
+			% paths sources
+			\path [line] (khoury.east) -- node {} (data.west);
+			\path [line] (seeley.east) -- node {} (data.west);
+			\path [line] (others.east) -- node {} (data.west);
+			% paths procession	
+			\path [line] (data.east) -- node {} (matlab.west);		
+			\path [line] (matlab.east) -- node {} (result.west);
+		\end{tikzpicture}} 
 	
-	\begin{multicols}{2} % Divide text into multiple columns
-	\mygreen{Sed diam enim, sagittis nec} condimentum sit amet, ullamcorper sit amet libero. \mybrown{Aliquam vel dui orci}, a porta odio. \myred{Nullam id suscipit} ipsum. \myblue{Aenean lobortis} commodo sem, ut commodo leo gravida vitae. Pellentesque vehicula ante iaculis arcu pretium rutrum eget sit amet purus. Integer ornare nulla quis neque ultrices lobortis. Vestibulum ultrices tincidunt libero, quis commodo erat ullamcorper id.
-	\end{multicols}
-
-\clearpage
-
+	\caption{\textit{Diagram of our work \cite{khoury13} \cite{seeley95}.}}
+		\label{fig:workDiagram}
+	\end{figure}
+	\clearpage
 %------------------------------------------------
-
-\subsection{Bullet Points and Numbered Lists}
-
+\section{Description of the Standard Model}
+	It consists of four differential equations:
 	\begin{itemize}
-	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+		\item Change of brood number
+		\item Change of hive bee number
+		\item Change of forager bee number
+		\item Change of food
+	\end{itemize}
+	\clearpage
+%------------------------------------------------
+\section*{Description of the Standard Model}
+	Let's look into one equation: \textbf{Change of brood number}
+	\begin{equation}\label{eq:changeBroodNumbers}
+			\frac{dB}{dt} = LS(H,f)-\phi B
+	\end{equation}
+	\begin{itemize}
+	\item $L$ is the laying rate of the queen
+	\item $S$ is the survival rate
+	\item $H$ is the amount of hive bees
+	\item $f$ is the amount of food
+	\item $\phi$ is the adult bee emerging factor
 	\end{itemize}
 	
-	\begin{enumerate}
-	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-	\item Nam cursus est eget velit posuere pellentesque
-	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
-	\end{enumerate}
-
 	\clearpage
-
 %------------------------------------------------
-
-\subsection{Verbatim}
-
-	How to include a theorem in this presentation:
-	\begin{verbatim}
-	\mybox{0.8\textwidth}{
-	\begin{theorem}[Murphy (1949)]
-	Anything that can go wrong, will go wrong.
-	\end{theorem}
-	}
-	\end{verbatim}
-	
-	\clearpage
-
-%------------------------------------------------
-
-
-\section{Displaying Information}
-
-	\clearpage
-
-%------------------------------------------------
-
-\subsection{Table}
-
-	\begin{table}[h]
-	\centering
-	\begin{tabular}{l l l}
-	\toprule
-	\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-	\midrule
-	Treatment 1 & 0.0003262 & 0.562 \\
-	Treatment 2 & 0.0015681 & 0.910 \\
-	Treatment 3 & 0.0009271 & 0.296 \\
-	\bottomrule
-	\end{tabular}
-	\caption{Table caption}
-	\end{table}
-	
-	\clearpage
-
-%------------------------------------------------
-
-\subsection{Figure}
-
-	\begin{figure}[h]
-	\centering\includegraphics[width=0.4\linewidth]{placeholder}
+\section{Environmental Influences}
+	\begin{figure}[H]
+		\centering
+		\scalebox{0.4}{\small \includegraphics{data/egg_plot.eps}}
+		\caption{\textit{The laying rate of the bee queen plotted over a year.}}
 	\end{figure}
-	
+	\clearpage
+%------------------------------------------------
+\section*{Environmental Influences}
+	Comparison between the environment dependent equation and the standard one: 
+	\begin{itemize}
+		\item static equation: $	\frac{dB}{dt} = LS(H,f)-\phi B $
+		\item dynamic equation: $\frac{dB}{dt} = L_tS(H,f)-\phi B$
+	\end{itemize}
+	$\longrightarrow$ small changes in the formulae have significant effects (cf. Discussion).
+	\clearpage
+%------------------------------------------------
+\section{Advanced model: Environment simulation}
+	\clearpage
+%------------------------------------------------
+\subsection*{Model overview}
+	\input{data/model_overview.tex}
+	\clearpage
+%------------------------------------------------
+\subsection*{Agents: Assigning jobs}
+	\input{data/working_states_assign.tex}
+	\clearpage
+%------------------------------------------------
+\subsection*{Foragers' distribution across flower patches}
+	\begin{itemize}
+		\item Bees will focus on newly reported and then on the most profitable food sources
+		\item Driving factors for evaluating a patch ($p < q$):
+		\begin{enumerate}
+			\item Patch quality ($b_w$)
+			\item Distance from the hive ($d_w$)
+			\item Patch size ($A_w$)
+		\end{enumerate}
+		\item Relative evaluation based on what other foraging sources are available
+	\end{itemize}
+	\clearpage
+%------------------------------------------------
+\subsection*{Agents: Scout bees}
+	\input{data/working_states_scouts.tex}
+	\clearpage
+%------------------------------------------------
+\subsection*{Scouts' random walk}
+	The path a scout bee walks is recorded in a vector of $x$ and $y$ coordinates:
+	\[\begin{pmatrix}
+		x_0 & x_1 & \ldots & x_n \\ y_0 & y_1 & \ldots & y_n
+	\end{pmatrix}\]
+	\begin{figure}[H]
+		\centering
+		\scalebox{.25}{\includegraphics{data/random_walk.eps}}
+		\caption{\textit{Example of a random walk executed by a scout bee.}}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+\subsection*{Agents: Forager bees}
+	\input{data/working_states_foragers.tex}
+	\clearpage
+%------------------------------------------------
+\subsection*{Path optimization}
+	\begin{itemize}
+		\item Bees are able to orientate themselves in the environment with sun positioning \cite{seeley95}
+		\item Every second way point is skipped
+		\item Starting- and endpoints are preserved
+		\item Triangle inequality $\Rightarrow L^2$ norm of the distance can only become smaller
+	\end{itemize}
+	\[
+		\begin{pmatrix}
+			x_0 & x_1 & x_2 & x_3 & x_4 & \ldots & x_{n-3} & x_{n-2} & x_{n-1} & x_n \\
+			y_0 & y_1 & y_2 & y_3 & y_4 & \ldots & y_{n-3} & y_{n-2} & y_{n-1} & y_n
+		\end{pmatrix}
+	\]
+	\[
+		\Longrightarrow_{optimization}
+		\begin{pmatrix}
+			x_0 & x_2 & x_4 & \ldots & x_{n-4} & x_{n-2} & x_{n} \\ y_0 & y_2 & y_4 & \ldots & y_{n-4} & y_{n-2} & y_{n}
+		\end{pmatrix}
+	\]
+	\clearpage
+
+%------------------------------------------------
+\subsection*{Path optimization}
+	\begin{figure}[H]
+		\centering
+		\scalebox{.4}{\includegraphics{data/optimization.eps}}
+		\caption{\textit{Example of path optimization used to short cut the path to flower patches.}}
+		\label{fig:pathOptimization}
+	\end{figure}
+
+%------------------------------------------------
+
+\subsection*{Agents: Returning to the hive}
+	\input{data/working_states_tohive.tex}
 	\clearpage
 
 %------------------------------------------------
 
-\subsection{Theorem}
-
-	The most common definition of \mygreen{Murphy's Law} is as follows.
-	
-	\mybox{0.8\textwidth}{ % Example of encapsulating text in a colored box
-	\begin{theorem}[Murphy (1949)]
-	Anything that can go wrong, will go wrong.
-	\end{theorem}
-	}
-	
-	\begin{proof}
-	A special case of this theorem is proven in the textbook.
-	\end{proof}
-	
-	\begin{remark}
-	This is a remark.
-	\end{remark}
-	
-	\begin{algorithm}
-	This is an algorithm.
-	\end{algorithm}
-	
+\subsection*{Agent based model: recorded sample clips}
+	\begin{itemize}
+		\item Day 158, recorded sample with scouts displayed
+		\item Day 158, recorded sample without scouts displayed
+		\item Two different runs, not the same flower patches are being selected
+	\end{itemize}
 	\clearpage
-
 %------------------------------------------------
-
-\section{Citations}
-
-	An example of the \texttt{\textbackslash cite} command to cite within the presentation:
-	
-	This statement requires citation \cite{Smith:2012qr}.
-	
+\section{Simulation results and analysis}
+	\begin{itemize}
+		\item Evolution of the model
+		\item Missing flower season comparison
+		\item Critical points in the fall season
+	\end{itemize}
 	\clearpage
-
 %------------------------------------------------
-
+\subsection*{Evolution of the model}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{data/r0-1.eps}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+\subsection*{Daily simulation}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{data/Properties_Base_R2_variation_day158.eps}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+\subsection*{Missing flower season comparison}
+	\begin{itemize}
+		\item Eliminate non critical seasons
+		\item Study effects of missing season
+		\item Observe the hives compensation measures
+	\end{itemize}
+	\clearpage
+%------------------------------------------------
+\subsubsection*{Spring}
+	\begin{figure}[H]
+		\scalebox{0.9}{
+		\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{data/Properties_Base_R1_2.eps}}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+\subsubsection*{Summer}
+	\begin{figure}[H]
+		\scalebox{0.9}{
+		\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{data/Properties_Base_R1_3.eps}}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+\subsection*{Critical points in the fall season}
+\textbf{Death criteria:}
+	\begin{itemize}
+		\item Less than 1000 bees at day 400
+		\item Less than 20 kg of stored food at day 400
+	\end{itemize}
+	\clearpage
+%------------------------------------------------
+\subsubsection*{Overview}
+	\begin{figure}[H]
+		\scalebox{0.9}{
+		\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{data/survival.eps}}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+\subsubsection*{Stored food variation before fall}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{data/Properties_Base_R2_food_variation.eps}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+\subsubsection*{Peak value influence}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{data/Properties_Base_R2_i_1.eps}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+\subsubsection*{Delay influence around breaking point}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[max size={\textwidth}{\textheight}]{data/Properties_Base_R2_3_i.eps}
+	\end{figure}
+	\clearpage
+%------------------------------------------------
+	\section{Summary}
+	\begin{itemize}
+		\item Standard Model after \textit{D.S. Khoury}.
+			%\subitem Forager change
+			%\subitem Hive bee change
+			%\subitem Brood change
+			%\subitem Food change
+		\item Advanced Model: Environment simulation
+			%\subitem Laying rate
+			%\subitem Flower growth
+			%\subitem Flower quality
+			%\subitem Patch distribution
+		\item Autumnal shift is indifferent
+		\item Hive is rather stable
+		\item Model restrictions
+	\end{itemize}
+	\clearpage
+%------------------------------------------------
 \thispagestyle{empty}
 
 \printbibliography[heading=none]
@@ -347,17 +496,18 @@ footskip=8.5mm
 
 %------------------------------------------------
 
-\thispagestyle{empty} % No slide header and footer
+\thispagestyle{empty}
 \LRCornerWallPaper{1}{data/background.png}
-\begin{tikzpicture}[remember picture,overlay] % Background box
-\node [xshift=\paperwidth/2,yshift=\paperheight/2] at (current page.south west)[rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=\paperheight/3,top color=mygreen,bottom color=mygreen,opacity=0.7]{}; % Change the height of the box, its colors and position on the page here
+
+\begin{tikzpicture}[remember picture,overlay]
+	\node [xshift=\paperwidth/2,yshift=\paperheight/2] at (current page.south west)[rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=\paperheight/3,top color=mygreen,bottom color=mygreen,opacity=0.7]{};
 \end{tikzpicture}
-% Text within the box
+
 \begin{flushright}
-\vspace{0.6cm}
-\color{white}\sffamily
-{\bfseries\LARGE Questions?\par} % Request for questions text
-\vfill
+	\vspace{0.6cm}
+	\color{white}\sffamily
+	{\bfseries\LARGE Questions?\par}
+	\vfill
 \end{flushright}
 
 %----------------------------------------------------------------------------------------
