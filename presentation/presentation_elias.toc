@@ -2,20 +2,26 @@
 \defcounter {refsection}{0}\relax 
 \select@language {english}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Simulation results and analysis}{3}
+\contentsline {section}{Simulation results and analysis}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Evolution of the model}{4}
+\contentsline {section}{Evolution of the model}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Missing flower season comparison}{5}
+\contentsline {subsection}{Daily simulation}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Spring}{7}
+\contentsline {section}{Missing flower season comparison}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Summer}{9}
+\contentsline {subsection}{Spring}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Critical points in the fall season}{10}
+\contentsline {subsection}{Summer}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Death criteria:}{10}
+\contentsline {section}{Critical points in the fall season}{12}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Overview}{12}
+\contentsline {subsection}{Death criteria:}{12}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Variation}{13}
+\contentsline {subsection}{Overview}{14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Variation}{15}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Peak value influence}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Delay influence around breaking point}{17}
