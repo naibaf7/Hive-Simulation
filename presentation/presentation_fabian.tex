@@ -243,7 +243,16 @@
 %------------------------------------------------
 
 \subsection{Foragers' distribution across flower patches}
-	%TODO
+	\begin{itemize}
+		\item Bees will focus on newly reported and then on the most profitable food sources
+		\item Driving factors for evaluating a patch ($p < q$):
+		\begin{enumerate}
+			\item Patch quality ($b_w$)
+			\item Distance from the hive ($d_w$)
+			\item Patch size ($A_w$)
+		\end{enumerate}
+		\item Relative evaluation based on what other foraging sources are available
+	\end{itemize}
 	\clearpage
 
 %------------------------------------------------
@@ -256,9 +265,17 @@
 %------------------------------------------------
 
 \subsection{Scouts' random walk}
-	\input{data/working_states_scouts.tex}
+		The path a scout bee walks is recorded in a vector of $x$ and $y$ coordinates:
+		\[\begin{pmatrix}
+			x_0 & x_1 & \ldots & x_n \\ y_0 & y_1 & \ldots & y_n
+		\end{pmatrix}\]
+		
+		\begin{figure}[H]
+			\centering
+			\scalebox{.25}{\includegraphics{data/random_walk.eps}}
+			\caption{\textit{Example of a random walk executed by a scout bee.}}
+		\end{figure}
 	\clearpage
-
 
 %------------------------------------------------
 
@@ -269,13 +286,49 @@
 %------------------------------------------------
 
 \subsection{Path optimization}
-	\input{data/working_states_scouts.tex}
+	\begin{itemize}
+		\item Bees are able to orientate themselves in the environment with sun positioning \cite{seeley95}
+		\item Every second way point is skipped
+		\item Starting- and endpoints are preserved
+		\item Triangle inequality $\Rightarrow L^2$ norm of the distance can only become smaller
+	\end{itemize}
+	\[
+		\begin{pmatrix}
+			x_0 & x_1 & x_2 & x_3 & x_4 & \ldots & x_{n-3} & x_{n-2} & x_{n-1} & x_n \\
+			y_0 & y_1 & y_2 & y_3 & y_4 & \ldots & y_{n-3} & y_{n-2} & y_{n-1} & y_n
+		\end{pmatrix}
+	\]
+	\[
+		\Longrightarrow_{optimization}
+		\begin{pmatrix}
+			x_0 & x_2 & x_4 & \ldots & x_{n-4} & x_{n-2} & x_{n} \\ y_0 & y_2 & y_4 & \ldots & y_{n-4} & y_{n-2} & y_{n}
+		\end{pmatrix}
+	\]
 	\clearpage
+
+%------------------------------------------------
+\subsection{Path optimization}
+	\begin{figure}[H]
+		\centering
+		\scalebox{.4}{\includegraphics{data/optimization.eps}}
+		\caption{\textit{Example of path optimization used to short cut the path to flower patches.}}
+		\label{fig:pathOptimization}
+	\end{figure}
 
 %------------------------------------------------
 
 \subsection{Agents: Returning to the hive}
 	\input{data/working_states_tohive.tex}
+	\clearpage
+
+%------------------------------------------------
+
+\subsection{Agent based model: recorded sample clips}
+	\begin{itemize}
+		\item Day 158, recorded sample with scouts displayed
+		\item Day 158, recorded sample without scouts displayed
+		\item Two different runs, not the same flower patches are being selected
+	\end{itemize}
 	\clearpage
 
 %------------------------------------------------
