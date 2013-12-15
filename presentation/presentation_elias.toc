@@ -2,20 +2,18 @@
 \defcounter {refsection}{0}\relax 
 \select@language {english}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Displaying Text}{3}
+\contentsline {section}{Simulation results and analysis}{3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Paragraphs of Text and Formatting}{4}
+\contentsline {section}{Evolution of the model}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Bullet Points and Numbered Lists}{5}
+\contentsline {section}{Missing flower season comparison}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Verbatim}{6}
+\contentsline {subsection}{Spring}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Displaying Information}{7}
+\contentsline {subsection}{Summer}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Table}{8}
+\contentsline {section}{Critical points in the fall season}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Figure}{9}
+\contentsline {subsection}{Death criteria:}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Theorem}{10}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{Citations}{11}
+\contentsline {subsection}{Overview}{11}
