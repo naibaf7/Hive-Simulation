@@ -1,0 +1,65 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{none}
+    \entry{khoury13}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=a3c49bd1e8edc7b8a7771c2060c2f1d7}{Khoury}{K\bibinitperiod}{D.\bibnamedelimi S.}{D\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+        {{hash=8c605b21fd3e518324fa6596e1324c7c}{Barron}{B\bibinitperiod}{B.\bibnamedelimi A.}{B\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=3248a7ce113d5ca7f2ba7bd31640cfaf}{Myerscough}{M\bibinitperiod}{R.\bibnamedelimi M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=a3c49bd1e8edc7b8a7771c2060c2f1d7}{Khoury}{K\bibinitperiod}{D.\bibnamedelimi S.}{D\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+        {{hash=8c605b21fd3e518324fa6596e1324c7c}{Barron}{B\bibinitperiod}{B.\bibnamedelimi A.}{B\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=3248a7ce113d5ca7f2ba7bd31640cfaf}{Myerscough}{M\bibinitperiod}{R.\bibnamedelimi M.}{R\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{83b8570ac55467d03754a1350597f4ed}
+      \strng{fullhash}{83b8570ac55467d03754a1350597f4ed}
+      \field{sortinit}{0}
+      \field{labeltitle}{Modelling Food and Population Dynamics in Honey Bee Colonies}
+      \field{journaltitle}{PLOS ONE}
+      \field{title}{Modelling Food and Population Dynamics in Honey Bee Colonies}
+      \field{year}{2013}
+    \endentry
+    \entry{seeley95}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=42eb2bc19dd88d0f20023f52f0775a56}{Seeley}{S\bibinitperiod}{T.\bibnamedelimi D.}{T\bibinitperiod\bibinitdelim D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Harvard University Press}%
+      }
+      \strng{namehash}{42eb2bc19dd88d0f20023f52f0775a56}
+      \strng{fullhash}{42eb2bc19dd88d0f20023f52f0775a56}
+      \field{sortinit}{0}
+      \field{labeltitle}{The Wisdom of the Hive}
+      \field{subtitle}{The Social Physiology of Honey Bee Colonies}
+      \field{title}{The Wisdom of the Hive}
+      \field{year}{1995}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

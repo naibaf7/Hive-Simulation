@@ -1,15 +1,7 @@
-\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\defcounter {refsection}{0}\relax 
 \select@language {english}
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{Introduction}{3}
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{Description of the Standard Model}{4}
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{Environmental Influences}{6}
-\defcounter {refsection}{0}\relax 
 \contentsline {section}{Advanced model: Environment simulation}{8}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{Simulation results and analysis}{19}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{Summary}{30}
+\contentsline {section}{Simulation results and analysis}{16}
+\contentsline {section}{Summary}{26}

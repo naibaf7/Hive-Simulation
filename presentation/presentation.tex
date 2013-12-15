@@ -54,7 +54,6 @@
 \usepackage[english]{babel}
 \usepackage{microtype}
 \usepackage{tocstyle}
-\usepackage[backend=biber,sorting=none,natbib=true,style=numeric]{biblatex}
 \usepackage{wallpaper}
 \usepackage{epstopdf}
 \usepackage{amssymb, amsmath}
@@ -72,12 +71,6 @@
 \usepackage{float}
 \usetikzlibrary{shapes,arrows,positioning,shadows,calc}
 \usepackage[export]{adjustbox}
-%------------------------------------------------
-
-%------------------------------------------------
-% Load bibliography
-\bibliography{bib}
-\addbibresource{bib}
 %------------------------------------------------
 
 
@@ -231,26 +224,26 @@
 	\begin{figure}[h]
 		\centering
 		\scalebox{0.65}{
-		\small
+		\large
 		\begin{tikzpicture}[node distance = 3cm and 3cm, auto]
 			% nodes
 			\node [paper] (khoury) {Khoury};
 			\node [paper, below of = khoury, node distance = 1.5cm] (seeley) {Seeley};
-			\node [paper, below of = seeley, node distance = 1.5cm] (others) {others};
+			\node [paper, below of = seeley, node distance = 1.5cm] (others) {Others};
 			\node [data, right of = seeley, node distance = 4cm] (data) {Data};
 			\node [data, right of = data, node distance = 4cm] (matlab) {Matlab}; 
 			\node [data, right of = matlab, node distance = 4cm] (result) {Results};
 			
 			% paths sources
-			\path [line] (khoury.east) -- node {} (data.west);
-			\path [line] (seeley.east) -- node {} (data.west);
-			\path [line] (others.east) -- node {} (data.west);
+			\path [line] (khoury.east) -- (data.west);
+			\path [line] (seeley.east) -- (data.west);
+			\path [line] (others.east) -- (data.west);
 			% paths procession	
-			\path [line] (data.east) -- node {} (matlab.west);		
-			\path [line] (matlab.east) -- node {} (result.west);
+			\path [line] (data.east) -- (matlab.west);
+			\path [line] (matlab.east) -- (result.west);
 		\end{tikzpicture}} 
 	
-	\caption{\textit{Diagram of our work \cite{khoury13} \cite{seeley95}.}}
+	\caption{\textit{Diagram of our work.}}
 		\label{fig:workDiagram}
 	\end{figure}
 	\clearpage
@@ -267,9 +260,9 @@
 %------------------------------------------------
 \section*{Description of the Standard Model}
 	Let's look into one equation: \textbf{Change of brood number}
-	\begin{equation}\label{eq:changeBroodNumbers}
+	\begin{equation*}
 			\frac{dB}{dt} = LS(H,f)-\phi B
-	\end{equation}
+	\end{equation*}
 	\begin{itemize}
 	\item $L$ is the laying rate of the queen
 	\item $S$ is the survival rate
@@ -277,7 +270,6 @@
 	\item $f$ is the amount of food
 	\item $\phi$ is the adult bee emerging factor
 	\end{itemize}
-	
 	\clearpage
 %------------------------------------------------
 \section{Environmental Influences}
@@ -298,9 +290,6 @@
 	\clearpage
 %------------------------------------------------
 \section{Advanced model: Environment simulation}
-	\clearpage
-%------------------------------------------------
-\subsection*{Model overview}
 	\input{data/model_overview.tex}
 	\clearpage
 %------------------------------------------------
@@ -308,18 +297,18 @@
 	\input{data/working_states_assign.tex}
 	\clearpage
 %------------------------------------------------
-\subsection*{Foragers' distribution across flower patches}
-	\begin{itemize}
-		\item Bees will focus on newly reported and then on the most profitable food sources
-		\item Driving factors for evaluating a patch ($p < q$):
-		\begin{enumerate}
-			\item Patch quality ($b_w$)
-			\item Distance from the hive ($d_w$)
-			\item Patch size ($A_w$)
-		\end{enumerate}
-		\item Relative evaluation based on what other foraging sources are available
-	\end{itemize}
-	\clearpage
+%\subsection*{Foragers' distribution across flower patches}
+%	\begin{itemize}
+%		\item Bees will focus on newly reported and then on the most profitable food sources
+%		\item Driving factors for evaluating a patch ($p < q$):
+%		\begin{enumerate}
+%			\item Patch quality ($b_w$)
+%			\item Distance from the hive ($d_w$)
+%			\item Patch size ($A_w$)
+%		\end{enumerate}
+%		\item Relative evaluation based on what other foraging sources are available
+%	\end{itemize}
+%	\clearpage
 %------------------------------------------------
 \subsection*{Agents: Scout bees}
 	\input{data/working_states_scouts.tex}
@@ -341,33 +330,33 @@
 	\input{data/working_states_foragers.tex}
 	\clearpage
 %------------------------------------------------
-\subsection*{Path optimization}
-	\begin{itemize}
-		\item Bees are able to orientate themselves in the environment with sun positioning \cite{seeley95}
-		\item Every second way point is skipped
-		\item Starting- and endpoints are preserved
-		\item Triangle inequality $\Rightarrow L^2$ norm of the distance can only become smaller
-	\end{itemize}
-	\[
-		\begin{pmatrix}
-			x_0 & x_1 & x_2 & x_3 & x_4 & \ldots & x_{n-3} & x_{n-2} & x_{n-1} & x_n \\
-			y_0 & y_1 & y_2 & y_3 & y_4 & \ldots & y_{n-3} & y_{n-2} & y_{n-1} & y_n
-		\end{pmatrix}
-	\]
-	\[
-		\Longrightarrow_{optimization}
-		\begin{pmatrix}
-			x_0 & x_2 & x_4 & \ldots & x_{n-4} & x_{n-2} & x_{n} \\ y_0 & y_2 & y_4 & \ldots & y_{n-4} & y_{n-2} & y_{n}
-		\end{pmatrix}
-	\]
-	\clearpage
+%\subsection*{Path optimization}
+%	\begin{itemize}
+%		\item Bees are able to orientate themselves in the environment with sun positioning
+%		\item Every second way point is skipped
+%		\item Starting- and endpoints are preserved
+%		\item Triangle inequality $\Rightarrow L^2$ norm of the distance can only become smaller
+%	\end{itemize}
+%	\[
+%		\begin{pmatrix}
+%			x_0 & x_1 & x_2 & x_3 & x_4 & \ldots & x_{n-3} & x_{n-2} & x_{n-1} & x_n \\
+%			y_0 & y_1 & y_2 & y_3 & y_4 & \ldots & y_{n-3} & y_{n-2} & y_{n-1} & y_n
+%		\end{pmatrix}
+%	\]
+%	\[
+%		\Longrightarrow_{optimization}
+%		\begin{pmatrix}
+%			x_0 & x_2 & x_4 & \ldots & x_{n-4} & x_{n-2} & x_{n} \\ y_0 & y_2 & y_4 & \ldots & y_{n-4} & y_{n-2} & y_{n}
+%		\end{pmatrix}
+%	\]
+%	\clearpage
 
 %------------------------------------------------
 \subsection*{Path optimization}
 	\begin{figure}[H]
 		\centering
-		\scalebox{.4}{\includegraphics{data/optimization.eps}}
-		\caption{\textit{Example of path optimization used to short cut the path to flower patches.}}
+		\scalebox{.45}{\includegraphics{data/optimization.eps}}
+		\caption{\textit{Path optimization used to short cut the path to flower patches.}}
 		\label{fig:pathOptimization}
 	\end{figure}
 
@@ -441,13 +430,13 @@
 	\end{itemize}
 	\clearpage
 %------------------------------------------------
-\subsubsection*{Overview}
-	\begin{figure}[H]
-		\scalebox{0.9}{
-		\centering
-		\includegraphics[max size={\textwidth}{\textheight}]{data/survival.eps}}
-	\end{figure}
-	\clearpage
+%\subsubsection*{Overview}
+%	\begin{figure}[H]
+%		\scalebox{0.9}{
+%		\centering
+%		\includegraphics[max size={\textwidth}{\textheight}]{data/survival.eps}}
+%	\end{figure}
+%	\clearpage
 %------------------------------------------------
 \subsubsection*{Stored food variation before fall}
 	\begin{figure}[H]
@@ -472,7 +461,7 @@
 %------------------------------------------------
 	\section{Summary}
 	\begin{itemize}
-		\item Standard Model after \textit{D.S. Khoury}.
+		\item Standard Model after \textit{D.S. Khoury}
 			%\subitem Forager change
 			%\subitem Hive bee change
 			%\subitem Brood change
@@ -487,12 +476,6 @@
 		\item Model restrictions
 	\end{itemize}
 	\clearpage
-%------------------------------------------------
-\thispagestyle{empty}
-
-\printbibliography[heading=none]
-
-\clearpage
 
 %------------------------------------------------
 
