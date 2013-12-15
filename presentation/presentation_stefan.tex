@@ -252,7 +252,7 @@ footskip=8.5mm
 		\path [line] (matlab.east) -- node {} (result.west);
 	\end{tikzpicture}} 
 
-\caption{\textit{Diagram of our work.}}
+\caption{\textit{Diagram of our work \cite{khoury13} \cite{seeley95}.}}
 	\label{fig:workDiagram}
 \end{figure}
 
@@ -273,7 +273,7 @@ It consists of four differential equations:
 
 %------------------------------------------------
 
-Let's look into one equation:
+Let's look into one equation: \textbf{Change of brood number}
 \begin{equation}\label{eq:changeBroodNumbers}
 		\frac{dB}{dt} = LS(H,f)-\phi B
 \end{equation}
@@ -291,7 +291,7 @@ Let's look into one equation:
 
 
 \section{Environmental Influences}
-\begin{figure}
+\begin{figure}[H]
 			\centering
 			\scalebox{.5}{\small \includegraphics{data/egg_plot.eps}}
 			\caption{\textit{The laying rate of the bee queen plotted over a year.}}
@@ -309,8 +309,8 @@ Let's look into one equation:
 Comparison between the environment dependent equation and the standard one: 
 
 \begin{itemize}
-\item old equation: $	\frac{dB}{dt} = LS(H,f)-\phi B $
-\item new equation: $\frac{dB}{dt} = L_tS(H,f)-\phi B$
+\item static equation: $	\frac{dB}{dt} = LS(H,f)-\phi B $
+\item dynamic equation: $\frac{dB}{dt} = L_tS(H,f)-\phi B$
 \end{itemize}
 
 $\longrightarrow$ small changes in the formulae have significant effects (cf. Discussion).
@@ -318,8 +318,7 @@ $\longrightarrow$ small changes in the formulae have significant effects (cf. Di
 \clearpage
 
 %------------------------------------------------
-\section{Summary and Outlook}
-Summary
+\section{Summary}
 \begin{itemize}
 	\item Standard Model after \textit{D.S. Khoury}.
 		%\subitem Forager change
@@ -331,18 +330,18 @@ Summary
 		%\subitem Flower growth
 		%\subitem Flower quality
 		%\subitem Patch distribution
-	\item autumnal shift is indifferent
+	\item Autumnal shift is indifferent
 	\item hive is rather stable
 	\item Model restrictions
 \end{itemize}
 \clearpage
 
 %------------------------------------------------
-Outlook
+\section{Outlook}
 \begin{itemize}
 	\item Better understanding of bees' and hives' behaviour
-	\item Simulation is important
-	\item ...
+	\item See the importance and limitations of simulations
+	\item Extend simulations
 \end{itemize}
 \clearpage
 

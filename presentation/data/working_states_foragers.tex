@@ -1,0 +1,28 @@
+% Define state styles
+\tikzstyle{decision} = [diamond, draw, top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow, text width=2cm, text centered, node distance=2cm, inner sep=0pt]
+\tikzstyle{state} = [rectangle, draw, top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow, text width=2cm, text centered, rounded corners, minimum height=2cm]
+\tikzstyle{line} = [line width=1.5pt, draw, -latex']
+\begin{figure}[H]
+	\centering
+	\scalebox{0.6}{
+	\large
+	\begin{tikzpicture}[node distance = 3cm and 3cm, auto]
+		% Place nodes
+		\node [state, right of=moreScouts, node distance = 4cm] (foragerBee) {Forager bee, picking waggle dance randomly};
+		\node [decision, right of=foragerBee, node distance = 3cm] (pq1) {Evaluate $p < q$};
+		\node [state, right of=pq1, node distance = 3cm] (foragerBeeToPatch) {Forager bee, on the way to the flower patch};
+		\node [decision, right of=foragerBeeToPatch, node distance = 3.5cm] (foragerPatchReached) {Flower patch reached?};
+		\node [state, right of=foragerPatchReached, node distance = 3.5cm] (collectingFood) {Forager bee, collecting food};
+		\node [state, right of=collectingFood, node distance = 3.5cm] (foragerToHive) {Forager bee, returning to hive};
+		% Draw edges
+		\path [line] (foragerBee.east) -- (pq1.west);
+		\path [line] (pq1.east) -- node [near start] {yes} (foragerBeeToPatch.west);
+		\path [line] (pq1.north) -- node [near start] {no} +(0.0cm, +0.7cm) -| (foragerBee.north);
+		\path [line] (foragerBeeToPatch.east) -- (foragerPatchReached.west);
+		\path [line] (foragerPatchReached.east) -- node [near start] {yes} (collectingFood.west);
+		\path [line] (foragerPatchReached.north) -- node [near start] {no} +(0.cm, +0.5cm) -| (foragerBeeToPatch.north);
+		\path [line] (collectingFood.east) -- (foragerToHive.west);
+	\end{tikzpicture}}
+	\caption{\textit{Foraging behaviour.}}
+\end{figure}
+

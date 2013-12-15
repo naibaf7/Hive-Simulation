@@ -2,20 +2,20 @@
 \defcounter {refsection}{0}\relax 
 \select@language {english}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Displaying Text}{3}
+\contentsline {section}{Advanced model: Environment simulation}{3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Paragraphs of Text and Formatting}{4}
+\contentsline {subsection}{Model overview}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Bullet Points and Numbered Lists}{5}
+\contentsline {subsection}{Agents: Assigning jobs}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Verbatim}{6}
+\contentsline {subsection}{Foragers' distribution across flower patches}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Displaying Information}{7}
+\contentsline {subsection}{Agents: Scout bees}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Table}{8}
+\contentsline {subsection}{Scouts' random walk}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Figure}{9}
+\contentsline {subsection}{Agents: Forager bees}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Theorem}{10}
+\contentsline {subsection}{Path optimization}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Citations}{11}
+\contentsline {subsection}{Agents: Returning to the hive}{11}

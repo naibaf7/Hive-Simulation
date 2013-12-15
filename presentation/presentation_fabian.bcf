@@ -1942,7 +1942,6 @@
     <bcf:datasource type="file" datatype="bibtex">bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Smith:2012qr</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" type="entry" label="none">
   <bcf:sorting>

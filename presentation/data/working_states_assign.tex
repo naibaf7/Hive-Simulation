@@ -1,0 +1,26 @@
+% Define state styles
+\tikzstyle{decision} = [diamond, draw, top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow, text width=2cm, text centered, node distance=2cm, inner sep=0pt]
+\tikzstyle{state} = [rectangle, draw, top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow, text width=2cm, text centered, rounded corners, minimum height=2cm]
+\tikzstyle{line} = [line width=1.5pt, draw, -latex']
+\begin{figure}[H]
+	\centering
+	\scalebox{0.6}{
+	\large
+	\begin{tikzpicture}[node distance = 3cm and 3cm, auto]
+		% Place nodes
+		\node [state] (unemployed) {Unemployed bee};
+		\node [decision, right of=unemployed, node distance = 3.5cm] (moreBees) {More active bees possible?};
+		\node [decision, right of=moreBees, node distance = 4cm] (moreScouts) {More scouts possible?};
+		\node [state, right of=moreScouts, node distance = 4cm] (foragerBee) {Forager bee, picking waggle dance randomly};
+		\node [state, below of=moreScouts, node distance = 4cm] (randomWalk) {Scout bee, doing random walk};
+		% Draw edges
+		\path [line] +(-2cm, 0.0) -- (unemployed.west);
+		\path [line] (unemployed) -- (moreBees);
+		\path [line] (moreBees.north) -- +(0, +0.5cm) -| node [near start]{no} (unemployed.north);
+		\path [line] (moreBees.east) -- node [near start]{yes} (moreScouts.west);
+		\path [line] (moreScouts.east) -- node [near start] {no} (foragerBee.west);
+		\path [line] (moreScouts.south) -- node [near start] {yes} (randomWalk.north);
+	\end{tikzpicture}}
+	\caption{\textit{Assigning jobs to unemployed bees. Scouts and foragers are possible.}}
+\end{figure}
+

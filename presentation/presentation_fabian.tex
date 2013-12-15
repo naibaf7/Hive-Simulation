@@ -1,11 +1,11 @@
 \documentclass[
-paper=128mm:96mm, % The same paper size as used in the beamer class
-fontsize=11pt, % Font size
-pagesize, % Write page size to dvi or pdf
-parskip=half-, % Paragraphs separated by half a line
-]{scrartcl} % KOMA script (article)
+	paper=128mm:96mm,
+	fontsize=11pt,
+	pagesize,
+	parskip=half-,
+]{scrartcl}
 
-\linespread{1.12} % Increase line spacing for readability
+\linespread{1}
 
 %------------------------------------------------
 % Colors
@@ -25,40 +25,52 @@ parskip=half-, % Paragraphs separated by half a line
 %------------------------------------------------
 % Margins
 \usepackage[ % Page margins settings
-includeheadfoot,
-top=3.5mm,
-bottom=3.5mm,
-left=5.5mm,
-right=5.5mm,
-headsep=6.5mm,
-footskip=8.5mm
+	includeheadfoot,
+	top=3.5mm,
+	bottom=3.5mm,
+	left=5.5mm,
+	right=5.5mm,
+	headsep=6.5mm,
+	footskip=8.5mm
 ]{geometry}
 %------------------------------------------------
 
 %------------------------------------------------
 % Fonts
-\usepackage[T1]{fontenc}	 % For correct hyphenation and T1 encoding
-\usepackage{lmodern} % Default font: latin modern font
-%\usepackage{fourier} % Alternative font: utopia
-%\usepackage{charter} % Alternative font: low-resolution roman font
-\renewcommand{\familydefault}{\sfdefault} % Sans serif - this may need to be commented to see the alternative fonts
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
 %------------------------------------------------
 
 %------------------------------------------------
 % Various required packages
-\usepackage{amsthm} % Required for theorem environments
-\usepackage{bm} % Required for bold math symbols (used in the footer of the slides)
-\usepackage{graphicx} % Required for including images in figures
-\usepackage{tikz} % Required for colored boxes
-\usepackage{booktabs} % Required for horizontal rules in tables
-\usepackage{multicol} % Required for creating multiple columns in slides
-\usepackage{lastpage} % For printing the total number of pages at the bottom of each slide
-\usepackage[english]{babel} % Document language - required for customizing section titles
-\usepackage{microtype} % Better typography
-\usepackage{tocstyle} % Required for customizing the table of contents
-\usepackage[backend=biber,sorting=none,natbib=true,style=numeric]{biblatex} % For references
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{lastpage}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{tocstyle}
+\usepackage[backend=biber,sorting=none,natbib=true,style=numeric]{biblatex}
 \usepackage{wallpaper}
 \usepackage{epstopdf}
+\usepackage{amssymb, amsmath}
+\usepackage{pdfpages}
+\usepackage[english]{babel}
+\usepackage{empheq}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{cases}
+\usepackage{scrextend}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{shapes,arrows,positioning,shadows,calc}
 %------------------------------------------------
 
 %------------------------------------------------
@@ -96,10 +108,7 @@ footskip=8.5mm
 \ohead{
 \hspace{-2mm}
 \begin{tikzpicture}[remember picture, overlay]
-	%\node [xshift=\paperwidth/2,yshift=-\headheight] (mybar) at (current page.north west) [rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=2\headheight,top color=mygreen!64,bottom color=mygreen]{}; % Colored bar
 	\node at (-\paperwidth/2+3.2cm,0) {\includegraphics{data/banner.png}};
-	%\node[below of=mybar,yshift=3.3mm,rectangle,shade,inner sep=0pt,minimum width=128mm,minimum height =1.5mm,top color=black!50,bottom color=white]{}; % Shadow under the colored bar
-	%shadow
 \end{tikzpicture}
 \color{black}\runninghead} % Header text defined by the \runninghead command below and colored white for contrast
 %------------------------------------------------
@@ -189,152 +198,84 @@ footskip=8.5mm
 \end{tikzpicture}
 % Text within the box
 \begin{flushright}
-\vspace{0.6cm}
-\color{white}\sffamily
-{\bfseries\Large\mytitle\par} % Title
-\vspace{0.5cm}
-\normalsize
-\myauthor\par % Author name
-\mydate\par % Date
-\vfill
+	\vspace{0.6cm}
+	\color{white}\sffamily
+	{\bfseries\Large\mytitle\par}
+	\vspace{0.5cm}
+	\normalsize
+	\myauthor\par
+	\mydate\par
+	\vfill
 \end{flushright}
 
 \clearpage
 \ClearWallPaper
+
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
-\thispagestyle{empty} % No slide header and footer
+\thispagestyle{empty}
 
-\small\tableofcontents % Change the font size and print the table of contents - it may be useful to shrink the font size further if the presentation is full of sections
-% To exclude sections/subsections from the table of contents, put an asterisk after \(sub)section like so: \section*{Section Name}
+\small\tableofcontents
 
 \clearpage
 
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
-
-\section{Displaying Text}
-
-\clearpage
-
-%------------------------------------------------
-
-\subsection{Paragraphs of Text and Formatting}
-
-	\textit{Sed iaculis} dapibus gravida. Morbi sed tortor erat, nec interdum arcu. Sed id lorem lectus. Quisque viverra augue id sem ornare non aliquam nibh tristique. Aenean in ligula nisl. Nulla sed tellus ipsum.
-	
-	\begin{multicols}{2} % Divide text into multiple columns
-	\mygreen{Sed diam enim, sagittis nec} condimentum sit amet, ullamcorper sit amet libero. \mybrown{Aliquam vel dui orci}, a porta odio. \myred{Nullam id suscipit} ipsum. \myblue{Aenean lobortis} commodo sem, ut commodo leo gravida vitae. Pellentesque vehicula ante iaculis arcu pretium rutrum eget sit amet purus. Integer ornare nulla quis neque ultrices lobortis. Vestibulum ultrices tincidunt libero, quis commodo erat ullamcorper id.
-	\end{multicols}
-
-\clearpage
-
-%------------------------------------------------
-
-\subsection{Bullet Points and Numbered Lists}
-
-	\begin{itemize}
-	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-	\end{itemize}
-	
-	\begin{enumerate}
-	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-	\item Nam cursus est eget velit posuere pellentesque
-	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
-	\end{enumerate}
+\section{Advanced model: Environment simulation}
 
 	\clearpage
 
 %------------------------------------------------
 
-\subsection{Verbatim}
-
-	How to include a theorem in this presentation:
-	\begin{verbatim}
-	\mybox{0.8\textwidth}{
-	\begin{theorem}[Murphy (1949)]
-	Anything that can go wrong, will go wrong.
-	\end{theorem}
-	}
-	\end{verbatim}
-	
+\subsection{Model overview}
+	\input{data/model_overview.tex}
 	\clearpage
 
 %------------------------------------------------
 
-
-\section{Displaying Information}
-
+\subsection{Agents: Assigning jobs}
+	\input{data/working_states_assign.tex}
 	\clearpage
 
 %------------------------------------------------
 
-\subsection{Table}
-
-	\begin{table}[h]
-	\centering
-	\begin{tabular}{l l l}
-	\toprule
-	\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-	\midrule
-	Treatment 1 & 0.0003262 & 0.562 \\
-	Treatment 2 & 0.0015681 & 0.910 \\
-	Treatment 3 & 0.0009271 & 0.296 \\
-	\bottomrule
-	\end{tabular}
-	\caption{Table caption}
-	\end{table}
-	
+\subsection{Foragers' distribution across flower patches}
+	%TODO
 	\clearpage
 
 %------------------------------------------------
 
-\subsection{Figure}
+\subsection{Agents: Scout bees}
+	\input{data/working_states_scouts.tex}
+	\clearpage
 
-	\begin{figure}[h]
-	\centering\includegraphics[width=0.4\linewidth]{placeholder}
-	\end{figure}
-	
+
+%------------------------------------------------
+
+\subsection{Scouts' random walk}
+	\input{data/working_states_scouts.tex}
+	\clearpage
+
+
+%------------------------------------------------
+
+\subsection{Agents: Forager bees}
+	\input{data/working_states_foragers.tex}
 	\clearpage
 
 %------------------------------------------------
 
-\subsection{Theorem}
-
-	The most common definition of \mygreen{Murphy's Law} is as follows.
-	
-	\mybox{0.8\textwidth}{ % Example of encapsulating text in a colored box
-	\begin{theorem}[Murphy (1949)]
-	Anything that can go wrong, will go wrong.
-	\end{theorem}
-	}
-	
-	\begin{proof}
-	A special case of this theorem is proven in the textbook.
-	\end{proof}
-	
-	\begin{remark}
-	This is a remark.
-	\end{remark}
-	
-	\begin{algorithm}
-	This is an algorithm.
-	\end{algorithm}
-	
+\subsection{Path optimization}
+	\input{data/working_states_scouts.tex}
 	\clearpage
 
 %------------------------------------------------
 
-\section{Citations}
-
-	An example of the \texttt{\textbackslash cite} command to cite within the presentation:
-	
-	This statement requires citation \cite{Smith:2012qr}.
-	
+\subsection{Agents: Returning to the hive}
+	\input{data/working_states_tohive.tex}
 	\clearpage
 
 %------------------------------------------------
@@ -347,17 +288,18 @@ footskip=8.5mm
 
 %------------------------------------------------
 
-\thispagestyle{empty} % No slide header and footer
+\thispagestyle{empty}
 \LRCornerWallPaper{1}{data/background.png}
-\begin{tikzpicture}[remember picture,overlay] % Background box
-\node [xshift=\paperwidth/2,yshift=\paperheight/2] at (current page.south west)[rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=\paperheight/3,top color=mygreen,bottom color=mygreen,opacity=0.7]{}; % Change the height of the box, its colors and position on the page here
+
+\begin{tikzpicture}[remember picture,overlay]
+	\node [xshift=\paperwidth/2,yshift=\paperheight/2] at (current page.south west)[rectangle,fill,inner sep=0pt,minimum width=\paperwidth,minimum height=\paperheight/3,top color=mygreen,bottom color=mygreen,opacity=0.7]{};
 \end{tikzpicture}
-% Text within the box
+
 \begin{flushright}
-\vspace{0.6cm}
-\color{white}\sffamily
-{\bfseries\LARGE Questions?\par} % Request for questions text
-\vfill
+	\vspace{0.6cm}
+	\color{white}\sffamily
+	{\bfseries\LARGE Questions?\par}
+	\vfill
 \end{flushright}
 
 %----------------------------------------------------------------------------------------
