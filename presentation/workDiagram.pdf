@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,shadows,calc}
+
+\begin{document}
+
+% Define styles
+\tikzstyle{paper} = [rectangle, draw, top color=white, bottom color=yellow!60, draw=red!50!black!100, drop shadow, text width=2cm, text centered, node distance=2cm, minimum height=1cm]
+
+\tikzstyle{data} = [rectangle, draw, top color=white, bottom color=green!60, draw=red!50!black!100, drop shadow, text width=2cm, text centered, node distance=2cm, minimum height=1cm]
+
+\tikzstyle{line} = [line width=1.5pt, draw, -latex']
+
+\begin{figure}
+	\centering
+	\scalebox{0.9}{
+	\small
+	\begin{tikzpicture}[node distance = 3cm and 3cm, auto]
+		% nodes
+		\node [paper] (khoury) {Khoury};
+		\node [paper, below of = khoury, node distance = 1.5cm] (seeley) {Seeley};
+		\node [paper, below of = seeley, node distance = 1.5cm] (others) {others};
+		\node [data, right of = seeley, node distance = 4cm] (data) {Data};
+		\node [data, right of = data, node distance = 4cm] (matlab) {Matlab}; 
+		\node [data, right of = matlab, node distance = 4cm] (result) {Results};
+		
+		% paths sources
+		\path [line] (khoury.east) -- node {} (data.west);
+		\path [line] (seeley.east) -- node {} (data.west);
+		\path [line] (others.east) -- node {} (data.west);
+		% paths procession	
+		\path [line] (data.east) -- node {} (matlab.west);		
+		\path [line] (matlab.east) -- node {} (result.west);
+	\end{tikzpicture}} 
+
+\caption{\textit{Diagram of our work.}}
+	\label{fig:workDiagram}
+\end{figure}
+\end{document}
