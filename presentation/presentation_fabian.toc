@@ -18,6 +18,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{Path optimization}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Agents: Returning to the hive}{11}
+\contentsline {subsection}{Path optimization}{11}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{Agent based model: recorded sample clips}{12}
+\contentsline {subsection}{Agents: Returning to the hive}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Agent based model: recorded sample clips}{13}
