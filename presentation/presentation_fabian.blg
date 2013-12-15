@@ -1,4 +1,4 @@
-[0] Config.pm:361> INFO - This is Biber 1.5
-[0] Config.pm:364> INFO - Logfile is 'presentation_fabian.blg'
-[73] biber-MSWIN:190> INFO - === %a %b %e, %Y, %H:%M:%S
-[73] Biber.pm:327> INFO - Reading 'presentation_fabian.bcf'
+[0] Config.pm:318> INFO - This is Biber 1.8
+[0] Config.pm:321> INFO - Logfile is 'presentation_fabian.blg'
+[129] biber-MSWIN:272> INFO - === %a %b %e, %Y, %H:%M:%S
+[142] Biber.pm:333> INFO - Reading 'presentation_fabian.bcf'
