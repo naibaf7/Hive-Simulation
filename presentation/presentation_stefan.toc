@@ -8,4 +8,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{Environmental Influences}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{Summary and Outlook}{9}
+\contentsline {section}{Summary}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Outlook}{10}

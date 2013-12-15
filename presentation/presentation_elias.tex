@@ -59,6 +59,8 @@ footskip=8.5mm
 \usepackage[backend=biber,sorting=none,natbib=true,style=numeric]{biblatex} % For references
 \usepackage{wallpaper}
 \usepackage{epstopdf}
+\usepackage{float}
+\usepackage[export]{adjustbox}
 %------------------------------------------------
 
 %------------------------------------------------
@@ -216,127 +218,67 @@ footskip=8.5mm
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
 
-\section{Displaying Text}
+\section{Simulation results and analysis}
+
+\begin{itemize}
+\item Evolution of the model
+\item Missing flower season comparison
+\item Critical points in the fall season
+\end{itemize}
+\clearpage
+
+%------------------------------------------------
+
+\section{Evolution of the model}
+\begin{figure}[H]
+			\centering
+			\includegraphics[max size={\textwidth}{\textheight}]{data/r0-1.eps}
+\end{figure}
+
 
 \clearpage
 
 %------------------------------------------------
 
-\subsection{Paragraphs of Text and Formatting}
+\section{Missing flower season comparison}
 
-	\textit{Sed iaculis} dapibus gravida. Morbi sed tortor erat, nec interdum arcu. Sed id lorem lectus. Quisque viverra augue id sem ornare non aliquam nibh tristique. Aenean in ligula nisl. Nulla sed tellus ipsum.
-	
-	\begin{multicols}{2} % Divide text into multiple columns
-	\mygreen{Sed diam enim, sagittis nec} condimentum sit amet, ullamcorper sit amet libero. \mybrown{Aliquam vel dui orci}, a porta odio. \myred{Nullam id suscipit} ipsum. \myblue{Aenean lobortis} commodo sem, ut commodo leo gravida vitae. Pellentesque vehicula ante iaculis arcu pretium rutrum eget sit amet purus. Integer ornare nulla quis neque ultrices lobortis. Vestibulum ultrices tincidunt libero, quis commodo erat ullamcorper id.
-	\end{multicols}
+\begin{itemize}
+\item Eliminate non critical seasons
+\item Study effects of missing season
+\item Observe the hives compensation measures
+\end{itemize}
+\clearpage
+%------------------------------------------------
+\subsection{Spring}
+\begin{figure}[H]
+			\centering
+			\includegraphics[max size={\textwidth}{\textheight}]{data/Properties_Base_R1_2.eps}
+\end{figure}
+%------------------------------------------------
+\subsection{Summer}
+\begin{figure}[H]
+			\centering
+			\includegraphics[max size={\textwidth}{\textheight}]{data/Properties_Base_R1_3.eps}
+\end{figure}
+%------------------------------------------------
+
+\section{Critical points in the fall season}
+
 
 \clearpage
-
+%------------------------------------------------
+\subsection{Death criteria:}
+\begin{itemize}
+\item Less than 1000 bees at day 400
+\item Less than 20kg of stored food at day 400
+\end{itemize}
 %------------------------------------------------
 
-\subsection{Bullet Points and Numbered Lists}
-
-	\begin{itemize}
-	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-	\end{itemize}
-	
-	\begin{enumerate}
-	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-	\item Nam cursus est eget velit posuere pellentesque
-	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
-	\end{enumerate}
-
-	\clearpage
-
-%------------------------------------------------
-
-\subsection{Verbatim}
-
-	How to include a theorem in this presentation:
-	\begin{verbatim}
-	\mybox{0.8\textwidth}{
-	\begin{theorem}[Murphy (1949)]
-	Anything that can go wrong, will go wrong.
-	\end{theorem}
-	}
-	\end{verbatim}
-	
-	\clearpage
-
-%------------------------------------------------
-
-
-\section{Displaying Information}
-
-	\clearpage
-
-%------------------------------------------------
-
-\subsection{Table}
-
-	\begin{table}[h]
-	\centering
-	\begin{tabular}{l l l}
-	\toprule
-	\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-	\midrule
-	Treatment 1 & 0.0003262 & 0.562 \\
-	Treatment 2 & 0.0015681 & 0.910 \\
-	Treatment 3 & 0.0009271 & 0.296 \\
-	\bottomrule
-	\end{tabular}
-	\caption{Table caption}
-	\end{table}
-	
-	\clearpage
-
-%------------------------------------------------
-
-\subsection{Figure}
-
-	\begin{figure}[h]
-	\centering\includegraphics[width=0.4\linewidth]{placeholder}
-	\end{figure}
-	
-	\clearpage
-
-%------------------------------------------------
-
-\subsection{Theorem}
-
-	The most common definition of \mygreen{Murphy's Law} is as follows.
-	
-	\mybox{0.8\textwidth}{ % Example of encapsulating text in a colored box
-	\begin{theorem}[Murphy (1949)]
-	Anything that can go wrong, will go wrong.
-	\end{theorem}
-	}
-	
-	\begin{proof}
-	A special case of this theorem is proven in the textbook.
-	\end{proof}
-	
-	\begin{remark}
-	This is a remark.
-	\end{remark}
-	
-	\begin{algorithm}
-	This is an algorithm.
-	\end{algorithm}
-	
-	\clearpage
-
-%------------------------------------------------
-
-\section{Citations}
-
-	An example of the \texttt{\textbackslash cite} command to cite within the presentation:
-	
-	This statement requires citation \cite{Smith:2012qr}.
-	
-	\clearpage
-
+\subsection{Overview}
+\begin{figure}[H]
+			\centering
+			\includegraphics[max size={\textwidth}{\textheight}]{data/survival.eps}
+\end{figure}
 %------------------------------------------------
 
 \thispagestyle{empty}
